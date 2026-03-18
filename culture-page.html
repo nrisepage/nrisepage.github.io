@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culture — NRISE</title>
+  <meta name="description" content="엔라이즈의 핵심가치와 조직문화를 소개합니다. 팀워크, 진실성, 고객 집착, 자율성, 탁월한 성과 추구.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Culture — NRISE">
+  <meta property="og:description" content="엔라이즈의 핵심가치와 조직문화를 소개합니다.">
+  <meta property="og:url" content="https://culture.nrise.net">
+  <meta property="og:site_name" content="NRISE">
+  <meta property="og:image" content="https://opening-attachments.greetinghr.com/20230601/02c9543a-74ed-4592-853f-17b2adc07c5d/nrise_logo_launchericon2.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Culture — NRISE">
+  <meta name="twitter:description" content="엔라이즈의 핵심가치와 조직문화를 소개합니다.">
+  <link rel="canonical" href="https://culture.nrise.net">
+  <link rel="icon" href="https://opening-attachments.greetinghr.com/20230601/02c9543a-74ed-4592-853f-17b2adc07c5d/nrise_logo_launchericon2.png" type="image/png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <style>
+    :root { --bg-dark:#0a0a0f; --bg-card:#141419; --bg-light:#f7f7f5; --accent:#ff0056; --text-1:#fff; --text-2:rgba(255,255,255,0.6); --text-3:rgba(255,255,255,0.35); --text-d1:#1a1a1a; --text-d2:#555; --border:rgba(255,255,255,0.08); --border-l:rgba(0,0,0,0.08); --font:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif; --ease:cubic-bezier(0.16,1,0.3,1); }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{font-family:var(--font);scroll-behavior:smooth;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+    body{background:var(--bg-dark);color:var(--text-1);overflow-x:hidden}
+    body.menu-open{overflow:hidden}
+
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background .4s,backdrop-filter .4s}
+    .nav.scrolled{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+    .nav-logo{display:block;height:18px;position:relative;z-index:1}.nav-logo img{height:100%;width:auto;display:block}
+    .nav-links{display:flex;gap:32px;list-style:none}.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}.nav-links a:hover,.nav-links a.active{color:#fff}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;z-index:101}.nav-toggle span{display:block;width:22px;height:2px;background:#fff;transition:.3s}
+
+    .hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0}.hero-bg img{width:100%;height:100%;object-fit:cover}.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(10,10,15,.65)}
+    .hero-content{position:relative;z-index:1;padding:0 24px;will-change:transform,opacity}
+    .hero-title{font-size:clamp(28px,5.5vw,64px);font-weight:800;line-height:1.35;letter-spacing:-1.5px;color:#fff;max-width:960px;margin:0 auto;opacity:0;transform:translateY(30px);animation:fadeUp 1s var(--ease) .5s forwards;word-break:keep-all;overflow-wrap:break-word}
+    .hero-label{display:inline-block;font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:32px;opacity:0;transform:translateY(20px);animation:fadeUp .8s var(--ease) .3s forwards}
+
+
+    /* SECTION COMMON */
+    .lang-sw{display:flex;gap:4px;align-items:center;margin-left:16px;position:relative;z-index:1}
+    .lang-btn{padding:4px 10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.4);background:none;border:1px solid transparent;border-radius:6px;cursor:pointer;font-family:var(--font);transition:color .2s,border-color .2s}
+    .lang-btn:hover{color:rgba(255,255,255,.7)}
+    .lang-btn.active{color:#fff;border-color:rgba(255,255,255,.2)}
+    .s-label{display:inline-block;font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+    .s-line{width:48px;height:1px;background:var(--accent);margin:0 auto 24px}
+    .s-title{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.35;letter-spacing:-1px;color:#fff;max-width:680px;margin:0 auto}
+    .s-title-dark{color:var(--text-d1)}
+    .s-header{text-align:center;margin-bottom:64px}
+
+    /* VALUES */
+    .values{background:var(--bg-dark);padding:100px 48px 120px}
+    .values-grid{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+    .v-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 340px;gap:0;width:100%;opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+    .v-card.visible{opacity:1;transform:translateY(0)}
+    .v-body{padding:40px 44px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+    .v-num span{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:700;margin-bottom:16px}
+    .v-title{font-size:24px;font-weight:800;letter-spacing:-.8px;color:#fff;margin-bottom:8px}
+    .v-one{font-size:15px;color:var(--text-2);line-height:1.6;margin-bottom:20px}
+    .v-points{list-style:none}
+    .v-point{padding:18px 0;border-top:1px solid var(--border)}
+    .v-point:last-child{border-bottom:1px solid var(--border)}
+    .v-point-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-.2px}
+    .v-point-desc{font-size:13px;font-weight:400;line-height:1.75;color:rgba(255,255,255,.5)}
+    .v-em{color:var(--accent);font-weight:700}
+    .v-quote-area{background:rgba(255,255,255,.02);border-left:1px solid var(--border);padding:44px 32px;display:flex;flex-direction:column;justify-content:center}
+    .v-quote-icon{width:32px;height:24px;margin-bottom:20px;opacity:.15}
+    .v-quote-text{font-size:14px;font-weight:400;font-style:italic;line-height:1.8;color:rgba(255,255,255,.6);margin-bottom:24px}
+    .v-quote-author{display:flex;align-items:center;gap:12px}
+    .v-quote-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2a2a30,#3a3a42);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:rgba(255,255,255,.4);flex-shrink:0;overflow:hidden}
+    .v-quote-avatar img{width:100%;height:100%;object-fit:cover}
+    .v-quote-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.8)}
+    .v-quote-role{font-size:11px;font-weight:400;color:rgba(255,255,255,.45);margin-top:2px}
+
+    /* CURATED */
+    .curated{background:var(--bg-light);padding:120px 48px}
+    .curated-inner{max-width:1100px;margin:0 auto}
+    .curated-carousel{position:relative;overflow:hidden;touch-action:pan-y pinch-zoom}
+    .curated-track{display:flex;gap:20px;transition:transform .5s var(--ease);-webkit-user-select:none;user-select:none}
+    .cu-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--border-l);transition:transform .3s var(--ease),box-shadow .3s;text-decoration:none;display:block;flex-shrink:0}
+    .cu-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+    .cu-img{height:220px;background:#e8e8e6;position:relative;overflow:hidden}.cu-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+    .cu-body{padding:24px}
+    .cu-img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:12px}
+    .cu-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--accent);background:rgba(255,0,86,.08);padding:4px 10px;border-radius:4px;margin-bottom:12px}
+    .cu-title{font-size:17px;font-weight:700;color:var(--text-d1);line-height:1.45;letter-spacing:-.3px;margin-bottom:8px}
+    .cu-desc{font-size:13px;color:var(--text-d2);line-height:1.6}
+    .cu-more{text-align:center;margin-top:48px}.cu-more a{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--text-d2);text-decoration:none;transition:color .2s}.cu-more a:hover{color:var(--accent)}.cu-more svg{width:16px;height:16px}
+    .cu-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px}
+    .cu-nav-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-l);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
+    .cu-nav-btn:hover{border-color:rgba(0,0,0,.2);background:#f5f5f3}
+    .cu-nav-btn svg{width:16px;height:16px;color:var(--text-d1)}
+    .cu-nav-dots{display:flex;gap:6px}
+    .cu-nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.12);transition:background .3s,transform .3s;cursor:pointer}
+    .cu-nav-dot.active{background:var(--accent);transform:scale(1.2)}
+
+    /* BENEFITS */
+    .benefits{background:#fff;padding:120px 48px}
+    .ben-inner{max-width:1100px;margin:0 auto}
+    .ben-tabs{display:flex;gap:8px;margin-bottom:40px;border-bottom:1px solid var(--border-l)}
+    .ben-tab{padding:14px 24px;font-size:15px;font-weight:600;color:var(--text-d2);background:none;border:none;cursor:pointer;position:relative;transition:color .3s;font-family:var(--font)}
+    .ben-tab::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .3s var(--ease)}
+    .ben-tab.active{color:var(--text-d1)}.ben-tab.active::after{transform:scaleX(1)}
+    .ben-panel{display:none}.ben-panel.active{display:block;animation:fadeSlide .4s var(--ease)}
+    .ben-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .ben-card{background:var(--bg-light);border-radius:16px;padding:32px 24px;text-align:center;transition:transform .3s var(--ease)}.ben-card:hover{transform:translateY(-4px)}
+    .ben-icon{width:48px;height:48px;margin:0 auto 16px;border-radius:12px;background:linear-gradient(135deg,#fff0f3,#ffe0e8);display:flex;align-items:center;justify-content:center}.ben-icon svg{width:22px;height:22px;color:var(--accent)}
+    .ben-title{font-size:15px;font-weight:700;color:var(--text-d1);line-height:1.5}
+    .ben-desc{margin-top:6px;font-size:13px;color:var(--text-d2);line-height:1.5}
+
+
+    /* CTA */
+    .cta{position:relative;padding:160px 48px;text-align:center;background-color:var(--bg-dark);background-image:url('img-office.jpg');background-size:cover;background-position:center;overflow:hidden}
+    .cta-ov{position:absolute;inset:0;background:rgba(10,10,15,.6)}
+    .cta-title{position:relative;font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.35;letter-spacing:-1px;color:#fff;margin-bottom:20px;max-width:680px;margin-left:auto;margin-right:auto}
+    .cta-sub{position:relative;font-size:17px;color:rgba(255,255,255,.75);margin-bottom:48px;line-height:1.6}
+    .cta-btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:18px 40px;font-size:16px;font-weight:700;font-family:var(--font);color:#fff;background:var(--accent);border:none;border-radius:60px;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s;text-decoration:none}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,0,86,.35)}.cta-btn svg{width:18px;height:18px;transition:transform .3s}.cta-btn:hover svg{transform:translateX(4px)}
+
+    .footer{background:#07070a;padding:48px;border-top:1px solid var(--border)}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .footer-left{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7}
+    .footer-links{display:flex;gap:24px;list-style:none}.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}.footer-links a:hover{color:rgba(255,255,255,.8)}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:1024px){.v-card{grid-template-columns:1fr;height:auto}.v-quote-area{border-left:none;border-top:1px solid var(--border)}.ben-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:768px){
+      .nav{padding:16px 20px}.nav-links{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:#0a0a0f;flex-direction:column;align-items:center;justify-content:center;gap:32px}.nav-links.open{display:flex}.nav-links a{font-size:20px}.nav-toggle{display:flex;z-index:1;position:relative}
+      .nav.menu-active{position:fixed;inset:0;background:#0a0a0f;z-index:100}
+      .lang-sw{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);margin:0;display:none}
+      .nav.menu-active .lang-sw{display:flex}
+      .hero{min-height:100svh}.hero-content{padding:0 20px}
+      .hero-title{font-size:clamp(24px,7vw,32px);letter-spacing:-0.5px;line-height:1.4;word-break:normal}
+      
+      .values{padding:20px 20px 80px}.v-card{grid-template-columns:1fr;height:auto}.v-num{display:none}.v-body{padding:28px 24px}.v-quote-area{padding:24px 24px}.v-point-title{font-size:14px}.v-point-desc{font-size:12px}
+      .curated{padding:80px 20px}
+      .benefits{padding:80px 20px}.ben-grid{grid-template-columns:repeat(2,1fr);gap:12px}.ben-card{padding:24px 16px}.ben-icon{width:40px;height:40px;margin-bottom:12px}.ben-icon svg{width:18px;height:18px}.ben-title{font-size:14px}.ben-desc{font-size:12px}.ben-tabs{overflow-x:auto;gap:0;-ms-overflow-style:none;scrollbar-width:none}.ben-tabs::-webkit-scrollbar{display:none}.ben-tab{white-space:nowrap;padding:12px 16px;font-size:14px}
+      .cta{padding:80px 20px}.cta-btn{padding:16px 32px;font-size:15px}
+      .footer{padding:32px 20px}.footer-inner{flex-direction:column;gap:20px;text-align:center}
+    }
+  </style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="https://nrise.net" class="nav-logo"><img src="logo-white-clean.png" alt="NRISE"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="https://career.nrise.net/ko/home" data-i18n="nav.about">회사소개</a></li>
+    <li><a href="javascript:void(0)" class="active" aria-current="page" data-i18n="nav.culture">조직문화</a></li>
+    <li><a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer" data-i18n="nav.blog">블로그</a></li>
+    <li><a href="https://career.nrise.net/ko/career" data-i18n="nav.careers">채용</a></li>
+  </ul>
+  <div class="lang-sw"><button class="lang-btn active" data-lang="ko">KO</button><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="ja">JA</button></div>
+  <button class="nav-toggle" id="navToggle" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"><img src="img-work.jpg" alt="엔라이즈 오피스"></div>
+  <div class="hero-content" id="heroContent">
+    <p class="hero-label" lang="en">Mission</p>
+    <div class="s-line" style="animation:fadeUp .8s var(--ease) .4s forwards;opacity:0"></div>
+    <h1 class="hero-title" data-i18n="hero.title">연결을 통해 세상의 변화를 만듭니다.</h1>
+    
+  </div>
+</section>
+
+
+<!-- CORE VALUES -->
+<section class="values" aria-labelledby="val-h">
+  <div class="s-header"><p class="s-label" lang="en">Core Values</p><div class="s-line"></div><h2 class="s-title" id="val-h" data-i18n="val.heading">다섯 가지 기준이 우리의 어제와 내일을 만듭니다</h2></div>
+  <div class="values-grid">
+
+    <div class="v-card" data-reveal-card>
+      <div class="v-body">
+        <div class="v-num"><span>1</span></div>
+        <h3 class="v-title" data-i18n="v1.title">팀워크</h3>
+        <p class="v-one" data-i18n="v1.one">신뢰 위에서 원팀으로 움직이고, 존중이 담긴 극도의 솔직함으로 소통합니다.</p>
+        <ul class="v-points">
+          <li class="v-point"><p class="v-point-title" data-i18n="v1.p1t">신뢰는 가장 단단한 기반</p><p class="v-point-desc" data-i18n="v1.p1d">팀워크는 동료의 신뢰를 얻는 것부터 형성됩니다. 신뢰는 단순히 믿는다는 마음만으로 생겨나지 않습니다. 동료에게 신뢰를 얻기 위해 <span class="v-em">행동을 통해 증명하는 과정</span>에서 비로소 발현될 수 있습니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v1.p2t">원팀(One-Team)</p><p class="v-point-desc" data-i18n="v1.p2d">엔라이즈에서는 나의 성공보다 <span class="v-em">팀의 성공을 절대적으로 우선시</span>합니다. '내 일'과 '네 일' 역할을 나누는 경계를 지우고, 팀에 필요한 일이라면 무엇이든 주도적으로 나섭니다. 서로를 이끌어주고 먼저 손 내미는 One-Team 정신이 우리를 위대한 성과로 이끕니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v1.p3t">존중이 담긴 극도의 솔직함</p><p class="v-point-desc" data-i18n="v1.p3d">갈등이 두려워 침묵하거나, 모호하게 에둘러 말하는 표현을 경계합니다. 엔라이즈가 추구하는 솔직함은 <span class="v-em">'존중' 위에서 성립</span>합니다. 다름을 포용하고 문제를 정면으로 마주하여 명확하게 소통하는 용기, 그리고 즉각적으로 피드백을 주고받는 끈끈함이 진정한 솔직함을 완성합니다.</p></li>
+        </ul>
+      </div>
+      <div class="v-quote-area">
+        <svg class="v-quote-icon" viewBox="0 0 32 24" fill="white"><path d="M0 24V14.4C0 6.08 4.48 1.28 13.44 0l1.28 3.2C9.28 4.48 6.72 8 6.4 12h5.6v12H0zm18.56 0V14.4C18.56 6.08 23.04 1.28 32 0l1.28 3.2c-5.44 1.28-8 4.8-8.32 8.8h5.6v12H18.56z"/></svg>
+        <p class="v-quote-text" data-i18n="v1.q">팀워크가 탄탄해야 빠르고 혁신적인 결과를 만들 수 있거든요. 그렇게 엔라이즈는 '함께' 소통하고 부딪히며 성장하는 것을 목표로 달립니다.</p>
+        <div class="v-quote-author"><div class="v-quote-avatar"><img src="https://ca.slack-edge.com/T02FD73M3-U02FE7NDE-20c136e41dbf-72" alt="김봉기"></div><div><p class="v-quote-name" data-i18n="v1.qname">김봉기</p><p class="v-quote-role" data-i18n="v1.qrole">CEO</p></div></div>
+      </div>
+    </div>
+
+    <div class="v-card" data-reveal-card>
+      <div class="v-body">
+        <div class="v-num"><span>2</span></div>
+        <h3 class="v-title" data-i18n="v2.title">자율성</h3>
+        <p class="v-one" data-i18n="v2.one">책임감 위에서 자율적으로 판단하고, 맥락을 투명하게 공유하며, 결정 후 빠르게 실행합니다.</p>
+        <ul class="v-points">
+          <li class="v-point"><p class="v-point-title" data-i18n="v2.p1t">책임이 따르는 자율성</p><p class="v-point-desc" data-i18n="v2.p1d">담당한 업무에 대해 책임감을 갖고 자율적으로 판단하고 결정합니다. 엔라이즈가 추구하는 자율성은 <span class="v-em">단순한 편의나 복지가 아닙니다</span>. 진정한 자율성은 팀과 제품의 성공에 대한 책임감, 그리고 동료와의 탄탄한 공감대 위에서 온전히 발휘될 수 있습니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v2.p2t">맥락의 투명한 공유</p><p class="v-point-desc" data-i18n="v2.p2d">자율적으로 일을 하기 위해서는 공유가 중요합니다. 엔라이즈가 표현하는 '공유'는 표면적인 현상뿐만 아니라, <span class="v-em">이면의 변화와 맥락까지 투명하게 나누는 것</span>을 의미합니다. 투명한 공유는 동료의 공감과 조력을 이끌어내어 자율적인 의사결정을 가능케 합니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v2.p3t">결정 이후의 수용과 빠른 실행</p><p class="v-point-desc" data-i18n="v2.p3d">충분히 논의했음에도 결론이 나지 않는다면, 빠르게 나아가기 위해 담당자가 결정을 내립니다. 내 의견과 다르더라도, 그 결정을 <span class="v-em">전적으로 수용하여 가장 빠르게 실행</span>하는 데 집중합니다.</p></li>
+        </ul>
+      </div>
+      <div class="v-quote-area">
+        <svg class="v-quote-icon" viewBox="0 0 32 24" fill="white"><path d="M0 24V14.4C0 6.08 4.48 1.28 13.44 0l1.28 3.2C9.28 4.48 6.72 8 6.4 12h5.6v12H0zm18.56 0V14.4C18.56 6.08 23.04 1.28 32 0l1.28 3.2c-5.44 1.28-8 4.8-8.32 8.8h5.6v12H18.56z"/></svg>
+        <p class="v-quote-text" data-i18n="v2.q">결국 위임이라는 것은 결정권을 주는 거예요. 스스로 자유롭게 결정할 수 있는 권리는 동료를 설득하고 일을 끝까지 완수해 나가는 데 중요한 동력이 되거든요. 자율과 책임의 상호작용이죠.</p>
+        <div class="v-quote-author"><div class="v-quote-avatar"><img src="https://ca.slack-edge.com/T02FD73M3-U02TL1J6F-f3a593094b0e-72" alt="이정훈"></div><div><p class="v-quote-name" data-i18n="v2.qname">이정훈</p><p class="v-quote-role" data-i18n="v2.qrole">위피 마케팅 팀 리드</p></div></div>
+      </div>
+    </div>
+
+    <div class="v-card" data-reveal-card>
+      <div class="v-body">
+        <div class="v-num"><span>3</span></div>
+        <h3 class="v-title" data-i18n="v3.title">진실성</h3>
+        <p class="v-one" data-i18n="v3.one">겉과 속이 일치하는 일관성을 지키고, 결과와 과정 모두에서 떳떳하게 행동합니다.</p>
+        <ul class="v-points">
+          <li class="v-point"><p class="v-point-title" data-i18n="v3.p1t">겉과 속이 일치하는 일관성</p><p class="v-point-desc" data-i18n="v3.p1d">상황에 따라 변하는 자세를 경계합니다. 엔라이즈는 단순히 거짓말을 하지 않는 것을 넘어, 겉과 속이 다름없이 스스로 옳다고 믿는 <span class="v-em">윤리적 기준을 매 순간 일관되게 실천</span>합니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v3.p2t">결과와 과정 사이의 떳떳함</p><p class="v-point-desc" data-i18n="v3.p2d">아무도 보지 않는 곳에서도, 스스로에게 부끄럽지 않은 올바른 결정을 내립니다. 모든 의도와 과정, 그리고 결과에 대해 <span class="v-em">숨기거나 포장하지 않고</span> 동료들 앞에서 온전히 떳떳하게 말하고 행동합니다.</p></li>
+        </ul>
+      </div>
+      <div class="v-quote-area">
+        <svg class="v-quote-icon" viewBox="0 0 32 24" fill="white"><path d="M0 24V14.4C0 6.08 4.48 1.28 13.44 0l1.28 3.2C9.28 4.48 6.72 8 6.4 12h5.6v12H0zm18.56 0V14.4C18.56 6.08 23.04 1.28 32 0l1.28 3.2c-5.44 1.28-8 4.8-8.32 8.8h5.6v12H18.56z"/></svg>
+        <p class="v-quote-text" data-i18n="v3.q">진심이 중요합니다. 우리가 일, 동료, 고객을 대할 때 앞과 뒤가 다르지 않을 때 비로소 성과를 낼 수 있다고 생각해요.</p>
+        <div class="v-quote-author"><div class="v-quote-avatar"><img src="https://ca.slack-edge.com/T02FD73M3-U02FD8UBZ-ae73fd7783c0-72" alt="이지혜"></div><div><p class="v-quote-name" data-i18n="v3.qname">이지혜</p><p class="v-quote-role" data-i18n="v3.qrole">위피 한국스쿼드 PO</p></div></div>
+      </div>
+    </div>
+
+    <div class="v-card" data-reveal-card>
+      <div class="v-body">
+        <div class="v-num"><span>4</span></div>
+        <h3 class="v-title" data-i18n="v4.title">고객에 대한 집착</h3>
+        <p class="v-one" data-i18n="v4.one">모든 고민과 결정은 '고객에게 진정으로 훌륭한 가치를 제공하고 있는가'에서 출발합니다.</p>
+        <ul class="v-points">
+          <li class="v-point"><p class="v-point-title" data-i18n="v4.p1t">고객 집착의 기준</p><p class="v-point-desc" data-i18n="v4.p1d">제품이 존재하는 이유이자 달성해야 할 중요한 목표는 <span class="v-em">고객의 삶에 의미 있는 가치를 전달</span>하는 것입니다. 엔라이즈의 모든 고민과 결정은 '고객에게 진정으로 훌륭한 가치를 제공하고 있는가'라는 확고한 공감대에서 출발합니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v4.p2t">집착의 조건은 높은 고객 이해</p><p class="v-point-desc" data-i18n="v4.p2d">엔라이즈는 고객의 생각과 행동을 책상 위에서 섣불리 상상하거나 짐작하지 않습니다. 고객을 온전히 이해하는 데에는 정해진 방법이 없습니다. 우리는 할 수 있는 모든 방법을 통해 <span class="v-em">'고객의 진짜 문제'에 닿습니다</span>.</p></li>
+        </ul>
+      </div>
+      <div class="v-quote-area">
+        <svg class="v-quote-icon" viewBox="0 0 32 24" fill="white"><path d="M0 24V14.4C0 6.08 4.48 1.28 13.44 0l1.28 3.2C9.28 4.48 6.72 8 6.4 12h5.6v12H0zm18.56 0V14.4C18.56 6.08 23.04 1.28 32 0l1.28 3.2c-5.44 1.28-8 4.8-8.32 8.8h5.6v12H18.56z"/></svg>
+        <p class="v-quote-text" data-i18n="v4.q">제품의 가치는 그 자체에 있는 것이 아니라, 그것을 통해 만들어지는 더 나은 경험과 세상에 있다고 우리는 믿어요. 고객에게 돈을 쓸 이유를 제대로 주지 못하면 BM은 동작하지 않아요.</p>
+        <div class="v-quote-author"><div class="v-quote-avatar"><img src="https://ca.slack-edge.com/T02FD73M3-U02FE48P0-db8b7ca20707-72" alt="허형구"></div><div><p class="v-quote-name" data-i18n="v4.qname">허형구</p><p class="v-quote-role" data-i18n="v4.qrole">위피 재팬스쿼드 PO</p></div></div>
+      </div>
+    </div>
+
+    <div class="v-card" data-reveal-card>
+      <div class="v-body">
+        <div class="v-num"><span>5</span></div>
+        <h3 class="v-title" data-i18n="v5.title">탁월한 성과 추구</h3>
+        <p class="v-one" data-i18n="v5.one">가슴 뛰는 목표를 겨냥하고, 가장 중요한 일에 집중하며, 기필코 해내겠다는 집요함으로 달립니다.</p>
+        <ul class="v-points">
+          <li class="v-point"><p class="v-point-title"><span lang="en" data-i18n="v5.p1t">Moonshot Thinking</span></p><p class="v-point-desc" data-i18n="v5.p1d">엔라이즈는 작은 성과에 머무르지 않고, 가슴 뛰는 목표를 겨냥합니다. 상상할 수 있는 가장 이상적인 모습을 그린 뒤, 그것을 현실로 만들어낼 <span class="v-em">'완전히 새로운 방법'을 기필코 찾아냅니다</span>.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v5.p2t">임팩트와 실행력</p><p class="v-point-desc" data-i18n="v5.p2d">가슴 뛰는 목표를 달성하기 위해, 엔라이즈는 제품의 성공을 위해 가장 중요한 일들로만 시간을 채웁니다. 제품과 팀에 <span class="v-em">중요하지 않은 일은 과감하게 잘라냅니다</span>. 결정이 되고 나면, 모든 팀원이 적극적으로 실행하고 결과를 함께 확인합니다.</p></li>
+          <li class="v-point"><p class="v-point-title" data-i18n="v5.p3t">기필코 해낸다는 집요함</p><p class="v-point-desc" data-i18n="v5.p3d">엔라이즈는 어떤 실패 앞에서도 포기하지 않습니다. 실패 속에서도 상황을 탓하기보다 <span class="v-em">어떻게든 해내겠다는 굳건한 의지와 집념</span>으로 결과를 만들어냅니다.</p></li>
+        </ul>
+      </div>
+      <div class="v-quote-area">
+        <svg class="v-quote-icon" viewBox="0 0 32 24" fill="white"><path d="M0 24V14.4C0 6.08 4.48 1.28 13.44 0l1.28 3.2C9.28 4.48 6.72 8 6.4 12h5.6v12H0zm18.56 0V14.4C18.56 6.08 23.04 1.28 32 0l1.28 3.2c-5.44 1.28-8 4.8-8.32 8.8h5.6v12H18.56z"/></svg>
+        <p class="v-quote-text" data-i18n="v5.q">가슴 뛰는 목표로 가기 위해서는 수많은 실패 속에서 작은 실마리를 찾아야 해요. 그래서 우리는 제품에 중요한 일들에만 집중합니다. 그게 엔라이즈가 성장하는 방식이에요.</p>
+        <div class="v-quote-author"><div class="v-quote-avatar"><img src="https://ca.slack-edge.com/T02FD73M3-U02J18MLNEA-7a84eccf27e4-72" alt="김대근"></div><div><p class="v-quote-name" data-i18n="v5.qname">김대근</p><p class="v-quote-role" data-i18n="v5.qrole">CTO</p></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3. CURATED -->
+<section class="curated" aria-labelledby="cu-h">
+  <div class="curated-inner">
+    <div class="s-header"><p class="s-label" lang="en">Inside NRISE</p><div class="s-line"></div><h2 class="s-title s-title-dark" id="cu-h" data-i18n="cu.heading">엔라이즈 팀이 문제를 해결하는 방법</h2></div>
+    <div class="cu-nav">
+      <button class="cu-nav-btn cu-prev" aria-label="이전"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="cu-nav-dots"></div>
+      <button class="cu-nav-btn cu-next" aria-label="다음"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="curated-carousel" id="cuCarousel">
+      <div class="curated-track" id="cuTrack">
+      <a href="https://blog.nrise.net/%EC%9C%84%ED%94%BC-%EC%9E%AC%ED%8C%AC-%EC%8B%A0%EA%B7%9C-%EC%9C%A0%EC%A0%80%EB%A5%BC-24%EC%8B%9C%EA%B0%84-%EC%95%88%EC%97%90-%EA%B5%AC%EB%8F%85-%EC%9C%A0%EC%A0%80%EB%A1%9C-%EC%A0%84%ED%99%98%ED%95%98%EB%8A%94-%EA%B7%B8%EB%A1%9C%EC%8A%A4-%EC%8B%A4%ED%97%98%EA%B8%B0-22a3436ed9b5" target="_blank" rel="noopener noreferrer" class="cu-card"><div class="cu-img"><img src="img-desk.jpg" alt="그로스 실험기" loading="lazy"></div><div class="cu-body"><span class="cu-tag" data-i18n="cu.1.tag">실험과 도전</span><h4 class="cu-title" data-i18n="cu.1.title">위피 재팬, 신규 유저를 24시간 안에 구독 유저로 전환하는 그로스 실험기</h4><p class="cu-desc" data-i18n="cu.1.desc">핵심 지표인 구독 전환율을 개선했던 도전과 실험 과정을 공유합니다.</p></div></a>
+      <a href="https://blog.nrise.net/%ED%8C%80%EC%9D%84-%EC%8B%A0%EB%A2%B0%ED%95%98%EB%8A%94-%EB%A6%AC%EB%8D%94%EC%8B%AD-%EA%B9%80%EB%8C%80%EA%B7%BC-cto%EA%B0%80-%EB%B0%94%EB%9D%BC%EB%B3%B4%EB%8A%94-%EB%9B%B0%EC%96%B4%EB%82%9C-%ED%8C%80%EC%9D%98-%EC%A1%B0%EA%B1%B4-ac47d615c489" target="_blank" rel="noopener noreferrer" class="cu-card"><div class="cu-img"><img src="thumb-po.webp" alt="CTO 인터뷰"  loading="lazy"></div><div class="cu-body"><span class="cu-tag" data-i18n="cu.2.tag">의사결정</span><h4 class="cu-title" data-i18n="cu.2.title">팀을 신뢰하는 리더십 — CTO가 바라보는 뛰어난 팀의 조건</h4><p class="cu-desc" data-i18n="cu.2.desc">김대근 CTO가 말하는 기술 조직 문화와 리더의 역할.</p></div></a>
+      <a href="https://blog.nrise.net/n%ED%84%B0%EB%B7%B0-%EB%AA%A8%EB%93%A0-%ED%8C%80%EC%9B%90%EC%9D%B4-%EC%A0%9C%ED%92%88%EC%97%90-%EA%B8%B0%EC%97%AC%ED%95%98%EB%8A%94-%EA%B2%BD%ED%97%98%EC%9D%84-%ED%95%98%EB%8F%84%EB%A1%9D-%EB%A7%A4%EB%8B%88%EC%A7%95%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%84-1%EC%88%9C%EC%9C%84%EB%A1%9C-%EC%97%AC%EA%B2%A8%EC%9A%94-%EC%9C%84%ED%94%BC-%EC%9E%AC%ED%8C%AC-product-owner-%ED%97%88%ED%98%95%EA%B5%AC%EB%8B%98-%EC%9D%B8%ED%84%B0%EB%B7%B0-8296781ffcaa" target="_blank" rel="noopener noreferrer" class="cu-card"><div class="cu-img"><img src="thumb-cto.webp" alt="PO 인터뷰" loading="lazy"></div><div class="cu-body"><span class="cu-tag" data-i18n="cu.3.tag">함께 만드는 제품</span><h4 class="cu-title" data-i18n="cu.3.title">모든 팀원이 제품에 기여하는 경험을 하도록</h4><p class="cu-desc" data-i18n="cu.3.desc">위피 재팬 PO가 말하는 0→1을 만드는 스쿼드 문화.</p></div></a>
+        <a href="https://blog.nrise.net/n%ED%84%B0%EB%B7%B0-%EC%97%94%EB%9D%BC%EC%9D%B4%EC%A6%88%EB%8A%94-%EC%8A%A4%EC%8A%A4%EB%A1%9C-%EA%B8%B0%ED%9A%8C%EB%A5%BC-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EA%B7%B8%EA%B2%83%EC%9D%84-%EA%B2%80%EC%A6%9D%ED%95%A0-%EC%88%98-%EC%9E%88%EA%B2%8C-%ED%95%B4%EC%A3%BC%EB%8A%94-%EA%B3%B3%EC%9D%B4%EC%97%90%EC%9A%94-%EC%97%94%EB%9D%BC%EC%9D%B4%EC%A6%88-%EC%9E%A5%EA%B8%B0%EA%B7%BC%EC%86%8D%EC%9E%90-%EC%9D%B8%ED%84%B0%EB%B7%B0-2a58e33722f6" target="_blank" rel="noopener noreferrer" class="cu-card"><div class="cu-img"><div class="cu-img-ph">사진</div></div><div class="cu-body"><span class="cu-tag" data-i18n="cu.4.tag">성장과 커리어</span><h4 class="cu-title" data-i18n="cu.4.title">스스로 기회를 만들고 검증할 수 있게 해주는 곳</h4><p class="cu-desc" data-i18n="cu.4.desc">엔라이즈와 10년을 함께한 장기근속 구성원들의 이야기.</p></div></a>
+        <a href="https://www.smedaily.co.kr/news/articleView.html?idxno=347401" target="_blank" rel="noopener noreferrer" class="cu-card"><div class="cu-img"><div class="cu-img-ph">사진</div></div><div class="cu-body"><span class="cu-tag" data-i18n="cu.5.tag">성과와 도전</span><h4 class="cu-title" data-i18n="cu.5.title">엔라이즈, 창사 이래 최대 실적 및 흑자 전환 달성</h4><p class="cu-desc" data-i18n="cu.5.desc">2024년 매출 434억, 영업이익 흑자 전환 달성.</p></div></a>
+        <a href="https://www.besuccess.com/%EC%86%8C%EC%85%9C%EC%95%B1-%EC%9C%84%ED%94%BC-%EC%9A%B4%EC%98%81%EC%82%AC-%EC%97%94%EB%9D%BC%EC%9D%B4%EC%A6%88-%EC%9D%BC%EB%B3%B8-%EB%A7%A4%EC%B9%AD%EC%95%B1-%EC%8B%9C%EC%9E%A5-%EC%A7%84/" target="_blank" rel="noopener noreferrer" class="cu-card"><div class="cu-img"><div class="cu-img-ph">사진</div></div><div class="cu-body"><span class="cu-tag" data-i18n="cu.6.tag">글로벌 진출</span><h4 class="cu-title" data-i18n="cu.6.title">위피, 일본 매칭앱 시장 진출 — 글로벌 확장의 시작</h4><p class="cu-desc" data-i18n="cu.6.desc">소셜앱 위피의 일본 시장 진출 스토리.</p></div></a>
+      </div>
+    </div>
+    <div class="cu-more"><a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer" data-i18n="cu.more">블로그에서 더 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+
+<!-- 4. BENEFITS -->
+<section class="benefits" aria-labelledby="ben-h">
+  <div class="ben-inner">
+    <div class="s-header"><p class="s-label" lang="en">Benefits</p><div class="s-line"></div><h2 class="s-title s-title-dark" id="ben-h" data-i18n="ben.heading">더 몰입하고 성장할 수 있도록 아낌없이 지원합니다</h2></div>
+    <div class="ben-tabs reveal" role="tablist" aria-label="복지 혜택">
+      <button class="ben-tab active" data-btab="growth" role="tab" aria-selected="true" aria-controls="btab-growth" data-i18n="ben.tab1">성장 지원</button>
+      <button class="ben-tab" data-btab="life" role="tab" aria-selected="false" aria-controls="btab-life" data-i18n="ben.tab2">일상 · 건강</button>
+      <button class="ben-tab" data-btab="work" role="tab" aria-selected="false" aria-controls="btab-work" data-i18n="ben.tab3">업무 환경</button>
+    </div>
+    <div class="ben-panel active" id="btab-growth" role="tabpanel"><div class="ben-grid">
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="m9 10 2 2 4-4"/></svg></div><p class="ben-title" data-i18n="b.g1t">도서·컨퍼런스·교육</p><p class="ben-desc" data-i18n="b.g1d">직무 관련 비용 전액 지원</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></div><p class="ben-title" data-i18n="b.g2t">최적화된 장비</p><p class="ben-desc" data-i18n="b.g2d">최신 노트북, 모니터 등 웰컴키트</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><p class="ben-title" data-i18n="b.g3t">원격 근무</p><p class="ben-desc" data-i18n="b.g3d">자유와 책임의 원격 근무 제도</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/><path d="M2 8c0-3.3 2.7-6 6-6"/><path d="M22 8c0-3.3-2.7-6-6-6"/></svg></div><p class="ben-title" data-i18n="b.g4t">운동 지원비</p><p class="ben-desc" data-i18n="b.g4d">회사 인근 헬스장 등록 지원</p></div>
+    </div></div>
+    <div class="ben-panel" id="btab-life" role="tabpanel"><div class="ben-grid">
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><p class="ben-title" data-i18n="b.l1t">종합 건강검진</p><p class="ben-desc" data-i18n="b.l1d">구성원 및 가족 건강검진 지원</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div><p class="ben-title" data-i18n="b.l2t">복지카드</p><p class="ben-desc" data-i18n="b.l2d">다양한 사용처의 1인 1법카</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div><p class="ben-title" data-i18n="b.l3t">주택자금 대출</p><p class="ben-desc" data-i18n="b.l3d">최대 3천만원 무이자 대출</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><p class="ben-title" data-i18n="b.l4t">생일 선물</p><p class="ben-desc" data-i18n="b.l4d">20만원 상당의 특별한 선물</p></div>
+    </div></div>
+    <div class="ben-panel" id="btab-work" role="tabpanel"><div class="ben-grid">
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg></div><p class="ben-title" data-i18n="b.w1t">무제한 스낵바</p><p class="ben-desc" data-i18n="b.w1d">과자, 음료, 커피 상시 구비</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ben-title" data-i18n="b.w2t">휴식공간</p><p class="ben-desc" data-i18n="b.w2d">라운지, 안마의자 등 편의시설</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><p class="ben-title" data-i18n="b.w3t">경조사 지원</p><p class="ben-desc" data-i18n="b.w3d">결혼, 출산, 장례 휴가 및 경조금</p></div>
+      <div class="ben-card"><div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><p class="ben-title" data-i18n="b.w4t">명절 선물</p><p class="ben-desc" data-i18n="b.w4d">설과 추석 명절 선물 지급</p></div>
+    </div></div>
+  </div>
+</section>
+
+
+<!-- 6. CTA -->
+<section class="cta">
+  <div class="cta-ov"></div>
+  <h2 class="cta-title reveal" data-i18n="cta.title">팀의 기준을 한 단계 더 높여줄 당신과 함께할 준비가 되어있어요</h2>
+  <p class="cta-sub reveal" data-i18n="cta.sub">엔라이즈의 핵심가치에 공감하는 분이라면, 지금 바로 합류하세요.</p>
+  <a href="https://career.nrise.net/ko/career" class="cta-btn reveal" data-i18n="cta.btn">채용 공고 보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left"><strong>(주)엔라이즈</strong><br>대표이사: 김봉기 / 서울특별시 강남구 테헤란로26길 14 대세빌딩 2층<br>© 2026 NRISE. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer" data-i18n="ft.blog">블로그</a></li>
+      <li><a href="https://www.linkedin.com/company/nriseinc/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://career.nrise.net/ko/career" data-i18n="ft.careers">채용</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var nav=document.getElementById('nav'),navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks'),heroContent=document.getElementById('heroContent'),hero=document.getElementById('hero'),heroH=hero.offsetHeight,ticking=false;
+  navToggle.addEventListener('click',function(){var o=navLinks.classList.toggle('open');navToggle.setAttribute('aria-expanded',o?'true':'false');document.body.classList.toggle('menu-open',o);nav.classList.toggle('menu-active',o)});
+  navLinks.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){navLinks.classList.remove('open');navToggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');nav.classList.remove('menu-active')})});
+  navLinks.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
+  function onScroll(){if(!ticking){requestAnimationFrame(function(){var s=window.pageYOffset;nav.classList.toggle('scrolled',s>60);if(s<heroH){var p=s/heroH;heroContent.style.transform='translateY('+(s*.35)+'px)';heroContent.style.opacity=Math.max(0,1-p*1.5)}ticking=false});ticking=true}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');ro.unobserve(en.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,[data-reveal-card]').forEach(function(el){ro.observe(el)});
+  document.querySelectorAll('.ben-tab').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.ben-tab').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false')});document.querySelectorAll('.ben-panel').forEach(function(p){p.classList.remove('active')});btn.classList.add('active');btn.setAttribute('aria-selected','true');document.getElementById('btab-'+btn.dataset.btab).classList.add('active')})});
+
+  // Curated carousel
+  (function(){
+    var wrap=document.getElementById('cuCarousel');
+    var track=document.getElementById('cuTrack');
+    if(!wrap||!track)return;
+    var cards=track.querySelectorAll('.cu-card');
+    var prevBtn=document.querySelector('.cu-prev');
+    var nextBtn=document.querySelector('.cu-next');
+    var dotsWrap=document.querySelector('.cu-nav-dots');
+    var current=0,perPage=3,gap=20;
+
+    function getPerPage(){
+      if(window.innerWidth<=768)return 1;
+      if(window.innerWidth<=1024)return 2;
+      return 3;
+    }
+    function getTotalPages(){return Math.ceil(cards.length/perPage)}
+
+    function sizeCards(){
+      var wrapW=wrap.offsetWidth;
+      var cardW=(wrapW-(perPage-1)*gap)/perPage;
+      cards.forEach(function(c){c.style.width=cardW+'px'});
+    }
+
+    function buildDots(){
+      dotsWrap.innerHTML='';
+      for(var i=0;i<getTotalPages();i++){
+        var d=document.createElement('div');
+        d.className='cu-nav-dot'+(i===current?' active':'');
+        d.dataset.idx=i;
+        d.addEventListener('click',function(){goTo(+this.dataset.idx)});
+        dotsWrap.appendChild(d);
+      }
+    }
+
+    function goTo(i){
+      var total=getTotalPages();
+      current=Math.max(0,Math.min(i,total-1));
+      var cardW=cards[0].offsetWidth;
+      var offset=current*perPage*(cardW+gap);
+      track.style.transform='translateX(-'+offset+'px)';
+      dotsWrap.querySelectorAll('.cu-nav-dot').forEach(function(d,di){d.classList.toggle('active',di===current)});
+    }
+
+    function init(){
+      perPage=getPerPage();
+      current=0;
+      sizeCards();
+      buildDots();
+      goTo(0);
+    }
+
+    prevBtn.addEventListener('click',function(){goTo(current-1)});
+    nextBtn.addEventListener('click',function(){goTo(current+1)});
+
+    var sx=0,drag=false;
+    wrap.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;drag=true},{passive:true});
+    wrap.addEventListener('touchend',function(e){if(!drag)return;drag=false;var dx=e.changedTouches[0].clientX-sx;if(dx<-50)goTo(current+1);else if(dx>50)goTo(current-1)},{passive:true});
+
+    init();
+    var resizeTimer;
+    window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(init,150)});
+  })();
+
+  // i18n
+  var T={
+  en:{
+    'nav.about':'About','nav.culture':'Culture','nav.blog':'Blog','nav.careers':'Careers',
+    'hero.title':'Creating change in the world through connection.',
+    'val.heading':'Five principles that shaped our yesterday and tomorrow',
+    'v1.title':'Teamwork','v1.one':'We move as one team built on trust, communicating with radical candor grounded in respect.',
+    'v1.p1t':'Trust is the strongest foundation','v1.p1d':'Teamwork starts with earning the trust of your colleagues. Trust doesn\'t come from words alone—it emerges through consistent actions that prove your commitment.',
+    'v1.p2t':'One-Team','v1.p2d':'At NRISE, the team\'s success always comes before individual success. We erase the line between "my job" and "your job" and step up proactively for whatever the team needs.',
+    'v1.p3t':'Radical candor with respect','v1.p3d':'We push back against silence born from fear of conflict or vague, indirect communication. At NRISE, candor is built on respect—the courage to face problems head-on and exchange feedback immediately.',
+    'v1.q':'Strong teamwork is a prerequisite for fast, innovative results. We aim to grow by communicating and challenging each other—together.','v1.qname':'Bonggi Kim','v1.qrole':'CEO',
+    'v2.title':'Autonomy','v2.one':'We make autonomous decisions with accountability, share context transparently, and execute quickly after decisions are made.',
+    'v2.p1t':'Autonomy with accountability','v2.p1d':'We take ownership of our work and make autonomous judgments. The autonomy we pursue is not mere convenience—it\'s fully realized through a sense of responsibility for team and product success.',
+    'v2.p2t':'Transparent context sharing','v2.p2d':'Autonomy requires sharing. At NRISE, "sharing" means going beyond surface-level information to transparently communicate underlying changes and context.',
+    'v2.p3t':'Accept and execute quickly','v2.p3d':'When discussions don\'t reach consensus, the owner makes the call. Even if you disagreed, you fully commit to the decision and focus on executing as fast as possible.',
+    'v2.q':'Delegation means giving decision-making authority. The freedom to decide for yourself becomes a powerful driving force for persuading colleagues and seeing things through. It\'s the interplay of autonomy and responsibility.','v2.qname':'Junghoon Lee','v2.qrole':'WIPPY Marketing Team Lead',
+    'v3.title':'Integrity','v3.one':'We maintain consistency between what we say and do, and act with full transparency in both process and results.',
+    'v3.p1t':'Consistency inside and out','v3.p1d':'We guard against shifting our stance based on circumstances. NRISE goes beyond simply not lying—we consistently practice ethical standards we believe in, every moment.',
+    'v3.p2t':'Transparency in process and results','v3.p2d':'Even when no one is watching, we make decisions we\'re not ashamed of. We share every intention, process, and outcome openly with our colleagues.',
+    'v3.q':'Sincerity matters. When we face work, colleagues, and customers without discrepancy between front and back, that\'s when real results happen.','v3.qname':'Jihye Lee','v3.qrole':'WIPPY Korea Squad PO',
+    'v4.title':'Customer Obsession','v4.one':'Every discussion and decision starts from "Are we truly delivering great value to our customers?"',
+    'v4.p1t':'The standard for obsession','v4.p1d':'The purpose of our products is to deliver meaningful value to customers\' lives. All our deliberation and decisions stem from a firm consensus: are we truly providing great value?',
+    'v4.p2t':'Deep customer understanding','v4.p2d':'We never assume or guess customer thoughts from behind a desk. There\'s no fixed method to truly understand customers—we use every means possible to reach their real problems.',
+    'v4.q':'Product value isn\'t in the product itself, but in the better experiences and world it creates. If we can\'t give customers a real reason to pay, the business model won\'t work.','v4.qname':'Hyunggu Heo','v4.qrole':'WIPPY Japan Squad PO',
+    'v5.title':'Pursuit of Excellence','v5.one':'We aim for ambitious goals, focus only on what matters most, and never give up until we deliver.',
+    'v5.p1t':'Moonshot Thinking','v5.p1d':'NRISE doesn\'t settle for small wins. We aim for goals that excite us, envision the most ideal future, and relentlessly find completely new ways to make it reality.',
+    'v5.p2t':'Impact and execution','v5.p2d':'To achieve ambitious goals, we fill our time only with what matters most for product success. We boldly cut what\'s not important. Once decided, every team member executes actively and reviews results together.',
+    'v5.p3t':'Relentless tenacity','v5.p3d':'NRISE never gives up in the face of failure. Rather than blaming circumstances, we create results through unwavering determination.',
+    'v5.q':'To reach ambitious goals, you have to find small clues among countless failures. That\'s why we focus only on what matters for the product. That\'s how NRISE grows.','v5.qname':'Daegeun Kim','v5.qrole':'CTO',
+    'cu.heading':'See how the NRISE team solves problems','cu.1.tag':'Experiments','cu.1.title':'WIPPY Japan: Converting new users to subscribers within 24 hours','cu.1.desc':'How we improved subscription conversion rates through experimentation.',
+    'cu.2.tag':'Decision-making','cu.2.title':'Leadership built on trust — CTO\'s view on building great teams','cu.2.desc':'CTO Daegeun Kim on tech culture and the role of leadership.',
+    'cu.3.tag':'Building together','cu.3.title':'Enabling every team member to contribute to the product','cu.3.desc':'WIPPY Japan PO on building products from 0→1 with squad culture.',
+    'cu.4.tag':'Growth & Career','cu.4.title':'A place where you create and validate your own opportunities','cu.4.desc':'Stories from long-tenured members who\'ve been with NRISE for 10+ years.','cu.5.tag':'Achievements','cu.5.title':'NRISE achieves record-breaking revenue and profitability','cu.5.desc':'2024 revenue of 43.4B KRW with operating profit turnaround.','cu.6.tag':'Global Expansion','cu.6.title':'WIPPY enters the Japanese matching app market','cu.6.desc':'The story of WIPPY\'s expansion into Japan.','cu.more':'Read more on our blog',
+    'ben.heading':'We invest generously so you can focus and grow','ben.tab1':'Growth','ben.tab2':'Life & Health','ben.tab3':'Work Environment',
+    'b.g1t':'Books, Conferences & Education','b.g1d':'Full coverage for job-related learning','b.g2t':'Optimized Equipment','b.g2d':'Latest laptops, monitors & welcome kit','b.g3t':'Remote Work','b.g3d':'Flexible remote work policy','b.g4t':'Fitness Support','b.g4d':'Gym membership support',
+    'b.l1t':'Health Checkup','b.l1d':'Annual checkup for you and family','b.l2t':'Welfare Card','b.l2d':'Personal corporate card','b.l3t':'Housing Loan','b.l3d':'Interest-free loan up to 30M KRW','b.l4t':'Birthday Gift','b.l4d':'Special gift worth 200K KRW',
+    'b.w1t':'Unlimited Snack Bar','b.w1d':'Snacks, drinks & coffee always stocked','b.w2t':'Rest Area','b.w2d':'Lounge, massage chairs & amenities','b.w3t':'Life Events Support','b.w3d':'Leave and financial support for milestones','b.w4t':'Holiday Gifts','b.w4d':'Gifts for Lunar New Year & Chuseok',
+    'cta.title':'We\'re ready to welcome someone who raises the bar','cta.sub':'If you resonate with our values, join us now.','cta.btn':'View Open Positions',
+    'ft.blog':'Blog','ft.careers':'Careers'
+  },
+  ja:{
+    'nav.about':'会社紹介','nav.culture':'企業文化','nav.blog':'ブログ','nav.careers':'採用',
+    'hero.title':'つながりを通じて世界に変化を生み出す。',
+    'val.heading':'5つの基準が私たちの昨日と明日をつくります',
+    'v1.title':'チームワーク','v1.one':'信頼の上でワンチームとして動き、尊重に根ざした率直さでコミュニケーションします。',
+    'v1.p1t':'信頼は最も堅固な基盤','v1.p1d':'チームワークは同僚の信頼を得ることから始まります。信頼は気持ちだけでは生まれません。行動で証明するプロセスを通じて初めて実現されます。',
+    'v1.p2t':'ワンチーム（One-Team）','v1.p2d':'NRISEでは個人の成功よりチームの成功を最優先します。「自分の仕事」と「他人の仕事」の境界を消し、チームに必要なことなら何でも主体的に取り組みます。',
+    'v1.p3t':'尊重のある率直さ','v1.p3d':'衝突を恐れて沈黙したり、曖昧に言い回すことを警戒します。NRISEの率直さは「尊重」の上に成り立ちます。違いを受け入れ、問題に正面から向き合う勇気が真の率直さを完成させます。',
+    'v1.q':'チームワークがしっかりしてこそ、速く革新的な結果を生み出せます。私たちは「共に」コミュニケーションし、ぶつかりながら成長することを目指しています。','v1.qname':'キム・ボンギ','v1.qrole':'CEO',
+    'v2.title':'自律性','v2.one':'責任感の上で自律的に判断し、コンテキストを透明に共有し、決定後は迅速に実行します。',
+    'v2.p1t':'責任を伴う自律性','v2.p1d':'担当業務に責任を持ち、自律的に判断・決定します。NRISEの自律性は単なる利便性ではなく、チームとプロダクトの成功への責任感の上で発揮されます。',
+    'v2.p2t':'コンテキストの透明な共有','v2.p2d':'自律的に働くには共有が重要です。NRISEの「共有」とは表面的な現象だけでなく、その背景にある変化と文脈まで透明に分かち合うことを意味します。',
+    'v2.p3t':'決定後の受容と迅速な実行','v2.p3d':'十分に議論しても結論が出ない場合、担当者が決定を下します。自分の意見と異なっても、その決定を全面的に受け入れ、最速で実行することに集中します。',
+    'v2.q':'委任とは決定権を与えることです。自由に決定できる権利は、同僚を説得し仕事を最後までやり遂げる重要な原動力になります。自律と責任の相互作用ですね。','v2.qname':'イ・ジョンフン','v2.qrole':'WIPPYマーケティングチームリード',
+    'v3.title':'誠実さ','v3.one':'表と裏が一致する一貫性を保ち、結果と過程の両方で堂々と行動します。',
+    'v3.p1t':'表と裏が一致する一貫性','v3.p1d':'状況に応じて態度を変えることを警戒します。NRISEは嘘をつかないだけでなく、自ら正しいと信じる倫理基準を毎瞬間一貫して実践します。',
+    'v3.p2t':'結果と過程の間の誠実さ','v3.p2d':'誰も見ていない場所でも、自分に恥じない正しい決定を下します。すべての意図と過程、結果について隠したり粉飾したりせず、同僚の前で堂々と語り行動します。',
+    'v3.q':'真心が大切です。仕事、同僚、顧客に対して表と裏が一致してこそ、初めて成果を出せると思います。','v3.qname':'イ・ジヘ','v3.qrole':'WIPPY韓国スクワッドPO',
+    'v4.title':'顧客への執着','v4.one':'すべての議論と決定は「顧客に本当に素晴らしい価値を提供しているか」から始まります。',
+    'v4.p1t':'顧客執着の基準','v4.p1d':'プロダクトが存在する理由は、顧客の人生に意味ある価値を届けること。NRISEのすべての議論と決定は「顧客に真に優れた価値を提供しているか」という確固たる共感から出発します。',
+    'v4.p2t':'高い顧客理解が執着の条件','v4.p2d':'顧客の考えや行動をデスクの上で安易に想像したり推測したりしません。顧客を完全に理解する方法に決まりはなく、あらゆる手段で「本当の問題」にたどり着きます。',
+    'v4.q':'プロダクトの価値はそれ自体にあるのではなく、それを通じて生まれるより良い体験と世界にあると信じています。顧客にお金を払う理由をきちんと提供できなければ、BMは機能しません。','v4.qname':'ホ・ヒョング','v4.qrole':'WIPPY JapanスクワッドPO',
+    'v5.title':'卓越した成果の追求','v5.one':'胸が躍る目標を掲げ、最も重要なことに集中し、必ずやり遂げるという執念で走ります。',
+    'v5.p1t':'Moonshot Thinking','v5.p1d':'NRISEは小さな成果に留まらず、胸が躍る目標を目指します。最も理想的な姿を描き、それを現実にする「全く新しい方法」を必ず見つけ出します。',
+    'v5.p2t':'インパクトと実行力','v5.p2d':'目標達成のため、プロダクトの成功に最も重要なことだけに時間を充てます。重要でないことは大胆に切り捨てます。決定後は全メンバーが積極的に実行し、結果を共に確認します。',
+    'v5.p3t':'必ずやり遂げる執念','v5.p3d':'NRISEはどんな失敗の前でも諦めません。状況を嘆くより、何としてでもやり遂げるという揺るぎない意志と執念で結果を生み出します。',
+    'v5.q':'胸が躍る目標に向かうには、数多くの失敗の中から小さな手がかりを見つけなければなりません。だから私たちはプロダクトに重要なことだけに集中します。それがNRISEの成長の仕方です。','v5.qname':'キム・デグン','v5.qrole':'CTO',
+    'cu.heading':'NRISEチームが問題を解決する方法','cu.1.tag':'実験と挑戦','cu.1.title':'WIPPY Japan、新規ユーザーを24時間以内にサブスク転換するグロース実験記','cu.1.desc':'コア指標であるサブスク転換率を改善した挑戦と実験プロセスを共有します。',
+    'cu.2.tag':'意思決定','cu.2.title':'信頼に基づくリーダーシップ — CTOが見る優れたチームの条件','cu.2.desc':'CTO キム・デグンが語る技術組織文化とリーダーの役割。',
+    'cu.3.tag':'共に作るプロダクト','cu.3.title':'全チームメンバーがプロダクトに貢献する経験を','cu.3.desc':'WIPPY Japan POが語る0→1を生み出すスクワッド文化。',
+    'cu.4.tag':'成長とキャリア','cu.4.title':'自ら機会を作り検証できる場所','cu.4.desc':'NRISEと10年以上を共にした長期勤続メンバーのストーリー。','cu.5.tag':'成果と挑戦','cu.5.title':'NRISE、創業以来最高の業績と黒字転換を達成','cu.5.desc':'2024年売上434億ウォン、営業利益黒字転換達成。','cu.6.tag':'グローバル進出','cu.6.title':'WIPPY、日本マッチングアプリ市場に進出','cu.6.desc':'ソーシャルアプリWIPPYの日本市場進出ストーリー。','cu.more':'ブログでもっと見る',
+    'ben.heading':'より没頭し成長できるよう惜しみなくサポートします','ben.tab1':'成長支援','ben.tab2':'生活・健康','ben.tab3':'業務環境',
+    'b.g1t':'書籍・カンファレンス・教育','b.g1d':'業務関連費用を全額支援','b.g2t':'最適な機器','b.g2d':'最新ノートPC、モニター等ウェルカムキット','b.g3t':'リモートワーク','b.g3d':'自由と責任のリモートワーク制度','b.g4t':'運動支援金','b.g4d':'近隣ジムの登録支援',
+    'b.l1t':'総合健康診断','b.l1d':'メンバーおよび家族の健康診断支援','b.l2t':'福利カード','b.l2d':'多様な用途の個人法人カード','b.l3t':'住宅資金ローン','b.l3d':'最大3,000万ウォン無利子ローン','b.l4t':'誕生日プレゼント','b.l4d':'20万ウォン相当の特別なギフト',
+    'b.w1t':'無制限スナックバー','b.w1d':'お菓子、飲料、コーヒー常備','b.w2t':'休憩スペース','b.w2d':'ラウンジ、マッサージチェア等','b.w3t':'慶弔支援','b.w3d':'結婚、出産、葬儀の休暇および祝金','b.w4t':'祝日ギフト','b.w4d':'旧正月・秋夕のギフト支給',
+    'cta.title':'チームの基準をさらに高めてくれるあなたと共に','cta.sub':'NRISEの価値観に共感される方、今すぐご参加ください。','cta.btn':'採用情報を見る',
+    'ft.blog':'ブログ','ft.careers':'採用'
+  }};
+
+  var curLang='ko';
+  function switchLang(lang){
+    if(lang===curLang)return;
+    curLang=lang;
+    document.documentElement.lang=lang==='ko'?'ko':lang;
+    document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang)});
+    if(lang==='ko'){
+      // Reset to original Korean (stored in data-ko attribute)
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        if(el.dataset.ko)el.textContent=el.dataset.ko;
+      });
+    }else{
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var key=el.dataset.i18n;
+        if(!el.dataset.ko)el.dataset.ko=el.textContent;
+        if(T[lang]&&T[lang][key])el.textContent=T[lang][key];
+      });
+    }
+  }
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){switchLang(btn.dataset.lang)});
+  });
+  // URL param support: ?lang=en or ?lang=ja
+  var urlLang=new URLSearchParams(window.location.search).get('lang');
+  if(urlLang&&T[urlLang])switchLang(urlLang);
+})();
+</script>
+</body>
+</html>
