@@ -55,12 +55,12 @@
     .dna-icon svg{width:26px;height:26px;color:var(--accent)}
     .dna-card h3{font-size:18px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.3px}
     .dna-card p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.65)}
-    .problem{background:#f0f0ee}
-    .chart-wrap{max-width:800px;margin:56px auto 0;background:#fff;border-radius:20px;padding:40px 40px 32px;border:1px solid rgba(0,0,0,.06)}
+    .problem{background:#0a0a0f}
+    .chart-wrap{max-width:800px;margin:56px auto 0;background:rgba(255,255,255,.04);border-radius:20px;padding:40px 40px 32px;border:1px solid rgba(255,255,255,.06)}
     .chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px}
-    .chart-title{font-size:15px;font-weight:700;color:#222}
+    .chart-title{font-size:15px;font-weight:700;color:#fff}
     .chart-legend{display:flex;gap:20px}
-    .chart-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:#666}
+    .chart-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.5)}
     .chart-legend .dot{width:10px;height:10px;border-radius:50%}
     .chart-legend .dot-b{background:#4a9eff}.chart-legend .dot-o{background:#ffaa4a}
     .chart-body{position:relative;height:220px}
@@ -71,18 +71,29 @@
     .chart-x{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:#999;padding:0 4px}
     .chart-gap-label{position:absolute;top:35%;left:55%;font-size:12px;font-weight:600;color:#4a9eff;opacity:.6;transform:translateX(-50%)}
     .chart-val{position:absolute;font-size:14px;font-weight:800}
-    .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:800px;margin:32px auto 0}
-    .pain-card{padding:28px 20px;text-align:center;border-radius:14px;border:1px solid rgba(0,0,0,.06);background:#fff}
-    .pain-emoji{display:none}
-    .pain-word{font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
-    .pain-word.c1{color:#5b8def}.pain-word.c2{color:#ef5b5b}.pain-word.c3{color:#a67bef}
-    .pain-card-voice{padding:24px 20px;text-align:center;border-radius:14px;background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.04);display:flex;align-items:center;justify-content:center}
-    .pain-card-voice p{font-size:14px;font-weight:600;color:#444;line-height:1.5;font-style:italic;margin:0}
-    .pain-card-struct{padding:24px 20px;text-align:center;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.06)}
-    .pain-card-struct p{font-size:13px;color:#777;line-height:1.6;margin:0}
-    .pain-card-struct .pain-word{margin-bottom:8px}
-    .pain-desc{font-size:13px;line-height:1.5;color:#555;font-weight:600;font-style:italic;margin-bottom:8px}
-    .pain-detail{font-size:12px;line-height:1.6;color:#999}
+    .pain-list{display:flex;flex-direction:column;gap:20px;max-width:900px;margin:48px auto 0}
+    .pain-row{display:grid;grid-template-columns:7fr 3fr;border-radius:20px;overflow:hidden;min-height:200px;position:relative}
+    .pain-problem{background:#111;padding:48px 44px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+    .pain-problem::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;opacity:.06}
+    .pain-row:nth-child(1) .pain-problem::before{background:#5b8def}
+    .pain-row:nth-child(2) .pain-problem::before{background:#ef5b5b}
+    .pain-row:nth-child(3) .pain-problem::before{background:#a67bef}
+    .pain-tag{font-size:11px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.25);margin-bottom:16px}
+    .pain-kw{font-size:clamp(36px,5vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.15;margin-bottom:12px}
+    .pain-kw.c1{color:#5b8def}.pain-kw.c2{color:#ef5b5b}.pain-kw.c3{color:#a67bef}
+    .pain-desc{font-size:14px;color:rgba(255,255,255,.4);line-height:1.6}
+    .pain-voice{margin-top:20px;font-size:13px;color:rgba(255,255,255,.25);font-style:italic;font-weight:500}
+    .pain-divider{position:absolute;top:20px;bottom:20px;right:0;width:1px;background:rgba(255,255,255,.06);z-index:1}
+    .pain-answer{padding:40px 32px;display:flex;flex-direction:column;justify-content:center}
+    .pain-row:nth-child(1) .pain-answer{background:linear-gradient(135deg,#1a2a4a,#162040)}
+    .pain-row:nth-child(2) .pain-answer{background:linear-gradient(135deg,#3a1a1a,#301515)}
+    .pain-row:nth-child(3) .pain-answer{background:linear-gradient(135deg,#2a1a3a,#201530)}
+    .pain-answer-tag{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--accent);margin-bottom:12px}
+    .pain-answer-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.3px;margin-bottom:8px;line-height:1.3}
+    .pain-answer-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.65}
+    .pain-summary{margin-top:56px;text-align:center}
+    .pain-summary p{font-size:15px;color:rgba(255,255,255,.3);line-height:1.7;margin:0}
+    .pain-summary em{font-style:normal;color:var(--accent);font-weight:700}
     .solution{background:#fafaf8}
     .sol-list{max-width:1000px;margin:64px auto 0;display:flex;flex-direction:column;gap:80px}
     .sol-item{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -141,7 +152,7 @@
       .hero{padding:100px 20px 60px;min-height:auto}
       .hero-stats{gap:24px;flex-wrap:wrap}
       .sec,.dna{padding:80px 20px}
-      .pain-grid{grid-template-columns:1fr;max-width:320px}
+      .pain-row{grid-template-columns:1fr}.pain-problem{padding:36px 28px}.pain-answer{padding:28px 28px}.pain-divider{display:none}.pain-kw{font-size:36px}
       .sol-phone{width:120px}
       .chart-wrap{padding:24px 16px 20px}
       .growth-grid{gap:12px}.growth-card{padding:28px 16px}
@@ -207,7 +218,7 @@
 <section class="sec problem" id="problem">
   <p class="sec-label reveal" lang="en">Market Problem</p>
   <div class="sec-line"></div>
-  <h2 class="sec-title reveal">시장은 커졌지만,<br>인식은 제자리입니다</h2>
+  <h2 class="sec-title reveal" style="color:#fff">시장은 커졌지만,<br>인식은 제자리입니다</h2>
   <div class="chart-wrap reveal" data-reveal-card>
     <div class="chart-header">
       <p class="chart-title">매칭앱 성장세 vs 고객 사용 인식 격차</p>
@@ -219,11 +230,11 @@
     <div class="chart-body">
       <svg class="chart-svg" viewBox="0 0 600 200" preserveAspectRatio="none" fill="none" role="img" aria-label="매칭앱 시장 성장률은 10에서 95로 급성장했지만, 고객 긍정 인식은 5에서 25로 소폭 상승에 그쳐 현저한 격차가 존재합니다">
         <!-- Grid: 0%, 25%, 50%, 75%, 100% -->
-        <line x1="0" y1="0" x2="600" y2="0" stroke="#f0f0ee" stroke-width="1"/>
-        <line x1="0" y1="50" x2="600" y2="50" stroke="#f0f0ee" stroke-width="1"/>
-        <line x1="0" y1="100" x2="600" y2="100" stroke="#f0f0ee" stroke-width="1"/>
-        <line x1="0" y1="150" x2="600" y2="150" stroke="#f0f0ee" stroke-width="1"/>
-        <line x1="0" y1="200" x2="600" y2="200" stroke="#f0f0ee" stroke-width="1"/>
+        <line x1="0" y1="0" x2="600" y2="0" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="0" y1="50" x2="600" y2="50" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="0" y1="100" x2="600" y2="100" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="0" y1="150" x2="600" y2="150" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        <line x1="0" y1="200" x2="600" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
         <!-- Y=200 is 0, Y=0 is 100. So val→y = 200 - val*2 -->
         <!-- Growth: 10→20→35→60→95 -->
         <!-- Y:      180  160  130  80   10 -->
@@ -244,13 +255,52 @@
       </svg>
     </div>
   </div>
-  <div class="pain-grid">
-    <div class="pain-card-struct reveal"><p class="pain-word c1">어렵고</p><p>내가 원하는 사람을 찾고 관계를 맺는 방법에 대한 어려움</p></div>
-    <div class="pain-card-struct reveal"><p class="pain-word c2">못믿겠고</p><p>허위프로필, 불건전 사용자에 대한 두려움</p></div>
-    <div class="pain-card-struct reveal"><p class="pain-word c3">부담스럽다</p><p>편안하게 시작하고 싶은데, 부담스러운 매칭 환경</p></div>
-    <div class="pain-card-voice reveal"><p>"스와이프만 하다가 지쳤어요"</p></div>
-    <div class="pain-card-voice reveal"><p>"진짜 이 사람이 맞는 건지 모르겠어요"</p></div>
-    <div class="pain-card-voice reveal"><p>"첫 대화부터 너무 무거워요"</p></div>
+  <div class="pain-list">
+    <div class="pain-row reveal">
+      <div class="pain-problem">
+        <div class="pain-divider"></div>
+        <div class="pain-tag">PROBLEM 01</div>
+        <div class="pain-kw c1">어렵고</div>
+        <div class="pain-desc">맞는 사람을 찾는 과정 자체가 막막하다</div>
+        <div class="pain-voice">"스와이프만 하다가 지쳤어요"</div>
+      </div>
+      <div class="pain-answer">
+        <div class="pain-answer-tag">WIPPY</div>
+        <div class="pain-answer-title">발견이 쉬운 구조</div>
+        <div class="pain-answer-desc">성향 기반 추천으로,<br>스와이프 없이 만나요</div>
+      </div>
+    </div>
+    <div class="pain-row reveal">
+      <div class="pain-problem">
+        <div class="pain-divider"></div>
+        <div class="pain-tag">PROBLEM 02</div>
+        <div class="pain-kw c2">못믿겠고</div>
+        <div class="pain-desc">허위프로필과 불건전 사용자가 두렵다</div>
+        <div class="pain-voice">"진짜 이 사람이 맞는 건지 모르겠어요"</div>
+      </div>
+      <div class="pain-answer">
+        <div class="pain-answer-tag">WIPPY</div>
+        <div class="pain-answer-title">신뢰할 수 있는 환경</div>
+        <div class="pain-answer-desc">본인인증·AI 모니터링으로<br>안전을 유지해요</div>
+      </div>
+    </div>
+    <div class="pain-row reveal">
+      <div class="pain-problem">
+        <div class="pain-divider"></div>
+        <div class="pain-tag">PROBLEM 03</div>
+        <div class="pain-kw c3">부담스럽다</div>
+        <div class="pain-desc">처음부터 매칭 환경이 무겁다</div>
+        <div class="pain-voice">"첫 대화부터 너무 무거워요"</div>
+      </div>
+      <div class="pain-answer">
+        <div class="pain-answer-tag">WIPPY</div>
+        <div class="pain-answer-title">가벼운 시작</div>
+        <div class="pain-answer-desc">관심 표현부터,<br>부담 없이 시작해요</div>
+      </div>
+    </div>
+  </div>
+  <div class="pain-summary reveal">
+    <p>위피는 이 세 가지 문제를 <em>제품의 출발점</em>으로 삼고 있습니다.</p>
   </div>
 </section>
 
