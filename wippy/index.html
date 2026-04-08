@@ -115,20 +115,24 @@
     .growth-card .growth-bottom{position:relative;z-index:1}
     .growth-ctx{font-size:12px;color:rgba(255,255,255,.25);line-height:1.5}
     .growth-icon{position:absolute;bottom:20px;right:20px;font-size:56px;opacity:.15;z-index:0}
-    .next{background:#f0f0ee}
-    .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:56px auto 0}
-    .next-card{padding:0;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
-    .next-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
-    .next-visual{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .next-visual svg{width:64px;height:64px;color:var(--accent);opacity:.8}
-    .next-card:nth-child(1) .next-visual{background:linear-gradient(135deg,#fff0f3,#ffe0e8)}
-    .next-card:nth-child(2) .next-visual{background:linear-gradient(135deg,#f0f0ff,#e0e0ff)}
-    .next-card:nth-child(3) .next-visual{background:linear-gradient(135deg,#fff5e0,#ffe8cc)}
-    .next-card:nth-child(2) .next-visual svg{color:#6b5ce7}
-    .next-card:nth-child(3) .next-visual svg{color:#e0820a}
-    .next-body{padding:28px 24px}
-    .next-card h4{font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:8px;letter-spacing:-.3px}
-    .next-card p{font-size:13px;line-height:1.7;color:#666}
+    .next{background:#0a0a0f}
+    .next .sec-title{color:#fff}
+    .vision-list{display:flex;flex-direction:column;gap:56px;max-width:1000px;margin:56px auto 0}
+    .vision-item{border-bottom:1px solid rgba(255,255,255,.04);padding-bottom:56px}
+    .vision-item:last-child{border-bottom:none;padding-bottom:0}
+    .vision-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    .vision-item:nth-child(even) .vision-inner{direction:rtl}
+    .vision-item:nth-child(even) .vision-inner>*{direction:ltr}
+    .vision-headline{font-size:clamp(22px,3.5vw,32px);font-weight:800;letter-spacing:-1px;line-height:1.4;color:#fff;margin-bottom:12px}
+    .vision-sub{font-size:14px;color:rgba(255,255,255,.35);line-height:1.7}
+    .vision-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;padding:4px 10px;border-radius:40px;margin-bottom:16px}
+    .vision-item:nth-child(1) .vision-tag{color:var(--accent);background:rgba(255,0,86,.08)}
+    .vision-item:nth-child(2) .vision-tag{color:#6b5ce7;background:rgba(107,92,231,.08)}
+    .vision-item:nth-child(3) .vision-tag{color:#e0820a;background:rgba(224,130,10,.08)}
+    .vision-img{aspect-ratio:4/3;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:rgba(255,255,255,.2)}
+    .vision-item:nth-child(1) .vision-img{background:linear-gradient(135deg,rgba(255,0,86,.08),rgba(255,0,86,.03));border:1px solid rgba(255,0,86,.1)}
+    .vision-item:nth-child(2) .vision-img{background:linear-gradient(135deg,rgba(107,92,231,.08),rgba(107,92,231,.03));border:1px solid rgba(107,92,231,.1)}
+    .vision-item:nth-child(3) .vision-img{background:linear-gradient(135deg,rgba(224,130,10,.08),rgba(224,130,10,.03));border:1px solid rgba(224,130,10,.1)}
     .cta{position:relative;padding:160px 48px;text-align:center;background:#0a0a0f;overflow:hidden}
     .cta::before{content:'';position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(circle,rgba(255,0,86,.1) 0%,transparent 60%);pointer-events:none}
     .cta-title{position:relative;font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.35;letter-spacing:-1px;color:#fff;margin-bottom:20px}
@@ -147,7 +151,7 @@
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.6;transform:scaleY(1.2)}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
-    @media(max-width:1024px){.sol-item,.sol-item.reverse{grid-template-columns:1fr;gap:32px;text-align:center;direction:ltr}.growth-grid{grid-template-columns:repeat(2,1fr)}.next-grid{grid-template-columns:1fr}.next-visual{height:140px}}
+    @media(max-width:1024px){.sol-item,.sol-item.reverse{grid-template-columns:1fr;gap:32px;text-align:center;direction:ltr}.growth-grid{grid-template-columns:repeat(2,1fr)}.vision-inner{grid-template-columns:1fr;gap:24px}.vision-item:nth-child(even) .vision-inner{direction:ltr}}
     @media(max-width:768px){.venn-wrap{width:320px;height:440px}.venn-circle{width:220px;height:220px;padding:32px 24px}.venn-circle h3{font-size:14px}.venn-circle p{font-size:11px;max-width:140px}.venn-c1{top:0;left:50%;transform:translateX(-50%)}.venn-c2{bottom:0;left:-10px}.venn-c3{bottom:0;right:-10px}}
     @media(max-width:768px){
       .nav{padding:16px 20px}.nav-links{display:none;position:absolute;inset:0;background:#0a0a0f;flex-direction:column;align-items:center;justify-content:center;gap:32px}.nav-links.open{display:flex}.nav-links a{font-size:20px}.nav-toggle{display:flex;position:relative;z-index:1}
@@ -389,19 +393,37 @@
 <section class="sec next" id="next">
   <p class="sec-label reveal" lang="en">Next Step</p>
   <div class="sec-line"></div>
-  <h2 class="sec-title reveal">위피가 그리는 내일,<br>이제부터 시작입니다</h2>
-  <div class="next-grid">
-    <div class="next-card reveal">
-      <div class="next-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
-      <div class="next-body"><h4>취향과 가치관을 연결하는 플랫폼</h4><p>외모 기반 매칭을 넘어, 취미·여행 등 다양한 취향과 가치관을 연결합니다.</p></div>
+  <h2 class="sec-title reveal" style="color:#fff">위피가 그리는 내일</h2>
+  <div class="vision-list">
+    <div class="vision-item reveal">
+      <div class="vision-inner">
+        <div class="vision-text">
+          <div class="vision-tag">취향 · 가치관 매칭</div>
+          <p class="vision-headline">외모 기반 매칭을 넘어,<br>취향과 가치관으로 연결되는 플랫폼을 만듭니다</p>
+          <p class="vision-sub">취미·여행·라이프스타일 등 더 깊은 기준으로 맞는 사람을 연결합니다.</p>
+        </div>
+        <div class="vision-img">이미지 영역</div>
+      </div>
     </div>
-    <div class="next-card reveal">
-      <div class="next-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4c0 2 1.5 3.5 4 5.5 2.5-2 4-3.5 4-5.5a4 4 0 0 0-4-4z"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/><circle cx="12" cy="8" r="1"/></svg></div>
-      <div class="next-body"><h4>AI 기반의 초 개인화 추천</h4><p>매칭 컨시어지가 나에 대한 상담을 기반으로 적합한 대상자를 추천합니다.</p></div>
+    <div class="vision-item reveal">
+      <div class="vision-inner">
+        <div class="vision-text">
+          <div class="vision-tag">AI 매칭 컨시어지</div>
+          <p class="vision-headline">나에 대한 상담을 기반으로,<br>AI가 적합한 사람을 직접 추천합니다</p>
+          <p class="vision-sub">대화형 컨시어지가 취향을 분석하고 초 개인화된 매칭을 만듭니다.</p>
+        </div>
+        <div class="vision-img">이미지 영역</div>
+      </div>
     </div>
-    <div class="next-card reveal">
-      <div class="next-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-      <div class="next-body"><h4>세계로 뻗어나가는 플랫폼</h4><p>위피 재팬을 시작으로, 한-일 매칭과 실시간 번역으로 국경을 넘습니다.</p></div>
+    <div class="vision-item reveal">
+      <div class="vision-inner">
+        <div class="vision-text">
+          <div class="vision-tag">위피 재팬</div>
+          <p class="vision-headline">한-일 매칭과 실시간 번역으로,<br>국경을 넘는 플랫폼을 만듭니다</p>
+          <p class="vision-sub">위피 재팬을 시작으로, 글로벌 소셜 플랫폼으로 확장합니다.</p>
+        </div>
+        <div class="vision-img">이미지 영역</div>
+      </div>
     </div>
   </div>
 </section>
