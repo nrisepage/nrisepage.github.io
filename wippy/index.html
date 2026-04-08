@@ -151,7 +151,14 @@
     @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.6;transform:scaleY(1.2)}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
     @media(max-width:1024px){.sol-item,.sol-item.reverse{grid-template-columns:1fr;gap:32px;text-align:center;direction:ltr}.growth-grid{grid-template-columns:repeat(2,1fr)}.vision-inner{grid-template-columns:1fr;gap:24px}.vision-item:nth-child(even) .vision-inner{direction:ltr}}
-    @media(max-width:768px){.venn-wrap{width:320px;height:440px}.venn-circle{width:220px;height:220px;padding:32px 24px}.venn-circle h3{font-size:14px}.venn-circle p{font-size:11px;max-width:140px}.venn-c1{top:0;left:50%;transform:translateX(-50%)}.venn-c2{bottom:0;left:-10px}.venn-c3{bottom:0;right:-10px}}
+    .venn-mobile{display:none;flex-direction:column;gap:16px;max-width:400px;margin:48px auto 0}
+    .venn-mobile-card{padding:28px 24px;border-radius:16px;text-align:center}
+    .venn-mobile-card:nth-child(1){background:rgba(255,0,86,.05)}
+    .venn-mobile-card:nth-child(2){background:rgba(91,141,239,.05)}
+    .venn-mobile-card:nth-child(3){background:rgba(166,123,239,.05)}
+    .venn-mobile-card h3{font-size:16px;font-weight:800;color:#1a1a1a;margin-bottom:6px}
+    .venn-mobile-card p{font-size:13px;color:#666;line-height:1.6}
+    @media(max-width:768px){.venn-wrap{display:none}.venn-mobile{display:flex}}
     @media(max-width:768px){
       .nav{padding:16px 20px}.nav-links{display:none;position:absolute;inset:0;background:#0a0a0f;flex-direction:column;align-items:center;justify-content:center;gap:32px}.nav-links.open{display:flex}.nav-links a{font-size:20px}.nav-toggle{display:flex;position:relative;z-index:1}
       .nav.menu-active{position:fixed;inset:0;background:#0a0a0f;z-index:100}
@@ -221,6 +228,11 @@
       </div>
       <span class="venn-center-label">WIPPY DNA</span>
     </div>
+  </div>
+  <div class="venn-mobile">
+    <div class="venn-mobile-card reveal"><h3>고객에 대한 집착</h3><p>데이터 뒤에 숨겨진 고객의 진짜 목소리를 들으려 노력합니다</p></div>
+    <div class="venn-mobile-card reveal"><h3>고객 신뢰와 진심</h3><p>10년 가까이 1000만 건 이상의 안전한 매칭을 주도하고 있습니다</p></div>
+    <div class="venn-mobile-card reveal"><h3>차별화된 제품 경험</h3><p>나를 알아가고, 표현하고, 새로운 인연을 발견하는 순간에 함께합니다</p></div>
   </div>
 </section>
 
