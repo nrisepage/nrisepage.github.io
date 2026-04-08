@@ -107,10 +107,14 @@
     .sol-desc{font-size:14px;line-height:1.8;color:#555}
     .growth{background:#0a0a0f}
     .growth .sec-title{color:#fff}
-    .growth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:56px auto 0}
-    .growth-card{text-align:center;padding:40px 20px;border-radius:20px;background:linear-gradient(135deg,rgba(255,0,86,.08),rgba(255,0,86,.03));border:1px solid rgba(255,0,86,.12)}
-    .growth-num{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent),#ff6b9d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
-    .growth-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.7)}
+    .growth-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1000px;margin:56px auto 0}
+    .growth-card{padding:32px 28px;border-radius:20px;background:#141416;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;position:relative;overflow:hidden}
+    .growth-card .growth-top{position:relative;z-index:1}
+    .growth-label{font-size:15px;font-weight:600;color:rgba(255,255,255,.4);margin-bottom:8px}
+    .growth-num{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.1;background:linear-gradient(135deg,var(--accent),#ff6b9d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .growth-card .growth-bottom{position:relative;z-index:1}
+    .growth-ctx{font-size:12px;color:rgba(255,255,255,.25);line-height:1.5}
+    .growth-icon{position:absolute;bottom:20px;right:20px;font-size:56px;opacity:.15;z-index:0}
     .next{background:#f0f0ee}
     .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:56px auto 0}
     .next-card{padding:0;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
@@ -155,7 +159,7 @@
       .pain-row{grid-template-columns:1fr}.pain-problem{padding:36px 28px}.pain-answer{padding:28px 28px}.pain-divider{display:none}.pain-kw{font-size:36px}
       .sol-phone{width:120px}
       .chart-wrap{padding:24px 16px 20px}
-      .growth-grid{gap:12px}.growth-card{padding:28px 16px}
+      .growth-grid{gap:10px}.growth-card{min-height:180px;padding:24px 20px}.growth-icon{font-size:40px;bottom:16px;right:16px}
       .cta{padding:80px 20px}
       .footer{padding:32px 20px}.footer-inner{flex-direction:column;gap:20px;text-align:center}
     }
@@ -358,10 +362,26 @@
   <div class="sec-line"></div>
   <h2 class="sec-title reveal" style="color:#fff">우리가 증명해온 기록들</h2>
   <div class="growth-grid">
-    <div class="growth-card reveal"><p class="growth-num">1,000만</p><p class="growth-label">누적 다운로드</p></div>
-    <div class="growth-card reveal"><p class="growth-num">1,000만</p><p class="growth-label">누적 매칭</p></div>
-    <div class="growth-card reveal"><p class="growth-num">1위</p><p class="growth-label">소셜 매출</p></div>
-    <div class="growth-card reveal"><p class="growth-num">4.7억</p><p class="growth-label">소통된 대화</p></div>
+    <div class="growth-card reveal">
+      <div class="growth-top"><p class="growth-label">위피 누적 다운로드</p><p class="growth-num">1,000만 명</p></div>
+      <div class="growth-bottom"><p class="growth-ctx">대한민국 성인 5명 중 1명이 경험한 서비스</p></div>
+      <span class="growth-icon">📱</span>
+    </div>
+    <div class="growth-card reveal">
+      <div class="growth-top"><p class="growth-label">소셜 매출</p><p class="growth-num">1위</p></div>
+      <div class="growth-bottom"><p class="growth-ctx">국내 소셜 카테고리 전체 기준</p></div>
+      <span class="growth-icon">👑</span>
+    </div>
+    <div class="growth-card reveal">
+      <div class="growth-top"><p class="growth-label">위피로 연결된 만남</p><p class="growth-num">1,000만 건</p></div>
+      <div class="growth-bottom"><p class="growth-ctx">매일 3만 건 이상의 새로운 연결</p></div>
+      <span class="growth-icon">❤️</span>
+    </div>
+    <div class="growth-card reveal">
+      <div class="growth-top"><p class="growth-label">위피로 소통된 대화</p><p class="growth-num">4.7억 개</p></div>
+      <div class="growth-bottom"><p class="growth-ctx">단순 매칭이 아닌 실제 대화</p></div>
+      <span class="growth-icon">💬</span>
+    </div>
   </div>
 </section>
 
