@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pain 섹션 톤 시안 2종</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{--accent:#ff0056;--font:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{font-family:var(--font);-webkit-font-smoothing:antialiased;word-break:keep-all}
+  body{background:#fafaf8;color:#1a1a1a;overflow-x:hidden}
+
+  .tab-bar{position:sticky;top:0;z-index:50;display:flex;gap:4px;padding:12px 20px;background:rgba(250,250,248,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.04)}
+  .tab-btn{padding:8px 18px;border-radius:40px;border:1px solid rgba(0,0,0,.1);background:#fff;font-family:var(--font);font-size:13px;font-weight:600;color:#888;cursor:pointer;transition:all .2s}
+  .tab-btn.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+
+  .mock-section{display:none;padding:100px 48px 120px;max-width:1000px;margin:0 auto}
+  .mock-section.active{display:block}
+  .mock-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:1px;text-align:center;margin-bottom:12px}
+  .sec-title{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.35;letter-spacing:-1px;text-align:center;max-width:720px;margin:0 auto 48px}
+
+  /* ═══ 공통 Pain 구조 ═══ */
+  .pain-list{display:flex;flex-direction:column;gap:20px;max-width:900px;margin:0 auto}
+  .pain-row{display:grid;grid-template-columns:7fr 3fr;border-radius:20px;overflow:hidden;min-height:200px;position:relative}
+  .pain-problem{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .pain-problem::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;opacity:.06}
+  .pain-tag{font-size:11px;font-weight:700;letter-spacing:1.5px;margin-bottom:16px}
+  .pain-kw{font-size:clamp(36px,5vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.15;margin-bottom:12px}
+  .pain-desc{font-size:14px;line-height:1.6}
+  .pain-voice{margin-top:20px;font-size:13px;font-style:italic;font-weight:500}
+  .pain-divider{position:absolute;top:20px;bottom:20px;right:0;width:1px;z-index:1}
+  .pain-answer{padding:40px 32px;display:flex;flex-direction:column;justify-content:center}
+  .pain-answer-tag{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+  .pain-answer-symbol{height:22px;width:auto}
+  .pain-answer-title{font-size:22px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px;line-height:1.3}
+  .pain-answer-desc{font-size:14px;line-height:1.7}
+  .pain-summary{margin-top:56px;text-align:center}
+  .pain-summary p{font-size:15px;line-height:1.7;margin:0}
+  .pain-summary em{font-style:normal;color:var(--accent);font-weight:700}
+
+  /* ═══ A. 차가운 회색 ═══ */
+  #tab-a{background:#fafaf8}
+  #tab-a .sec-title{color:#222}
+  #tab-a .pain-row{border:1px solid rgba(0,0,0,.06)}
+  #tab-a .pain-problem{background:#e8e7e4}
+  #tab-a .pain-row:nth-child(1) .pain-problem::before{background:#3a6abf}
+  #tab-a .pain-row:nth-child(2) .pain-problem::before{background:#bf3a3a}
+  #tab-a .pain-row:nth-child(3) .pain-problem::before{background:#7a4abf}
+  #tab-a .pain-tag{color:#999}
+  #tab-a .pain-kw.c1{color:#3a6abf}
+  #tab-a .pain-kw.c2{color:#bf3a3a}
+  #tab-a .pain-kw.c3{color:#7a4abf}
+  #tab-a .pain-desc{color:#777}
+  #tab-a .pain-voice{color:#aaa}
+  #tab-a .pain-divider{background:rgba(0,0,0,.06)}
+  #tab-a .pain-row:nth-child(1) .pain-answer{background:#f5f5f3}
+  #tab-a .pain-row:nth-child(2) .pain-answer{background:#f5f5f3}
+  #tab-a .pain-row:nth-child(3) .pain-answer{background:#f5f5f3}
+  #tab-a .pain-answer-title{color:#1a1a1a}
+  #tab-a .pain-answer-desc{color:#999}
+  #tab-a .pain-summary p{color:#bbb}
+
+  /* ═══ B. Pain만 다크 (부정적 톤 강화) ═══ */
+  #tab-b{background:#0c0a0a}
+  #tab-b .sec-title{color:rgba(255,255,255,.85)}
+  #tab-b .pain-problem{background:#121010}
+  #tab-b .pain-row:nth-child(1) .pain-problem::before{background:#7a8fa8}
+  #tab-b .pain-row:nth-child(2) .pain-problem::before{background:#c46b6b}
+  #tab-b .pain-row:nth-child(3) .pain-problem::before{background:#8a7a9e}
+  #tab-b .pain-tag{color:rgba(255,255,255,.2)}
+  #tab-b .pain-kw.c1{color:#7a8fa8}
+  #tab-b .pain-kw.c2{color:#c46b6b}
+  #tab-b .pain-kw.c3{color:#8a7a9e}
+  #tab-b .pain-desc{color:rgba(255,255,255,.3)}
+  #tab-b .pain-voice{color:rgba(255,255,255,.5);font-size:16px;font-weight:700;font-style:normal;margin-top:24px}
+  #tab-b .pain-divider{display:none}
+  #tab-b .pain-row:nth-child(1) .pain-answer{background:linear-gradient(135deg,#1a2a4a,#162040)}
+  #tab-b .pain-row:nth-child(2) .pain-answer{background:linear-gradient(135deg,#3a1a1a,#301515)}
+  #tab-b .pain-row:nth-child(3) .pain-answer{background:linear-gradient(135deg,#2a1a3a,#201530)}
+  #tab-b .pain-answer-title{color:#fff}
+  #tab-b .pain-answer-desc{color:rgba(255,255,255,.45)}
+  #tab-b .pain-summary p{color:rgba(255,255,255,.25)}
+
+  @media(max-width:768px){
+    .mock-section{padding:80px 20px 100px}
+    .pain-row{grid-template-columns:1fr}
+    .pain-problem{padding:36px 28px}
+    .pain-answer{padding:28px 28px}
+    .pain-divider{display:none}
+    .pain-kw{font-size:36px}
+  }
+</style>
+</head>
+<body>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab(this,'a')">A. 차가운 회색</button>
+  <button class="tab-btn" onclick="showTab(this,'b')">B. Pain만 다크</button>
+</div>
+
+<!-- ═══ A. 차가운 회색 ═══ -->
+<section class="mock-section active" id="tab-a">
+  <p class="mock-label">A. 라이트 안에서 무게감</p>
+  <h2 class="sec-title">시장은 커졌지만,<br>인식은 제자리입니다</h2>
+  <div class="pain-list">
+    <div class="pain-row">
+      <div class="pain-problem"><div class="pain-divider"></div><div class="pain-tag">PROBLEM 01</div><div class="pain-kw c1">어렵고</div><div class="pain-desc">맞는 사람을 찾는 과정 자체가 막막하다</div><div class="pain-voice">"스와이프만 하다가 지쳤어요"</div></div>
+      <div class="pain-answer"><div class="pain-answer-tag"><img src="wippy_logo_symbol.png" alt="WIPPY" class="pain-answer-symbol"></div><div class="pain-answer-title">발견이 쉬운 구조</div><div class="pain-answer-desc">성향 기반 추천으로,<br>스와이프 없이 만나요</div></div>
+    </div>
+    <div class="pain-row">
+      <div class="pain-problem"><div class="pain-divider"></div><div class="pain-tag">PROBLEM 02</div><div class="pain-kw c2">못 믿겠고</div><div class="pain-desc">허위프로필과 불건전 사용자가 두렵다</div><div class="pain-voice">"진짜 이 사람이 맞는 건지 모르겠어요"</div></div>
+      <div class="pain-answer"><div class="pain-answer-tag"><img src="wippy_logo_symbol.png" alt="WIPPY" class="pain-answer-symbol"></div><div class="pain-answer-title">신뢰할 수 있는 환경</div><div class="pain-answer-desc">본인인증, AI 모니터링으로<br>안전을 유지해요</div></div>
+    </div>
+    <div class="pain-row">
+      <div class="pain-problem"><div class="pain-divider"></div><div class="pain-tag">PROBLEM 03</div><div class="pain-kw c3">부담스럽다</div><div class="pain-desc">처음부터 매칭 환경이 무겁다</div><div class="pain-voice">"첫 대화부터 너무 무거워요"</div></div>
+      <div class="pain-answer"><div class="pain-answer-tag"><img src="wippy_logo_symbol.png" alt="WIPPY" class="pain-answer-symbol"></div><div class="pain-answer-title">가벼운 시작</div><div class="pain-answer-desc">관심 표현부터,<br>부담 없이 시작해요</div></div>
+    </div>
+  </div>
+  <div class="pain-summary"><p>위피는 이 세 가지 문제를 <em>제품의 출발점</em>으로 삼고 있습니다.</p></div>
+</section>
+
+<!-- ═══ B. Pain만 다크 ═══ -->
+<section class="mock-section" id="tab-b" style="background:#0a0a0f">
+  <p class="mock-label">B. Pain 영역만 다크</p>
+  <h2 class="sec-title">시장은 커졌지만,<br>인식은 제자리입니다</h2>
+  <div class="pain-list">
+    <div class="pain-row">
+      <div class="pain-problem"><div class="pain-divider"></div><div class="pain-tag">PROBLEM 01</div><div class="pain-kw c1">어렵고</div><div class="pain-desc">맞는 사람을 찾는 과정 자체가 막막하다</div><div class="pain-voice">"스와이프만 하다가 지쳤어요"</div></div>
+      <div class="pain-answer"><div class="pain-answer-tag"><img src="wippy_logo_symbol.png" alt="WIPPY" class="pain-answer-symbol"></div><div class="pain-answer-title">발견이 쉬운 구조</div><div class="pain-answer-desc">성향 기반 추천으로,<br>스와이프 없이 만나요</div></div>
+    </div>
+    <div class="pain-row">
+      <div class="pain-problem"><div class="pain-divider"></div><div class="pain-tag">PROBLEM 02</div><div class="pain-kw c2">못 믿겠고</div><div class="pain-desc">허위프로필과 불건전 사용자가 두렵다</div><div class="pain-voice">"진짜 이 사람이 맞는 건지 모르겠어요"</div></div>
+      <div class="pain-answer"><div class="pain-answer-tag"><img src="wippy_logo_symbol.png" alt="WIPPY" class="pain-answer-symbol"></div><div class="pain-answer-title">신뢰할 수 있는 환경</div><div class="pain-answer-desc">본인인증, AI 모니터링으로<br>안전을 유지해요</div></div>
+    </div>
+    <div class="pain-row">
+      <div class="pain-problem"><div class="pain-divider"></div><div class="pain-tag">PROBLEM 03</div><div class="pain-kw c3">부담스럽다</div><div class="pain-desc">처음부터 매칭 환경이 무겁다</div><div class="pain-voice">"첫 대화부터 너무 무거워요"</div></div>
+      <div class="pain-answer"><div class="pain-answer-tag"><img src="wippy_logo_symbol.png" alt="WIPPY" class="pain-answer-symbol"></div><div class="pain-answer-title">가벼운 시작</div><div class="pain-answer-desc">관심 표현부터,<br>부담 없이 시작해요</div></div>
+    </div>
+  </div>
+  <div class="pain-summary"><p>위피는 이 세 가지 문제를 <em>제품의 출발점</em>으로 삼고 있습니다.</p></div>
+</section>
+
+<script>
+function showTab(btn, id) {
+  document.querySelectorAll('.mock-section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  document.body.style.background = id === 'b' ? '#0a0a0f' : '#fafaf8';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
