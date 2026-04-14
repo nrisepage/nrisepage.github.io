@@ -137,6 +137,28 @@
     .vision-img.v1{background:linear-gradient(135deg,#fff5f8 0%,#ffe4ec 100%)}
     .vision-img.v2{background:linear-gradient(135deg,#f5f3ff 0%,#e5dffb 100%)}
     .vision-img.v3{background:linear-gradient(135deg,#fff6ea 0%,#ffe3c2 100%)}
+    @keyframes vFloatA{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-6px)}}
+    @keyframes vFloatB{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-4px)}}
+    @keyframes vFloatC{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-8px)}}
+    @keyframes vPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.06);opacity:.92}}
+    @keyframes vHalo{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.12);opacity:.25}}
+    @keyframes vDash{to{stroke-dashoffset:-60}}
+    @keyframes vTwinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+    @keyframes vSpin{to{transform:rotate(360deg)}}
+    .vision-img svg [data-float]{transform-box:fill-box;transform-origin:center;animation:vFloatA 4.8s ease-in-out infinite}
+    .vision-img svg [data-float="b"]{animation-name:vFloatB;animation-duration:5.6s;animation-delay:-1.2s}
+    .vision-img svg [data-float="c"]{animation-name:vFloatC;animation-duration:6.4s;animation-delay:-2.4s}
+    .vision-img svg [data-float="d"]{animation-duration:5.2s;animation-delay:-.6s}
+    .vision-img svg [data-float="e"]{animation-name:vFloatC;animation-duration:7s;animation-delay:-3s}
+    .vision-img svg [data-float="f"]{animation-name:vFloatB;animation-duration:5s;animation-delay:-1.8s}
+    .vision-img svg [data-pulse]{transform-box:fill-box;transform-origin:center;animation:vPulse 3.2s ease-in-out infinite}
+    .vision-img svg [data-halo]{transform-box:fill-box;transform-origin:center;animation:vHalo 3.2s ease-in-out infinite}
+    .vision-img svg [data-dash]{animation:vDash 4s linear infinite}
+    .vision-img svg [data-twinkle]{transform-box:fill-box;transform-origin:center;animation:vTwinkle 2.4s ease-in-out infinite}
+    .vision-img svg [data-twinkle="2"]{animation-delay:-1.2s}
+    .vision-img svg [data-twinkle="3"]{animation-delay:-.6s}
+    .vision-img svg [data-spin]{transform-box:fill-box;transform-origin:center;animation:vSpin 40s linear infinite}
+    @media (prefers-reduced-motion: reduce){.vision-img svg *{animation:none!important}}
     .vision-item:nth-child(1) .vision-img,.vision-item:nth-child(2) .vision-img,.vision-item:nth-child(3) .vision-img{background:#f8f8f6;border:1px solid rgba(0,0,0,.04)}
     .cta{position:relative;padding:160px 48px;text-align:center;background:#fff;overflow:hidden}
     .cta::before{content:'';position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(circle,rgba(255,0,86,.05) 0%,transparent 60%);pointer-events:none}
@@ -430,25 +452,25 @@
               <linearGradient id="g1core" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff4d82"/><stop offset="100%" stop-color="#ff0056"/></linearGradient>
               <filter id="g1sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="3"/><feOffset dy="2" result="o"/><feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <circle cx="200" cy="150" r="140" fill="url(#g1glow)"/>
-            <g stroke="#ff0056" stroke-opacity=".15" fill="none"><circle cx="200" cy="150" r="70"/><circle cx="200" cy="150" r="105"/></g>
-            <g stroke="#ff0056" stroke-opacity=".35" stroke-width="1.2" stroke-linecap="round" fill="none">
+            <circle cx="200" cy="150" r="140" fill="url(#g1glow)" data-halo/>
+            <g stroke="#ff0056" stroke-opacity=".15" fill="none" data-spin><circle cx="200" cy="150" r="70"/><circle cx="200" cy="150" r="105"/></g>
+            <g stroke="#ff0056" stroke-opacity=".35" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 6" fill="none" data-dash>
               <path d="M200 150 L95 75"/><path d="M200 150 L305 65"/><path d="M200 150 L75 205"/>
               <path d="M200 150 L325 215"/><path d="M200 150 L205 55"/><path d="M200 150 L185 250"/>
             </g>
             <g font-family="system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif" font-weight="700" filter="url(#g1sh)">
-              <g transform="translate(95 75)"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">📚 독서</text></g>
-              <g transform="translate(305 65)"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">✈️ 여행</text></g>
-              <g transform="translate(75 205)"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">🎵 음악</text></g>
-              <g transform="translate(325 215)"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">☕ 카페</text></g>
-              <g transform="translate(205 55)"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">🎨 전시</text></g>
-              <g transform="translate(185 250)"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">🏃 러닝</text></g>
+              <g transform="translate(95 75)" data-float="a"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">📚 독서</text></g>
+              <g transform="translate(305 65)" data-float="b"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">✈️ 여행</text></g>
+              <g transform="translate(75 205)" data-float="c"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">🎵 음악</text></g>
+              <g transform="translate(325 215)" data-float="d"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">☕ 카페</text></g>
+              <g transform="translate(205 55)" data-float="e"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">🎨 전시</text></g>
+              <g transform="translate(185 250)" data-float="f"><rect x="-42" y="-17" width="84" height="34" rx="17" fill="#fff"/><text fill="#ff0056" text-anchor="middle" dy="5" font-size="12">🏃 러닝</text></g>
             </g>
-            <g transform="translate(200 150)" filter="url(#g1sh)">
+            <g transform="translate(200 150)" filter="url(#g1sh)" data-pulse>
               <circle r="46" fill="url(#g1core)"/>
               <path d="M0 -6 C -10 -18 -26 -10 -18 6 C -12 16 0 22 0 22 C 0 22 12 16 18 6 C 26 -10 10 -18 0 -6 Z" fill="#fff"/>
             </g>
-            <g fill="#ff0056" opacity=".6"><circle cx="150" cy="100" r="1.8"/><circle cx="260" cy="110" r="2"/><circle cx="140" cy="210" r="1.6"/><circle cx="265" cy="200" r="2"/></g>
+            <g fill="#ff0056"><circle cx="150" cy="100" r="1.8" data-twinkle/><circle cx="260" cy="110" r="2" data-twinkle="2"/><circle cx="140" cy="210" r="1.6" data-twinkle="3"/><circle cx="265" cy="200" r="2" data-twinkle/></g>
           </svg>
         </div>
       </div>
@@ -467,26 +489,26 @@
               <linearGradient id="g2core" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8c7cf5"/><stop offset="100%" stop-color="#4f3fd4"/></linearGradient>
               <filter id="g2sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="3"/><feOffset dy="2" result="o"/><feComponentTransfer><feFuncA type="linear" slope=".2"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <circle cx="200" cy="150" r="150" fill="url(#g2glow)"/>
-            <g stroke="#6b5ce7" stroke-opacity=".15" fill="none"><circle cx="200" cy="150" r="70"/><circle cx="200" cy="150" r="110"/></g>
-            <g stroke="#6b5ce7" stroke-opacity=".4" stroke-width="1.2" stroke-dasharray="3 5" stroke-linecap="round" fill="none">
+            <circle cx="200" cy="150" r="150" fill="url(#g2glow)" data-halo/>
+            <g stroke="#6b5ce7" stroke-opacity=".15" fill="none" data-spin><circle cx="200" cy="150" r="70"/><circle cx="200" cy="150" r="110"/></g>
+            <g stroke="#6b5ce7" stroke-opacity=".4" stroke-width="1.2" stroke-dasharray="3 5" stroke-linecap="round" fill="none" data-dash>
               <path d="M200 150 L85 80"/><path d="M200 150 L315 80"/>
               <path d="M200 150 L85 220"/><path d="M200 150 L315 220"/>
             </g>
             <g font-family="system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif" font-size="22" text-anchor="middle" filter="url(#g2sh)">
-              <g transform="translate(85 80)"><circle r="28" fill="#fff"/><text dy="8">👩</text></g>
-              <g transform="translate(315 80)"><circle r="28" fill="#fff"/><text dy="8">🧑</text></g>
-              <g transform="translate(85 220)"><circle r="28" fill="#fff"/><text dy="8">👨</text></g>
-              <g transform="translate(315 220)"><circle r="28" fill="#fff"/><text dy="8">👩‍🦰</text></g>
+              <g transform="translate(85 80)" data-float="a"><circle r="28" fill="#fff"/><text dy="8">👩</text></g>
+              <g transform="translate(315 80)" data-float="b"><circle r="28" fill="#fff"/><text dy="8">🧑</text></g>
+              <g transform="translate(85 220)" data-float="c"><circle r="28" fill="#fff"/><text dy="8">👨</text></g>
+              <g transform="translate(315 220)" data-float="d"><circle r="28" fill="#fff"/><text dy="8">👩‍🦰</text></g>
             </g>
-            <g transform="translate(200 150)" filter="url(#g2sh)">
+            <g transform="translate(200 150)" filter="url(#g2sh)" data-pulse>
               <circle r="62" fill="#fff" fill-opacity=".6"/>
               <circle r="46" fill="url(#g2core)"/>
               <path d="M0 -22 L6 -6 L22 0 L6 6 L0 22 L-6 6 L-22 0 L-6 -6 Z" fill="#fff"/>
               <text y="38" fill="#4f3fd4" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="11" text-anchor="middle" letter-spacing="1">AI</text>
             </g>
-            <g fill="#6b5ce7" opacity=".55"><circle cx="150" cy="110" r="1.8"/><circle cx="260" cy="115" r="2"/><circle cx="140" cy="195" r="1.6"/><circle cx="265" cy="190" r="2"/></g>
-            <g fill="#fff" opacity=".9"><path d="M160 70 l1.5 3 l3 1.5 l-3 1.5 l-1.5 3 l-1.5 -3 l-3 -1.5 l3 -1.5 z"/><path d="M290 230 l1.2 2.5 l2.5 1.2 l-2.5 1.2 l-1.2 2.5 l-1.2 -2.5 l-2.5 -1.2 l2.5 -1.2 z"/></g>
+            <g fill="#6b5ce7"><circle cx="150" cy="110" r="1.8" data-twinkle/><circle cx="260" cy="115" r="2" data-twinkle="2"/><circle cx="140" cy="195" r="1.6" data-twinkle="3"/><circle cx="265" cy="190" r="2" data-twinkle/></g>
+            <g fill="#fff"><path d="M160 70 l1.5 3 l3 1.5 l-3 1.5 l-1.5 3 l-1.5 -3 l-3 -1.5 l3 -1.5 z" data-twinkle="2"/><path d="M290 230 l1.2 2.5 l2.5 1.2 l-2.5 1.2 l-1.2 2.5 l-1.2 -2.5 l-2.5 -1.2 l2.5 -1.2 z" data-twinkle="3"/></g>
           </svg>
         </div>
       </div>
@@ -506,27 +528,27 @@
               <linearGradient id="g3bubble" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffa94d"/><stop offset="100%" stop-color="#e0820a"/></linearGradient>
               <filter id="g3sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dy="3" result="o"/><feComponentTransfer><feFuncA type="linear" slope=".2"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <ellipse cx="200" cy="170" rx="180" ry="110" fill="url(#g3glow)"/>
-            <path d="M130 150 Q200 40 270 150" stroke="url(#g3arc)" stroke-width="2.5" stroke-dasharray="5 6" fill="none" stroke-linecap="round"/>
+            <ellipse cx="200" cy="170" rx="180" ry="110" fill="url(#g3glow)" data-halo/>
+            <path d="M130 150 Q200 40 270 150" stroke="url(#g3arc)" stroke-width="2.5" stroke-dasharray="5 6" fill="none" stroke-linecap="round" data-dash/>
             <g font-family="system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif" font-weight="800" text-anchor="middle" filter="url(#g3sh)">
-              <g transform="translate(130 160)">
+              <g transform="translate(130 160)" data-float="a">
                 <circle r="62" fill="#fff"/>
                 <circle r="62" fill="none" stroke="#e0820a" stroke-opacity=".2"/>
                 <text y="-8" font-size="34">🇰🇷</text>
                 <text y="24" fill="#e0820a" font-size="12" letter-spacing="1.5">KOREA</text>
               </g>
-              <g transform="translate(270 160)">
+              <g transform="translate(270 160)" data-float="b">
                 <circle r="62" fill="#fff"/>
                 <circle r="62" fill="none" stroke="#e0820a" stroke-opacity=".2"/>
                 <text y="-8" font-size="34">🇯🇵</text>
                 <text y="24" fill="#e0820a" font-size="12" letter-spacing="1.5">JAPAN</text>
               </g>
             </g>
-            <g transform="translate(200 55)" filter="url(#g3sh)">
+            <g transform="translate(200 55)" filter="url(#g3sh)" data-pulse>
               <circle r="22" fill="url(#g3bubble)"/>
               <text y="7" fill="#fff" font-size="18" text-anchor="middle">💬</text>
             </g>
-            <g fill="#e0820a" opacity=".5"><path d="M70 90 l1.5 3 l3 1.5 l-3 1.5 l-1.5 3 l-1.5 -3 l-3 -1.5 l3 -1.5 z"/><path d="M330 80 l1.2 2.5 l2.5 1.2 l-2.5 1.2 l-1.2 2.5 l-1.2 -2.5 l-2.5 -1.2 l2.5 -1.2 z"/><circle cx="200" cy="260" r="2.5"/><circle cx="110" cy="250" r="1.8"/><circle cx="290" cy="250" r="1.8"/></g>
+            <g fill="#e0820a"><path d="M70 90 l1.5 3 l3 1.5 l-3 1.5 l-1.5 3 l-1.5 -3 l-3 -1.5 l3 -1.5 z" data-twinkle/><path d="M330 80 l1.2 2.5 l2.5 1.2 l-2.5 1.2 l-1.2 2.5 l-1.2 -2.5 l-2.5 -1.2 l2.5 -1.2 z" data-twinkle="2"/><circle cx="200" cy="260" r="2.5" data-twinkle="3"/><circle cx="110" cy="250" r="1.8" data-twinkle/><circle cx="290" cy="250" r="1.8" data-twinkle="2"/></g>
           </svg>
         </div>
       </div>
