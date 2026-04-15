@@ -72,6 +72,8 @@
     .chart-x{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:rgba(255,255,255,.5);padding:0 4px}
     .chart-gap-label{position:absolute;top:55%;left:55%;font-size:16px;font-weight:800;color:rgba(255,0,86,.35);letter-spacing:.5px;transform:translate(-50%,-50%)}
     .chart-val{position:absolute;font-size:14px;font-weight:800}
+    .gap-fill-a{opacity:0;transition:opacity 1s var(--ease) .5s}
+    .chart-wrap.visible .gap-fill-a{opacity:1}
     .pain-list{display:flex;flex-direction:column;gap:20px;max-width:900px;margin:48px auto 0}
     .pain-row{display:grid;grid-template-columns:7fr 3fr;border-radius:20px;overflow:hidden;min-height:200px;position:relative}
     .pain-problem{background:#121010;padding:48px 44px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
@@ -287,28 +289,32 @@
       </div>
     </div>
     <div class="chart-body">
-      <svg class="chart-svg" viewBox="0 0 600 200" preserveAspectRatio="none" fill="none" role="img" aria-label="매칭앱 시장 성장률은 10에서 95로 급성장했지만, 고객 긍정 인식은 5에서 25로 소폭 상승에 그쳐 현저한 격차가 존재합니다">
-        <!-- Grid: 0%, 25%, 50%, 75%, 100% -->
-        <line x1="0" y1="0" x2="600" y2="0" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        <line x1="0" y1="50" x2="600" y2="50" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        <line x1="0" y1="100" x2="600" y2="100" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        <line x1="0" y1="150" x2="600" y2="150" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        <line x1="0" y1="200" x2="600" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        <!-- Y=200 is 0, Y=0 is 100. So val→y = 200 - val*2 -->
-        <!-- Growth: 10→20→35→60→95 -->
-        <!-- Y:      180  160  130  80   10 -->
-        <!-- Perception: 5→7→9→12→15 -->
-        <!-- Y:          190  186  182  176  170 -->
-        <!-- Gap fill between lines -->
-        <path d="M0,180 L150,160 300,130 450,80 600,10 L600,170 L450,176 300,182 150,186 0,190Z" fill="#4a9eff" opacity=".07"/>
-        <!-- Growth line -->
-        <path class="chart-line-blue" d="M0,180 C100,172 200,152 300,130 C400,100 500,45 600,10" stroke="#4a9eff" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Perception line -->
-        <path class="chart-line-orange" d="M0,190 C100,188 200,185 300,182 C400,179 500,174 600,170" stroke="#ffaa4a" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- End dots -->
-        <circle cx="600" cy="10" r="4.5" fill="#4a9eff"/>
-        <circle cx="600" cy="170" r="4.5" fill="#ffaa4a"/>
-        <!-- Start dots -->
+      <svg class="chart-svg" viewBox="0 0 600 200" preserveAspectRatio="none" fill="none" role="img" aria-label="매칭앱 시장 성장률은 급성장했지만 고객 긍정 인식은 소폭 상승에 그쳐 격차가 갈수록 벌어지고 있습니다">
+        <defs>
+          <linearGradient id="gapGradAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff8a3d" stop-opacity=".12"/>
+            <stop offset="55%" stop-color="#ff8a3d" stop-opacity=".26">
+              <animate attributeName="offset" values=".5;.7;.5" keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1; .4 0 .6 1" dur="4.2s" repeatCount="indefinite"/>
+            </stop>
+            <stop offset="100%" stop-color="#ff8a3d" stop-opacity=".55">
+              <animate attributeName="stop-opacity" values=".34;.62;.34" keyTimes="0;.5;1" calcMode="spline" keySplines=".4 0 .6 1; .4 0 .6 1" dur="3.6s" repeatCount="indefinite"/>
+            </stop>
+          </linearGradient>
+          <linearGradient id="growthGradAmber" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4a9eff"/>
+            <stop offset="100%" stop-color="#a8d4ff"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="0" x2="600" y2="0" stroke="rgba(255,255,255,.06)"/>
+        <line x1="0" y1="50" x2="600" y2="50" stroke="rgba(255,255,255,.06)"/>
+        <line x1="0" y1="100" x2="600" y2="100" stroke="rgba(255,255,255,.06)"/>
+        <line x1="0" y1="150" x2="600" y2="150" stroke="rgba(255,255,255,.06)"/>
+        <line x1="0" y1="200" x2="600" y2="200" stroke="rgba(255,255,255,.06)"/>
+        <path class="gap-fill-a" d="M0,180 C100,172 200,152 300,130 C400,100 500,45 600,10 L600,170 C500,174 400,179 300,182 C200,185 100,188 0,190 Z" fill="url(#gapGradAmber)"/>
+        <path class="chart-line-blue" d="M0,180 C100,172 200,152 300,130 C400,100 500,45 600,10" stroke="url(#growthGradAmber)" stroke-width="3" stroke-linecap="round"/>
+        <path class="chart-line-orange" d="M0,190 C100,188 200,185 300,182 C400,179 500,174 600,170" stroke="#ffaa4a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="600" cy="10" r="5" fill="#4a9eff"/>
+        <circle cx="600" cy="170" r="5" fill="#ffaa4a"/>
         <circle cx="0" cy="180" r="3.5" fill="#4a9eff"/>
         <circle cx="0" cy="190" r="3.5" fill="#ffaa4a"/>
       </svg>
