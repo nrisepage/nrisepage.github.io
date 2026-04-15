@@ -59,29 +59,39 @@
     .problem .sec-title{color:rgba(255,255,255,.85)}
     .chart-wrap{max-width:800px;margin:56px auto 0;background:rgba(255,255,255,.04);border-radius:20px;padding:40px 40px 32px;border:1px solid rgba(255,255,255,.06)}
     .chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px}
-    .chart-title{font-size:15px;font-weight:700;color:#fff}
+    .chart-title{font-size:15px;font-weight:700;color:#fff;margin:0}
+    .chart-gap-note{position:absolute;top:44%;right:8%;pointer-events:none;opacity:0;transition:opacity 1s var(--ease) 1.2s}
+    .chart-wrap.visible .chart-gap-note{opacity:1}
+    .chart-gap-note span{font-size:12px;font-weight:800;color:#ffaa4a;letter-spacing:.4px;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6)}
     .chart-legend{display:flex;gap:20px}
     .chart-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.5)}
     .chart-legend .dot{width:10px;height:10px;border-radius:50%}
-    .chart-legend .dot-b{background:#4a9eff}.chart-legend .dot-o{background:#ffaa4a}
+    .chart-legend .dot-b{background:#8fa0b4}.chart-legend .dot-o{background:#ffaa4a}
     .chart-body{position:relative;height:220px}
     .chart-svg{width:100%;height:100%}
     .chart-line-blue{stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.5s var(--ease)}
     .chart-line-orange{stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.8s var(--ease)}
     .chart-wrap.visible .chart-line-blue,.chart-wrap.visible .chart-line-orange{stroke-dashoffset:0}
     .chart-x{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:rgba(255,255,255,.5);padding:0 4px}
-    .chart-gap-label{position:absolute;top:55%;left:55%;font-size:16px;font-weight:800;color:rgba(255,0,86,.35);letter-spacing:.5px;transform:translate(-50%,-50%)}
-    .chart-val{position:absolute;font-size:14px;font-weight:800}
     .gap-fill-a{opacity:0;transition:opacity 1s var(--ease) .5s}
     .chart-wrap.visible .gap-fill-a{opacity:1}
-    .pain-list{display:flex;flex-direction:column;gap:20px;max-width:900px;margin:48px auto 0}
+    .pain-intro{max-width:720px;margin:56px auto 0;text-align:center}
+    .pain-intro p{font-size:16px;line-height:1.85;color:rgba(255,255,255,.72);margin:0 0 10px}
+    .pain-intro p:last-child{margin-bottom:0}
+    .pain-intro em{font-style:normal;color:var(--accent);font-weight:700}
+    .pain-list{display:flex;flex-direction:column;gap:20px;max-width:900px;margin:40px auto 0}
     .pain-row{display:grid;grid-template-columns:7fr 3fr;border-radius:20px;overflow:hidden;min-height:200px;position:relative}
     .pain-problem{background:#121010;padding:48px 44px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
     .pain-problem::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;opacity:.06}
     .pain-row:nth-child(1) .pain-problem::before{background:#7a8fa8}
     .pain-row:nth-child(2) .pain-problem::before{background:#c46b6b}
     .pain-row:nth-child(3) .pain-problem::before{background:#8a7a9e}
-    .pain-tag{font-size:11px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.6);margin-bottom:16px}
+    .pain-tag{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+    .pain-tag-label{font-size:13px;font-weight:800;letter-spacing:1.6px;color:rgba(255,255,255,.55)}
+    .pain-tag-num{font-size:26px;font-weight:900;letter-spacing:-.5px;line-height:1}
+    .pain-row:nth-child(1) .pain-tag-num{color:#7a8fa8}
+    .pain-row:nth-child(2) .pain-tag-num{color:#c46b6b}
+    .pain-row:nth-child(3) .pain-tag-num{color:#8a7a9e}
     .pain-kw{font-size:clamp(36px,5vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.15;margin-bottom:12px}
     .pain-kw.c1{color:#7a8fa8}.pain-kw.c2{color:#c46b6b}.pain-kw.c3{color:#8a7a9e}
     .pain-desc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6}
@@ -94,9 +104,12 @@
     .pain-answer-symbol{height:22px;width:auto}
     .pain-answer-title{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.3px;margin-bottom:10px;line-height:1.3}
     .pain-answer-desc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7}
-    .pain-summary{margin-top:56px;text-align:center}
-    .pain-summary p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;margin:0}
+    .pain-summary{margin:72px auto 0;text-align:center;max-width:780px}
+    .pain-summary p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.9;margin:0}
     .pain-summary em{font-style:normal;color:var(--accent);font-weight:700}
+    .vision-outro{max-width:720px;margin:80px auto 0;text-align:center}
+    .vision-outro p{font-size:15px;line-height:1.9;color:#666;margin:0}
+    .vision-outro em{font-style:normal;color:var(--accent);font-weight:700}
     .solution{background:#fff}
     .sol-list{max-width:1000px;margin:64px auto 0;display:flex;flex-direction:column;gap:80px}
     .sol-item{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -104,11 +117,13 @@
     .sol-screens{display:flex;gap:12px;justify-content:center}
     .sol-phone{width:220px}
     .sol-phone img{width:100%;display:block}
-    .sol-phone-ph{aspect-ratio:9/19.5;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:11px;text-align:center;padding:12px;background:linear-gradient(180deg,#e8e8e6,#ddd)}
+    .sol-tag{display:flex;align-items:center;gap:12px;margin-bottom:16px;direction:ltr}
+    .sol-tag-label{font-size:14px;font-weight:800;letter-spacing:1.6px;color:#666;line-height:1}
+    .sol-tag .sol-num{margin-bottom:0;flex-shrink:0;font-variant-numeric:tabular-nums}
     .sol-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;color:#fff;font-size:13px;font-weight:700;margin-bottom:16px}
-    .sol-item:nth-child(1) .sol-num{background:#8da0b6}
-    .sol-item:nth-child(2) .sol-num{background:#d07e7e}
-    .sol-item:nth-child(3) .sol-num{background:#9d8db2}
+    .sol-item:nth-child(1) .sol-num{background:#5e7591}
+    .sol-item:nth-child(2) .sol-num{background:#b35c5c}
+    .sol-item:nth-child(3) .sol-num{background:#7a6b8e}
     .sol-title{font-size:28px;font-weight:800;letter-spacing:-.8px;color:#1a1a1a;margin-bottom:12px;line-height:1.3}
     .sol-title em{font-style:normal;color:var(--accent)}
     .sol-desc{font-size:14px;line-height:1.8;color:#777}
@@ -116,10 +131,10 @@
     .growth-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:1000px;margin:56px auto 0}
     .growth-card{padding:32px 28px;border-radius:20px;background:#fff;border:1.5px solid rgba(0,0,0,.1);box-shadow:0 2px 12px rgba(0,0,0,.04);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;position:relative;overflow:hidden}
     .growth-card .growth-top{position:relative;z-index:1}
-    .growth-label{font-size:15px;font-weight:600;color:#999;margin-bottom:8px}
-    .growth-num{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.1;background:linear-gradient(135deg,var(--accent),#ff6b9d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .growth-label{font-size:15px;font-weight:600;color:#777;margin-bottom:8px}
+    .growth-num{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.1;color:var(--accent)}
     .growth-card .growth-bottom{position:relative;z-index:1}
-    .growth-ctx{font-size:12px;color:#999;line-height:1.5}
+    .growth-ctx{font-size:12px;color:#777;line-height:1.5}
     .growth-icon{position:absolute;bottom:12px;right:12px;width:120px;height:120px;object-fit:contain;z-index:0}
     .next{background:#fff}
     .vision-list{display:flex;flex-direction:column;gap:56px;max-width:1000px;margin:56px auto 0}
@@ -132,8 +147,8 @@
     .vision-sub{font-size:14px;color:#777;line-height:1.7}
     .vision-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;padding:4px 10px;border-radius:40px;margin-bottom:16px}
     .vision-item:nth-child(1) .vision-tag{color:var(--accent);background:rgba(255,0,86,.08)}
-    .vision-item:nth-child(2) .vision-tag{color:#6b5ce7;background:rgba(107,92,231,.08)}
-    .vision-item:nth-child(3) .vision-tag{color:#e0820a;background:rgba(224,130,10,.08)}
+    .vision-item:nth-child(2) .vision-tag{color:#5a4fc9;background:rgba(0,0,0,.045)}
+    .vision-item:nth-child(3) .vision-tag{color:#b86c08;background:rgba(0,0,0,.045)}
     .vision-img{aspect-ratio:4/3;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#ccc;overflow:hidden;position:relative}
     .vision-img svg{width:100%;height:100%;display:block}
     .vision-img.v1{background:linear-gradient(135deg,#fff5f8 0%,#ffe4ec 100%)}
@@ -171,7 +186,7 @@
     @media (prefers-reduced-motion: reduce){.vision-img svg *{animation:none!important}}
     .vision-item:nth-child(1) .vision-img,.vision-item:nth-child(2) .vision-img,.vision-item:nth-child(3) .vision-img{background:#f8f8f6;border:1px solid rgba(0,0,0,.04)}
     .cta{position:relative;padding:160px 48px;text-align:center;background:#fff;overflow:hidden}
-    .cta::before{content:'';position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(circle,rgba(255,0,86,.05) 0%,transparent 60%);pointer-events:none}
+    .cta::before{content:'';position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(circle,rgba(255,0,86,.08) 0%,transparent 60%);pointer-events:none}
     .cta-title{position:relative;font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.35;letter-spacing:-1px;color:#1a1a1a;margin-bottom:20px}
     .cta-sub{position:relative;font-size:17px;color:#777;margin-bottom:48px}
     .cta-buttons{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -182,8 +197,8 @@
     .cta-btn svg{width:18px;height:18px;transition:transform .3s}.cta-btn:hover svg{transform:translateX(4px)}
     .footer{background:#fafafa;padding:48px;border-top:1px solid rgba(0,0,0,.04)}
     .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-    .footer-left{font-size:13px;color:#999;line-height:1.7}
-    .footer-links{display:flex;gap:24px;list-style:none}.footer-links a{font-size:13px;color:#999;text-decoration:none;transition:color .3s}.footer-links a:hover{color:#555}
+    .footer-left{font-size:13px;color:#666;line-height:1.7}
+    .footer-links{display:flex;gap:24px;list-style:none}.footer-links a{font-size:13px;color:#666;text-decoration:none;transition:color .3s}.footer-links a:hover{color:#1a1a1a}
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.6;transform:scaleY(1.2)}}
@@ -205,7 +220,9 @@
       .hero{padding:100px 20px 60px;min-height:auto}
       .hero-stats{gap:24px;flex-wrap:wrap}
       .sec,.dna{padding:80px 20px}
-      .pain-row{grid-template-columns:1fr}.pain-problem{padding:36px 28px}.pain-answer{padding:28px 28px}.pain-divider{display:none}.pain-kw{font-size:36px}
+      .pain-row{grid-template-columns:1fr}.pain-problem{padding:36px 28px}.pain-answer{padding:28px 28px}.pain-divider{display:none}.pain-kw{font-size:36px}.pain-tag-num{font-size:22px}
+      .pain-intro p{font-size:15px}
+      .chart-header{align-items:flex-start}
       .sol-phone{width:150px}
       .chart-wrap{padding:24px 16px 20px}
       .growth-grid{gap:10px}.growth-card{min-height:180px;padding:24px 20px}.growth-icon{width:80px;height:80px;bottom:8px;right:8px}
@@ -301,8 +318,8 @@
             </stop>
           </linearGradient>
           <linearGradient id="growthGradAmber" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#4a9eff"/>
-            <stop offset="100%" stop-color="#a8d4ff"/>
+            <stop offset="0%" stop-color="#8fa0b4"/>
+            <stop offset="100%" stop-color="#bdc9d4"/>
           </linearGradient>
         </defs>
         <line x1="0" y1="0" x2="600" y2="0" stroke="rgba(255,255,255,.06)"/>
@@ -313,20 +330,25 @@
         <path class="gap-fill-a" d="M0,180 C100,172 200,152 300,130 C400,100 500,45 600,10 L600,170 C500,174 400,179 300,182 C200,185 100,188 0,190 Z" fill="url(#gapGradAmber)"/>
         <path class="chart-line-blue" d="M0,180 C100,172 200,152 300,130 C400,100 500,45 600,10" stroke="url(#growthGradAmber)" stroke-width="3" stroke-linecap="round"/>
         <path class="chart-line-orange" d="M0,190 C100,188 200,185 300,182 C400,179 500,174 600,170" stroke="#ffaa4a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="600" cy="10" r="5" fill="#4a9eff"/>
+        <circle cx="600" cy="10" r="5" fill="#8fa0b4"/>
         <circle cx="600" cy="170" r="5" fill="#ffaa4a"/>
-        <circle cx="0" cy="180" r="3.5" fill="#4a9eff"/>
+        <circle cx="0" cy="180" r="3.5" fill="#8fa0b4"/>
         <circle cx="0" cy="190" r="3.5" fill="#ffaa4a"/>
       </svg>
+      <div class="chart-gap-note"><span>시장의 격차</span></div>
     </div>
     <div class="chart-x">
       <span>2016</span><span>2018</span><span>2020</span><span>2022</span><span>2025</span>
     </div>
   </div>
+  <div class="pain-intro reveal">
+    <p>이는 지금까지 매칭앱 시장이 유저의 <em>'관계에 대한 진짜 갈증'</em>보다는 자극적인 연결에만 집중해 왔기 때문입니다.</p>
+    <p>우리는 현재 매칭앱 시장의 갈증이 크게 <em>세 가지</em>라고 생각했습니다.</p>
+  </div>
   <div class="pain-list">
     <div class="pain-row reveal">
       <div class="pain-problem">
-        <div class="pain-tag">PROBLEM 01</div>
+        <div class="pain-tag"><span class="pain-tag-label">PROBLEM</span><span class="pain-tag-num">01</span></div>
         <div class="pain-kw c1">어렵고</div>
         <div class="pain-desc">맞는 사람을 찾는 과정 자체가 막막하다</div>
         <div class="pain-voice">"스와이프만 하다가 지쳤어요"</div>
@@ -339,7 +361,7 @@
     </div>
     <div class="pain-row reveal">
       <div class="pain-problem">
-        <div class="pain-tag">PROBLEM 02</div>
+        <div class="pain-tag"><span class="pain-tag-label">PROBLEM</span><span class="pain-tag-num">02</span></div>
         <div class="pain-kw c2">못 믿겠고</div>
         <div class="pain-desc">허위프로필과 불건전 사용자가 두렵다</div>
         <div class="pain-voice">"진짜 이 사람이 맞는 건지 모르겠어요"</div>
@@ -352,7 +374,7 @@
     </div>
     <div class="pain-row reveal">
       <div class="pain-problem">
-        <div class="pain-tag">PROBLEM 03</div>
+        <div class="pain-tag"><span class="pain-tag-label">PROBLEM</span><span class="pain-tag-num">03</span></div>
         <div class="pain-kw c3">부담스럽다</div>
         <div class="pain-desc">처음부터 매칭 환경이 무겁다</div>
         <div class="pain-voice">"첫 대화부터 너무 무거워요"</div>
@@ -365,7 +387,7 @@
     </div>
   </div>
   <div class="pain-summary reveal">
-    <p>위피는 이 세 가지 문제를 <em>제품의 출발점</em>으로 삼고 있습니다.</p>
+    <p>위피는 대한민국 1등 서비스로서 시장의 진짜 문제를 해결합니다. 우리는 단순한 이성과의 연결 그 이상의,<br><em>'일상이 더 즐거워지는 건강한 관계와 문화'</em>를 지향합니다. 조금 더 가치 있는 연결을 통해 매칭 앱의 정의를 다시 쓰려고 합니다.</p>
   </div>
 </section>
 
@@ -383,7 +405,7 @@
         <div class="sol-phone"><img src="pic/1-2.png" alt=""></div>
       </div>
       <div class="sol-text">
-        <div class="sol-num">1</div>
+        <div class="sol-tag"><span class="sol-tag-label">PROBLEM</span><div class="sol-num">1</div></div>
         <h3 class="sol-title">어렵다는 문제</h3>
         <p class="sol-desc">나이, 지역, 성별, 취향 등 데이터 기반의 매칭 알고리즘과 카테고리를 통해 성향이 잘 맞는 친구를 부담 없이 만날 수 있도록 도와줍니다.</p>
       </div>
@@ -394,7 +416,7 @@
         <div class="sol-phone"><img src="pic/2-2.png" alt=""></div>
       </div>
       <div class="sol-text">
-        <div class="sol-num">2</div>
+        <div class="sol-tag"><span class="sol-tag-label">PROBLEM</span><div class="sol-num">2</div></div>
         <h3 class="sol-title">못 믿겠다는 문제</h3>
         <p class="sol-desc">사용자가 안심하고 사용할 수 있도록 모든 회원가입 심사를 사람이 직접 처리하며, 철저하고 꼼꼼한 관리로 사용자의 프로필 신뢰도를 높이고 있습니다. 허위 프로필, 불건전 사용자의 유입을 막기 위해 24시간 모니터링하고 인증과 알고리즘 강화 과정을 통해 신뢰를 쌓는 것에 집중하고 있습니다.</p>
       </div>
@@ -405,7 +427,7 @@
         <div class="sol-phone"><img src="pic/3-2.png" alt=""></div>
       </div>
       <div class="sol-text">
-        <div class="sol-num">3</div>
+        <div class="sol-tag"><span class="sol-tag-label">PROBLEM</span><div class="sol-num">3</div></div>
         <h3 class="sol-title">부담스럽다는 문제</h3>
         <p class="sol-desc">단순 1:1 매칭을 넘어, 동네 소모임 약속, 블라인드 소개팅, 랜덤 보이스톡 등 정형화되지 않은 만남으로 자연스럽고 편안한 관계를 만들어줍니다.</p>
       </div>
@@ -634,6 +656,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="vision-outro reveal">
+    <p>국내 <em>1위</em> 위피의 여정은 이제 시작입니다. 단순한 만남을 넘어,<br>사람들이 건강한 관계를 맺고 유지할 수 있도록 돕는 <em>'관계 통합 플랫폼'</em>으로 나아갑니다.</p>
   </div>
 </section>
 
