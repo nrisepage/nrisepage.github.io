@@ -619,7 +619,10 @@
               <linearGradient id="g3bubble" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffa94d"/><stop offset="100%" stop-color="#e0820a"/></linearGradient>
               <filter id="g3sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dy="3"/><feComponentTransfer><feFuncA type="linear" slope=".2"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
               <filter id="g3border" x="-10%" y="-10%" width="120%" height="120%">
-                <feMorphology operator="dilate" radius="1.5" in="SourceAlpha" result="dilated"/>
+                <feComponentTransfer in="SourceAlpha" result="binAlpha">
+                  <feFuncA type="discrete" tableValues="0 1"/>
+                </feComponentTransfer>
+                <feMorphology in="binAlpha" operator="dilate" radius="2" result="dilated"/>
                 <feFlood flood-color="#e0820a" flood-opacity="1"/>
                 <feComposite in2="dilated" operator="in" result="border"/>
                 <feComposite in="SourceGraphic" in2="border" operator="over"/>
