@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>QUAT — NRISE</title>
+<meta name="description" content="결심을 쉽게, 습관은 확실하게. 매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="QUAT — NRISE">
+<meta property="og:description" content="결심을 쉽게, 습관은 확실하게. 매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱.">
+<meta property="og:url" content="https://nrisepage.github.io/quat">
+<meta property="og:site_name" content="NRISE">
+<meta property="og:image" content="https://nrisepage.github.io/favicon.png">
+<link rel="canonical" href="https://nrisepage.github.io/quat">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fafafa;
+    --bg-2:#f4f1ec;
+    --bg-warm:#faf6ef;
+    --fg:#0a0a0a;
+    --fg-2:#525252;
+    --fg-3:#737373;
+    --fg-4:#a3a3a3;
+    --line:rgba(0,0,0,0.08);
+    --line-2:rgba(0,0,0,0.04);
+    --accent:#ff6b00;
+    --accent-warm:#ff8a3d;
+    --accent-soft:rgba(255,107,0,.1);
+    --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  svg{display:block}
+  img{display:block;max-width:100%}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* ─────── NAV ─────── */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0);transition:all .2s ease;border-bottom:1px solid transparent}
+  .nav.scrolled{background:rgba(250,250,250,.85);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom-color:var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-weight:700;letter-spacing:-0.01em;font-size:17px;display:inline-flex;align-items:center;gap:10px}
+  .logo .dot{width:6px;height:6px;background:var(--accent);border-radius:1px}
+  .menu{display:flex;gap:32px;align-items:center}
+  .menu a{font-size:14px;color:var(--fg-2);transition:color .2s}
+  .menu a:hover{color:var(--fg)}
+  .menu a.current{color:var(--fg);position:relative}
+  .menu a.current::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:1px;background:var(--fg)}
+
+  /* ─────── SHARED ─────── */
+  .section{padding:140px 0;position:relative}
+  .section + .section{border-top:1px solid var(--line)}
+  .label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-3);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+  .label::before{content:"";width:18px;height:1px;background:var(--fg-3)}
+  .label.solid::before{background:var(--accent);width:24px;height:2px}
+
+  .sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:80px;align-items:end}
+  .sec-head .label{grid-column:1 / span 3}
+  .sec-head h2{grid-column:4 / span 9;font-size:clamp(36px,4.2vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.1}
+  .sec-head h2 .muted{color:var(--fg-3)}
+  .sec-head h2 em{font-style:normal;color:var(--fg);position:relative}
+  .sec-head h2 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.08em;background:var(--accent)}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:-0.005em;border:1px solid var(--line);background:transparent;color:var(--fg);transition:all .2s ease}
+  .btn:hover{border-color:rgba(0,0,0,0.22);background:rgba(0,0,0,0.02)}
+  .btn .arr{transition:transform .2s ease}
+  .btn:hover .arr{transform:translateX(3px)}
+  .btn.primary{background:var(--fg);color:#fafafa;border-color:var(--fg)}
+  .btn.primary:hover{background:#1f1f1f;border-color:#1f1f1f}
+  .btn.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.accent:hover{background:#ff7a1a;border-color:#ff7a1a;box-shadow:0 8px 24px rgba(255,107,0,.25)}
+  .btn.accent-dot::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:2px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ─────── HERO ─────── */
+  .hero{padding:64px 0 120px;position:relative}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;flex-wrap:wrap;gap:16px}
+  .hero-top .tag-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--fg-3);display:inline-flex;align-items:center;gap:8px;background:#fff}
+  .pill .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,107,0,.12);animation:livepulse 2s ease-in-out infinite}
+  @keyframes livepulse{0%,100%{box-shadow:0 0 0 4px rgba(255,107,0,.12)}50%{box-shadow:0 0 0 8px rgba(255,107,0,0)}}
+
+  .hero-body{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;min-height:620px}
+  .hero-copy h1{font-size:clamp(48px,6.2vw,92px);font-weight:700;letter-spacing:-0.04em;line-height:1.03;color:var(--fg)}
+  .hero-copy h1 em{font-style:normal;color:var(--fg);position:relative;white-space:nowrap}
+  .hero-copy h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.09em;background:var(--accent);opacity:.95}
+  .hero-copy .sub{font-size:17px;line-height:1.65;color:var(--fg-2);max-width:440px;margin-top:28px}
+  .hero-cta{margin-top:40px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .hero-cta .hint{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin-left:8px}
+
+  .hero-photo{
+    position:relative;aspect-ratio: 4/5;min-height:520px;border-radius:20px;overflow:hidden;
+    background:
+      radial-gradient(ellipse at 30% 20%,rgba(255,107,0,.08),transparent 55%),
+      linear-gradient(160deg,#f0ebe2 0%,#e4d9c6 55%,#cfbea1 100%);
+  }
+  .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .hero-photo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(20,14,8,.35) 100%);
+    z-index:2;pointer-events:none;
+  }
+  .hero-photo .badge{
+    position:absolute;bottom:20px;left:20px;z-index:3;
+    background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
+    border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;
+    box-shadow:0 12px 40px rgba(0,0,0,.15);
+  }
+  .hero-photo .badge .avatar{width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
+  .hero-photo .badge .who{font-size:13px;font-weight:600;color:var(--fg);line-height:1.3}
+  .hero-photo .badge .what{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.04em;margin-top:2px}
+  .hero-photo .badge .streak{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:600;letter-spacing:.04em;border-left:1px solid var(--line);padding-left:12px;margin-left:4px}
+
+  .stats{margin-top:96px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
+  .stat{padding:28px 0;position:relative}
+  .stat + .stat{border-left:1px solid var(--line);padding-left:28px}
+  .stat .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:8px}
+  .stat .k .ix{opacity:.6}
+  .stat .v{font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:-0.02em;color:var(--fg);margin-top:10px;font-variant-numeric:tabular-nums}
+  .stat .v .u{font-size:14px;color:var(--fg-3);margin-left:4px;font-weight:400}
+  .stat .spark{margin-top:10px;width:100%;height:22px}
+  .stat .spark polyline{fill:none;stroke:var(--fg-3);stroke-width:1.2;opacity:.5}
+
+  /* ─────── DNA ─────── */
+  .dna-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .dna-col{padding:44px 32px 52px;position:relative;display:flex;flex-direction:column;gap:28px}
+  .dna-col + .dna-col{border-left:1px solid var(--line)}
+  .dna-col .n{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--fg-3);display:flex;align-items:center;gap:8px}
+  .dna-col .n::after{content:"";flex:1;height:1px;background:var(--line);margin-left:8px}
+  .dna-col .icn{width:56px;height:56px;border:1px solid var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--accent)}
+  .dna-col h3{font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.3;color:var(--fg)}
+  .dna-col p{font-size:15px;line-height:1.65;color:var(--fg-2);max-width:32ch}
+
+  /* ─────── PROBLEM ─────── */
+  .problem{background:var(--bg-2)}
+  .decay-card{
+    margin-top:8px;border:1px solid var(--line);border-radius:18px;background:#fff;
+    padding:56px 56px 52px;display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;
+    box-shadow:0 1px 2px rgba(0,0,0,.02);
+  }
+  .decay-label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-3);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .decay-label::before{content:"";width:18px;height:1px;background:var(--fg-3)}
+  .decay-big{font-family:var(--mono);font-size:clamp(88px,10.5vw,164px);font-weight:500;letter-spacing:-0.055em;line-height:.9;color:var(--fg);font-variant-numeric:tabular-nums;margin-top:22px;display:flex;align-items:flex-start}
+  .decay-big .pct{color:var(--accent);font-size:.48em;margin-left:6px;margin-top:.18em;line-height:1;letter-spacing:-.02em}
+  .decay-caption{font-size:18px;line-height:1.6;color:var(--fg);margin-top:28px;max-width:36ch;font-weight:500;letter-spacing:-.01em}
+  .decay-caption em{font-style:normal;color:var(--fg);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:1px}
+  .decay-cite{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--fg-4);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .decay-cite::before{content:"↳";color:var(--fg-4);margin-right:2px}
+  .decay-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-3);text-transform:uppercase;margin-bottom:18px}
+  .decay-meta .mark{color:var(--accent)}
+  .decay-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .decay-grid .cell{aspect-ratio:1;border-radius:4px;background:rgba(0,0,0,.04);transition:transform .5s var(--ease),opacity .5s var(--ease)}
+  .decay-grid .cell.on{background:var(--accent)}
+  .decay-grid .cell.dim{background:rgba(0,0,0,.035);border:1px dashed rgba(0,0,0,.08)}
+  .decay-grid .cell.today{outline:2px solid var(--fg);outline-offset:2px}
+  .decay-grid .cell[data-week="1"]{background:var(--accent)}
+  .decay-legend{margin-top:20px;display:flex;gap:18px;font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase}
+  .decay-legend .lg{display:inline-flex;align-items:center;gap:8px}
+  .decay-legend .sw{width:10px;height:10px;border-radius:2px}
+  .decay-legend .sw.on{background:var(--accent)}
+  .decay-legend .sw.dim{background:rgba(0,0,0,.04);border:1px dashed rgba(0,0,0,.15)}
+
+  .prob-stat{margin-top:14px;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.65;color:var(--fg-3);letter-spacing:-.005em}
+  .prob-stat em{font-style:normal;color:var(--fg);font-weight:600}
+  .prob-stat .src{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--fg-4);text-transform:uppercase}
+
+  .pain-intro{max-width:720px;margin:88px auto 0;text-align:center}
+  .pain-intro p{font-size:15px;line-height:1.85;color:var(--fg-2);margin:0 0 8px}
+  .pain-intro p:last-child{margin-bottom:0}
+  .pain-intro em{font-style:normal;color:var(--fg);font-weight:600;border-bottom:1px solid var(--accent);padding-bottom:1px}
+
+  .pain-list{margin-top:64px;display:grid;grid-template-columns:1fr;gap:20px}
+  .pain-row{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:0;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;
+  }
+  .pain-row .prob{padding:44px 44px;display:flex;flex-direction:column;gap:18px;border-right:1px solid var(--line);background:#fcfaf7}
+  .pain-row .prob .meta{display:flex;justify-content:space-between;align-items:center}
+  .pain-row .prob .meta .n{font-family:var(--mono);font-size:12px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .pain-row .prob .meta .n::before{content:"";width:10px;height:10px;border-radius:50%;border:1.5px solid var(--fg-3)}
+  .pain-row .prob .meta .n em{font-style:normal;color:var(--fg);font-weight:600;font-family:var(--mono)}
+  .pain-row .prob .meta .ct{font-family:var(--mono);font-size:10px;color:var(--fg-4);letter-spacing:.08em}
+  .pain-row .prob .voice{
+    font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-0.015em;
+    color:var(--fg);line-height:1.35;
+  }
+  .pain-row .prob .voice::before{content:"\201C";color:var(--accent);font-size:1.1em;margin-right:4px}
+  .pain-row .prob .voice::after{content:"\201D";color:var(--accent);font-size:1.1em;margin-left:4px}
+  .pain-row .prob .kw{font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .pain-row .prob .kw::before{content:"";width:18px;height:1px;background:var(--fg-3)}
+  .pain-row .prob .desc{font-size:14px;color:var(--fg-2);line-height:1.65;max-width:42ch}
+
+  .pain-row .ans{padding:44px 44px;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative;background:#fff}
+  .pain-row .ans::before{content:"";position:absolute;top:44px;left:44px;width:28px;height:2px;background:var(--accent)}
+  .pain-row .ans .ans-meta{padding-top:8px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:12px}
+  .pain-row .ans .tit{font-size:26px;font-weight:600;letter-spacing:-0.02em;color:var(--fg);line-height:1.25;margin-top:4px}
+  .pain-row .ans .tit em{font-style:normal;color:var(--fg);border-bottom:2px solid var(--accent);padding-bottom:1px}
+  .pain-row .ans .sub{font-size:14px;color:var(--fg-2);line-height:1.65}
+  .pain-row .ans .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .pain-row .ans .tags span{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.06em;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:#fafafa}
+
+  .pain-summary{max-width:720px;margin:80px auto 0;text-align:center}
+  .pain-summary p{font-size:15px;line-height:1.9;color:var(--fg-2);margin:0}
+  .pain-summary em{font-style:normal;color:var(--fg);font-weight:600;border-bottom:1px solid var(--accent);padding-bottom:1px}
+
+  /* ─────── SOLUTION ─────── */
+  .sol-row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:88px 0;border-top:1px solid var(--line);align-items:center}
+  .sol-row:last-child{border-bottom:1px solid var(--line)}
+  .sol-row .copy{grid-column:1 / span 5}
+  .sol-row .art{grid-column:7 / span 6}
+  .sol-row.rev .copy{grid-column:8 / span 5;order:2}
+  .sol-row.rev .art{grid-column:1 / span 6;order:1}
+  .sol-row .n{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--fg-3);display:flex;align-items:center;gap:10px}
+  .sol-row .n .bar{width:24px;height:2px;background:var(--accent)}
+  .sol-row h3{margin-top:22px;font-size:34px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;color:var(--fg);max-width:14ch}
+  .sol-row h3 em{font-style:normal;color:var(--fg);border-bottom:2px solid var(--accent);padding-bottom:2px}
+  .sol-row p{margin-top:20px;font-size:15px;line-height:1.7;color:var(--fg-2);max-width:42ch}
+  .sol-row .row-meta{margin-top:32px;display:flex;gap:18px;font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap}
+  .sol-row .row-meta span::before{content:"·";margin-right:10px;opacity:.5}
+  .sol-row .row-meta span:first-child::before{content:""}
+
+  /* phone mockups */
+  .phones{
+    position:relative;display:flex;gap:16px;justify-content:center;align-items:flex-end;padding:40px 20px;
+    background:linear-gradient(160deg,var(--bg-warm) 0%,#f0ebe2 100%);
+    border:1px solid var(--line);border-radius:20px;overflow:hidden;min-height:520px;
+  }
+  .phones::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(0,0,0,.04) 1px,transparent 1px);
+    background-size:18px 18px;opacity:.5;pointer-events:none;
+  }
+  .phones::after{
+    content:"";position:absolute;bottom:-30%;right:-10%;width:280px;height:280px;
+    background:radial-gradient(circle,rgba(255,107,0,.12),transparent 60%);pointer-events:none;
+  }
+  .phone{
+    position:relative;width:200px;aspect-ratio:9/19;background:#fff;
+    border-radius:30px;border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.15), 0 4px 14px rgba(0,0,0,.06);
+    overflow:hidden;z-index:2;
+  }
+  .phone.offset{margin-bottom:30px}
+  .phone svg{width:100%;height:100%;display:block}
+
+  /* ─────── GROWTH ─────── */
+  .growth-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .growth-card{padding:40px 28px 36px;position:relative;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+  .growth-card + .growth-card{border-left:1px solid var(--line)}
+  .growth-top{display:flex;align-items:center;gap:10px}
+  .growth-top .idx{font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase}
+  .growth-top .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.6}
+  .growth-label{font-size:13px;color:var(--fg-3);letter-spacing:-0.005em;margin-bottom:6px}
+  .growth-num{font-family:var(--mono);font-size:46px;font-weight:500;letter-spacing:-0.035em;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+  .growth-num .u{font-size:16px;color:var(--fg-3);margin-left:4px;font-weight:400}
+  .growth-ctx{font-size:12px;line-height:1.6;color:var(--fg-3);margin-top:10px}
+  .growth-graph{width:100%;height:32px;margin-top:4px}
+  .growth-graph polyline{fill:none;stroke:var(--fg);stroke-width:1.3;stroke-linejoin:round;stroke-linecap:round}
+  .growth-graph .bar{fill:var(--fg);opacity:.85}
+  .growth-graph .accent{stroke:var(--accent);stroke-width:1.5}
+
+  /* ─────── NEXT STEP ─────── */
+  .vision-list{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+  .vision-item{display:grid;grid-template-columns:repeat(12,1fr);gap:32px;padding:96px 0;border-bottom:1px solid var(--line);align-items:center}
+  .vision-item .vi-text{grid-column:1 / span 5}
+  .vision-item .vi-art{grid-column:7 / span 6}
+  .vision-item.rev .vi-text{grid-column:8 / span 5;order:2}
+  .vision-item.rev .vi-art{grid-column:1 / span 6;order:1}
+  .vision-item .n{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--fg-3);display:flex;align-items:center;gap:10px}
+  .vision-item .n .bar{width:24px;height:2px;background:var(--accent)}
+  .vision-item .tag{display:inline-block;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,107,0,.3);border-radius:999px;background:rgba(255,107,0,.05)}
+  .vision-item h3{margin-top:22px;font-size:34px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;color:var(--fg);max-width:18ch}
+  .vision-item p{margin-top:20px;font-size:15px;line-height:1.7;color:var(--fg-2);max-width:46ch}
+
+  .vart{position:relative;aspect-ratio:5/4;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--bg-warm)}
+  .vart svg{width:100%;height:100%}
+
+  /* Vision 02 photo collage */
+  .collage{position:relative;aspect-ratio:5/4;border-radius:16px;overflow:hidden;background:#f0ebe2;display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;padding:6px;border:1px solid var(--line)}
+  .collage-img{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(140deg,#ded4c3,#b6a58a)}
+  .collage-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .collage-img.a{grid-row:1 / span 2}
+  .collage .tag{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-radius:8px;padding:6px 10px;font-family:var(--mono);font-size:10px;color:var(--fg);letter-spacing:.06em;z-index:2}
+  .collage .stat-card{position:absolute;top:16px;right:16px;background:#fff;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:2}
+  .collage .stat-card .n{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--fg)}
+  .collage .stat-card .l{font-family:var(--mono);font-size:9px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase}
+
+  .vision-outro{max-width:720px;margin:88px auto 0;text-align:center}
+  .vision-outro p{font-size:15px;line-height:1.9;color:var(--fg-2);margin:0}
+  .vision-outro em{font-style:normal;color:var(--fg);font-weight:600;border-bottom:1px solid var(--accent);padding-bottom:1px}
+
+  /* ─────── CTA ─────── */
+  .cta{padding:160px 0;text-align:center;position:relative;border-top:1px solid var(--line);background:var(--bg-warm)}
+  .cta::before{content:"";position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(255,107,0,.08),transparent 60%);pointer-events:none}
+  .cta .label{justify-content:center;display:inline-flex;position:relative}
+  .cta h2{position:relative;margin-top:24px;font-size:clamp(40px,5.4vw,76px);font-weight:700;letter-spacing:-0.035em;line-height:1.1;max-width:20ch;margin-left:auto;margin-right:auto}
+  .cta h2 em{font-style:normal;color:var(--accent)}
+  .cta .btns{position:relative;margin-top:48px;display:inline-flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .cta .ref{position:relative;margin-top:40px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+  .cta .ref span::before{content:"↳";margin-right:8px;opacity:.6}
+
+  /* ─────── FOOTER ─────── */
+  footer{border-top:1px solid var(--line);padding:40px 0;background:#fafafa}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  footer .copy{font-family:var(--mono);font-size:12px;color:var(--fg-3);letter-spacing:.02em;line-height:1.7}
+  footer .copy strong{color:var(--fg-2);font-family:var(--sans);font-weight:600;letter-spacing:-0.005em}
+  footer nav{display:flex;gap:24px}
+  footer nav a{font-size:13px;color:var(--fg-3);transition:color .2s}
+  footer nav a:hover{color:var(--fg)}
+
+  /* ─────── RESPONSIVE ─────── */
+  @media (max-width:1024px){
+    .hero-body{grid-template-columns:1fr;gap:32px}
+    .hero-photo{min-height:420px;aspect-ratio:16/11}
+    .growth-grid{grid-template-columns:repeat(2,1fr)}
+    .growth-card:nth-child(3){border-left:none;border-top:1px solid var(--line)}
+    .growth-card:nth-child(4){border-top:1px solid var(--line)}
+  }
+  @media (max-width:960px){
+    .section{padding:96px 0}
+    .hero{padding:40px 0 80px}
+    .stats{grid-template-columns:1fr}
+    .stat + .stat{border-left:none;border-top:1px solid var(--line);padding-left:0}
+    .dna-grid{grid-template-columns:1fr}
+    .dna-col + .dna-col{border-left:none;border-top:1px solid var(--line)}
+    .sol-row,.sec-head,.vision-item,.pain-row{grid-template-columns:1fr}
+    .sol-row .copy,.sol-row .art,.sol-row.rev .copy,.sol-row.rev .art,
+    .vision-item .vi-text,.vision-item .vi-art,.vision-item.rev .vi-text,.vision-item.rev .vi-art{grid-column:1/-1;order:unset}
+    .sec-head .label,.sec-head h2{grid-column:1 / -1}
+    .pain-row .prob{border-right:none;border-bottom:1px solid var(--line)}
+    .decay-card{grid-template-columns:1fr;gap:40px;padding:36px 28px}
+    .decay-big{font-size:88px}
+    .growth-grid{grid-template-columns:1fr}
+    .growth-card + .growth-card{border-left:none;border-top:1px solid var(--line)}
+    .phones{padding:28px 16px}
+    .phone{width:160px}
+    .menu{display:none}
+    footer .wrap{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="https://nrise.net" class="logo"><span class="dot"></span>NRISE</a>
+    <nav class="menu">
+      <a href="https://career.nrise.net/ko/home">회사소개</a>
+      <a href="/quat" class="current">QUAT</a>
+      <a href="/culture-page.html">조직문화</a>
+      <a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer">블로그</a>
+      <a href="https://career.nrise.net/ko/career">채용</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="section hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="tag-row">
+        <span class="pill"><span class="live"></span>QUAT · 건강관리 슈퍼앱</span>
+        <span class="pill">v.2026</span>
+      </div>
+      <span class="label">NRISE / 02 — QUAT</span>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-copy">
+        <h1>결심을 쉽게,<br/><em>습관은 확실하게</em>.</h1>
+        <p class="sub">매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱. 고객이 건강을 포기하는 모든 순간에 함께합니다.</p>
+        <div class="hero-cta">
+          <a class="btn accent" href="https://quat.kr" target="_blank" rel="noopener noreferrer">
+            콰트 다운로드
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn" href="https://career.nrise.net/ko/career">채용 공고 보기</a>
+          <span class="hint">— iOS · Android · Web</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop" alt="" loading="eager" onerror="this.style.display='none'"/>
+        <div class="badge">
+          <div class="avatar">Q</div>
+          <div>
+            <div class="who">오늘의 운동 · 3분</div>
+            <div class="what">하체 워밍업 · 가벼운 강도</div>
+          </div>
+          <span class="streak">23D<br/>STREAK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="k"><span class="ix">01</span>누적 회원</div>
+        <div class="v">600,000<span class="u">+</span></div>
+        <svg class="spark" viewBox="0 0 100 22" preserveAspectRatio="none"><polyline points="0,20 14,18 28,16 42,14 56,11 70,9 84,6 100,3"/></svg>
+      </div>
+      <div class="stat">
+        <div class="k"><span class="ix">02</span>자체 콘텐츠</div>
+        <div class="v">2,500<span class="u">건</span></div>
+        <svg class="spark" viewBox="0 0 100 22" preserveAspectRatio="none"><polyline points="0,18 14,17 28,14 42,14 56,11 70,10 84,8 100,5"/></svg>
+      </div>
+      <div class="stat">
+        <div class="k"><span class="ix">03</span>총 소모 칼로리</div>
+        <div class="v">300,000,000<span class="u">kcal</span></div>
+        <svg class="spark" viewBox="0 0 100 22" preserveAspectRatio="none"><polyline points="0,20 14,18 28,17 42,14 56,12 70,10 84,7 100,4"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. DNA -->
+<section class="section" id="dna">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label solid">OUR DNA</span>
+      <h2 class="reveal">제품을 만드는 <em>세 가지 태도</em>.<br/><span class="muted">고객의 진짜를 파고드는 원칙.</span></h2>
+    </div>
+
+    <div class="dna-grid">
+      <div class="dna-col">
+        <div class="n">01 <span>— PRINCIPLE</span></div>
+        <div class="icn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+            <circle cx="11" cy="11" r="2.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>고객에 대한 집착</h3>
+        <p>데이터 뒤에 숨겨진 고객의 진짜 심리를 파고들어, 포기하는 순간 전에 습관을 형성합니다.</p>
+      </div>
+      <div class="dna-col">
+        <div class="n">02 <span>— PRINCIPLE</span></div>
+        <div class="icn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor" stroke="none"/>
+            <line x1="10" y1="6.5" x2="14" y2="6.5"/><line x1="6.5" y1="10" x2="6.5" y2="14"/>
+          </svg>
+        </div>
+        <h3>버티컬 비즈니스</h3>
+        <p>제품·콘텐츠·커머스의 시너지로, 오프라인 헬스케어의 감동을 온라인으로 잇습니다.</p>
+      </div>
+      <div class="dna-col">
+        <div class="n">03 <span>— PRINCIPLE</span></div>
+        <div class="icn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14 L10 8 L14 12 L20 6"/>
+            <path d="M14 6 L20 6 L20 12"/>
+            <circle cx="10" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="14" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>차별화된 동기</h3>
+        <p>고객이 건강을 포기하는 모든 순간을 예측하고, 지속 가능한 동기를 부여합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. MARKET PROBLEM -->
+<section class="section problem" id="problem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">MARKET PROBLEM</span>
+      <h2 class="reveal">'규칙적'이라는<br/><span class="muted">착각.</span></h2>
+    </div>
+
+    <div class="decay-card reveal" id="decay">
+      <div class="decay-stat">
+        <div class="decay-label">국민생활체육조사 / 2025</div>
+        <div class="decay-big">40<span class="pct">%</span></div>
+        <div class="decay-caption">
+          스스로 <em>"규칙적으로 운동한다"</em>고 답한 사람 중,<br/>
+          실제로는 <em>월 3회 이하</em>의 빈도로 하는 비율.
+        </div>
+        <div class="decay-cite">2025 국민생활체육조사 · 문화체육관광부</div>
+      </div>
+
+      <div class="decay-viz">
+        <div class="decay-meta">
+          <span>30-DAY VIEW · 한 달</span>
+          <span class="mark">● 운동한 날</span>
+        </div>
+        <div class="decay-grid" aria-label="한 달 중 운동한 날 시각화">
+          <!-- Week 1: 강한 시작 (5 on) -->
+          <div class="cell on" title="1주차"></div>
+          <div class="cell on"></div>
+          <div class="cell on"></div>
+          <div class="cell on"></div>
+          <div class="cell dim"></div>
+          <div class="cell on"></div>
+          <div class="cell dim"></div>
+          <!-- Week 2: 흔들림 (2 on) -->
+          <div class="cell on"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell on"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <!-- Week 3: 붕괴 (1 on) -->
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell on"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <!-- Week 4: 사라짐 (0 on) -->
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+          <div class="cell dim"></div>
+        </div>
+        <div class="decay-legend">
+          <span class="lg"><span class="sw on"></span>운동 · 8일</span>
+          <span class="lg"><span class="sw dim"></span>미운동 · 20일</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pain-intro reveal">
+      <p>운동 인구는 늘었습니다. 그런데 <em>운동 처방·상담 서비스 이용률</em>은 오히려 <em>12.6% → 7.9%</em>로 감소했습니다.</p>
+      <p>많이 하지만, 맞게 하고 있는지 모릅니다. 우리는 이 격차의 원인을 세 가지로 봅니다.</p>
+    </div>
+
+    <div class="pain-list">
+      <!-- P1 -->
+      <div class="pain-row">
+        <div class="prob">
+          <div class="meta">
+            <span class="n">PROBLEM <em>01</em></span>
+            <span class="ct">CUSTOMER VOICE</span>
+          </div>
+          <div class="voice">뭐부터 시작해야<br/>할지 모르겠어요.</div>
+          <div class="kw">시작이 두렵고</div>
+          <div class="desc">운동이 필요한 건 알지만 실행 문턱이 높다. 무엇부터 할지, 어떻게 할지 모른다.</div>
+          <div class="prob-stat">'건강 상태'를 운동 시작의 이유로 꼽는 사람이 <em>36% → 57%</em> (1년 만에 +21%p 급증).<span class="src">2025 국민생활체육조사</span></div>
+        </div>
+        <div class="ans">
+          <div class="ans-meta">QUAT / ANSWER · 01</div>
+          <div class="tit">운동 허들을 <em>낮춥니다</em></div>
+          <div class="sub">3분짜리 첫걸음부터. 부담 없이 매일 하나씩 눌러보게 되는 시작점을 설계했습니다.</div>
+          <div class="tags"><span>Daily pick</span><span>3–7 min</span><span>No equipment</span></div>
+        </div>
+      </div>
+      <!-- P2 -->
+      <div class="pain-row">
+        <div class="prob">
+          <div class="meta">
+            <span class="n">PROBLEM <em>02</em></span>
+            <span class="ct">CUSTOMER VOICE</span>
+          </div>
+          <div class="voice">내 수준에 맞는<br/>운동이 뭔지 모르겠어요.</div>
+          <div class="kw">맞지 않고</div>
+          <div class="desc">수많은 콘텐츠 중 내 상태·체력에 맞는 것을 찾기 힘들다. 시간만 흘러간다.</div>
+          <div class="prob-stat">생활체육 강좌를 받지 않는 <em>1위 이유</em>는 '시간 부족'이 아니라 <em>'원하는 프로그램이 없어서'</em>.<span class="src">2025 국민생활체육조사</span></div>
+        </div>
+        <div class="ans">
+          <div class="ans-meta">QUAT / ANSWER · 02</div>
+          <div class="tit">개인화된 <em>운동 처방</em></div>
+          <div class="sub">12가지 건강 지표로 강도와 루틴을 매주 자동으로 조정합니다. 내 몸에 맞는 운동이 알아서 도착해요.</div>
+          <div class="tags"><span>12 signals</span><span>Adaptive</span><span>Weekly tune</span></div>
+        </div>
+      </div>
+      <!-- P3 -->
+      <div class="pain-row">
+        <div class="prob">
+          <div class="meta">
+            <span class="n">PROBLEM <em>03</em></span>
+            <span class="ct">CUSTOMER VOICE</span>
+          </div>
+          <div class="voice">항상 일주일도<br/>못 가요.</div>
+          <div class="kw">지속이 어렵다</div>
+          <div class="desc">계속할 수 있게 설계되지 않으면 누구나 무너진다. 의지만으로는 실패한다.</div>
+          <div class="prob-stat">10대 '규칙적 운동' <em>−2.7%p</em>, 대신 '가끔 운동'만 역대 최대로 <em>+8.3%p</em>. 시작은 하지만 지속하지 못하고 있습니다.<span class="src">2025 국민생활체육조사</span></div>
+        </div>
+        <div class="ans">
+          <div class="ans-meta">QUAT / ANSWER · 03</div>
+          <div class="tit">단계적 <em>습관 형성</em></div>
+          <div class="sub">의지가 아닌 구조로. 7일 · 30일 · 100일의 리듬과 미션·보상 연계로 꾸준함을 만들어요.</div>
+          <div class="tags"><span>Streak</span><span>Missions</span><span>Reward loop</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pain-summary reveal">
+      <p>콰트는 이 격차를 해결합니다. 본질적 문제는 질(Quality)의 부족이 아니라<br/><em>'동기부여(Motivation)의 부족'</em>. 개인의 의지력의 한계를 데이터와 시스템으로 넘어섭니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SOLUTION -->
+<section class="section" id="solution">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">OUR SOLUTION</span>
+      <h2 class="reveal">콰트는 시장의 진짜 문제를<br/><span class="muted">이렇게 해결합니다.</span></h2>
+    </div>
+
+    <!-- S1 · Onboarding -->
+    <div class="sol-row">
+      <div class="copy">
+        <div class="n"><span class="bar"></span>S—01 · ONBOARDING</div>
+        <h3>운동 허들 <em>낮추기</em></h3>
+        <p>'오늘의 운동'으로 짧고 가벼운 시작점을 제공합니다. 유산소·요가·필라테스·근력·발레·도수 등 다양한 콘텐츠와 체력측정 온보딩으로 첫 운동까지 걸리는 시간을 단축했습니다.</p>
+        <div class="row-meta"><span>Daily pick</span><span>3–7 min</span><span>No equipment</span></div>
+      </div>
+      <div class="art">
+        <div class="phones">
+          <!-- Phone 1: Today's workout -->
+          <div class="phone">
+            <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
+              <!-- status bar -->
+              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
+              <g transform="translate(166 12)" fill="#0a0a0a">
+                <rect x="0" y="0" width="14" height="8" rx="1.5"/>
+                <rect x="-18" y="1" width="14" height="6" rx="2" opacity=".5"/>
+                <rect x="-36" y="2" width="12" height="4" rx="1.5" opacity=".25"/>
+              </g>
+              <!-- dynamic island -->
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <!-- header -->
+              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">TODAY · 월 04.21</text>
+              <text x="16" y="72" font-family="Pretendard" font-size="15" font-weight="700" fill="#0a0a0a">오늘의 운동</text>
+              <text x="16" y="86" font-family="Pretendard" font-size="9" fill="#737373">3분짜리 가벼운 시작</text>
+              <!-- progress arc + streak -->
+              <g transform="translate(168 74)">
+                <circle r="12" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="2"/>
+                <circle r="12" fill="none" stroke="#ff6b00" stroke-width="2" stroke-linecap="round" stroke-dasharray="60 75" transform="rotate(-90)"/>
+                <text text-anchor="middle" y="3" font-family="JetBrains Mono" font-size="7" font-weight="600" fill="#0a0a0a">23D</text>
+              </g>
+              <line x1="16" y1="100" x2="184" y2="100" stroke="rgba(0,0,0,.06)"/>
+
+              <!-- card 1 active -->
+              <g transform="translate(16 114)">
+                <rect width="168" height="60" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                <circle cx="18" cy="30" r="10" fill="#ff6b00"/>
+                <path d="M14 30 L17 33 L22 27" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">하체 워밍업 · 스쿼트</text>
+                <text x="36" y="40" font-family="JetBrains Mono" font-size="7" fill="#737373">3분 · 가벼운 강도</text>
+                <text x="154" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#ff6b00">3'</text>
+                <text x="154" y="46" text-anchor="end" font-family="JetBrains Mono" font-size="6" fill="#737373">COMPLETED</text>
+              </g>
+              <!-- card 2 active -->
+              <g transform="translate(16 186)">
+                <rect width="168" height="60" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)"/>
+                <circle cx="18" cy="30" r="10" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+                <text text-anchor="middle" x="18" y="33" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#0a0a0a">2</text>
+                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">코어 · 플랭크</text>
+                <text x="36" y="40" font-family="JetBrains Mono" font-size="7" fill="#737373">7분 · 중강도</text>
+                <text x="154" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#0a0a0a">7'</text>
+              </g>
+              <!-- card 3 locked -->
+              <g transform="translate(16 258)">
+                <rect width="168" height="60" rx="10" fill="rgba(0,0,0,.03)" stroke="rgba(0,0,0,.06)"/>
+                <circle cx="18" cy="30" r="10" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>
+                <text text-anchor="middle" x="18" y="33" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="rgba(0,0,0,.3)">3</text>
+                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="600" fill="rgba(0,0,0,.4)">쿨다운 · 스트레칭</text>
+                <text x="36" y="40" font-family="JetBrains Mono" font-size="7" fill="rgba(0,0,0,.3)">4분 · 회복</text>
+              </g>
+
+              <!-- start button -->
+              <g transform="translate(16 338)">
+                <rect width="168" height="44" rx="22" fill="#0a0a0a"/>
+                <text text-anchor="middle" x="84" y="28" font-family="Pretendard" font-size="11" font-weight="600" fill="#fafafa">다음 운동 시작</text>
+              </g>
+              <!-- tab bar dots -->
+              <g transform="translate(100 400)">
+                <circle cx="-40" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
+                <circle cx="-20" cy="0" r="2" fill="#0a0a0a"/>
+                <circle cx="0" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
+                <circle cx="20" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
+                <circle cx="40" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
+              </g>
+            </svg>
+          </div>
+          <!-- Phone 2: Category picker -->
+          <div class="phone offset">
+            <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">EXPLORE</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">카테고리</text>
+              <!-- search -->
+              <rect x="16" y="92" width="168" height="32" rx="16" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+              <circle cx="32" cy="108" r="4.5" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1.2"/>
+              <line x1="35" y1="111" x2="39" y2="115" stroke="rgba(0,0,0,.4)" stroke-width="1.2"/>
+              <text x="46" y="112" font-family="Pretendard" font-size="9" fill="rgba(0,0,0,.35)">오늘 뭘 해볼까</text>
+              <!-- chips -->
+              <g transform="translate(16 140)">
+                <g><rect width="58" height="24" rx="12" fill="#ff6b00"/><text x="29" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="600" fill="#fff">전체</text></g>
+                <g transform="translate(64 0)"><rect width="52" height="24" rx="12" fill="#fff" stroke="rgba(0,0,0,.1)"/><text x="26" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="500" fill="#0a0a0a">인기</text></g>
+                <g transform="translate(122 0)"><rect width="52" height="24" rx="12" fill="#fff" stroke="rgba(0,0,0,.1)"/><text x="26" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="500" fill="#0a0a0a">신규</text></g>
+              </g>
+              <!-- grid -->
+              <g transform="translate(16 180)">
+                <g>
+                  <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <rect x="0" y="0" width="80" height="66" rx="10" fill="#f5e8d6"/>
+                  <circle cx="40" cy="33" r="12" fill="none" stroke="#ff6b00" stroke-width="1.5"/>
+                  <path d="M34 33 L38 37 L46 29" stroke="#ff6b00" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">유산소</text>
+                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">428 콘텐츠</text>
+                </g>
+                <g transform="translate(88 0)">
+                  <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <rect x="0" y="0" width="80" height="66" rx="10" fill="#f0e4d2"/>
+                  <g transform="translate(40 33)" stroke="#8b6f47" stroke-width="1.5" fill="none" stroke-linecap="round">
+                    <circle r="8"/><line x1="-4" y1="-3" x2="-4" y2="3"/><line x1="4" y1="-3" x2="4" y2="3"/>
+                  </g>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">요가</text>
+                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">316 콘텐츠</text>
+                </g>
+              </g>
+              <g transform="translate(16 290)">
+                <g>
+                  <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <rect x="0" y="0" width="80" height="66" rx="10" fill="#e8dcc6"/>
+                  <g transform="translate(40 33)" stroke="#5a4a32" stroke-width="1.5" fill="none" stroke-linecap="round">
+                    <rect x="-8" y="-3" width="16" height="6" rx="1"/>
+                    <line x1="-11" y1="0" x2="-8" y2="0"/><line x1="8" y1="0" x2="11" y2="0"/>
+                  </g>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">근력</text>
+                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">542 콘텐츠</text>
+                </g>
+                <g transform="translate(88 0)">
+                  <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <rect x="0" y="0" width="80" height="66" rx="10" fill="#eedfc6"/>
+                  <g transform="translate(40 33)" stroke="#8b6f47" stroke-width="1.5" fill="none" stroke-linecap="round">
+                    <circle cy="-4" r="4"/>
+                    <line x1="0" y1="0" x2="0" y2="6"/><line x1="-4" y1="3" x2="4" y2="3"/>
+                    <line x1="-3" y1="9" x2="-6" y2="12"/><line x1="3" y1="9" x2="6" y2="12"/>
+                  </g>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">필라테스</text>
+                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">289 콘텐츠</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2 · Personalization -->
+    <div class="sol-row rev">
+      <div class="copy">
+        <div class="n"><span class="bar"></span>S—02 · PERSONALIZATION</div>
+        <h3>개인화 <em>운동 처방</em></h3>
+        <p>개인 건강 지표(BMI · 활동량 · 목표)를 기반으로 운동을 처방합니다. 내 몸에 맞는 강도와 루틴을 데이터 기반으로 추천해 '내 몸에 맞는 운동'을 찾는 시간을 줄였습니다.</p>
+        <div class="row-meta"><span>12 signals</span><span>Adaptive</span><span>Weekly tune</span></div>
+      </div>
+      <div class="art">
+        <div class="phones">
+          <!-- Phone 1: Health dashboard -->
+          <div class="phone offset">
+            <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">MY HEALTH · W24</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">내 건강 리포트</text>
+              <!-- radar -->
+              <g transform="translate(100 180)">
+                <circle r="58" stroke="rgba(0,0,0,.08)" fill="none"/>
+                <circle r="40" stroke="rgba(0,0,0,.06)" fill="none"/>
+                <circle r="22" stroke="rgba(0,0,0,.05)" fill="none"/>
+                <line x1="-58" y1="0" x2="58" y2="0" stroke="rgba(0,0,0,.08)"/>
+                <line x1="0" y1="-58" x2="0" y2="58" stroke="rgba(0,0,0,.08)"/>
+                <line x1="-41" y1="-41" x2="41" y2="41" stroke="rgba(0,0,0,.06)"/>
+                <line x1="41" y1="-41" x2="-41" y2="41" stroke="rgba(0,0,0,.06)"/>
+                <polygon points="0,-50 36,-14 30,32 -26,28 -40,-18" stroke="#0a0a0a" stroke-width="1.5" fill="rgba(255,107,0,.08)"/>
+                <circle cx="0" cy="-50" r="2.5" fill="#ff6b00"/>
+                <circle cx="36" cy="-14" r="2" fill="#0a0a0a"/>
+                <circle cx="30" cy="32" r="2" fill="#0a0a0a"/>
+                <circle cx="-26" cy="28" r="2" fill="#0a0a0a"/>
+                <circle cx="-40" cy="-18" r="2" fill="#0a0a0a"/>
+                <text x="0" y="-62" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#737373">근력</text>
+                <text x="50" y="-10" font-family="JetBrains Mono" font-size="7" fill="#737373">심폐</text>
+                <text x="40" y="46" font-family="JetBrains Mono" font-size="7" fill="#737373">유연</text>
+                <text x="-50" y="46" text-anchor="end" font-family="JetBrains Mono" font-size="7" fill="#737373">회복</text>
+                <text x="-52" y="-14" text-anchor="end" font-family="JetBrains Mono" font-size="7" fill="#737373">균형</text>
+              </g>
+              <!-- metric row -->
+              <g transform="translate(16 270)">
+                <g>
+                  <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">BMI</text>
+                  <text y="18" font-family="JetBrains Mono" font-size="16" font-weight="600" fill="#0a0a0a">22.4</text>
+                  <text y="30" font-family="JetBrains Mono" font-size="7" fill="#4a9e7a">↓ 0.2</text>
+                </g>
+                <g transform="translate(60 0)">
+                  <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">VO₂</text>
+                  <text y="18" font-family="JetBrains Mono" font-size="16" font-weight="600" fill="#0a0a0a">38.6</text>
+                  <text y="30" font-family="JetBrains Mono" font-size="7" fill="#ff6b00">↑ 1.2</text>
+                </g>
+                <g transform="translate(120 0)">
+                  <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">HR</text>
+                  <text y="18" font-family="JetBrains Mono" font-size="16" font-weight="600" fill="#0a0a0a">68</text>
+                  <text y="30" font-family="JetBrains Mono" font-size="7" fill="#4a9e7a">↓ 2</text>
+                </g>
+              </g>
+              <!-- weekly bars -->
+              <g transform="translate(16 324)">
+                <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">THIS WEEK</text>
+                <g transform="translate(0 10)">
+                  <rect x="0" y="30" width="14" height="28" fill="rgba(0,0,0,.15)" rx="2"/>
+                  <rect x="24" y="20" width="14" height="38" fill="rgba(0,0,0,.22)" rx="2"/>
+                  <rect x="48" y="25" width="14" height="33" fill="rgba(0,0,0,.18)" rx="2"/>
+                  <rect x="72" y="10" width="14" height="48" fill="#0a0a0a" rx="2"/>
+                  <rect x="96" y="18" width="14" height="40" fill="rgba(0,0,0,.22)" rx="2"/>
+                  <rect x="120" y="5" width="14" height="53" fill="#ff6b00" rx="2"/>
+                  <rect x="144" y="0" width="14" height="58" fill="#ff6b00" rx="2"/>
+                </g>
+                <g font-family="JetBrains Mono" font-size="6" fill="#737373">
+                  <text x="7" y="82" text-anchor="middle">월</text>
+                  <text x="31" y="82" text-anchor="middle">화</text>
+                  <text x="55" y="82" text-anchor="middle">수</text>
+                  <text x="79" y="82" text-anchor="middle">목</text>
+                  <text x="103" y="82" text-anchor="middle">금</text>
+                  <text x="127" y="82" text-anchor="middle">토</text>
+                  <text x="151" y="82" text-anchor="middle">일</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <!-- Phone 2: Prescription -->
+          <div class="phone">
+            <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" letter-spacing="1">▲ PRESCRIBED</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">이번 주 처방</text>
+              <text x="16" y="88" font-family="Pretendard" font-size="9" fill="#737373">VO₂ 상승 추세 · 강도 한 단계↑</text>
+
+              <!-- plan card -->
+              <g transform="translate(16 108)">
+                <rect width="168" height="90" rx="12" fill="#0a0a0a"/>
+                <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="rgba(255,255,255,.5)" letter-spacing="1">WEEK 24 · PLAN</text>
+                <text x="14" y="40" font-family="Pretendard" font-size="12" font-weight="700" fill="#fff">근력 + 유산소</text>
+                <line x1="14" y1="50" x2="154" y2="50" stroke="rgba(255,255,255,.1)"/>
+                <text x="14" y="66" font-family="Pretendard" font-size="9" fill="rgba(255,255,255,.75)">근력 · 중강도 · 3회</text>
+                <text x="14" y="78" font-family="Pretendard" font-size="9" fill="rgba(255,255,255,.75)">유산소 · 하 · 2회</text>
+                <g transform="translate(146 66)">
+                  <circle r="12" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+                  <circle r="12" fill="none" stroke="#ff6b00" stroke-width="2" stroke-linecap="round" stroke-dasharray="55 75" transform="rotate(-90)"/>
+                </g>
+              </g>
+
+              <!-- day rows -->
+              <g transform="translate(16 214)">
+                <g>
+                  <rect width="168" height="38" rx="9" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">월</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">하체 · 중</text>
+                  <text x="156" y="24" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff6b00">✓</text>
+                </g>
+                <g transform="translate(0 46)">
+                  <rect width="168" height="38" rx="9" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">수</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">유산소 · 30분</text>
+                  <text x="156" y="24" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff6b00">✓</text>
+                </g>
+                <g transform="translate(0 92)">
+                  <rect width="168" height="38" rx="9" fill="#fff" stroke="#ff6b00" stroke-width="1.5"/>
+                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#ff6b00" letter-spacing="1">금 · TODAY</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">근력 · 상체</text>
+                  <text x="156" y="24" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">18:00</text>
+                </g>
+                <g transform="translate(0 138)" opacity=".4">
+                  <rect width="168" height="38" rx="9" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">일</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">회복 · 스트레칭</text>
+                </g>
+              </g>
+
+              <!-- footer label -->
+              <text x="16" y="390" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">ADAPTIVE · AUTO TUNE WEEKLY</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 · Gamification -->
+    <div class="sol-row">
+      <div class="copy">
+        <div class="n"><span class="bar"></span>S—03 · GAMIFICATION</div>
+        <h3>단계적 <em>습관 형성</em></h3>
+        <p>QUAT Mission, 운동 대결 등 Gamification 요소로 꾸준함을 구조화합니다. 운동 데이터를 측정·분석해 변화 수치를 데이터로 제공하고, 커머스 보상 연계로 성취감을 더합니다.</p>
+        <div class="row-meta"><span>Streak</span><span>Missions</span><span>Reward loop</span></div>
+      </div>
+      <div class="art">
+        <div class="phones">
+          <!-- Phone 1: Streak calendar -->
+          <div class="phone">
+            <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" letter-spacing="1">● 23-DAY STREAK</text>
+              <text x="16" y="76" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">꾸준함 달력</text>
+              <text x="16" y="90" font-family="Pretendard" font-size="9" fill="#737373">지난 28일</text>
+
+              <!-- big streak number -->
+              <g transform="translate(100 130)">
+                <text text-anchor="middle" font-family="Pretendard" font-size="48" font-weight="700" fill="#0a0a0a" letter-spacing="-2">23</text>
+                <text y="18" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" letter-spacing="2">DAYS</text>
+              </g>
+
+              <!-- heatmap 7x4 -->
+              <g transform="translate(16 172)">
+                <g font-family="JetBrains Mono" font-size="6" fill="#737373">
+                  <text x="10" y="-4" text-anchor="middle">월</text>
+                  <text x="32" y="-4" text-anchor="middle">화</text>
+                  <text x="54" y="-4" text-anchor="middle">수</text>
+                  <text x="76" y="-4" text-anchor="middle">목</text>
+                  <text x="98" y="-4" text-anchor="middle">금</text>
+                  <text x="120" y="-4" text-anchor="middle">토</text>
+                  <text x="142" y="-4" text-anchor="middle">일</text>
+                </g>
+                <!-- row 1 -->
+                <g>
+                  <rect x="2" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.04)"/>
+                  <rect x="24" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.08)"/>
+                  <rect x="46" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.3)"/>
+                  <rect x="68" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                  <rect x="90" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.3)"/>
+                  <rect x="112" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.08)"/>
+                  <rect x="134" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                </g>
+                <!-- row 2 -->
+                <g>
+                  <rect x="2" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                  <rect x="24" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
+                  <rect x="46" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.3)"/>
+                  <rect x="68" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
+                  <rect x="90" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
+                  <rect x="112" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.08)"/>
+                  <rect x="134" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                </g>
+                <!-- row 3 -->
+                <g>
+                  <rect x="2" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
+                  <rect x="24" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
+                  <rect x="46" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                  <rect x="68" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
+                  <rect x="90" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
+                  <rect x="112" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
+                  <rect x="134" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
+                </g>
+                <!-- row 4: current -->
+                <g>
+                  <rect x="2" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
+                  <rect x="24" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
+                  <rect x="46" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
+                  <rect x="68" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
+                  <rect x="90" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)" stroke="#0a0a0a" stroke-width="1.5"/>
+                  <rect x="112" y="62" width="16" height="16" rx="3" fill="none" stroke="rgba(0,0,0,.1)" stroke-dasharray="2 2"/>
+                  <rect x="134" y="62" width="16" height="16" rx="3" fill="none" stroke="rgba(0,0,0,.1)" stroke-dasharray="2 2"/>
+                </g>
+              </g>
+
+              <!-- milestones -->
+              <g transform="translate(16 280)">
+                <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">MILESTONES</text>
+                <g transform="translate(0 12)">
+                  <circle cx="8" cy="8" r="8" fill="#ff6b00"/>
+                  <text text-anchor="middle" x="8" y="12" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#fff">7</text>
+                  <circle cx="56" cy="8" r="8" fill="#ff6b00"/>
+                  <text text-anchor="middle" x="56" y="12" font-family="JetBrains Mono" font-size="7" font-weight="700" fill="#fff">14</text>
+                  <circle cx="104" cy="8" r="8" fill="#ff6b00" opacity=".4"/>
+                  <text text-anchor="middle" x="104" y="12" font-family="JetBrains Mono" font-size="7" font-weight="700" fill="#fff">30</text>
+                  <circle cx="152" cy="8" r="8" fill="none" stroke="rgba(0,0,0,.15)"/>
+                  <text text-anchor="middle" x="152" y="12" font-family="JetBrains Mono" font-size="7" font-weight="700" fill="#a3a3a3">100</text>
+                  <line x1="16" y1="8" x2="48" y2="8" stroke="#ff6b00" stroke-width="1.5"/>
+                  <line x1="64" y1="8" x2="96" y2="8" stroke="#ff6b00" stroke-width="1.5" opacity=".5"/>
+                  <line x1="112" y1="8" x2="144" y2="8" stroke="rgba(0,0,0,.1)" stroke-dasharray="2 2"/>
+                </g>
+              </g>
+
+              <!-- reward -->
+              <g transform="translate(16 344)">
+                <rect width="168" height="48" rx="10" fill="#fff" stroke="rgba(255,107,0,.3)"/>
+                <circle cx="24" cy="24" r="12" fill="#ff6b00" opacity=".1"/>
+                <path d="M20 24 L23 27 L29 21" stroke="#ff6b00" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="44" y="20" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">30일 달성 쿠폰</text>
+                <text x="44" y="34" font-family="JetBrains Mono" font-size="7" fill="#737373">+7일 후 도착 예정</text>
+                <text x="156" y="26" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff6b00">→</text>
+              </g>
+            </svg>
+          </div>
+          <!-- Phone 2: Mission / challenge -->
+          <div class="phone offset">
+            <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">QUAT MISSION · LIVE</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">운동 대결</text>
+              <text x="16" y="88" font-family="Pretendard" font-size="9" fill="#737373">친구 3명과 진행 중</text>
+
+              <!-- ranking -->
+              <g transform="translate(16 108)">
+                <rect width="168" height="160" rx="12" fill="#fff" stroke="rgba(0,0,0,.08)"/>
+                <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">RANK · THIS WEEK</text>
+                <!-- rank 1 -->
+                <g transform="translate(14 32)">
+                  <circle cx="8" cy="12" r="8" fill="#ff6b00"/>
+                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">1</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">나</text>
+                  <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
+                  <rect x="70" y="8" width="60" height="8" rx="4" fill="#ff6b00"/>
+                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" font-weight="600" fill="#0a0a0a">5/5</text>
+                </g>
+                <!-- rank 2 -->
+                <g transform="translate(14 58)">
+                  <circle cx="8" cy="12" r="8" fill="rgba(0,0,0,.2)"/>
+                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">2</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#0a0a0a">민지</text>
+                  <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
+                  <rect x="70" y="8" width="48" height="8" rx="4" fill="rgba(0,0,0,.5)"/>
+                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">4/5</text>
+                </g>
+                <!-- rank 3 -->
+                <g transform="translate(14 84)">
+                  <circle cx="8" cy="12" r="8" fill="rgba(0,0,0,.2)"/>
+                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">3</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#0a0a0a">준호</text>
+                  <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
+                  <rect x="70" y="8" width="36" height="8" rx="4" fill="rgba(0,0,0,.35)"/>
+                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">3/5</text>
+                </g>
+                <!-- rank 4 -->
+                <g transform="translate(14 110)">
+                  <circle cx="8" cy="12" r="8" fill="rgba(0,0,0,.15)"/>
+                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">4</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#0a0a0a">지원</text>
+                  <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
+                  <rect x="70" y="8" width="24" height="8" rx="4" fill="rgba(0,0,0,.25)"/>
+                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">2/5</text>
+                </g>
+              </g>
+
+              <!-- delta chart -->
+              <g transform="translate(16 288)">
+                <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">MY CHANGE · 4W</text>
+                <g transform="translate(0 12)">
+                  <rect width="168" height="56" rx="10" fill="#0a0a0a"/>
+                  <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="rgba(255,255,255,.5)" letter-spacing="1">VO₂ MAX</text>
+                  <text x="14" y="42" font-family="JetBrains Mono" font-size="14" font-weight="600" fill="#fff">38.6</text>
+                  <text x="46" y="42" font-family="JetBrains Mono" font-size="10" fill="#ff6b00">+1.2</text>
+                  <!-- mini chart -->
+                  <polyline points="90,40 104,36 118,32 132,28 146,22 154,18" fill="none" stroke="#ff6b00" stroke-width="1.5" stroke-linejoin="round"/>
+                  <circle cx="154" cy="18" r="2" fill="#ff6b00"/>
+                </g>
+              </g>
+
+              <!-- action -->
+              <g transform="translate(16 366)">
+                <rect width="168" height="36" rx="18" fill="#0a0a0a"/>
+                <text text-anchor="middle" x="84" y="23" font-family="Pretendard" font-size="10" font-weight="600" fill="#fafafa">오늘 미션 수행 →</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. GROWTH -->
+<section class="section" id="growth">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">GROWTH</span>
+      <h2 class="reveal">우리가 증명해온<br/><span class="muted">기록들.</span></h2>
+    </div>
+
+    <div class="growth-grid">
+      <div class="growth-card">
+        <div class="growth-top"><span class="dot"></span><span class="idx">G·01</span></div>
+        <div>
+          <div class="growth-label">콰트 누적 회원</div>
+          <div class="growth-num">600,000<span class="u">+</span></div>
+          <div class="growth-ctx">매일 작은 꾸준함을 함께 만드는 사용자들</div>
+        </div>
+        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
+          <polyline points="0,28 20,26 40,24 60,22 80,19 100,17 120,13 140,11 160,8 180,5 200,3"/>
+          <circle cx="200" cy="3" r="2" fill="#ff6b00"/>
+        </svg>
+      </div>
+      <div class="growth-card">
+        <div class="growth-top"><span class="dot"></span><span class="idx">G·02</span></div>
+        <div>
+          <div class="growth-label">자체 제작 콘텐츠</div>
+          <div class="growth-num">2,500<span class="u">건</span></div>
+          <div class="growth-ctx">유산소·요가·필라테스·근력·발레·도수</div>
+        </div>
+        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
+          <g class="bar">
+            <rect x="6" y="22" width="10" height="8"/>
+            <rect x="24" y="18" width="10" height="12"/>
+            <rect x="42" y="20" width="10" height="10"/>
+            <rect x="60" y="14" width="10" height="16"/>
+            <rect x="78" y="10" width="10" height="20"/>
+            <rect x="96" y="12" width="10" height="18"/>
+            <rect x="114" y="6" width="10" height="24"/>
+            <rect x="132" y="4" width="10" height="26"/>
+            <rect x="150" y="8" width="10" height="22"/>
+            <rect x="168" y="2" width="10" height="28"/>
+            <rect x="186" y="0" width="10" height="30" fill="#ff6b00"/>
+          </g>
+        </svg>
+      </div>
+      <div class="growth-card">
+        <div class="growth-top"><span class="dot"></span><span class="idx">G·03</span></div>
+        <div>
+          <div class="growth-label">총 소모 칼로리</div>
+          <div class="growth-num">300M<span class="u">kcal</span></div>
+          <div class="growth-ctx">고객의 진짜 변화를 데이터로 증명</div>
+        </div>
+        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
+          <polyline points="0,30 20,28 40,26 60,23 80,19 100,18 120,13 140,10 160,7 180,4 200,2" class="accent"/>
+          <circle cx="200" cy="2" r="2" fill="#ff6b00"/>
+        </svg>
+      </div>
+      <div class="growth-card">
+        <div class="growth-top"><span class="dot"></span><span class="idx">G·04</span></div>
+        <div>
+          <div class="growth-label">습관 형성 지원</div>
+          <div class="growth-num">매일</div>
+          <div class="growth-ctx">고객이 건강을 포기하는 모든 순간에 함께</div>
+        </div>
+        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
+          <g class="bar" opacity=".9">
+            <rect x="8" y="10" width="6" height="16"/>
+            <rect x="20" y="6" width="6" height="20"/>
+            <rect x="32" y="12" width="6" height="14"/>
+            <rect x="44" y="4" width="6" height="22"/>
+            <rect x="56" y="8" width="6" height="18"/>
+            <rect x="68" y="2" width="6" height="24"/>
+            <rect x="80" y="6" width="6" height="20"/>
+            <rect x="92" y="10" width="6" height="16"/>
+            <rect x="104" y="4" width="6" height="22"/>
+            <rect x="116" y="2" width="6" height="24"/>
+            <rect x="128" y="8" width="6" height="18"/>
+            <rect x="140" y="6" width="6" height="20"/>
+            <rect x="152" y="4" width="6" height="22"/>
+            <rect x="164" y="10" width="6" height="16"/>
+            <rect x="176" y="2" width="6" height="24"/>
+            <rect x="188" y="6" width="6" height="20" fill="#ff6b00"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. NEXT STEP -->
+<section class="section" id="next">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">NEXT STEP</span>
+      <h2 class="reveal">콰트가 그리는 내일.<br/><span class="muted">운동을 넘어, 건강 전 영역으로.</span></h2>
+    </div>
+
+    <div class="vision-list">
+      <!-- V1 · AI (diagram) -->
+      <div class="vision-item">
+        <div class="vi-text">
+          <div class="n"><span class="bar"></span>N—01 · AI</div>
+          <span class="tag">AI 초개인화 처방</span>
+          <h3>AI 기반의<br/>초 개인화 처방</h3>
+          <p>개인화 운동 플랜을 자동 생성하고, 체력·컨디션에 맞춰 실시간으로 루틴을 추천합니다. 일정·생활 패턴과 연동된 운동 스케줄링과 CRM 고도화로 운동 이탈까지 예측·개입합니다.</p>
+        </div>
+        <div class="vi-art">
+          <div class="vart">
+            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <pattern id="gridV" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M0 0L24 0M0 0L0 24" stroke="rgba(0,0,0,.04)"/>
+                </pattern>
+              </defs>
+              <rect width="500" height="400" fill="url(#gridV)"/>
+              <!-- input signals -->
+              <g font-family="JetBrains Mono" font-size="9" fill="#525252">
+                <g transform="translate(90 80)">
+                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text text-anchor="middle" y="3" stroke="none">SLEEP · 7.2h</text>
+                </g>
+                <g transform="translate(90 150)">
+                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text text-anchor="middle" y="3" stroke="none">HR · 68bpm</text>
+                </g>
+                <g transform="translate(90 220)">
+                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text text-anchor="middle" y="3" stroke="none">BMI · 22.4</text>
+                </g>
+                <g transform="translate(90 290)">
+                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text text-anchor="middle" y="3" stroke="none">GOAL · WL</text>
+                </g>
+              </g>
+              <!-- lines to core -->
+              <g stroke="rgba(0,0,0,0.18)">
+                <line x1="128" y1="80" x2="232" y2="200"/>
+                <line x1="128" y1="150" x2="232" y2="200"/>
+                <line x1="128" y1="220" x2="232" y2="200"/>
+                <line x1="128" y1="290" x2="232" y2="200"/>
+              </g>
+              <!-- core -->
+              <g transform="translate(250 200)">
+                <circle r="46" stroke="#0a0a0a" stroke-width="2" fill="#fafafa"/>
+                <circle r="34" stroke="rgba(0,0,0,0.08)" fill="none"/>
+                <text text-anchor="middle" y="-2" font-family="JetBrains Mono" font-size="11" fill="#0a0a0a" font-weight="600" stroke="none">AI</text>
+                <text text-anchor="middle" y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">MATCH</text>
+              </g>
+              <!-- output arrow -->
+              <line x1="300" y1="200" x2="346" y2="200" stroke="#ff6b00" stroke-dasharray="3 4"/>
+              <path d="M340 194l8 6-8 6" stroke="#ff6b00"/>
+              <!-- routine cards -->
+              <g transform="translate(362 130)">
+                <rect width="116" height="46" rx="8" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                <text x="12" y="18" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">MON · 03:42</text>
+                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">하체 · 중강도</text>
+              </g>
+              <g transform="translate(362 184)">
+                <rect width="116" height="46" rx="8" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                <text x="12" y="18" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">WED · 07:30</text>
+                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">유산소 · 하</text>
+              </g>
+              <g transform="translate(362 238)">
+                <rect width="116" height="46" rx="8" fill="#fff" stroke="#ff6b00" stroke-width="1.5"/>
+                <text x="12" y="18" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" stroke="none">FRI · 18:00</text>
+                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">근력 · 코어</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- V2 · O2O (photo collage) -->
+      <div class="vision-item rev">
+        <div class="vi-text">
+          <div class="n"><span class="bar"></span>N—02 · O2O</div>
+          <span class="tag">오프라인 확장</span>
+          <h3>온라인 콘텐츠를<br/>오프라인 경험으로</h3>
+          <p>홈트 전용 기구 라인업 확대, O2O 확장(헬스장 내 QUAT ZONE), 오프라인 스튜디오·팝업·클래스, B2B 오피스 웰니스까지. 디지털 헬스케어 감동을 손에 잡히는 물리적 경험으로 이어갑니다.</p>
+        </div>
+        <div class="vi-art">
+          <div class="collage">
+            <div class="collage-img a">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.style.display='none'"/>
+              <div class="tag">STUDIO · 성수</div>
+            </div>
+            <div class="collage-img">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.style.display='none'"/>
+            </div>
+            <div class="collage-img">
+              <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=500&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.style.display='none'"/>
+            </div>
+            <div class="stat-card">
+              <div>
+                <div class="l">QUAT ZONE</div>
+                <div class="n">128+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V3 · 24h Super App (diagram) -->
+      <div class="vision-item">
+        <div class="vi-text">
+          <div class="n"><span class="bar"></span>N—03 · SUPERAPP</div>
+          <span class="tag">헬스케어 슈퍼앱</span>
+          <h3>헬스케어 전 영역으로<br/>확장합니다</h3>
+          <p>운동을 넘어 수면·혈당 등 일상 루틴 케어, 멘탈 케어, IoT 제품(혈당계·체중계 등)과의 연계로 디지털 헬스케어 기반을 확장합니다. 24시간을 건강하게 채우는 슈퍼앱으로 도약합니다.</p>
+        </div>
+        <div class="vi-art">
+          <div class="vart">
+            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <pattern id="gridV3" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M0 0L24 0M0 0L0 24" stroke="rgba(0,0,0,.04)"/>
+                </pattern>
+              </defs>
+              <rect width="500" height="400" fill="url(#gridV3)"/>
+              <g transform="translate(250 200)">
+                <circle r="130" stroke="rgba(0,0,0,0.08)"/>
+                <circle r="100" stroke="rgba(0,0,0,0.1)"/>
+                <path d="M0 -100 A100 100 0 1 1 -70 72" stroke="#0a0a0a" stroke-width="2"/>
+                <circle cx="-70" cy="72" r="3" fill="#ff6b00" stroke="none"/>
+                <circle r="32" stroke="#0a0a0a" stroke-width="2" fill="#fafafa"/>
+                <text text-anchor="middle" y="-4" font-family="JetBrains Mono" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">QUAT</text>
+                <text text-anchor="middle" y="10" font-family="JetBrains Mono" font-size="9" fill="#737373" stroke="none">24H</text>
+              </g>
+              <g font-family="Pretendard" font-size="12" font-weight="600" fill="#0a0a0a" text-anchor="middle">
+                <g transform="translate(250 56)">
+                  <rect x="-36" y="-18" width="72" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text y="-2" stroke="none">운동</text>
+                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">MORNING</text>
+                </g>
+                <g transform="translate(418 200)">
+                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text y="-2" stroke="none">영양·혈당</text>
+                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">DAY</text>
+                </g>
+                <g transform="translate(250 344)">
+                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text y="-2" stroke="none">멘탈 케어</text>
+                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">EVENING</text>
+                </g>
+                <g transform="translate(82 200)">
+                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
+                  <text y="-2" stroke="none">수면 케어</text>
+                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">NIGHT</text>
+                </g>
+              </g>
+              <g stroke="rgba(0,0,0,0.2)">
+                <line x1="250" y1="76" x2="250" y2="84"/>
+                <line x1="420" y1="200" x2="412" y2="200"/>
+                <line x1="250" y1="324" x2="250" y2="316"/>
+                <line x1="80" y1="200" x2="88" y2="200"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vision-outro reveal">
+      <p>콰트의 여정은 이제 시작입니다. 하루하루의 작은 꾸준함을 모아<br/>고객의 인생을 <em>'건강한 진짜 나'</em>로 바꾸는 <em>'건강관리 슈퍼앱'</em>으로 도약합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CTA -->
+<section class="cta" id="cta">
+  <div class="wrap">
+    <span class="label solid">NOW HIRING · 2026</span>
+    <h2>매일의 작은 꾸준함을<br/>함께 만들 <em>당신</em>을 찾습니다.</h2>
+    <div class="btns">
+      <a class="btn primary" href="https://career.nrise.net/ko/career">
+        채용 공고 보기
+        <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn accent-dot" href="https://quat.kr" target="_blank" rel="noopener noreferrer">콰트 다운로드</a>
+    </div>
+    <div class="ref">
+      <span>career.nrise.net</span>
+      <span>quat.kr</span>
+      <span>NRISE / QUAT</span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="copy">
+      <strong>(주)엔라이즈</strong><br/>
+      대표이사 김봉기 · 서울특별시 강남구 테헤란로26길 14 대세빌딩 2층<br/>
+      © 2026 NRISE. All rights reserved.
+    </div>
+    <nav>
+      <a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer">블로그</a>
+      <a href="https://www.linkedin.com/company/nriseinc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://career.nrise.net/ko/career">채용</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var nav = document.getElementById('nav');
+  var onScroll = function(){
+    if(window.scrollY > 8) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var ro = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        ro.unobserve(e.target);
+      }
+    });
+  },{threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal, .decay-card').forEach(function(el){ ro.observe(el); });
+})();
+</script>
+</body>
+</html>
