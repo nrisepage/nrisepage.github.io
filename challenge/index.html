@@ -4,6 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QUAT Designer Challenge</title>
+<meta name="description" content="이력서는 받지 않습니다. 같은 시간, 같은 과제, 같은 출발선에서 시작하는 72시간 디자이너 챌린지. QUAT 마케팅팀 디자이너 2명, 6개월 계약 (월 350만원).">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="QUAT Designer Challenge">
+<meta property="og:description" content="이력서는 받지 않습니다. 72시간 동안 같은 출발선에서 — QUAT 마케팅팀 디자이너 챌린지.">
+<meta property="og:url" content="https://nrisepage.github.io/challenge">
+<meta property="og:locale" content="ko_KR">
+<!-- TODO: og:image — 1200x630 PNG를 /challenge/og-image.png 에 두고 아래 한 줄 주석 해제 -->
+<!-- <meta property="og:image" content="https://nrisepage.github.io/challenge/og-image.png"> -->
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QUAT Designer Challenge">
+<meta name="twitter:description" content="이력서는 받지 않습니다. 72시간 동안 같은 출발선에서.">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://nrisepage.github.io/challenge">
+
+<!--
+  TODO: Google for Jobs 게재용 JSON-LD JobPosting.
+  날짜·근무지 확정되면 datePosted / validThrough / jobLocation 채우고 아래 <script> 블록을 활성화하면 됨.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "JobPosting",
+  "title": "QUAT 마케팅팀 디자이너 (계약직)",
+  "description": "이력서 대신 72시간 디자이너 챌린지로 채용. 같은 시간, 같은 과제, 같은 출발선. 결과물과 판단 근거로만 평가합니다.",
+  "datePosted": "2026-05-XX",
+  "validThrough": "2026-05-XXT10:00:00+09:00",
+  "employmentType": "CONTRACTOR",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "QUAT",
+    "sameAs": "https://nrisepage.github.io"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "KR"
+    }
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "KRW",
+    "value": {
+      "@type": "QuantitativeValue",
+      "value": 3500000,
+      "unitText": "MONTH"
+    }
+  }
+}
+</script>
+-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,6 +299,7 @@ section {
 /* ============= HERO ============= */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 120px var(--gutter) var(--s-9);
   display: flex;
   flex-direction: column;
@@ -273,16 +333,6 @@ section {
   opacity: 0.5;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-}
-
-.hero-blob {
-  display: none; /* canvas로 대체 */
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, -40px) scale(1.05); }
-  66% { transform: translate(-30px, 20px) scale(0.95); }
 }
 
 .hero-meta {
@@ -856,6 +906,19 @@ section {
   gap: var(--s-5);
   padding: var(--s-6) 0;
   transition: padding-left 0.3s;
+  /* button reset */
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.faq-q:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .faq-item:hover .faq-q { padding-left: var(--s-3); }
@@ -1039,6 +1102,14 @@ section {
   letter-spacing: 0.1em;
 }
 
+.footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover { color: var(--fg); }
+
 /* ============= REVEAL ============= */
 .reveal {
   opacity: 0;
@@ -1097,6 +1168,24 @@ section {
   .nav.scrolled { padding-block: 12px; }
   .hero-meta { grid-template-columns: 1fr; }
   .why-card { min-height: auto; }
+}
+
+/* ============= REDUCED MOTION ============= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none; }
+  .reveal,
+  .reveal-stagger > * { opacity: 1; transform: none; }
+  .hero-title-line span { transform: none; }
+  .hero-cta-row { opacity: 1; transform: none; }
+  .cursor { display: none !important; }
+  body { cursor: auto !important; }
+  a, button { cursor: pointer !important; }
 }
 
 </style>
@@ -1364,62 +1453,62 @@ section {
 
     <div class="faq-list reveal-stagger">
       <div class="faq-item">
-        <div class="faq-q">
-          <div class="faq-q-text">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-1">
+          <span class="faq-q-text">
             <span class="faq-q-num">Q1</span>
             <span>신입도 지원할 수 있나요?</span>
-          </div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
+          </span>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-a-1" role="region" aria-hidden="true">
           <div class="faq-a-inner">지원 자격에 제한 없습니다. 학생, 신입, 경력자 모두 같은 출발선에서 시작합니다.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">
-          <div class="faq-q-text">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-2">
+          <span class="faq-q-text">
             <span class="faq-q-num">Q2</span>
             <span>AI 도구를 사용해도 되나요?</span>
-          </div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
+          </span>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-a-2" role="region" aria-hidden="true">
           <div class="faq-a-inner">자유롭게 사용하세요. 다만 인터뷰에서 모든 내용을 본인이 설명할 수 있어야 합니다.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">
-          <div class="faq-q-text">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-3">
+          <span class="faq-q-text">
             <span class="faq-q-num">Q3</span>
             <span>지방·해외 거주자도 지원할 수 있나요?</span>
-          </div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
+          </span>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-a-3" role="region" aria-hidden="true">
           <div class="faq-a-inner">챌린지는 온라인 진행. 인터뷰는 오프라인이며, 일정은 합격자와 조율합니다.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">
-          <div class="faq-q-text">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-4">
+          <span class="faq-q-text">
             <span class="faq-q-num">Q4</span>
             <span>제출 형식에 제한이 있나요?</span>
-          </div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
+          </span>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-a-4" role="region" aria-hidden="true">
           <div class="faq-a-inner">PDF, 노션, 슬라이드, 피그마 등 자유. 형식보다 내용이 본질입니다.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">
-          <div class="faq-q-text">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-5">
+          <span class="faq-q-text">
             <span class="faq-q-num">Q5</span>
             <span>정규직 전환이 가능한가요?</span>
-          </div>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-a">
+          </span>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-a-5" role="region" aria-hidden="true">
           <div class="faq-a-inner">6개월 계약직이며 정규직 전환을 약속드리지 않습니다. 함께 일하며 핏을 확인하는 시간으로 봅니다.</div>
         </div>
       </div>
@@ -1440,6 +1529,7 @@ section {
       신청 후 5월 ○일 오전 10시,<br>
       모든 참가자에게 동시에 과제가 공개됩니다.
     </p>
+    <!-- TODO: href를 실제 신청 폼 URL(구글폼/타이포폼 등)로 교체 -->
     <a href="#" class="btn-final reveal">
       <span>지금 챌린지 신청하기</span>
       <span class="btn-final-arrow">→</span>
@@ -1450,39 +1540,52 @@ section {
 <!-- ============= FOOTER ============= -->
 <footer class="footer">
   <div>© 2026 QUAT</div>
-  <div>recruit@quat.life</div>
+  <div><a href="mailto:recruit@quat.life">recruit@quat.life</a></div>
 </footer>
 
 <script>
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ============= CUSTOM CURSOR (RAF only while moving) =============
 const cursor = document.getElementById('cursor');
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
+let cursorRunning = false;
 
 function animateCursor() {
   cursorX += (mouseX - cursorX) * 0.2;
   cursorY += (mouseY - cursorY) * 0.2;
   cursor.style.left = cursorX + 'px';
   cursor.style.top = cursorY + 'px';
-  requestAnimationFrame(animateCursor);
+  if (Math.abs(mouseX - cursorX) > 0.5 || Math.abs(mouseY - cursorY) > 0.5) {
+    requestAnimationFrame(animateCursor);
+  } else {
+    cursorRunning = false;
+  }
 }
-animateCursor();
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  if (!cursorRunning) {
+    cursorRunning = true;
+    requestAnimationFrame(animateCursor);
+  }
+});
 
 document.querySelectorAll('a, button, .why-card, .timeline-step, .who-list li, .eval-item, .faq-item').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
 
+// ============= NAV SCROLL =============
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
-});
+}, { passive: true });
 
+// ============= REVEAL ON SCROLL =============
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('in');
@@ -1491,21 +1594,45 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
 
+// ============= FAQ (button + aria-expanded) =============
 document.querySelectorAll('.faq-item').forEach(item => {
-  item.addEventListener('click', () => item.classList.toggle('open'));
+  const btn = item.querySelector('.faq-q');
+  const region = item.querySelector('.faq-a');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    if (region) region.setAttribute('aria-hidden', String(!isOpen));
+  });
 });
+
+// ============= MARQUEE PAUSE WHEN OFF-SCREEN =============
+const marqueeEl = document.querySelector('.marquee');
+const marqueeTrack = document.querySelector('.marquee-track');
+if (marqueeEl && marqueeTrack) {
+  const marqueeObs = new IntersectionObserver((entries) => {
+    marqueeTrack.style.animationPlayState = entries[0].isIntersecting ? 'running' : 'paused';
+  }, { threshold: 0 });
+  marqueeObs.observe(marqueeEl);
+}
 
 // ============= CONSTELLATION CANVAS =============
 (function() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
+  // reduced-motion 사용자에게는 캔버스 애니메이션 자체 스킵
+  if (prefersReducedMotion) {
+    canvas.style.display = 'none';
+    return;
+  }
   const ctx = canvas.getContext('2d');
 
   let dpr = window.devicePixelRatio || 1;
   let W, H;
   let stars = [];
   let constellations = [];
-  let animationId;
+  let animationId = null;
+  let isVisible = true;
 
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -1927,6 +2054,10 @@ document.querySelectorAll('.faq-item').forEach(item => {
   let nextSpawnDelay = 2500; // 첫 별자리는 좀 더 빨리
 
   function loop(now) {
+    if (!isVisible) {
+      animationId = null;
+      return;
+    }
     ctx.clearRect(0, 0, W, H);
 
     // 별 위치 업데이트 (라인은 이 좌표를 따라감)
@@ -1964,8 +2095,20 @@ document.querySelectorAll('.faq-item').forEach(item => {
   resize();
   window.addEventListener('resize', resize);
 
+  // 캔버스가 화면 밖에 있으면 애니메이션 일시정지
+  const heroSection = canvas.closest('.hero');
+  if (heroSection && 'IntersectionObserver' in window) {
+    const heroObs = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && !animationId) {
+        animationId = requestAnimationFrame(loop);
+      }
+    }, { threshold: 0 });
+    heroObs.observe(heroSection);
+  }
+
   setTimeout(() => {
-    animationId = requestAnimationFrame(loop);
+    if (isVisible) animationId = requestAnimationFrame(loop);
   }, 200);
 })();
 </script>
