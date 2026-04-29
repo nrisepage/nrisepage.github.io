@@ -6,34 +6,40 @@
 <title>QUAT — NRISE</title>
 <meta name="description" content="결심을 쉽게, 습관은 확실하게. 매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱.">
 <link rel="icon" href="/favicon.png" type="image/png">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="QUAT — NRISE">
 <meta property="og:description" content="결심을 쉽게, 습관은 확실하게. 매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱.">
 <meta property="og:url" content="https://nrisepage.github.io/quat">
 <meta property="og:site_name" content="NRISE">
 <meta property="og:image" content="https://nrisepage.github.io/favicon.png">
+<meta property="og:image:alt" content="QUAT — 결심을 쉽게, 습관은 확실하게">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QUAT — NRISE">
+<meta name="twitter:description" content="결심을 쉽게, 습관은 확실하게. 매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱.">
+<meta name="twitter:image" content="https://nrisepage.github.io/favicon.png">
 <link rel="canonical" href="https://nrisepage.github.io/quat">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#fafafa;
-    --bg-2:#f4f1ec;
-    --bg-warm:#faf6ef;
-    --fg:#0a0a0a;
+    --bg:#ffffff;
+    --bg-2:#f5f5f5;
+    --bg-warm:#ffffff;
+    --fg:#000000;
     --fg-2:#525252;
     --fg-3:#737373;
     --fg-4:#a3a3a3;
     --line:rgba(0,0,0,0.08);
     --line-2:rgba(0,0,0,0.04);
-    --accent:#ff6b00;
-    --accent-warm:#ff8a3d;
-    --accent-soft:rgba(255,107,0,.1);
-    --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --accent:#000000;
+    --accent-soft:rgba(0,0,0,.06);
+    --accent-line:rgba(0,0,0,.18);
     --sans:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono:var(--sans);
     --ease:cubic-bezier(.16,1,.3,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -47,8 +53,8 @@
   .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
 
   /* ─────── NAV ─────── */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,0);transition:all .2s ease;border-bottom:1px solid transparent}
-  .nav.scrolled{background:rgba(250,250,250,.85);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom-color:var(--line)}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0);transition:all .2s ease;border-bottom:1px solid transparent}
+  .nav.scrolled{background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom-color:var(--line)}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
   .logo{font-weight:700;letter-spacing:-0.01em;font-size:17px;display:inline-flex;align-items:center;gap:10px}
   .logo .dot{width:6px;height:6px;background:var(--accent);border-radius:1px}
@@ -67,19 +73,18 @@
 
   .sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:80px;align-items:end}
   .sec-head .label{grid-column:1 / span 3}
-  .sec-head h2{grid-column:4 / span 9;font-size:clamp(36px,4.2vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.1}
+  .sec-head h2{grid-column:1 / -1;font-size:clamp(36px,4.2vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.1;max-width:22ch}
   .sec-head h2 .muted{color:var(--fg-3)}
   .sec-head h2 em{font-style:normal;color:var(--fg);position:relative}
-  .sec-head h2 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.08em;background:var(--accent)}
 
   .btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:-0.005em;border:1px solid var(--line);background:transparent;color:var(--fg);transition:all .2s ease}
   .btn:hover{border-color:rgba(0,0,0,0.22);background:rgba(0,0,0,0.02)}
   .btn .arr{transition:transform .2s ease}
   .btn:hover .arr{transform:translateX(3px)}
-  .btn.primary{background:var(--fg);color:#fafafa;border-color:var(--fg)}
+  .btn.primary{background:var(--fg);color:#ffffff;border-color:var(--fg)}
   .btn.primary:hover{background:#1f1f1f;border-color:#1f1f1f}
   .btn.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .btn.accent:hover{background:#ff7a1a;border-color:#ff7a1a;box-shadow:0 8px 24px rgba(255,107,0,.25)}
+  .btn.accent:hover{background:#1f1f1f;border-color:#1f1f1f;box-shadow:0 8px 24px rgba(0,0,0,.25)}
   .btn.accent-dot::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:2px}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -90,13 +95,12 @@
   .hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;flex-wrap:wrap;gap:16px}
   .hero-top .tag-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .pill{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--fg-3);display:inline-flex;align-items:center;gap:8px;background:#fff}
-  .pill .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,107,0,.12);animation:livepulse 2s ease-in-out infinite}
-  @keyframes livepulse{0%,100%{box-shadow:0 0 0 4px rgba(255,107,0,.12)}50%{box-shadow:0 0 0 8px rgba(255,107,0,0)}}
+  .pill .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(0,0,0,.12);animation:livepulse 2s ease-in-out infinite}
+  @keyframes livepulse{0%,100%{box-shadow:0 0 0 4px rgba(0,0,0,.12)}50%{box-shadow:0 0 0 8px rgba(0,0,0,0)}}
 
   .hero-body{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;min-height:620px}
   .hero-copy h1{font-size:clamp(48px,6.2vw,92px);font-weight:700;letter-spacing:-0.04em;line-height:1.03;color:var(--fg)}
   .hero-copy h1 em{font-style:normal;color:var(--fg);position:relative;white-space:nowrap}
-  .hero-copy h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.09em;background:var(--accent);opacity:.95}
   .hero-copy .sub{font-size:17px;line-height:1.65;color:var(--fg-2);max-width:440px;margin-top:28px}
   .hero-cta{margin-top:40px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .hero-cta .hint{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin-left:8px}
@@ -104,13 +108,13 @@
   .hero-photo{
     position:relative;aspect-ratio: 4/5;min-height:520px;border-radius:20px;overflow:hidden;
     background:
-      radial-gradient(ellipse at 30% 20%,rgba(255,107,0,.08),transparent 55%),
-      linear-gradient(160deg,#f0ebe2 0%,#e4d9c6 55%,#cfbea1 100%);
+      radial-gradient(ellipse at 30% 20%,rgba(0,0,0,.08),transparent 55%),
+      linear-gradient(160deg,#f5f5f5 0%,#e5e5e5 55%,#d4d4d4 100%);
   }
   .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
   .hero-photo::after{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(20,14,8,.35) 100%);
+    background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(0,0,0,.4) 100%);
     z-index:2;pointer-events:none;
   }
   .hero-photo .badge{
@@ -125,14 +129,13 @@
   .hero-photo .badge .streak{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:600;letter-spacing:.04em;border-left:1px solid var(--line);padding-left:12px;margin-left:4px}
 
   .stats{margin-top:96px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
-  .stat{padding:28px 0;position:relative}
-  .stat + .stat{border-left:1px solid var(--line);padding-left:28px}
-  .stat .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:8px}
-  .stat .k .ix{opacity:.6}
-  .stat .v{font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:-0.02em;color:var(--fg);margin-top:10px;font-variant-numeric:tabular-nums}
-  .stat .v .u{font-size:14px;color:var(--fg-3);margin-left:4px;font-weight:400}
-  .stat .spark{margin-top:10px;width:100%;height:22px}
-  .stat .spark polyline{fill:none;stroke:var(--fg-3);stroke-width:1.2;opacity:.5}
+  .stat{padding:44px 0 40px;position:relative;display:flex;flex-direction:column;gap:18px}
+  .stat + .stat{border-left:1px solid var(--line);padding-left:36px}
+  .stat .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:10px;font-weight:500}
+  .stat .k .ix{opacity:.55;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  .stat .v{font-size:clamp(40px,4.4vw,56px);font-weight:600;letter-spacing:-0.04em;color:var(--fg);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";line-height:1;display:flex;align-items:baseline;gap:4px}
+  .stat .v .u{font-size:.32em;color:var(--fg-3);font-weight:400;letter-spacing:0}
+  .stat .ctx{font-size:13px;line-height:1.55;color:var(--fg-3);max-width:26ch;letter-spacing:-.005em;margin-top:auto}
 
   /* ─────── DNA ─────── */
   .dna-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -145,7 +148,29 @@
   .dna-col p{font-size:15px;line-height:1.65;color:var(--fg-2);max-width:32ch}
 
   /* ─────── PROBLEM ─────── */
-  .problem{background:var(--bg-2)}
+  /* Problem 섹션 — 다크 invert */
+  .problem{
+    --bg-2:#000;
+    --line:rgba(255,255,255,.12);
+    --line-2:rgba(255,255,255,.05);
+    --fg:#fff;
+    --fg-2:rgba(255,255,255,.72);
+    --fg-3:rgba(255,255,255,.56);
+    --fg-4:rgba(255,255,255,.4);
+    --accent:#fff;
+    --accent-soft:rgba(255,255,255,.08);
+    --accent-line:rgba(255,255,255,.2);
+    background:#000;color:#fff;
+  }
+  .problem .decay-card{background:#0a0a0a;box-shadow:none}
+  .problem .decay-grid .cell{background:rgba(255,255,255,.08)}
+  .problem .decay-grid .cell.dim{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+  .problem .decay-legend .sw{background:rgba(255,255,255,.08)}
+  .problem .decay-legend .sw.dim{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.15)}
+  .problem .pain-row{background:#0a0a0a}
+  .problem .pain-row .prob{background:#0f0f0f}
+  .problem .pain-row .ans{background:#0a0a0a}
+  .problem .pain-row .ans .tags span{background:#0f0f0f}
   .decay-card{
     margin-top:8px;border:1px solid var(--line);border-radius:18px;background:#fff;
     padding:56px 56px 52px;display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;
@@ -156,7 +181,7 @@
   .decay-big{font-family:var(--mono);font-size:clamp(88px,10.5vw,164px);font-weight:500;letter-spacing:-0.055em;line-height:.9;color:var(--fg);font-variant-numeric:tabular-nums;margin-top:22px;display:flex;align-items:flex-start}
   .decay-big .pct{color:var(--accent);font-size:.48em;margin-left:6px;margin-top:.18em;line-height:1;letter-spacing:-.02em}
   .decay-caption{font-size:18px;line-height:1.6;color:var(--fg);margin-top:28px;max-width:36ch;font-weight:500;letter-spacing:-.01em}
-  .decay-caption em{font-style:normal;color:var(--fg);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:1px}
+  .decay-caption em{font-style:normal;color:var(--fg);font-weight:700}
   .decay-cite{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--fg-4);text-transform:uppercase;display:flex;align-items:center;gap:8px}
   .decay-cite::before{content:"↳";color:var(--fg-4);margin-right:2px}
   .decay-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fg-3);text-transform:uppercase;margin-bottom:18px}
@@ -180,7 +205,7 @@
   .pain-intro{max-width:720px;margin:88px auto 0;text-align:center}
   .pain-intro p{font-size:15px;line-height:1.85;color:var(--fg-2);margin:0 0 8px}
   .pain-intro p:last-child{margin-bottom:0}
-  .pain-intro em{font-style:normal;color:var(--fg);font-weight:600;border-bottom:1px solid var(--accent);padding-bottom:1px}
+  .pain-intro em{font-style:normal;color:var(--fg);font-weight:600}
 
   .pain-list{margin-top:64px;display:grid;grid-template-columns:1fr;gap:20px}
   .pain-row{
@@ -207,14 +232,14 @@
   .pain-row .ans::before{content:"";position:absolute;top:44px;left:44px;width:28px;height:2px;background:var(--accent)}
   .pain-row .ans .ans-meta{padding-top:8px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:12px}
   .pain-row .ans .tit{font-size:26px;font-weight:600;letter-spacing:-0.02em;color:var(--fg);line-height:1.25;margin-top:4px}
-  .pain-row .ans .tit em{font-style:normal;color:var(--fg);border-bottom:2px solid var(--accent);padding-bottom:1px}
+  .pain-row .ans .tit em{font-style:normal;color:var(--fg)}
   .pain-row .ans .sub{font-size:14px;color:var(--fg-2);line-height:1.65}
   .pain-row .ans .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-  .pain-row .ans .tags span{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.06em;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:#fafafa}
+  .pain-row .ans .tags span{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.06em;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:#ffffff}
 
   .pain-summary{max-width:720px;margin:80px auto 0;text-align:center}
   .pain-summary p{font-size:15px;line-height:1.9;color:var(--fg-2);margin:0}
-  .pain-summary em{font-style:normal;color:var(--fg);font-weight:600;border-bottom:1px solid var(--accent);padding-bottom:1px}
+  .pain-summary em{font-style:normal;color:var(--fg);font-weight:600}
 
   /* ─────── SOLUTION ─────── */
   .sol-row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:88px 0;border-top:1px solid var(--line);align-items:center}
@@ -226,7 +251,7 @@
   .sol-row .n{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--fg-3);display:flex;align-items:center;gap:10px}
   .sol-row .n .bar{width:24px;height:2px;background:var(--accent)}
   .sol-row h3{margin-top:22px;font-size:34px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;color:var(--fg);max-width:14ch}
-  .sol-row h3 em{font-style:normal;color:var(--fg);border-bottom:2px solid var(--accent);padding-bottom:2px}
+  .sol-row h3 em{font-style:normal;color:var(--fg)}
   .sol-row p{margin-top:20px;font-size:15px;line-height:1.7;color:var(--fg-2);max-width:42ch}
   .sol-row .row-meta{margin-top:32px;display:flex;gap:18px;font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap}
   .sol-row .row-meta span::before{content:"·";margin-right:10px;opacity:.5}
@@ -235,7 +260,7 @@
   /* phone mockups */
   .phones{
     position:relative;display:flex;gap:16px;justify-content:center;align-items:flex-end;padding:40px 20px;
-    background:linear-gradient(160deg,var(--bg-warm) 0%,#f0ebe2 100%);
+    background:linear-gradient(160deg,var(--bg-warm) 0%,#f5f5f5 100%);
     border:1px solid var(--line);border-radius:20px;overflow:hidden;min-height:520px;
   }
   .phones::before{
@@ -245,7 +270,7 @@
   }
   .phones::after{
     content:"";position:absolute;bottom:-30%;right:-10%;width:280px;height:280px;
-    background:radial-gradient(circle,rgba(255,107,0,.12),transparent 60%);pointer-events:none;
+    background:radial-gradient(circle,rgba(0,0,0,.12),transparent 60%);pointer-events:none;
   }
   .phone{
     position:relative;width:200px;aspect-ratio:9/19;background:#fff;
@@ -256,21 +281,97 @@
   .phone.offset{margin-bottom:30px}
   .phone svg{width:100%;height:100%;display:block}
 
-  /* ─────── GROWTH ─────── */
-  .growth-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .growth-card{padding:40px 28px 36px;position:relative;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
-  .growth-card + .growth-card{border-left:1px solid var(--line)}
-  .growth-top{display:flex;align-items:center;gap:10px}
-  .growth-top .idx{font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase}
-  .growth-top .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.6}
-  .growth-label{font-size:13px;color:var(--fg-3);letter-spacing:-0.005em;margin-bottom:6px}
-  .growth-num{font-family:var(--mono);font-size:46px;font-weight:500;letter-spacing:-0.035em;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
-  .growth-num .u{font-size:16px;color:var(--fg-3);margin-left:4px;font-weight:400}
-  .growth-ctx{font-size:12px;line-height:1.6;color:var(--fg-3);margin-top:10px}
-  .growth-graph{width:100%;height:32px;margin-top:4px}
-  .growth-graph polyline{fill:none;stroke:var(--fg);stroke-width:1.3;stroke-linejoin:round;stroke-linecap:round}
-  .growth-graph .bar{fill:var(--fg);opacity:.85}
-  .growth-graph .accent{stroke:var(--accent);stroke-width:1.5}
+  /* ─────── GROWTH (앱 모먼트 — 폰 노출) ─────── */
+  .growth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding:8px 0}
+  .growth-card{position:relative;display:flex;flex-direction:column;gap:28px;align-items:center;text-align:center}
+  .growth-top{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+  .growth-top .dot{width:5px;height:5px;border-radius:50%;background:var(--fg);opacity:.6}
+  .growth-top .idx{font-size:11px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+  .growth-top .delta{font-size:10px;letter-spacing:.02em;color:var(--fg);background:rgba(0,0,0,.04);padding:3px 10px;border-radius:999px;font-weight:600;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  .growth-cap{font-size:13px;line-height:1.6;color:var(--fg-3);max-width:28ch;margin:0 auto;letter-spacing:-.005em}
+
+  /* iPhone-like mockup */
+  .pmock{position:relative;width:88%;max-width:236px;aspect-ratio:9/19.3;background:#000000;border-radius:34px;padding:5px;box-shadow:0 24px 56px rgba(0,0,0,.16),0 6px 18px rgba(0,0,0,.08), inset 0 0 0 1.5px #1c1c1c;flex-shrink:0}
+  .pmock::before{content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);width:32%;height:18px;background:#000000;border-radius:999px;z-index:10}
+  .pscreen{width:100%;height:100%;border-radius:29px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+  .psbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 4px;font-size:10.5px;font-weight:600;letter-spacing:-.01em;flex-shrink:0;font-variant-numeric:tabular-nums}
+  .psbar.dark{color:#fff}
+  .psbar .signal{display:inline-flex;gap:4px;align-items:center}
+  .psbar .signal .bar{display:inline-flex;gap:1.5px;align-items:flex-end}
+  .psbar .signal .bar i{display:inline-block;width:2.5px;background:currentColor;border-radius:0.5px}
+  .psbar .signal .bar i:nth-child(1){height:3px}
+  .psbar .signal .bar i:nth-child(2){height:5px}
+  .psbar .signal .bar i:nth-child(3){height:7px}
+  .psbar .signal .bar i:nth-child(4){height:9px}
+  .psbar .signal .bat{width:20px;height:9px;border:1px solid currentColor;border-radius:2.5px;position:relative;opacity:.9}
+  .psbar .signal .bat::after{content:"";position:absolute;left:1.2px;top:1.2px;bottom:1.2px;width:75%;background:currentColor;border-radius:1px}
+  .psbar .signal .bat::before{content:"";position:absolute;right:-2.5px;top:50%;transform:translateY(-50%);width:1.5px;height:4px;background:currentColor;border-radius:0 1px 1px 0}
+  .pcontent{flex:1;display:flex;flex-direction:column;text-align:left;overflow:hidden}
+
+  /* G·01 Welcome */
+  .s-welcome{flex:1;display:flex;flex-direction:column;background:#ffffff;padding:16px 16px 18px;gap:13px}
+  .s-welcome .lab{font-size:9.5px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .s-welcome .greet{font-size:18px;font-weight:700;letter-spacing:-0.025em;line-height:1.25;color:var(--fg)}
+  .s-welcome .ord{padding:13px 14px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;display:flex;flex-direction:column;gap:5px}
+  .s-welcome .ord .ol{font-size:9px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .s-welcome .ord .num{font-size:24px;font-weight:700;letter-spacing:-0.035em;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1;display:flex;align-items:baseline;gap:4px}
+  .s-welcome .ord .num small{font-size:12px;font-weight:500;color:var(--fg-3);letter-spacing:0}
+  .s-welcome .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;background:var(--fg);color:#fff;border-radius:13px;padding:13px 15px;font-size:12.5px;font-weight:600;letter-spacing:-.005em}
+  .s-welcome .cta .arr{opacity:.65;font-size:14px}
+
+  /* G·02 Library */
+  .s-library{flex:1;display:flex;flex-direction:column;background:#fff;padding:14px 14px 16px;gap:11px}
+  .s-library .top{display:flex;align-items:center;gap:8px}
+  .s-library .top .menu{display:inline-flex;flex-direction:column;gap:2.5px}
+  .s-library .top .menu i{display:block;width:14px;height:1.5px;background:var(--fg);border-radius:1px}
+  .s-library .top .h{font-size:13px;font-weight:700;color:var(--fg);letter-spacing:-.01em}
+  .s-library .top .total{margin-left:auto;font-size:9px;color:var(--fg-3);letter-spacing:.04em;font-weight:500;text-transform:uppercase}
+  .s-library .tabs{display:flex;gap:4px;font-size:9.5px;font-weight:500;color:var(--fg-3)}
+  .s-library .tabs .t{padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.04);white-space:nowrap}
+  .s-library .tabs .t.on{background:var(--fg);color:#fff;font-weight:600}
+  .s-library .items{display:flex;flex-direction:column;gap:7px}
+  .s-library .items .item{border-radius:10px;background:rgba(0,0,0,.03);overflow:hidden;display:flex;align-items:center;gap:10px;padding:6px 10px 6px 6px}
+  .s-library .items .item .thumb{width:54px;height:38px;border-radius:7px;background:linear-gradient(135deg,#ededed 0%,#a3a3a3 100%);position:relative;flex-shrink:0;overflow:hidden}
+  .s-library .items .item .thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 60%,rgba(0,0,0,.18),transparent 65%)}
+  .s-library .items .item .thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;z-index:1}
+  .s-library .items .item .thumb .play::after{content:"";width:0;height:0;border-left:4px solid var(--fg);border-top:3px solid transparent;border-bottom:3px solid transparent;margin-left:1px}
+  .s-library .items .item .lab{font-size:11px;color:var(--fg);font-weight:600;letter-spacing:-.01em;line-height:1.25}
+  .s-library .items .item .lab small{display:block;color:var(--fg-3);font-weight:500;margin-top:2px;font-size:9px;letter-spacing:.02em}
+  .s-library .footer{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;font-size:9.5px;color:var(--fg-3);letter-spacing:.04em;text-transform:uppercase;font-weight:500;padding-top:10px;border-top:1px solid rgba(0,0,0,.06)}
+  .s-library .footer .v{color:var(--fg);font-weight:700;font-variant-numeric:tabular-nums;font-size:14px;letter-spacing:-.01em;text-transform:none}
+
+  /* G·03 Activity */
+  .s-activity{flex:1;display:flex;flex-direction:column;background:#ffffff;padding:14px 14px 16px;gap:11px}
+  .s-activity .top{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--fg);letter-spacing:-.01em}
+  .s-activity .top .ic{width:18px;height:18px;border-radius:5px;background:var(--fg);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px}
+  .s-activity .top .meta{margin-left:auto;font-size:9px;color:var(--fg-3);letter-spacing:.04em;font-weight:500;text-transform:uppercase}
+  .s-activity .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:13px 14px 14px;display:flex;flex-direction:column;gap:7px}
+  .s-activity .card .row{display:flex;justify-content:space-between;align-items:center;font-size:9.5px;color:var(--fg-3);letter-spacing:.04em;text-transform:uppercase;font-weight:500}
+  .s-activity .card .badge{background:var(--fg);color:#fff;padding:2px 8px;border-radius:999px;font-weight:600;font-size:9px;text-transform:none;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+  .s-activity .card .big{font-size:30px;font-weight:700;letter-spacing:-0.04em;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1;display:flex;align-items:baseline;gap:4px}
+  .s-activity .card .big small{font-size:13px;font-weight:500;color:var(--fg-3);letter-spacing:0}
+  .s-activity .card .week{display:flex;gap:3px;margin-top:2px}
+  .s-activity .card .week .d{flex:1;height:5px;border-radius:2px;background:rgba(0,0,0,.08)}
+  .s-activity .card .week .d.on{background:var(--fg)}
+  .s-activity .lifetime{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;font-size:9.5px;color:var(--fg-3);letter-spacing:.04em;text-transform:uppercase;font-weight:500;padding-top:12px;border-top:1px solid rgba(0,0,0,.06)}
+  .s-activity .lifetime .v{font-size:15px;color:var(--fg);font-weight:700;letter-spacing:-.01em;text-transform:none;font-variant-numeric:tabular-nums}
+
+  /* G·04 Push (잠금화면) */
+  .s-lock{flex:1;display:flex;flex-direction:column;background:linear-gradient(180deg,#1a1a1a 0%,#000000 100%);color:#fff;padding:14px;position:relative;overflow:hidden}
+  .s-lock::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.08),transparent 60%);pointer-events:none}
+  .s-lock .clock{text-align:center;margin-top:10px;position:relative;z-index:1}
+  .s-lock .clock .date{font-size:10.5px;font-weight:500;opacity:.7;letter-spacing:.02em}
+  .s-lock .clock .time{font-size:48px;font-weight:200;letter-spacing:-0.04em;line-height:1;margin-top:6px;font-variant-numeric:tabular-nums}
+  .s-lock .notify{margin-top:auto;background:rgba(255,255,255,.13);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:14px;padding:11px 12px 12px;position:relative;z-index:1;border:0.5px solid rgba(255,255,255,.12)}
+  .s-lock .notify .nhead{display:flex;align-items:center;gap:7px;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;opacity:.85}
+  .s-lock .notify .nhead .ic{width:18px;height:18px;border-radius:5px;background:#fff;color:#000000;display:inline-flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;letter-spacing:0}
+  .s-lock .notify .nhead .ts{margin-left:auto;opacity:.7;font-weight:500;font-variant-numeric:tabular-nums}
+  .s-lock .notify .body{margin-top:6px}
+  .s-lock .notify .body .t{font-size:12.5px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+  .s-lock .notify .body .d{font-size:10.5px;line-height:1.5;margin-top:3px;opacity:.75}
+  .s-lock .notify .num{display:flex;align-items:flex-end;gap:8px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.18)}
+  .s-lock .notify .num .n{font-size:30px;font-weight:700;line-height:.95;letter-spacing:-0.04em;font-variant-numeric:tabular-nums}
+  .s-lock .notify .num .l{font-size:9px;opacity:.7;letter-spacing:.06em;text-transform:uppercase;padding-bottom:4px;font-weight:600;line-height:1.3}
 
   /* ─────── NEXT STEP ─────── */
   .vision-list{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
@@ -281,7 +382,7 @@
   .vision-item.rev .vi-art{grid-column:1 / span 6;order:1}
   .vision-item .n{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--fg-3);display:flex;align-items:center;gap:10px}
   .vision-item .n .bar{width:24px;height:2px;background:var(--accent)}
-  .vision-item .tag{display:inline-block;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,107,0,.3);border-radius:999px;background:rgba(255,107,0,.05)}
+  .vision-item .tag{display:inline-block;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(0,0,0,.3);border-radius:999px;background:rgba(0,0,0,.05)}
   .vision-item h3{margin-top:22px;font-size:34px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;color:var(--fg);max-width:18ch}
   .vision-item p{margin-top:20px;font-size:15px;line-height:1.7;color:var(--fg-2);max-width:46ch}
 
@@ -289,8 +390,8 @@
   .vart svg{width:100%;height:100%}
 
   /* Vision 02 photo collage */
-  .collage{position:relative;aspect-ratio:5/4;border-radius:16px;overflow:hidden;background:#f0ebe2;display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;padding:6px;border:1px solid var(--line)}
-  .collage-img{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(140deg,#ded4c3,#b6a58a)}
+  .collage{position:relative;aspect-ratio:5/4;border-radius:16px;overflow:hidden;background:#f5f5f5;display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;padding:6px;border:1px solid var(--line)}
+  .collage-img{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(140deg,#e5e5e5,#a3a3a3)}
   .collage-img img{width:100%;height:100%;object-fit:cover;display:block}
   .collage-img.a{grid-row:1 / span 2}
   .collage .tag{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-radius:8px;padding:6px 10px;font-family:var(--mono);font-size:10px;color:var(--fg);letter-spacing:.06em;z-index:2}
@@ -300,20 +401,20 @@
 
   .vision-outro{max-width:720px;margin:88px auto 0;text-align:center}
   .vision-outro p{font-size:15px;line-height:1.9;color:var(--fg-2);margin:0}
-  .vision-outro em{font-style:normal;color:var(--fg);font-weight:600;border-bottom:1px solid var(--accent);padding-bottom:1px}
+  .vision-outro em{font-style:normal;color:var(--fg);font-weight:600}
 
   /* ─────── CTA ─────── */
   .cta{padding:160px 0;text-align:center;position:relative;border-top:1px solid var(--line);background:var(--bg-warm)}
-  .cta::before{content:"";position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(255,107,0,.08),transparent 60%);pointer-events:none}
+  .cta::before{content:"";position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(0,0,0,.08),transparent 60%);pointer-events:none}
   .cta .label{justify-content:center;display:inline-flex;position:relative}
   .cta h2{position:relative;margin-top:24px;font-size:clamp(40px,5.4vw,76px);font-weight:700;letter-spacing:-0.035em;line-height:1.1;max-width:20ch;margin-left:auto;margin-right:auto}
-  .cta h2 em{font-style:normal;color:var(--accent)}
+  .cta h2 em{font-style:normal;color:var(--fg);position:relative;white-space:nowrap}
   .cta .btns{position:relative;margin-top:48px;display:inline-flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
   .cta .ref{position:relative;margin-top:40px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
   .cta .ref span::before{content:"↳";margin-right:8px;opacity:.6}
 
   /* ─────── FOOTER ─────── */
-  footer{border-top:1px solid var(--line);padding:40px 0;background:#fafafa}
+  footer{border-top:1px solid var(--line);padding:40px 0;background:#ffffff}
   footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
   footer .copy{font-family:var(--mono);font-size:12px;color:var(--fg-3);letter-spacing:.02em;line-height:1.7}
   footer .copy strong{color:var(--fg-2);font-family:var(--sans);font-weight:600;letter-spacing:-0.005em}
@@ -368,17 +469,11 @@
   </div>
 </header>
 
+<main id="main">
+
 <!-- 1. HERO -->
 <section class="section hero">
   <div class="wrap">
-    <div class="hero-top">
-      <div class="tag-row">
-        <span class="pill"><span class="live"></span>QUAT · 건강관리 슈퍼앱</span>
-        <span class="pill">v.2026</span>
-      </div>
-      <span class="label">NRISE / 02 — QUAT</span>
-    </div>
-
     <div class="hero-body">
       <div class="hero-copy">
         <h1>결심을 쉽게,<br/><em>습관은 확실하게</em>.</h1>
@@ -393,7 +488,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop" alt="" loading="eager" onerror="this.style.display='none'"/>
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop" alt="콰트와 함께 운동 습관을 만들어가는 사용자" loading="eager" onerror="this.style.display='none'"/>
         <div class="badge">
           <div class="avatar">Q</div>
           <div>
@@ -409,17 +504,17 @@
       <div class="stat">
         <div class="k"><span class="ix">01</span>누적 회원</div>
         <div class="v">600,000<span class="u">+</span></div>
-        <svg class="spark" viewBox="0 0 100 22" preserveAspectRatio="none"><polyline points="0,20 14,18 28,16 42,14 56,11 70,9 84,6 100,3"/></svg>
+        <div class="ctx">매일 콰트를 켜는 사용자들</div>
       </div>
       <div class="stat">
         <div class="k"><span class="ix">02</span>자체 콘텐츠</div>
         <div class="v">2,500<span class="u">건</span></div>
-        <svg class="spark" viewBox="0 0 100 22" preserveAspectRatio="none"><polyline points="0,18 14,17 28,14 42,14 56,11 70,10 84,8 100,5"/></svg>
+        <div class="ctx">유산소·요가·필라테스·근력·발레·도수 6종</div>
       </div>
       <div class="stat">
         <div class="k"><span class="ix">03</span>총 소모 칼로리</div>
-        <div class="v">300,000,000<span class="u">kcal</span></div>
-        <svg class="spark" viewBox="0 0 100 22" preserveAspectRatio="none"><polyline points="0,20 14,18 28,17 42,14 56,12 70,10 84,7 100,4"/></svg>
+        <div class="v">300M<span class="u">kcal</span></div>
+        <div class="ctx">고객의 진짜 변화를 데이터로</div>
       </div>
     </div>
   </div>
@@ -429,7 +524,6 @@
 <section class="section" id="dna">
   <div class="wrap">
     <div class="sec-head">
-      <span class="label solid">OUR DNA</span>
       <h2 class="reveal">제품을 만드는 <em>세 가지 태도</em>.<br/><span class="muted">고객의 진짜를 파고드는 원칙.</span></h2>
     </div>
 
@@ -480,7 +574,6 @@
 <section class="section problem" id="problem">
   <div class="wrap">
     <div class="sec-head">
-      <span class="label">MARKET PROBLEM</span>
       <h2 class="reveal">'규칙적'이라는<br/><span class="muted">착각.</span></h2>
     </div>
 
@@ -616,7 +709,6 @@
 <section class="section" id="solution">
   <div class="wrap">
     <div class="sec-head">
-      <span class="label">OUR SOLUTION</span>
       <h2 class="reveal">콰트는 시장의 진짜 문제를<br/><span class="muted">이렇게 해결합니다.</span></h2>
     </div>
 
@@ -634,64 +726,64 @@
           <div class="phone">
             <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
               <!-- status bar -->
-              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
-              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
-              <g transform="translate(166 12)" fill="#0a0a0a">
+              <rect x="0" y="0" width="200" height="422" fill="#ffffff"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">9:41</text>
+              <g transform="translate(166 12)" fill="#000000">
                 <rect x="0" y="0" width="14" height="8" rx="1.5"/>
                 <rect x="-18" y="1" width="14" height="6" rx="2" opacity=".5"/>
                 <rect x="-36" y="2" width="12" height="4" rx="1.5" opacity=".25"/>
               </g>
               <!-- dynamic island -->
-              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#000000"/>
               <!-- header -->
-              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">TODAY · 월 04.21</text>
-              <text x="16" y="72" font-family="Pretendard" font-size="15" font-weight="700" fill="#0a0a0a">오늘의 운동</text>
+              <text x="16" y="52" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" letter-spacing="1">TODAY · 월 04.21</text>
+              <text x="16" y="72" font-family="Pretendard" font-size="15" font-weight="700" fill="#000000">오늘의 운동</text>
               <text x="16" y="86" font-family="Pretendard" font-size="9" fill="#737373">3분짜리 가벼운 시작</text>
               <!-- progress arc + streak -->
               <g transform="translate(168 74)">
                 <circle r="12" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="2"/>
-                <circle r="12" fill="none" stroke="#ff6b00" stroke-width="2" stroke-linecap="round" stroke-dasharray="60 75" transform="rotate(-90)"/>
-                <text text-anchor="middle" y="3" font-family="JetBrains Mono" font-size="7" font-weight="600" fill="#0a0a0a">23D</text>
+                <circle r="12" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-dasharray="60 75" transform="rotate(-90)"/>
+                <text text-anchor="middle" y="3" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" font-weight="600" fill="#000000">23D</text>
               </g>
               <line x1="16" y1="100" x2="184" y2="100" stroke="rgba(0,0,0,.06)"/>
 
               <!-- card 1 active -->
               <g transform="translate(16 114)">
                 <rect width="168" height="60" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
-                <circle cx="18" cy="30" r="10" fill="#ff6b00"/>
+                <circle cx="18" cy="30" r="10" fill="#000000"/>
                 <path d="M14 30 L17 33 L22 27" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">하체 워밍업 · 스쿼트</text>
-                <text x="36" y="40" font-family="JetBrains Mono" font-size="7" fill="#737373">3분 · 가벼운 강도</text>
-                <text x="154" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#ff6b00">3'</text>
-                <text x="154" y="46" text-anchor="end" font-family="JetBrains Mono" font-size="6" fill="#737373">COMPLETED</text>
+                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="700" fill="#000000">하체 워밍업 · 스쿼트</text>
+                <text x="36" y="40" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">3분 · 가벼운 강도</text>
+                <text x="154" y="30" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="10" font-weight="600" fill="#000000">3'</text>
+                <text x="154" y="46" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">COMPLETED</text>
               </g>
               <!-- card 2 active -->
               <g transform="translate(16 186)">
                 <rect width="168" height="60" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)"/>
-                <circle cx="18" cy="30" r="10" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
-                <text text-anchor="middle" x="18" y="33" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#0a0a0a">2</text>
-                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">코어 · 플랭크</text>
-                <text x="36" y="40" font-family="JetBrains Mono" font-size="7" fill="#737373">7분 · 중강도</text>
-                <text x="154" y="30" text-anchor="end" font-family="JetBrains Mono" font-size="10" font-weight="600" fill="#0a0a0a">7'</text>
+                <circle cx="18" cy="30" r="10" fill="none" stroke="#000000" stroke-width="1.2"/>
+                <text text-anchor="middle" x="18" y="33" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" font-weight="700" fill="#000000">2</text>
+                <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="700" fill="#000000">코어 · 플랭크</text>
+                <text x="36" y="40" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">7분 · 중강도</text>
+                <text x="154" y="30" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="10" font-weight="600" fill="#000000">7'</text>
               </g>
               <!-- card 3 locked -->
               <g transform="translate(16 258)">
                 <rect width="168" height="60" rx="10" fill="rgba(0,0,0,.03)" stroke="rgba(0,0,0,.06)"/>
                 <circle cx="18" cy="30" r="10" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>
-                <text text-anchor="middle" x="18" y="33" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="rgba(0,0,0,.3)">3</text>
+                <text text-anchor="middle" x="18" y="33" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" font-weight="700" fill="rgba(0,0,0,.3)">3</text>
                 <text x="36" y="26" font-family="Pretendard" font-size="10" font-weight="600" fill="rgba(0,0,0,.4)">쿨다운 · 스트레칭</text>
-                <text x="36" y="40" font-family="JetBrains Mono" font-size="7" fill="rgba(0,0,0,.3)">4분 · 회복</text>
+                <text x="36" y="40" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="rgba(0,0,0,.3)">4분 · 회복</text>
               </g>
 
               <!-- start button -->
               <g transform="translate(16 338)">
-                <rect width="168" height="44" rx="22" fill="#0a0a0a"/>
-                <text text-anchor="middle" x="84" y="28" font-family="Pretendard" font-size="11" font-weight="600" fill="#fafafa">다음 운동 시작</text>
+                <rect width="168" height="44" rx="22" fill="#000000"/>
+                <text text-anchor="middle" x="84" y="28" font-family="Pretendard" font-size="11" font-weight="600" fill="#ffffff">다음 운동 시작</text>
               </g>
               <!-- tab bar dots -->
               <g transform="translate(100 400)">
                 <circle cx="-40" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
-                <circle cx="-20" cy="0" r="2" fill="#0a0a0a"/>
+                <circle cx="-20" cy="0" r="2" fill="#000000"/>
                 <circle cx="0" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
                 <circle cx="20" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
                 <circle cx="40" cy="0" r="2" fill="rgba(0,0,0,.2)"/>
@@ -701,11 +793,11 @@
           <!-- Phone 2: Category picker -->
           <div class="phone offset">
             <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
-              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
-              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
-              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">EXPLORE</text>
-              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">카테고리</text>
+              <rect x="0" y="0" width="200" height="422" fill="#ffffff"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#000000"/>
+              <text x="16" y="52" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" letter-spacing="1">EXPLORE</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#000000">카테고리</text>
               <!-- search -->
               <rect x="16" y="92" width="168" height="32" rx="16" fill="#fff" stroke="rgba(0,0,0,.1)"/>
               <circle cx="32" cy="108" r="4.5" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1.2"/>
@@ -713,19 +805,19 @@
               <text x="46" y="112" font-family="Pretendard" font-size="9" fill="rgba(0,0,0,.35)">오늘 뭘 해볼까</text>
               <!-- chips -->
               <g transform="translate(16 140)">
-                <g><rect width="58" height="24" rx="12" fill="#ff6b00"/><text x="29" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="600" fill="#fff">전체</text></g>
-                <g transform="translate(64 0)"><rect width="52" height="24" rx="12" fill="#fff" stroke="rgba(0,0,0,.1)"/><text x="26" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="500" fill="#0a0a0a">인기</text></g>
-                <g transform="translate(122 0)"><rect width="52" height="24" rx="12" fill="#fff" stroke="rgba(0,0,0,.1)"/><text x="26" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="500" fill="#0a0a0a">신규</text></g>
+                <g><rect width="58" height="24" rx="12" fill="#000000"/><text x="29" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="600" fill="#fff">전체</text></g>
+                <g transform="translate(64 0)"><rect width="52" height="24" rx="12" fill="#fff" stroke="rgba(0,0,0,.1)"/><text x="26" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="500" fill="#000000">인기</text></g>
+                <g transform="translate(122 0)"><rect width="52" height="24" rx="12" fill="#fff" stroke="rgba(0,0,0,.1)"/><text x="26" y="16" text-anchor="middle" font-family="Pretendard" font-size="9" font-weight="500" fill="#000000">신규</text></g>
               </g>
               <!-- grid -->
               <g transform="translate(16 180)">
                 <g>
                   <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
                   <rect x="0" y="0" width="80" height="66" rx="10" fill="#f5e8d6"/>
-                  <circle cx="40" cy="33" r="12" fill="none" stroke="#ff6b00" stroke-width="1.5"/>
-                  <path d="M34 33 L38 37 L46 29" stroke="#ff6b00" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">유산소</text>
-                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">428 콘텐츠</text>
+                  <circle cx="40" cy="33" r="12" fill="none" stroke="#000000" stroke-width="1.5"/>
+                  <path d="M34 33 L38 37 L46 29" stroke="#000000" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#000000">유산소</text>
+                  <text x="8" y="91" font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">428 콘텐츠</text>
                 </g>
                 <g transform="translate(88 0)">
                   <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
@@ -733,8 +825,8 @@
                   <g transform="translate(40 33)" stroke="#8b6f47" stroke-width="1.5" fill="none" stroke-linecap="round">
                     <circle r="8"/><line x1="-4" y1="-3" x2="-4" y2="3"/><line x1="4" y1="-3" x2="4" y2="3"/>
                   </g>
-                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">요가</text>
-                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">316 콘텐츠</text>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#000000">요가</text>
+                  <text x="8" y="91" font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">316 콘텐츠</text>
                 </g>
               </g>
               <g transform="translate(16 290)">
@@ -745,8 +837,8 @@
                     <rect x="-8" y="-3" width="16" height="6" rx="1"/>
                     <line x1="-11" y1="0" x2="-8" y2="0"/><line x1="8" y1="0" x2="11" y2="0"/>
                   </g>
-                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">근력</text>
-                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">542 콘텐츠</text>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#000000">근력</text>
+                  <text x="8" y="91" font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">542 콘텐츠</text>
                 </g>
                 <g transform="translate(88 0)">
                   <rect width="80" height="96" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)"/>
@@ -756,8 +848,8 @@
                     <line x1="0" y1="0" x2="0" y2="6"/><line x1="-4" y1="3" x2="4" y2="3"/>
                     <line x1="-3" y1="9" x2="-6" y2="12"/><line x1="3" y1="9" x2="6" y2="12"/>
                   </g>
-                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">필라테스</text>
-                  <text x="8" y="91" font-family="JetBrains Mono" font-size="6" fill="#737373">289 콘텐츠</text>
+                  <text x="8" y="80" font-family="Pretendard" font-size="9" font-weight="700" fill="#000000">필라테스</text>
+                  <text x="8" y="91" font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">289 콘텐츠</text>
                 </g>
               </g>
             </svg>
@@ -779,11 +871,11 @@
           <!-- Phone 1: Health dashboard -->
           <div class="phone offset">
             <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
-              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
-              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
-              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">MY HEALTH · W24</text>
-              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">내 건강 리포트</text>
+              <rect x="0" y="0" width="200" height="422" fill="#ffffff"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#000000"/>
+              <text x="16" y="52" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" letter-spacing="1">MY HEALTH · W24</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#000000">내 건강 리포트</text>
               <!-- radar -->
               <g transform="translate(100 180)">
                 <circle r="58" stroke="rgba(0,0,0,.08)" fill="none"/>
@@ -793,49 +885,49 @@
                 <line x1="0" y1="-58" x2="0" y2="58" stroke="rgba(0,0,0,.08)"/>
                 <line x1="-41" y1="-41" x2="41" y2="41" stroke="rgba(0,0,0,.06)"/>
                 <line x1="41" y1="-41" x2="-41" y2="41" stroke="rgba(0,0,0,.06)"/>
-                <polygon points="0,-50 36,-14 30,32 -26,28 -40,-18" stroke="#0a0a0a" stroke-width="1.5" fill="rgba(255,107,0,.08)"/>
-                <circle cx="0" cy="-50" r="2.5" fill="#ff6b00"/>
-                <circle cx="36" cy="-14" r="2" fill="#0a0a0a"/>
-                <circle cx="30" cy="32" r="2" fill="#0a0a0a"/>
-                <circle cx="-26" cy="28" r="2" fill="#0a0a0a"/>
-                <circle cx="-40" cy="-18" r="2" fill="#0a0a0a"/>
-                <text x="0" y="-62" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#737373">근력</text>
-                <text x="50" y="-10" font-family="JetBrains Mono" font-size="7" fill="#737373">심폐</text>
-                <text x="40" y="46" font-family="JetBrains Mono" font-size="7" fill="#737373">유연</text>
-                <text x="-50" y="46" text-anchor="end" font-family="JetBrains Mono" font-size="7" fill="#737373">회복</text>
-                <text x="-52" y="-14" text-anchor="end" font-family="JetBrains Mono" font-size="7" fill="#737373">균형</text>
+                <polygon points="0,-50 36,-14 30,32 -26,28 -40,-18" stroke="#000000" stroke-width="1.5" fill="rgba(0,0,0,.08)"/>
+                <circle cx="0" cy="-50" r="2.5" fill="#000000"/>
+                <circle cx="36" cy="-14" r="2" fill="#000000"/>
+                <circle cx="30" cy="32" r="2" fill="#000000"/>
+                <circle cx="-26" cy="28" r="2" fill="#000000"/>
+                <circle cx="-40" cy="-18" r="2" fill="#000000"/>
+                <text x="0" y="-62" text-anchor="middle" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">근력</text>
+                <text x="50" y="-10" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">심폐</text>
+                <text x="40" y="46" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">유연</text>
+                <text x="-50" y="46" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">회복</text>
+                <text x="-52" y="-14" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">균형</text>
               </g>
               <!-- metric row -->
               <g transform="translate(16 270)">
                 <g>
-                  <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">BMI</text>
-                  <text y="18" font-family="JetBrains Mono" font-size="16" font-weight="600" fill="#0a0a0a">22.4</text>
-                  <text y="30" font-family="JetBrains Mono" font-size="7" fill="#4a9e7a">↓ 0.2</text>
+                  <text font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">BMI</text>
+                  <text y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="16" font-weight="600" fill="#000000">22.4</text>
+                  <text y="30" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#4a9e7a">↓ 0.2</text>
                 </g>
                 <g transform="translate(60 0)">
-                  <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">VO₂</text>
-                  <text y="18" font-family="JetBrains Mono" font-size="16" font-weight="600" fill="#0a0a0a">38.6</text>
-                  <text y="30" font-family="JetBrains Mono" font-size="7" fill="#ff6b00">↑ 1.2</text>
+                  <text font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">VO₂</text>
+                  <text y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="16" font-weight="600" fill="#000000">38.6</text>
+                  <text y="30" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#000000">↑ 1.2</text>
                 </g>
                 <g transform="translate(120 0)">
-                  <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">HR</text>
-                  <text y="18" font-family="JetBrains Mono" font-size="16" font-weight="600" fill="#0a0a0a">68</text>
-                  <text y="30" font-family="JetBrains Mono" font-size="7" fill="#4a9e7a">↓ 2</text>
+                  <text font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">HR</text>
+                  <text y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="16" font-weight="600" fill="#000000">68</text>
+                  <text y="30" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#4a9e7a">↓ 2</text>
                 </g>
               </g>
               <!-- weekly bars -->
               <g transform="translate(16 324)">
-                <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">THIS WEEK</text>
+                <text font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">THIS WEEK</text>
                 <g transform="translate(0 10)">
                   <rect x="0" y="30" width="14" height="28" fill="rgba(0,0,0,.15)" rx="2"/>
                   <rect x="24" y="20" width="14" height="38" fill="rgba(0,0,0,.22)" rx="2"/>
                   <rect x="48" y="25" width="14" height="33" fill="rgba(0,0,0,.18)" rx="2"/>
-                  <rect x="72" y="10" width="14" height="48" fill="#0a0a0a" rx="2"/>
+                  <rect x="72" y="10" width="14" height="48" fill="#000000" rx="2"/>
                   <rect x="96" y="18" width="14" height="40" fill="rgba(0,0,0,.22)" rx="2"/>
-                  <rect x="120" y="5" width="14" height="53" fill="#ff6b00" rx="2"/>
-                  <rect x="144" y="0" width="14" height="58" fill="#ff6b00" rx="2"/>
+                  <rect x="120" y="5" width="14" height="53" fill="#000000" rx="2"/>
+                  <rect x="144" y="0" width="14" height="58" fill="#000000" rx="2"/>
                 </g>
-                <g font-family="JetBrains Mono" font-size="6" fill="#737373">
+                <g font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">
                   <text x="7" y="82" text-anchor="middle">월</text>
                   <text x="31" y="82" text-anchor="middle">화</text>
                   <text x="55" y="82" text-anchor="middle">수</text>
@@ -850,24 +942,24 @@
           <!-- Phone 2: Prescription -->
           <div class="phone">
             <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
-              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
-              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
-              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" letter-spacing="1">▲ PRESCRIBED</text>
-              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">이번 주 처방</text>
+              <rect x="0" y="0" width="200" height="422" fill="#ffffff"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#000000"/>
+              <text x="16" y="52" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000" letter-spacing="1">▲ PRESCRIBED</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#000000">이번 주 처방</text>
               <text x="16" y="88" font-family="Pretendard" font-size="9" fill="#737373">VO₂ 상승 추세 · 강도 한 단계↑</text>
 
               <!-- plan card -->
               <g transform="translate(16 108)">
-                <rect width="168" height="90" rx="12" fill="#0a0a0a"/>
-                <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="rgba(255,255,255,.5)" letter-spacing="1">WEEK 24 · PLAN</text>
+                <rect width="168" height="90" rx="12" fill="#000000"/>
+                <text x="14" y="22" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="rgba(255,255,255,.5)" letter-spacing="1">WEEK 24 · PLAN</text>
                 <text x="14" y="40" font-family="Pretendard" font-size="12" font-weight="700" fill="#fff">근력 + 유산소</text>
                 <line x1="14" y1="50" x2="154" y2="50" stroke="rgba(255,255,255,.1)"/>
                 <text x="14" y="66" font-family="Pretendard" font-size="9" fill="rgba(255,255,255,.75)">근력 · 중강도 · 3회</text>
                 <text x="14" y="78" font-family="Pretendard" font-size="9" fill="rgba(255,255,255,.75)">유산소 · 하 · 2회</text>
                 <g transform="translate(146 66)">
                   <circle r="12" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
-                  <circle r="12" fill="none" stroke="#ff6b00" stroke-width="2" stroke-linecap="round" stroke-dasharray="55 75" transform="rotate(-90)"/>
+                  <circle r="12" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-dasharray="55 75" transform="rotate(-90)"/>
                 </g>
               </g>
 
@@ -875,31 +967,31 @@
               <g transform="translate(16 214)">
                 <g>
                   <rect width="168" height="38" rx="9" fill="#fff" stroke="rgba(0,0,0,.08)"/>
-                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">월</text>
-                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">하체 · 중</text>
-                  <text x="156" y="24" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff6b00">✓</text>
+                  <text x="12" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">월</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">하체 · 중</text>
+                  <text x="156" y="24" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#000000">✓</text>
                 </g>
                 <g transform="translate(0 46)">
                   <rect width="168" height="38" rx="9" fill="#fff" stroke="rgba(0,0,0,.08)"/>
-                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">수</text>
-                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">유산소 · 30분</text>
-                  <text x="156" y="24" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff6b00">✓</text>
+                  <text x="12" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">수</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">유산소 · 30분</text>
+                  <text x="156" y="24" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#000000">✓</text>
                 </g>
                 <g transform="translate(0 92)">
-                  <rect width="168" height="38" rx="9" fill="#fff" stroke="#ff6b00" stroke-width="1.5"/>
-                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#ff6b00" letter-spacing="1">금 · TODAY</text>
-                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">근력 · 상체</text>
-                  <text x="156" y="24" text-anchor="end" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">18:00</text>
+                  <rect width="168" height="38" rx="9" fill="#fff" stroke="#000000" stroke-width="1.5"/>
+                  <text x="12" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#000000" letter-spacing="1">금 · TODAY</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="700" fill="#000000">근력 · 상체</text>
+                  <text x="156" y="24" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000">18:00</text>
                 </g>
                 <g transform="translate(0 138)" opacity=".4">
                   <rect width="168" height="38" rx="9" fill="#fff" stroke="rgba(0,0,0,.08)"/>
-                  <text x="12" y="16" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">일</text>
-                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">회복 · 스트레칭</text>
+                  <text x="12" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">일</text>
+                  <text x="12" y="30" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">회복 · 스트레칭</text>
                 </g>
               </g>
 
               <!-- footer label -->
-              <text x="16" y="390" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">ADAPTIVE · AUTO TUNE WEEKLY</text>
+              <text x="16" y="390" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">ADAPTIVE · AUTO TUNE WEEKLY</text>
             </svg>
           </div>
         </div>
@@ -919,22 +1011,22 @@
           <!-- Phone 1: Streak calendar -->
           <div class="phone">
             <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
-              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
-              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
-              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" letter-spacing="1">● 23-DAY STREAK</text>
-              <text x="16" y="76" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">꾸준함 달력</text>
+              <rect x="0" y="0" width="200" height="422" fill="#ffffff"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#000000"/>
+              <text x="16" y="52" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000" letter-spacing="1">● 23-DAY STREAK</text>
+              <text x="16" y="76" font-family="Pretendard" font-size="14" font-weight="700" fill="#000000">꾸준함 달력</text>
               <text x="16" y="90" font-family="Pretendard" font-size="9" fill="#737373">지난 28일</text>
 
               <!-- big streak number -->
               <g transform="translate(100 130)">
-                <text text-anchor="middle" font-family="Pretendard" font-size="48" font-weight="700" fill="#0a0a0a" letter-spacing="-2">23</text>
-                <text y="18" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" letter-spacing="2">DAYS</text>
+                <text text-anchor="middle" font-family="Pretendard" font-size="48" font-weight="700" fill="#000000" letter-spacing="-2">23</text>
+                <text y="18" text-anchor="middle" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000" letter-spacing="2">DAYS</text>
               </g>
 
               <!-- heatmap 7x4 -->
               <g transform="translate(16 172)">
-                <g font-family="JetBrains Mono" font-size="6" fill="#737373">
+                <g font-family="Pretendard Variable, system-ui, sans-serif" font-size="6" fill="#737373">
                   <text x="10" y="-4" text-anchor="middle">월</text>
                   <text x="32" y="-4" text-anchor="middle">화</text>
                   <text x="54" y="-4" text-anchor="middle">수</text>
@@ -947,39 +1039,39 @@
                 <g>
                   <rect x="2" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.04)"/>
                   <rect x="24" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.08)"/>
-                  <rect x="46" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.3)"/>
-                  <rect x="68" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
-                  <rect x="90" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.3)"/>
+                  <rect x="46" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.3)"/>
+                  <rect x="68" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.5)"/>
+                  <rect x="90" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.3)"/>
                   <rect x="112" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.08)"/>
-                  <rect x="134" y="2" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                  <rect x="134" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,.5)"/>
                 </g>
                 <!-- row 2 -->
                 <g>
-                  <rect x="2" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
-                  <rect x="24" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
-                  <rect x="46" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.3)"/>
-                  <rect x="68" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
-                  <rect x="90" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
+                  <rect x="2" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.5)"/>
+                  <rect x="24" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.7)"/>
+                  <rect x="46" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.3)"/>
+                  <rect x="68" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.7)"/>
+                  <rect x="90" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.9)"/>
                   <rect x="112" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.08)"/>
-                  <rect x="134" y="22" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
+                  <rect x="134" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,.5)"/>
                 </g>
                 <!-- row 3 -->
                 <g>
-                  <rect x="2" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
-                  <rect x="24" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
-                  <rect x="46" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.5)"/>
-                  <rect x="68" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
-                  <rect x="90" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.7)"/>
-                  <rect x="112" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
-                  <rect x="134" y="42" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
+                  <rect x="2" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,.9)"/>
+                  <rect x="24" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,.7)"/>
+                  <rect x="46" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,.5)"/>
+                  <rect x="68" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,.9)"/>
+                  <rect x="90" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,.7)"/>
+                  <rect x="112" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,.9)"/>
+                  <rect x="134" y="42" width="16" height="16" rx="3" fill="rgba(0,0,0,1)"/>
                 </g>
                 <!-- row 4: current -->
                 <g>
-                  <rect x="2" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,.9)"/>
-                  <rect x="24" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
-                  <rect x="46" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
-                  <rect x="68" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)"/>
-                  <rect x="90" y="62" width="16" height="16" rx="3" fill="rgba(255,107,0,1)" stroke="#0a0a0a" stroke-width="1.5"/>
+                  <rect x="2" y="62" width="16" height="16" rx="3" fill="rgba(0,0,0,.9)"/>
+                  <rect x="24" y="62" width="16" height="16" rx="3" fill="rgba(0,0,0,1)"/>
+                  <rect x="46" y="62" width="16" height="16" rx="3" fill="rgba(0,0,0,1)"/>
+                  <rect x="68" y="62" width="16" height="16" rx="3" fill="rgba(0,0,0,1)"/>
+                  <rect x="90" y="62" width="16" height="16" rx="3" fill="rgba(0,0,0,1)" stroke="#000000" stroke-width="1.5"/>
                   <rect x="112" y="62" width="16" height="16" rx="3" fill="none" stroke="rgba(0,0,0,.1)" stroke-dasharray="2 2"/>
                   <rect x="134" y="62" width="16" height="16" rx="3" fill="none" stroke="rgba(0,0,0,.1)" stroke-dasharray="2 2"/>
                 </g>
@@ -987,103 +1079,103 @@
 
               <!-- milestones -->
               <g transform="translate(16 280)">
-                <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">MILESTONES</text>
+                <text font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">MILESTONES</text>
                 <g transform="translate(0 12)">
-                  <circle cx="8" cy="8" r="8" fill="#ff6b00"/>
-                  <text text-anchor="middle" x="8" y="12" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#fff">7</text>
-                  <circle cx="56" cy="8" r="8" fill="#ff6b00"/>
-                  <text text-anchor="middle" x="56" y="12" font-family="JetBrains Mono" font-size="7" font-weight="700" fill="#fff">14</text>
-                  <circle cx="104" cy="8" r="8" fill="#ff6b00" opacity=".4"/>
-                  <text text-anchor="middle" x="104" y="12" font-family="JetBrains Mono" font-size="7" font-weight="700" fill="#fff">30</text>
+                  <circle cx="8" cy="8" r="8" fill="#000000"/>
+                  <text text-anchor="middle" x="8" y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" font-weight="700" fill="#fff">7</text>
+                  <circle cx="56" cy="8" r="8" fill="#000000"/>
+                  <text text-anchor="middle" x="56" y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" font-weight="700" fill="#fff">14</text>
+                  <circle cx="104" cy="8" r="8" fill="#000000" opacity=".4"/>
+                  <text text-anchor="middle" x="104" y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" font-weight="700" fill="#fff">30</text>
                   <circle cx="152" cy="8" r="8" fill="none" stroke="rgba(0,0,0,.15)"/>
-                  <text text-anchor="middle" x="152" y="12" font-family="JetBrains Mono" font-size="7" font-weight="700" fill="#a3a3a3">100</text>
-                  <line x1="16" y1="8" x2="48" y2="8" stroke="#ff6b00" stroke-width="1.5"/>
-                  <line x1="64" y1="8" x2="96" y2="8" stroke="#ff6b00" stroke-width="1.5" opacity=".5"/>
+                  <text text-anchor="middle" x="152" y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" font-weight="700" fill="#a3a3a3">100</text>
+                  <line x1="16" y1="8" x2="48" y2="8" stroke="#000000" stroke-width="1.5"/>
+                  <line x1="64" y1="8" x2="96" y2="8" stroke="#000000" stroke-width="1.5" opacity=".5"/>
                   <line x1="112" y1="8" x2="144" y2="8" stroke="rgba(0,0,0,.1)" stroke-dasharray="2 2"/>
                 </g>
               </g>
 
               <!-- reward -->
               <g transform="translate(16 344)">
-                <rect width="168" height="48" rx="10" fill="#fff" stroke="rgba(255,107,0,.3)"/>
-                <circle cx="24" cy="24" r="12" fill="#ff6b00" opacity=".1"/>
-                <path d="M20 24 L23 27 L29 21" stroke="#ff6b00" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                <text x="44" y="20" font-family="Pretendard" font-size="9" font-weight="700" fill="#0a0a0a">30일 달성 쿠폰</text>
-                <text x="44" y="34" font-family="JetBrains Mono" font-size="7" fill="#737373">+7일 후 도착 예정</text>
-                <text x="156" y="26" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#ff6b00">→</text>
+                <rect width="168" height="48" rx="10" fill="#fff" stroke="rgba(0,0,0,.3)"/>
+                <circle cx="24" cy="24" r="12" fill="#000000" opacity=".1"/>
+                <path d="M20 24 L23 27 L29 21" stroke="#000000" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="44" y="20" font-family="Pretendard" font-size="9" font-weight="700" fill="#000000">30일 달성 쿠폰</text>
+                <text x="44" y="34" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373">+7일 후 도착 예정</text>
+                <text x="156" y="26" text-anchor="end" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#000000">→</text>
               </g>
             </svg>
           </div>
           <!-- Phone 2: Mission / challenge -->
           <div class="phone offset">
             <svg viewBox="0 0 200 422" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0" y="0" width="200" height="422" fill="#fafafa"/>
-              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#0a0a0a">9:41</text>
-              <rect x="74" y="8" width="52" height="16" rx="8" fill="#0a0a0a"/>
-              <text x="16" y="52" font-family="JetBrains Mono" font-size="8" fill="#737373" letter-spacing="1">QUAT MISSION · LIVE</text>
-              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#0a0a0a">운동 대결</text>
+              <rect x="0" y="0" width="200" height="422" fill="#ffffff"/>
+              <text x="16" y="18" font-family="Pretendard" font-size="10" font-weight="600" fill="#000000">9:41</text>
+              <rect x="74" y="8" width="52" height="16" rx="8" fill="#000000"/>
+              <text x="16" y="52" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" letter-spacing="1">QUAT MISSION · LIVE</text>
+              <text x="16" y="74" font-family="Pretendard" font-size="14" font-weight="700" fill="#000000">운동 대결</text>
               <text x="16" y="88" font-family="Pretendard" font-size="9" fill="#737373">친구 3명과 진행 중</text>
 
               <!-- ranking -->
               <g transform="translate(16 108)">
                 <rect width="168" height="160" rx="12" fill="#fff" stroke="rgba(0,0,0,.08)"/>
-                <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">RANK · THIS WEEK</text>
+                <text x="14" y="22" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">RANK · THIS WEEK</text>
                 <!-- rank 1 -->
                 <g transform="translate(14 32)">
-                  <circle cx="8" cy="12" r="8" fill="#ff6b00"/>
-                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">1</text>
-                  <text x="26" y="16" font-family="Pretendard" font-size="10" font-weight="700" fill="#0a0a0a">나</text>
+                  <circle cx="8" cy="12" r="8" fill="#000000"/>
+                  <text text-anchor="middle" x="8" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" font-weight="700" fill="#fff">1</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" font-weight="700" fill="#000000">나</text>
                   <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
-                  <rect x="70" y="8" width="60" height="8" rx="4" fill="#ff6b00"/>
-                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" font-weight="600" fill="#0a0a0a">5/5</text>
+                  <rect x="70" y="8" width="60" height="8" rx="4" fill="#000000"/>
+                  <text x="140" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" font-weight="600" fill="#000000">5/5</text>
                 </g>
                 <!-- rank 2 -->
                 <g transform="translate(14 58)">
                   <circle cx="8" cy="12" r="8" fill="rgba(0,0,0,.2)"/>
-                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">2</text>
-                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#0a0a0a">민지</text>
+                  <text text-anchor="middle" x="8" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" font-weight="700" fill="#fff">2</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#000000">민지</text>
                   <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
                   <rect x="70" y="8" width="48" height="8" rx="4" fill="rgba(0,0,0,.5)"/>
-                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">4/5</text>
+                  <text x="140" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000">4/5</text>
                 </g>
                 <!-- rank 3 -->
                 <g transform="translate(14 84)">
                   <circle cx="8" cy="12" r="8" fill="rgba(0,0,0,.2)"/>
-                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">3</text>
-                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#0a0a0a">준호</text>
+                  <text text-anchor="middle" x="8" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" font-weight="700" fill="#fff">3</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#000000">준호</text>
                   <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
                   <rect x="70" y="8" width="36" height="8" rx="4" fill="rgba(0,0,0,.35)"/>
-                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">3/5</text>
+                  <text x="140" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000">3/5</text>
                 </g>
                 <!-- rank 4 -->
                 <g transform="translate(14 110)">
                   <circle cx="8" cy="12" r="8" fill="rgba(0,0,0,.15)"/>
-                  <text text-anchor="middle" x="8" y="16" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#fff">4</text>
-                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#0a0a0a">지원</text>
+                  <text text-anchor="middle" x="8" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" font-weight="700" fill="#fff">4</text>
+                  <text x="26" y="16" font-family="Pretendard" font-size="10" fill="#000000">지원</text>
                   <rect x="70" y="8" width="60" height="8" rx="4" fill="rgba(0,0,0,.05)"/>
                   <rect x="70" y="8" width="24" height="8" rx="4" fill="rgba(0,0,0,.25)"/>
-                  <text x="140" y="16" font-family="JetBrains Mono" font-size="8" fill="#0a0a0a">2/5</text>
+                  <text x="140" y="16" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000">2/5</text>
                 </g>
               </g>
 
               <!-- delta chart -->
               <g transform="translate(16 288)">
-                <text font-family="JetBrains Mono" font-size="7" fill="#737373" letter-spacing="1">MY CHANGE · 4W</text>
+                <text font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="#737373" letter-spacing="1">MY CHANGE · 4W</text>
                 <g transform="translate(0 12)">
-                  <rect width="168" height="56" rx="10" fill="#0a0a0a"/>
-                  <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="rgba(255,255,255,.5)" letter-spacing="1">VO₂ MAX</text>
-                  <text x="14" y="42" font-family="JetBrains Mono" font-size="14" font-weight="600" fill="#fff">38.6</text>
-                  <text x="46" y="42" font-family="JetBrains Mono" font-size="10" fill="#ff6b00">+1.2</text>
+                  <rect width="168" height="56" rx="10" fill="#000000"/>
+                  <text x="14" y="22" font-family="Pretendard Variable, system-ui, sans-serif" font-size="7" fill="rgba(255,255,255,.5)" letter-spacing="1">VO₂ MAX</text>
+                  <text x="14" y="42" font-family="Pretendard Variable, system-ui, sans-serif" font-size="14" font-weight="600" fill="#fff">38.6</text>
+                  <text x="46" y="42" font-family="Pretendard Variable, system-ui, sans-serif" font-size="10" fill="#000000">+1.2</text>
                   <!-- mini chart -->
-                  <polyline points="90,40 104,36 118,32 132,28 146,22 154,18" fill="none" stroke="#ff6b00" stroke-width="1.5" stroke-linejoin="round"/>
-                  <circle cx="154" cy="18" r="2" fill="#ff6b00"/>
+                  <polyline points="90,40 104,36 118,32 132,28 146,22 154,18" fill="none" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <circle cx="154" cy="18" r="2" fill="#000000"/>
                 </g>
               </g>
 
               <!-- action -->
               <g transform="translate(16 366)">
-                <rect width="168" height="36" rx="18" fill="#0a0a0a"/>
-                <text text-anchor="middle" x="84" y="23" font-family="Pretendard" font-size="10" font-weight="600" fill="#fafafa">오늘 미션 수행 →</text>
+                <rect width="168" height="36" rx="18" fill="#000000"/>
+                <text text-anchor="middle" x="84" y="23" font-family="Pretendard" font-size="10" font-weight="600" fill="#ffffff">오늘 미션 수행 →</text>
               </g>
             </svg>
           </div>
@@ -1097,85 +1189,185 @@
 <section class="section" id="growth">
   <div class="wrap">
     <div class="sec-head">
-      <span class="label">GROWTH</span>
       <h2 class="reveal">우리가 증명해온<br/><span class="muted">기록들.</span></h2>
     </div>
 
     <div class="growth-grid">
+      <!-- G·01 — Welcome 화면 -->
       <div class="growth-card">
-        <div class="growth-top"><span class="dot"></span><span class="idx">G·01</span></div>
-        <div>
-          <div class="growth-label">콰트 누적 회원</div>
-          <div class="growth-num">600,000<span class="u">+</span></div>
-          <div class="growth-ctx">매일 작은 꾸준함을 함께 만드는 사용자들</div>
+        <div class="growth-top">
+          <span class="dot"></span>
+          <span class="idx">G·01 · 회원</span>
+          <span class="delta" aria-label="누적 회원 12.4배 증가">↗ 12.4×</span>
         </div>
-        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
-          <polyline points="0,28 20,26 40,24 60,22 80,19 100,17 120,13 140,11 160,8 180,5 200,3"/>
-          <circle cx="200" cy="3" r="2" fill="#ff6b00"/>
-        </svg>
+        <div class="pmock" role="img" aria-label="콰트 회원가입 환영 화면 시안">
+          <div class="pscreen">
+            <div class="psbar">
+              <span>9:41</span>
+              <span class="signal" aria-hidden="true">
+                <span class="bar"><i></i><i></i><i></i><i></i></span>
+                <span class="bat"></span>
+              </span>
+            </div>
+            <div class="pcontent">
+              <div class="s-welcome">
+                <div class="lab">QUAT · 환영합니다</div>
+                <div class="greet">오늘부터<br/>함께해요.</div>
+                <div class="ord">
+                  <span class="ol">YOUR NUMBER</span>
+                  <span class="num">#600,000<small>번째</small></span>
+                </div>
+                <div class="cta">
+                  <span>오늘의 운동 시작</span>
+                  <span class="arr">→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="growth-cap">매일 작은 꾸준함을 함께 만드는 사용자들</div>
       </div>
+
+      <!-- G·02 — Library 화면 -->
       <div class="growth-card">
-        <div class="growth-top"><span class="dot"></span><span class="idx">G·02</span></div>
-        <div>
-          <div class="growth-label">자체 제작 콘텐츠</div>
-          <div class="growth-num">2,500<span class="u">건</span></div>
-          <div class="growth-ctx">유산소·요가·필라테스·근력·발레·도수</div>
+        <div class="growth-top">
+          <span class="dot"></span>
+          <span class="idx">G·02 · 콘텐츠</span>
+          <span class="delta" aria-label="6개 카테고리">6 CATS</span>
         </div>
-        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
-          <g class="bar">
-            <rect x="6" y="22" width="10" height="8"/>
-            <rect x="24" y="18" width="10" height="12"/>
-            <rect x="42" y="20" width="10" height="10"/>
-            <rect x="60" y="14" width="10" height="16"/>
-            <rect x="78" y="10" width="10" height="20"/>
-            <rect x="96" y="12" width="10" height="18"/>
-            <rect x="114" y="6" width="10" height="24"/>
-            <rect x="132" y="4" width="10" height="26"/>
-            <rect x="150" y="8" width="10" height="22"/>
-            <rect x="168" y="2" width="10" height="28"/>
-            <rect x="186" y="0" width="10" height="30" fill="#ff6b00"/>
-          </g>
-        </svg>
+        <div class="pmock" role="img" aria-label="콰트 콘텐츠 라이브러리 시안">
+          <div class="pscreen">
+            <div class="psbar">
+              <span>9:41</span>
+              <span class="signal" aria-hidden="true">
+                <span class="bar"><i></i><i></i><i></i><i></i></span>
+                <span class="bat"></span>
+              </span>
+            </div>
+            <div class="pcontent">
+              <div class="s-library">
+                <div class="top">
+                  <span class="menu" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="h">EXPLORE</span>
+                  <span class="total">전체</span>
+                </div>
+                <div class="tabs">
+                  <span class="t on">전체</span>
+                  <span class="t">유산소</span>
+                  <span class="t">요가</span>
+                </div>
+                <div class="items">
+                  <div class="item">
+                    <div class="thumb"><span class="play"></span></div>
+                    <div class="lab">홈 카디오 30<small>중강도 · 30분</small></div>
+                  </div>
+                  <div class="item">
+                    <div class="thumb"><span class="play"></span></div>
+                    <div class="lab">파워 요가<small>저강도 · 22분</small></div>
+                  </div>
+                  <div class="item">
+                    <div class="thumb"><span class="play"></span></div>
+                    <div class="lab">코어 필라테스<small>중강도 · 18분</small></div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <span>전체 콘텐츠</span>
+                  <span class="v">2,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="growth-cap">유산소·요가·필라테스·근력·발레·도수</div>
       </div>
+
+      <!-- G·03 — Activity 화면 -->
       <div class="growth-card">
-        <div class="growth-top"><span class="dot"></span><span class="idx">G·03</span></div>
-        <div>
-          <div class="growth-label">총 소모 칼로리</div>
-          <div class="growth-num">300M<span class="u">kcal</span></div>
-          <div class="growth-ctx">고객의 진짜 변화를 데이터로 증명</div>
+        <div class="growth-top">
+          <span class="dot"></span>
+          <span class="idx">G·03 · 칼로리</span>
+          <span class="delta" aria-label="누적 칼로리 2.4배 증가">↗ 2.4×</span>
         </div>
-        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
-          <polyline points="0,30 20,28 40,26 60,23 80,19 100,18 120,13 140,10 160,7 180,4 200,2" class="accent"/>
-          <circle cx="200" cy="2" r="2" fill="#ff6b00"/>
-        </svg>
+        <div class="pmock" role="img" aria-label="콰트 액티비티 위젯 시안">
+          <div class="pscreen">
+            <div class="psbar">
+              <span>9:41</span>
+              <span class="signal" aria-hidden="true">
+                <span class="bar"><i></i><i></i><i></i><i></i></span>
+                <span class="bat"></span>
+              </span>
+            </div>
+            <div class="pcontent">
+              <div class="s-activity">
+                <div class="top">
+                  <span class="ic">♡</span>
+                  <span>ACTIVITY</span>
+                  <span class="meta">이번 주</span>
+                </div>
+                <div class="card">
+                  <div class="row">
+                    <span>주간 소모</span>
+                    <span class="badge">+18% W/W</span>
+                  </div>
+                  <div class="big">12,420<small>kcal</small></div>
+                  <div class="week" aria-hidden="true">
+                    <span class="d on"></span><span class="d on"></span><span class="d on"></span>
+                    <span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span>
+                  </div>
+                </div>
+                <div class="lifetime">
+                  <span>LIFETIME</span>
+                  <span class="v">300M <small>kcal</small></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="growth-cap">고객의 진짜 변화를 데이터로 증명</div>
       </div>
+
+      <!-- G·04 — Lock screen + push -->
       <div class="growth-card">
-        <div class="growth-top"><span class="dot"></span><span class="idx">G·04</span></div>
-        <div>
-          <div class="growth-label">습관 형성 지원</div>
-          <div class="growth-num">매일</div>
-          <div class="growth-ctx">고객이 건강을 포기하는 모든 순간에 함께</div>
+        <div class="growth-top">
+          <span class="dot"></span>
+          <span class="idx">G·04 · 운영</span>
+          <span class="delta" aria-label="365일 연속 운영">365D</span>
         </div>
-        <svg class="growth-graph" viewBox="0 0 200 32" preserveAspectRatio="none">
-          <g class="bar" opacity=".9">
-            <rect x="8" y="10" width="6" height="16"/>
-            <rect x="20" y="6" width="6" height="20"/>
-            <rect x="32" y="12" width="6" height="14"/>
-            <rect x="44" y="4" width="6" height="22"/>
-            <rect x="56" y="8" width="6" height="18"/>
-            <rect x="68" y="2" width="6" height="24"/>
-            <rect x="80" y="6" width="6" height="20"/>
-            <rect x="92" y="10" width="6" height="16"/>
-            <rect x="104" y="4" width="6" height="22"/>
-            <rect x="116" y="2" width="6" height="24"/>
-            <rect x="128" y="8" width="6" height="18"/>
-            <rect x="140" y="6" width="6" height="20"/>
-            <rect x="152" y="4" width="6" height="22"/>
-            <rect x="164" y="10" width="6" height="16"/>
-            <rect x="176" y="2" width="6" height="24"/>
-            <rect x="188" y="6" width="6" height="20" fill="#ff6b00"/>
-          </g>
-        </svg>
+        <div class="pmock" role="img" aria-label="콰트 푸시 알림 시안">
+          <div class="pscreen">
+            <div class="psbar dark">
+              <span>4:21</span>
+              <span class="signal" aria-hidden="true">
+                <span class="bar"><i></i><i></i><i></i><i></i></span>
+                <span class="bat"></span>
+              </span>
+            </div>
+            <div class="pcontent">
+              <div class="s-lock">
+                <div class="clock">
+                  <div class="date">월요일, 4월 28일</div>
+                  <div class="time">4:21</div>
+                </div>
+                <div class="notify">
+                  <div class="nhead">
+                    <span class="ic">Q</span>
+                    <span>QUAT</span>
+                    <span class="ts">지금</span>
+                  </div>
+                  <div class="body">
+                    <div class="t">365일 연속, 오늘도<br/>당신과 함께합니다.</div>
+                    <div class="d">매일의 작은 꾸준함을 모아 어김없이 운동을 켭니다.</div>
+                  </div>
+                  <div class="num">
+                    <span class="n">365</span>
+                    <span class="l">DAYS<br/>STREAK</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="growth-cap">고객이 건강을 포기하는 모든 순간에 함께</div>
       </div>
     </div>
   </div>
@@ -1185,7 +1377,6 @@
 <section class="section" id="next">
   <div class="wrap">
     <div class="sec-head">
-      <span class="label">NEXT STEP</span>
       <h2 class="reveal">콰트가 그리는 내일.<br/><span class="muted">운동을 넘어, 건강 전 영역으로.</span></h2>
     </div>
 
@@ -1200,7 +1391,7 @@
         </div>
         <div class="vi-art">
           <div class="vart">
-            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <defs>
                 <pattern id="gridV" width="24" height="24" patternUnits="userSpaceOnUse">
                   <path d="M0 0L24 0M0 0L0 24" stroke="rgba(0,0,0,.04)"/>
@@ -1208,7 +1399,7 @@
               </defs>
               <rect width="500" height="400" fill="url(#gridV)"/>
               <!-- input signals -->
-              <g font-family="JetBrains Mono" font-size="9" fill="#525252">
+              <g font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#525252">
                 <g transform="translate(90 80)">
                   <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
                   <text text-anchor="middle" y="3" stroke="none">SLEEP · 7.2h</text>
@@ -1235,29 +1426,29 @@
               </g>
               <!-- core -->
               <g transform="translate(250 200)">
-                <circle r="46" stroke="#0a0a0a" stroke-width="2" fill="#fafafa"/>
+                <circle r="46" stroke="#000000" stroke-width="2" fill="#ffffff"/>
                 <circle r="34" stroke="rgba(0,0,0,0.08)" fill="none"/>
-                <text text-anchor="middle" y="-2" font-family="JetBrains Mono" font-size="11" fill="#0a0a0a" font-weight="600" stroke="none">AI</text>
-                <text text-anchor="middle" y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">MATCH</text>
+                <text text-anchor="middle" y="-2" font-family="Pretendard Variable, system-ui, sans-serif" font-size="11" fill="#000000" font-weight="600" stroke="none">AI</text>
+                <text text-anchor="middle" y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">MATCH</text>
               </g>
               <!-- output arrow -->
-              <line x1="300" y1="200" x2="346" y2="200" stroke="#ff6b00" stroke-dasharray="3 4"/>
-              <path d="M340 194l8 6-8 6" stroke="#ff6b00"/>
+              <line x1="300" y1="200" x2="346" y2="200" stroke="#000000" stroke-dasharray="3 4"/>
+              <path d="M340 194l8 6-8 6" stroke="#000000"/>
               <!-- routine cards -->
               <g transform="translate(362 130)">
                 <rect width="116" height="46" rx="8" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                <text x="12" y="18" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">MON · 03:42</text>
-                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">하체 · 중강도</text>
+                <text x="12" y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">MON · 03:42</text>
+                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#000000" stroke="none">하체 · 중강도</text>
               </g>
               <g transform="translate(362 184)">
                 <rect width="116" height="46" rx="8" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                <text x="12" y="18" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">WED · 07:30</text>
-                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">유산소 · 하</text>
+                <text x="12" y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">WED · 07:30</text>
+                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#000000" stroke="none">유산소 · 하</text>
               </g>
               <g transform="translate(362 238)">
-                <rect width="116" height="46" rx="8" fill="#fff" stroke="#ff6b00" stroke-width="1.5"/>
-                <text x="12" y="18" font-family="JetBrains Mono" font-size="8" fill="#ff6b00" stroke="none">FRI · 18:00</text>
-                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">근력 · 코어</text>
+                <rect width="116" height="46" rx="8" fill="#fff" stroke="#000000" stroke-width="1.5"/>
+                <text x="12" y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000" stroke="none">FRI · 18:00</text>
+                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#000000" stroke="none">근력 · 코어</text>
               </g>
             </svg>
           </div>
@@ -1275,14 +1466,14 @@
         <div class="vi-art">
           <div class="collage">
             <div class="collage-img a">
-              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.style.display='none'"/>
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80&auto=format&fit=crop" alt="콰트 오프라인 스튜디오 인테리어" loading="lazy" onerror="this.style.display='none'"/>
               <div class="tag">STUDIO · 성수</div>
             </div>
             <div class="collage-img">
-              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.style.display='none'"/>
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&auto=format&fit=crop" alt="콰트 ZONE에서 운동 중인 사용자" loading="lazy" onerror="this.style.display='none'"/>
             </div>
             <div class="collage-img">
-              <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=500&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.style.display='none'"/>
+              <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=500&q=80&auto=format&fit=crop" alt="콰트 오프라인 클래스 현장" loading="lazy" onerror="this.style.display='none'"/>
             </div>
             <div class="stat-card">
               <div>
@@ -1304,7 +1495,7 @@
         </div>
         <div class="vi-art">
           <div class="vart">
-            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <defs>
                 <pattern id="gridV3" width="24" height="24" patternUnits="userSpaceOnUse">
                   <path d="M0 0L24 0M0 0L0 24" stroke="rgba(0,0,0,.04)"/>
@@ -1314,32 +1505,32 @@
               <g transform="translate(250 200)">
                 <circle r="130" stroke="rgba(0,0,0,0.08)"/>
                 <circle r="100" stroke="rgba(0,0,0,0.1)"/>
-                <path d="M0 -100 A100 100 0 1 1 -70 72" stroke="#0a0a0a" stroke-width="2"/>
-                <circle cx="-70" cy="72" r="3" fill="#ff6b00" stroke="none"/>
-                <circle r="32" stroke="#0a0a0a" stroke-width="2" fill="#fafafa"/>
-                <text text-anchor="middle" y="-4" font-family="JetBrains Mono" font-size="11" font-weight="600" fill="#0a0a0a" stroke="none">QUAT</text>
-                <text text-anchor="middle" y="10" font-family="JetBrains Mono" font-size="9" fill="#737373" stroke="none">24H</text>
+                <path d="M0 -100 A100 100 0 1 1 -70 72" stroke="#000000" stroke-width="2"/>
+                <circle cx="-70" cy="72" r="3" fill="#000000" stroke="none"/>
+                <circle r="32" stroke="#000000" stroke-width="2" fill="#ffffff"/>
+                <text text-anchor="middle" y="-4" font-family="Pretendard Variable, system-ui, sans-serif" font-size="11" font-weight="600" fill="#000000" stroke="none">QUAT</text>
+                <text text-anchor="middle" y="10" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#737373" stroke="none">24H</text>
               </g>
-              <g font-family="Pretendard" font-size="12" font-weight="600" fill="#0a0a0a" text-anchor="middle">
+              <g font-family="Pretendard" font-size="12" font-weight="600" fill="#000000" text-anchor="middle">
                 <g transform="translate(250 56)">
                   <rect x="-36" y="-18" width="72" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
                   <text y="-2" stroke="none">운동</text>
-                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">MORNING</text>
+                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">MORNING</text>
                 </g>
                 <g transform="translate(418 200)">
                   <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
                   <text y="-2" stroke="none">영양·혈당</text>
-                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">DAY</text>
+                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">DAY</text>
                 </g>
                 <g transform="translate(250 344)">
                   <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
                   <text y="-2" stroke="none">멘탈 케어</text>
-                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">EVENING</text>
+                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">EVENING</text>
                 </g>
                 <g transform="translate(82 200)">
                   <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
                   <text y="-2" stroke="none">수면 케어</text>
-                  <text y="12" font-family="JetBrains Mono" font-size="8" fill="#737373" stroke="none">NIGHT</text>
+                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">NIGHT</text>
                 </g>
               </g>
               <g stroke="rgba(0,0,0,0.2)">
@@ -1363,7 +1554,6 @@
 <!-- 7. CTA -->
 <section class="cta" id="cta">
   <div class="wrap">
-    <span class="label solid">NOW HIRING · 2026</span>
     <h2>매일의 작은 꾸준함을<br/>함께 만들 <em>당신</em>을 찾습니다.</h2>
     <div class="btns">
       <a class="btn primary" href="https://career.nrise.net/ko/career">
@@ -1379,6 +1569,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer>
