@@ -148,29 +148,6 @@
   .dna-col p{font-size:15px;line-height:1.65;color:var(--fg-2);max-width:32ch}
 
   /* ─────── PROBLEM ─────── */
-  /* Problem 섹션 — 다크 invert */
-  .problem{
-    --bg-2:#000;
-    --line:rgba(255,255,255,.12);
-    --line-2:rgba(255,255,255,.05);
-    --fg:#fff;
-    --fg-2:rgba(255,255,255,.72);
-    --fg-3:rgba(255,255,255,.56);
-    --fg-4:rgba(255,255,255,.4);
-    --accent:#fff;
-    --accent-soft:rgba(255,255,255,.08);
-    --accent-line:rgba(255,255,255,.2);
-    background:#000;color:#fff;
-  }
-  .problem .decay-card{background:#0a0a0a;box-shadow:none}
-  .problem .decay-grid .cell{background:rgba(255,255,255,.08)}
-  .problem .decay-grid .cell.dim{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
-  .problem .decay-legend .sw{background:rgba(255,255,255,.08)}
-  .problem .decay-legend .sw.dim{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.15)}
-  .problem .pain-row{background:#0a0a0a}
-  .problem .pain-row .prob{background:#0f0f0f}
-  .problem .pain-row .ans{background:#0a0a0a}
-  .problem .pain-row .ans .tags span{background:#0f0f0f}
   .decay-card{
     margin-top:8px;border:1px solid var(--line);border-radius:18px;background:#fff;
     padding:56px 56px 52px;display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;
@@ -281,97 +258,27 @@
   .phone.offset{margin-bottom:30px}
   .phone svg{width:100%;height:100%;display:block}
 
-  /* ─────── GROWTH (앱 모먼트 — 폰 노출) ─────── */
-  .growth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding:8px 0}
-  .growth-card{position:relative;display:flex;flex-direction:column;gap:28px;align-items:center;text-align:center}
-  .growth-top{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
-  .growth-top .dot{width:5px;height:5px;border-radius:50%;background:var(--fg);opacity:.6}
-  .growth-top .idx{font-size:11px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
-  .growth-top .delta{font-size:10px;letter-spacing:.02em;color:var(--fg);background:rgba(0,0,0,.04);padding:3px 10px;border-radius:999px;font-weight:600;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
-  .growth-cap{font-size:13px;line-height:1.6;color:var(--fg-3);max-width:28ch;margin:0 auto;letter-spacing:-.005em}
-
-  /* iPhone-like mockup */
-  .pmock{position:relative;width:88%;max-width:236px;aspect-ratio:9/19.3;background:#000000;border-radius:34px;padding:5px;box-shadow:0 24px 56px rgba(0,0,0,.16),0 6px 18px rgba(0,0,0,.08), inset 0 0 0 1.5px #1c1c1c;flex-shrink:0}
-  .pmock::before{content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);width:32%;height:18px;background:#000000;border-radius:999px;z-index:10}
-  .pscreen{width:100%;height:100%;border-radius:29px;overflow:hidden;position:relative;display:flex;flex-direction:column}
-  .psbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 4px;font-size:10.5px;font-weight:600;letter-spacing:-.01em;flex-shrink:0;font-variant-numeric:tabular-nums}
-  .psbar.dark{color:#fff}
-  .psbar .signal{display:inline-flex;gap:4px;align-items:center}
-  .psbar .signal .bar{display:inline-flex;gap:1.5px;align-items:flex-end}
-  .psbar .signal .bar i{display:inline-block;width:2.5px;background:currentColor;border-radius:0.5px}
-  .psbar .signal .bar i:nth-child(1){height:3px}
-  .psbar .signal .bar i:nth-child(2){height:5px}
-  .psbar .signal .bar i:nth-child(3){height:7px}
-  .psbar .signal .bar i:nth-child(4){height:9px}
-  .psbar .signal .bat{width:20px;height:9px;border:1px solid currentColor;border-radius:2.5px;position:relative;opacity:.9}
-  .psbar .signal .bat::after{content:"";position:absolute;left:1.2px;top:1.2px;bottom:1.2px;width:75%;background:currentColor;border-radius:1px}
-  .psbar .signal .bat::before{content:"";position:absolute;right:-2.5px;top:50%;transform:translateY(-50%);width:1.5px;height:4px;background:currentColor;border-radius:0 1px 1px 0}
-  .pcontent{flex:1;display:flex;flex-direction:column;text-align:left;overflow:hidden}
-
-  /* G·01 Welcome */
-  .s-welcome{flex:1;display:flex;flex-direction:column;background:#ffffff;padding:16px 16px 18px;gap:13px}
-  .s-welcome .lab{font-size:9.5px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
-  .s-welcome .greet{font-size:18px;font-weight:700;letter-spacing:-0.025em;line-height:1.25;color:var(--fg)}
-  .s-welcome .ord{padding:13px 14px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;display:flex;flex-direction:column;gap:5px}
-  .s-welcome .ord .ol{font-size:9px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
-  .s-welcome .ord .num{font-size:24px;font-weight:700;letter-spacing:-0.035em;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1;display:flex;align-items:baseline;gap:4px}
-  .s-welcome .ord .num small{font-size:12px;font-weight:500;color:var(--fg-3);letter-spacing:0}
-  .s-welcome .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;background:var(--fg);color:#fff;border-radius:13px;padding:13px 15px;font-size:12.5px;font-weight:600;letter-spacing:-.005em}
-  .s-welcome .cta .arr{opacity:.65;font-size:14px}
-
-  /* G·02 Library */
-  .s-library{flex:1;display:flex;flex-direction:column;background:#fff;padding:14px 14px 16px;gap:11px}
-  .s-library .top{display:flex;align-items:center;gap:8px}
-  .s-library .top .menu{display:inline-flex;flex-direction:column;gap:2.5px}
-  .s-library .top .menu i{display:block;width:14px;height:1.5px;background:var(--fg);border-radius:1px}
-  .s-library .top .h{font-size:13px;font-weight:700;color:var(--fg);letter-spacing:-.01em}
-  .s-library .top .total{margin-left:auto;font-size:9px;color:var(--fg-3);letter-spacing:.04em;font-weight:500;text-transform:uppercase}
-  .s-library .tabs{display:flex;gap:4px;font-size:9.5px;font-weight:500;color:var(--fg-3)}
-  .s-library .tabs .t{padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.04);white-space:nowrap}
-  .s-library .tabs .t.on{background:var(--fg);color:#fff;font-weight:600}
-  .s-library .items{display:flex;flex-direction:column;gap:7px}
-  .s-library .items .item{border-radius:10px;background:rgba(0,0,0,.03);overflow:hidden;display:flex;align-items:center;gap:10px;padding:6px 10px 6px 6px}
-  .s-library .items .item .thumb{width:54px;height:38px;border-radius:7px;background:linear-gradient(135deg,#ededed 0%,#a3a3a3 100%);position:relative;flex-shrink:0;overflow:hidden}
-  .s-library .items .item .thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 60%,rgba(0,0,0,.18),transparent 65%)}
-  .s-library .items .item .thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;z-index:1}
-  .s-library .items .item .thumb .play::after{content:"";width:0;height:0;border-left:4px solid var(--fg);border-top:3px solid transparent;border-bottom:3px solid transparent;margin-left:1px}
-  .s-library .items .item .lab{font-size:11px;color:var(--fg);font-weight:600;letter-spacing:-.01em;line-height:1.25}
-  .s-library .items .item .lab small{display:block;color:var(--fg-3);font-weight:500;margin-top:2px;font-size:9px;letter-spacing:.02em}
-  .s-library .footer{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;font-size:9.5px;color:var(--fg-3);letter-spacing:.04em;text-transform:uppercase;font-weight:500;padding-top:10px;border-top:1px solid rgba(0,0,0,.06)}
-  .s-library .footer .v{color:var(--fg);font-weight:700;font-variant-numeric:tabular-nums;font-size:14px;letter-spacing:-.01em;text-transform:none}
-
-  /* G·03 Activity */
-  .s-activity{flex:1;display:flex;flex-direction:column;background:#ffffff;padding:14px 14px 16px;gap:11px}
-  .s-activity .top{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--fg);letter-spacing:-.01em}
-  .s-activity .top .ic{width:18px;height:18px;border-radius:5px;background:var(--fg);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px}
-  .s-activity .top .meta{margin-left:auto;font-size:9px;color:var(--fg-3);letter-spacing:.04em;font-weight:500;text-transform:uppercase}
-  .s-activity .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:13px 14px 14px;display:flex;flex-direction:column;gap:7px}
-  .s-activity .card .row{display:flex;justify-content:space-between;align-items:center;font-size:9.5px;color:var(--fg-3);letter-spacing:.04em;text-transform:uppercase;font-weight:500}
-  .s-activity .card .badge{background:var(--fg);color:#fff;padding:2px 8px;border-radius:999px;font-weight:600;font-size:9px;text-transform:none;letter-spacing:.02em;font-variant-numeric:tabular-nums}
-  .s-activity .card .big{font-size:30px;font-weight:700;letter-spacing:-0.04em;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1;display:flex;align-items:baseline;gap:4px}
-  .s-activity .card .big small{font-size:13px;font-weight:500;color:var(--fg-3);letter-spacing:0}
-  .s-activity .card .week{display:flex;gap:3px;margin-top:2px}
-  .s-activity .card .week .d{flex:1;height:5px;border-radius:2px;background:rgba(0,0,0,.08)}
-  .s-activity .card .week .d.on{background:var(--fg)}
-  .s-activity .lifetime{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;font-size:9.5px;color:var(--fg-3);letter-spacing:.04em;text-transform:uppercase;font-weight:500;padding-top:12px;border-top:1px solid rgba(0,0,0,.06)}
-  .s-activity .lifetime .v{font-size:15px;color:var(--fg);font-weight:700;letter-spacing:-.01em;text-transform:none;font-variant-numeric:tabular-nums}
-
-  /* G·04 Push (잠금화면) */
-  .s-lock{flex:1;display:flex;flex-direction:column;background:linear-gradient(180deg,#1a1a1a 0%,#000000 100%);color:#fff;padding:14px;position:relative;overflow:hidden}
-  .s-lock::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.08),transparent 60%);pointer-events:none}
-  .s-lock .clock{text-align:center;margin-top:10px;position:relative;z-index:1}
-  .s-lock .clock .date{font-size:10.5px;font-weight:500;opacity:.7;letter-spacing:.02em}
-  .s-lock .clock .time{font-size:48px;font-weight:200;letter-spacing:-0.04em;line-height:1;margin-top:6px;font-variant-numeric:tabular-nums}
-  .s-lock .notify{margin-top:auto;background:rgba(255,255,255,.13);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:14px;padding:11px 12px 12px;position:relative;z-index:1;border:0.5px solid rgba(255,255,255,.12)}
-  .s-lock .notify .nhead{display:flex;align-items:center;gap:7px;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;opacity:.85}
-  .s-lock .notify .nhead .ic{width:18px;height:18px;border-radius:5px;background:#fff;color:#000000;display:inline-flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;letter-spacing:0}
-  .s-lock .notify .nhead .ts{margin-left:auto;opacity:.7;font-weight:500;font-variant-numeric:tabular-nums}
-  .s-lock .notify .body{margin-top:6px}
-  .s-lock .notify .body .t{font-size:12.5px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
-  .s-lock .notify .body .d{font-size:10.5px;line-height:1.5;margin-top:3px;opacity:.75}
-  .s-lock .notify .num{display:flex;align-items:flex-end;gap:8px;margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.18)}
-  .s-lock .notify .num .n{font-size:30px;font-weight:700;line-height:.95;letter-spacing:-0.04em;font-variant-numeric:tabular-nums}
-  .s-lock .notify .num .l{font-size:9px;opacity:.7;letter-spacing:.06em;text-transform:uppercase;padding-bottom:4px;font-weight:600;line-height:1.3}
+  /* ─────── GROWTH (위피 톤 — 2x2 카드 + 일러스트) ─────── */
+  .growth-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:8px 0}
+  .growth-card{
+    background:#f5f5f5;
+    border-radius:24px;
+    padding:40px 40px 36px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:20px;
+    min-height:240px;
+    transition:background .25s ease;
+  }
+  .growth-card:hover{background:#ededed}
+  .growth-card .g-text{display:flex;flex-direction:column;gap:14px;min-width:0}
+  .growth-card .g-lab{font-size:14px;color:var(--fg-2);font-weight:500;letter-spacing:-.01em}
+  .growth-card .g-num{font-size:clamp(40px,4.5vw,60px);font-weight:800;letter-spacing:-0.04em;color:var(--fg);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";line-height:1;display:flex;align-items:baseline;gap:2px}
+  .growth-card .g-num small{font-size:.7em;font-weight:700;letter-spacing:-0.04em;color:var(--fg)}
+  .growth-card .g-sub{font-size:13px;color:var(--fg-3);line-height:1.55;margin-top:4px;letter-spacing:-.005em;max-width:24ch}
+  .growth-card .g-art{width:130px;height:130px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--fg)}
+  .growth-card .g-art svg{width:100%;height:100%}
 
   /* ─────── NEXT STEP ─────── */
   .vision-list{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
@@ -422,13 +329,58 @@
   footer nav a{font-size:13px;color:var(--fg-3);transition:color .2s}
   footer nav a:hover{color:var(--fg)}
 
+  /* ─── Next Step 시안 (각 비전 무한 애니메이션) ─── */
+  /* V1 — 부유 + 데이터 라벨 */
+  .va-abs{background:#f5f5f5;overflow:hidden;border-radius:16px;border:1px solid var(--line)}
+  .va-abs svg{display:block;width:100%;height:100%}
+  @keyframes va-fl-1{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-12px)}}
+  @keyframes va-fl-2{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,8px)}}
+  @keyframes va-fl-3{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-14px)}}
+  @keyframes va-fl-4{0%,100%{transform:translate(0,0)}50%{transform:translate(8px,4px)}}
+  .va-dot{transform-box:fill-box;transform-origin:center}
+  .va-d1{animation:va-fl-1 4.2s ease-in-out infinite}
+  .va-d2{animation:va-fl-2 5.4s ease-in-out infinite .3s}
+  .va-d3{animation:va-fl-3 4.6s ease-in-out infinite .8s}
+  .va-d4{animation:va-fl-4 5.8s ease-in-out infinite .5s}
+  .va-d5{animation:va-fl-1 4.8s ease-in-out infinite 1s}
+  .va-d6{animation:va-fl-3 5.2s ease-in-out infinite .2s}
+  .va-d7{animation:va-fl-2 6s ease-in-out infinite .9s}
+  .va-d8{animation:va-fl-4 4.4s ease-in-out infinite 1.2s}
+
+  /* V2 — 지도 + ping 펄스 핀 */
+  .va-map{background:#f5f5f5;overflow:hidden;border-radius:16px;border:1px solid var(--line)}
+  .va-map svg{display:block;width:100%;height:100%}
+  @keyframes vm-ping{0%{transform:scale(1);opacity:.55}80%{transform:scale(3.6);opacity:0}100%{transform:scale(3.6);opacity:0}}
+  .vm-ring{transform-box:fill-box;transform-origin:center;animation:vm-ping 2.4s ease-out infinite}
+  .vm-r1{animation-delay:0s}
+  .vm-r2{animation-delay:.4s}
+  .vm-r3{animation-delay:.8s}
+  .vm-r4{animation-delay:1.2s}
+  .vm-r5{animation-delay:1.6s}
+  .vm-r6{animation-delay:2s}
+
+  /* V3 — 24H 시계 + 호 회전 애니메이션 (12s loop, 호+점 동기) */
+  .arc-fill{stroke-dasharray:880;stroke-dashoffset:880;transform:rotate(-90deg);transform-origin:250px 200px;animation:arc-grow 12s linear infinite}
+  @keyframes arc-grow{
+    0%{stroke-dashoffset:880;opacity:0}
+    4%{opacity:1}
+    85%{stroke-dashoffset:0;opacity:1}
+    95%{opacity:0}
+    100%{stroke-dashoffset:0;opacity:0}
+  }
+  .arc-dot{transform-origin:250px 200px;animation:dot-rotate 12s linear infinite}
+  @keyframes dot-rotate{
+    0%{transform:rotate(0deg);opacity:0}
+    4%{opacity:1}
+    85%{transform:rotate(360deg);opacity:1}
+    95%{transform:rotate(360deg);opacity:0}
+    100%{transform:rotate(360deg);opacity:0}
+  }
+
   /* ─────── RESPONSIVE ─────── */
   @media (max-width:1024px){
     .hero-body{grid-template-columns:1fr;gap:32px}
     .hero-photo{min-height:420px;aspect-ratio:16/11}
-    .growth-grid{grid-template-columns:repeat(2,1fr)}
-    .growth-card:nth-child(3){border-left:none;border-top:1px solid var(--line)}
-    .growth-card:nth-child(4){border-top:1px solid var(--line)}
   }
   @media (max-width:960px){
     .section{padding:96px 0}
@@ -445,7 +397,6 @@
     .decay-card{grid-template-columns:1fr;gap:40px;padding:36px 28px}
     .decay-big{font-size:88px}
     .growth-grid{grid-template-columns:1fr}
-    .growth-card + .growth-card{border-left:none;border-top:1px solid var(--line)}
     .phones{padding:28px 16px}
     .phone{width:160px}
     .menu{display:none}
@@ -574,7 +525,7 @@
 <section class="section problem" id="problem">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="reveal">'규칙적'이라는<br/><span class="muted">착각.</span></h2>
+      <h2 class="reveal">'규칙적'이라는 <span class="muted">착각.</span></h2>
     </div>
 
     <div class="decay-card reveal" id="decay">
@@ -1193,181 +1144,102 @@
     </div>
 
     <div class="growth-grid">
-      <!-- G·01 — Welcome 화면 -->
+      <!-- G·01 — 누적 회원 -->
       <div class="growth-card">
-        <div class="growth-top">
-          <span class="dot"></span>
-          <span class="idx">G·01 · 회원</span>
-          <span class="delta" aria-label="누적 회원 12.4배 증가">↗ 12.4×</span>
+        <div class="g-text">
+          <div class="g-lab">콰트 누적 회원</div>
+          <div class="g-num">600,000<small>+</small></div>
+          <div class="g-sub">매일 콰트를 켜는 사용자들</div>
         </div>
-        <div class="pmock" role="img" aria-label="콰트 회원가입 환영 화면 시안">
-          <div class="pscreen">
-            <div class="psbar">
-              <span>9:41</span>
-              <span class="signal" aria-hidden="true">
-                <span class="bar"><i></i><i></i><i></i><i></i></span>
-                <span class="bat"></span>
-              </span>
-            </div>
-            <div class="pcontent">
-              <div class="s-welcome">
-                <div class="lab">QUAT · 환영합니다</div>
-                <div class="greet">오늘부터<br/>함께해요.</div>
-                <div class="ord">
-                  <span class="ol">YOUR NUMBER</span>
-                  <span class="num">#600,000<small>번째</small></span>
-                </div>
-                <div class="cta">
-                  <span>오늘의 운동 시작</span>
-                  <span class="arr">→</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 100 130" fill="none">
+            <rect x="20" y="6" width="60" height="120" rx="11" stroke="currentColor" stroke-width="3"/>
+            <rect x="42" y="2" width="16" height="6" rx="3" fill="currentColor"/>
+            <g fill="currentColor">
+              <rect x="28" y="40" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="46" y="40" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="64" y="40" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="28" y="58" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="46" y="58" width="14" height="14" rx="3"/>
+              <rect x="64" y="58" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="28" y="76" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="46" y="76" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="64" y="76" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="28" y="94" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="46" y="94" width="14" height="14" rx="3" opacity=".15"/>
+              <rect x="64" y="94" width="14" height="14" rx="3" opacity=".15"/>
+            </g>
+          </svg>
         </div>
-        <div class="growth-cap">매일 작은 꾸준함을 함께 만드는 사용자들</div>
       </div>
 
-      <!-- G·02 — Library 화면 -->
+      <!-- G·02 — 자체 콘텐츠 -->
       <div class="growth-card">
-        <div class="growth-top">
-          <span class="dot"></span>
-          <span class="idx">G·02 · 콘텐츠</span>
-          <span class="delta" aria-label="6개 카테고리">6 CATS</span>
+        <div class="g-text">
+          <div class="g-lab">자체 제작 콘텐츠</div>
+          <div class="g-num">2,500<small>건</small></div>
+          <div class="g-sub">유산소·요가·필라테스·근력 6종</div>
         </div>
-        <div class="pmock" role="img" aria-label="콰트 콘텐츠 라이브러리 시안">
-          <div class="pscreen">
-            <div class="psbar">
-              <span>9:41</span>
-              <span class="signal" aria-hidden="true">
-                <span class="bar"><i></i><i></i><i></i><i></i></span>
-                <span class="bat"></span>
-              </span>
-            </div>
-            <div class="pcontent">
-              <div class="s-library">
-                <div class="top">
-                  <span class="menu" aria-hidden="true"><i></i><i></i><i></i></span>
-                  <span class="h">EXPLORE</span>
-                  <span class="total">전체</span>
-                </div>
-                <div class="tabs">
-                  <span class="t on">전체</span>
-                  <span class="t">유산소</span>
-                  <span class="t">요가</span>
-                </div>
-                <div class="items">
-                  <div class="item">
-                    <div class="thumb"><span class="play"></span></div>
-                    <div class="lab">홈 카디오 30<small>중강도 · 30분</small></div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb"><span class="play"></span></div>
-                    <div class="lab">파워 요가<small>저강도 · 22분</small></div>
-                  </div>
-                  <div class="item">
-                    <div class="thumb"><span class="play"></span></div>
-                    <div class="lab">코어 필라테스<small>중강도 · 18분</small></div>
-                  </div>
-                </div>
-                <div class="footer">
-                  <span>전체 콘텐츠</span>
-                  <span class="v">2,500</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 130 130" fill="none">
+            <g fill="currentColor">
+              <rect x="6" y="6" width="36" height="36" rx="7" opacity=".15"/>
+              <rect x="47" y="6" width="36" height="36" rx="7"/>
+              <rect x="88" y="6" width="36" height="36" rx="7" opacity=".15"/>
+              <rect x="6" y="47" width="36" height="36" rx="7" opacity=".15"/>
+              <rect x="47" y="47" width="36" height="36" rx="7" opacity=".15"/>
+              <rect x="88" y="47" width="36" height="36" rx="7" opacity=".15"/>
+              <rect x="26" y="88" width="36" height="36" rx="7" opacity=".15"/>
+              <rect x="68" y="88" width="36" height="36" rx="7" opacity=".15"/>
+            </g>
+          </svg>
         </div>
-        <div class="growth-cap">유산소·요가·필라테스·근력·발레·도수</div>
       </div>
 
-      <!-- G·03 — Activity 화면 -->
+      <!-- G·03 — 총 칼로리 -->
       <div class="growth-card">
-        <div class="growth-top">
-          <span class="dot"></span>
-          <span class="idx">G·03 · 칼로리</span>
-          <span class="delta" aria-label="누적 칼로리 2.4배 증가">↗ 2.4×</span>
+        <div class="g-text">
+          <div class="g-lab">총 소모 칼로리</div>
+          <div class="g-num">300M<small>kcal</small></div>
+          <div class="g-sub">고객의 진짜 변화를 데이터로</div>
         </div>
-        <div class="pmock" role="img" aria-label="콰트 액티비티 위젯 시안">
-          <div class="pscreen">
-            <div class="psbar">
-              <span>9:41</span>
-              <span class="signal" aria-hidden="true">
-                <span class="bar"><i></i><i></i><i></i><i></i></span>
-                <span class="bat"></span>
-              </span>
-            </div>
-            <div class="pcontent">
-              <div class="s-activity">
-                <div class="top">
-                  <span class="ic">♡</span>
-                  <span>ACTIVITY</span>
-                  <span class="meta">이번 주</span>
-                </div>
-                <div class="card">
-                  <div class="row">
-                    <span>주간 소모</span>
-                    <span class="badge">+18% W/W</span>
-                  </div>
-                  <div class="big">12,420<small>kcal</small></div>
-                  <div class="week" aria-hidden="true">
-                    <span class="d on"></span><span class="d on"></span><span class="d on"></span>
-                    <span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span>
-                  </div>
-                </div>
-                <div class="lifetime">
-                  <span>LIFETIME</span>
-                  <span class="v">300M <small>kcal</small></span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 130 130" fill="none">
+            <path d="M65 122 C28 95, 8 70, 18 48 C25 32, 42 28, 52 38 C58 44, 62 50, 65 58 C68 50, 72 44, 78 38 C88 28, 105 32, 112 48 C122 70, 102 95, 65 122 Z" fill="currentColor"/>
+          </svg>
         </div>
-        <div class="growth-cap">고객의 진짜 변화를 데이터로 증명</div>
       </div>
 
-      <!-- G·04 — Lock screen + push -->
+      <!-- G·04 — 매일 -->
       <div class="growth-card">
-        <div class="growth-top">
-          <span class="dot"></span>
-          <span class="idx">G·04 · 운영</span>
-          <span class="delta" aria-label="365일 연속 운영">365D</span>
+        <div class="g-text">
+          <div class="g-lab">습관 형성 지원</div>
+          <div class="g-num">365<small>일</small></div>
+          <div class="g-sub">쉬지 않은 매일, 어김없이</div>
         </div>
-        <div class="pmock" role="img" aria-label="콰트 푸시 알림 시안">
-          <div class="pscreen">
-            <div class="psbar dark">
-              <span>4:21</span>
-              <span class="signal" aria-hidden="true">
-                <span class="bar"><i></i><i></i><i></i><i></i></span>
-                <span class="bat"></span>
-              </span>
-            </div>
-            <div class="pcontent">
-              <div class="s-lock">
-                <div class="clock">
-                  <div class="date">월요일, 4월 28일</div>
-                  <div class="time">4:21</div>
-                </div>
-                <div class="notify">
-                  <div class="nhead">
-                    <span class="ic">Q</span>
-                    <span>QUAT</span>
-                    <span class="ts">지금</span>
-                  </div>
-                  <div class="body">
-                    <div class="t">365일 연속, 오늘도<br/>당신과 함께합니다.</div>
-                    <div class="d">매일의 작은 꾸준함을 모아 어김없이 운동을 켭니다.</div>
-                  </div>
-                  <div class="num">
-                    <span class="n">365</span>
-                    <span class="l">DAYS<br/>STREAK</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 130 130" fill="none">
+            <rect x="10" y="22" width="110" height="98" rx="10" stroke="currentColor" stroke-width="3"/>
+            <line x1="10" y1="48" x2="120" y2="48" stroke="currentColor" stroke-width="3"/>
+            <line x1="36" y1="10" x2="36" y2="32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <line x1="94" y1="10" x2="94" y2="32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <g fill="currentColor">
+              <circle cx="28" cy="66" r="3.5" opacity=".2"/>
+              <circle cx="46" cy="66" r="3.5" opacity=".2"/>
+              <circle cx="64" cy="66" r="3.5" opacity=".2"/>
+              <circle cx="82" cy="66" r="3.5" opacity=".2"/>
+              <circle cx="100" cy="66" r="3.5" opacity=".2"/>
+              <circle cx="28" cy="86" r="3.5" opacity=".2"/>
+              <circle cx="46" cy="86" r="3.5" opacity=".2"/>
+              <circle cx="64" cy="86" r="3.5" opacity=".2"/>
+              <circle cx="82" cy="86" r="3.5"/>
+              <circle cx="100" cy="86" r="6.5"/>
+              <circle cx="28" cy="106" r="3.5" opacity=".2"/>
+              <circle cx="46" cy="106" r="3.5" opacity=".2"/>
+              <circle cx="64" cy="106" r="3.5" opacity=".2"/>
+            </g>
+          </svg>
         </div>
-        <div class="growth-cap">고객이 건강을 포기하는 모든 순간에 함께</div>
       </div>
     </div>
   </div>
@@ -1381,8 +1253,8 @@
     </div>
 
     <div class="vision-list">
-      <!-- V1 · AI (diagram) -->
-      <div class="vision-item">
+      <!-- V1 · AI (추상 데이터) -->
+      <div class="vision-item reveal v-anim">
         <div class="vi-text">
           <div class="n"><span class="bar"></span>N—01 · AI</div>
           <span class="tag">AI 초개인화 처방</span>
@@ -1390,73 +1262,37 @@
           <p>개인화 운동 플랜을 자동 생성하고, 체력·컨디션에 맞춰 실시간으로 루틴을 추천합니다. 일정·생활 패턴과 연동된 운동 스케줄링과 CRM 고도화로 운동 이탈까지 예측·개입합니다.</p>
         </div>
         <div class="vi-art">
-          <div class="vart">
-            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div class="vart va-abs">
+            <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet" font-family="Pretendard Variable, system-ui, sans-serif">
               <defs>
-                <pattern id="gridV" width="24" height="24" patternUnits="userSpaceOnUse">
-                  <path d="M0 0L24 0M0 0L0 24" stroke="rgba(0,0,0,.04)"/>
-                </pattern>
+                <radialGradient id="vaGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#000" stop-opacity=".18"/>
+                  <stop offset="60%" stop-color="#000" stop-opacity=".04"/>
+                  <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+                </radialGradient>
               </defs>
-              <rect width="500" height="400" fill="url(#gridV)"/>
-              <!-- input signals -->
-              <g font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#525252">
-                <g transform="translate(90 80)">
-                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text text-anchor="middle" y="3" stroke="none">SLEEP · 7.2h</text>
-                </g>
-                <g transform="translate(90 150)">
-                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text text-anchor="middle" y="3" stroke="none">HR · 68bpm</text>
-                </g>
-                <g transform="translate(90 220)">
-                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text text-anchor="middle" y="3" stroke="none">BMI · 22.4</text>
-                </g>
-                <g transform="translate(90 290)">
-                  <rect x="-38" y="-14" width="76" height="28" rx="6" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text text-anchor="middle" y="3" stroke="none">GOAL · WL</text>
-                </g>
-              </g>
-              <!-- lines to core -->
-              <g stroke="rgba(0,0,0,0.18)">
-                <line x1="128" y1="80" x2="232" y2="200"/>
-                <line x1="128" y1="150" x2="232" y2="200"/>
-                <line x1="128" y1="220" x2="232" y2="200"/>
-                <line x1="128" y1="290" x2="232" y2="200"/>
-              </g>
-              <!-- core -->
+              <circle cx="250" cy="200" r="180" fill="url(#vaGlow)"/>
+              <circle cx="250" cy="200" r="130" stroke="rgba(0,0,0,.1)" fill="none"/>
+              <circle cx="250" cy="200" r="80" stroke="rgba(0,0,0,.15)" fill="none" stroke-dasharray="4 6"/>
+              <g transform="translate(120 110)"><g class="va-dot va-d1"><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="500">SLEEP 7.2h</text></g></g>
+              <g transform="translate(385 95)"><g class="va-dot va-d2"><circle r="7" fill="#000" opacity=".85"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="500" text-anchor="end">HR 68bpm</text></g></g>
+              <g transform="translate(385 295)"><g class="va-dot va-d3"><circle r="5" fill="#000" opacity=".7"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="500" text-anchor="end">BMI 22.4</text></g></g>
+              <g transform="translate(110 285)"><g class="va-dot va-d4"><circle r="7" fill="#000" opacity=".75"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="500">STEPS 8.4k</text></g></g>
+              <g transform="translate(250 55)"><g class="va-dot va-d5"><circle r="5" fill="#000" opacity=".65"/><text x="0" y="-12" font-size="10" fill="#525252" font-weight="500" text-anchor="middle">WEIGHT 64kg</text></g></g>
+              <g transform="translate(445 215)"><g class="va-dot va-d6"><circle r="6" fill="#000" opacity=".7"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="500" text-anchor="end">MOOD ✓</text></g></g>
+              <g transform="translate(58 200)"><g class="va-dot va-d7"><circle r="6" fill="#000" opacity=".65"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="500">WATER 1.8L</text></g></g>
+              <g transform="translate(280 355)"><g class="va-dot va-d8"><circle r="5" fill="#000" opacity=".55"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="500">KCAL 1820</text></g></g>
               <g transform="translate(250 200)">
-                <circle r="46" stroke="#000000" stroke-width="2" fill="#ffffff"/>
-                <circle r="34" stroke="rgba(0,0,0,0.08)" fill="none"/>
-                <text text-anchor="middle" y="-2" font-family="Pretendard Variable, system-ui, sans-serif" font-size="11" fill="#000000" font-weight="600" stroke="none">AI</text>
-                <text text-anchor="middle" y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">MATCH</text>
-              </g>
-              <!-- output arrow -->
-              <line x1="300" y1="200" x2="346" y2="200" stroke="#000000" stroke-dasharray="3 4"/>
-              <path d="M340 194l8 6-8 6" stroke="#000000"/>
-              <!-- routine cards -->
-              <g transform="translate(362 130)">
-                <rect width="116" height="46" rx="8" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                <text x="12" y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">MON · 03:42</text>
-                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#000000" stroke="none">하체 · 중강도</text>
-              </g>
-              <g transform="translate(362 184)">
-                <rect width="116" height="46" rx="8" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                <text x="12" y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">WED · 07:30</text>
-                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#000000" stroke="none">유산소 · 하</text>
-              </g>
-              <g transform="translate(362 238)">
-                <rect width="116" height="46" rx="8" fill="#fff" stroke="#000000" stroke-width="1.5"/>
-                <text x="12" y="18" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#000000" stroke="none">FRI · 18:00</text>
-                <text x="12" y="34" font-family="Pretendard" font-size="11" font-weight="600" fill="#000000" stroke="none">근력 · 코어</text>
+                <circle r="50" fill="#000"/>
+                <text text-anchor="middle" y="6" font-size="14" font-weight="700" fill="#fff" letter-spacing=".04em">AI</text>
               </g>
             </svg>
           </div>
         </div>
       </div>
 
-      <!-- V2 · O2O (photo collage) -->
-      <div class="vision-item rev">
+      <!-- V2 · O2O (지도 + 핀) -->
+      <div class="vision-item rev reveal v-anim">
         <div class="vi-text">
           <div class="n"><span class="bar"></span>N—02 · O2O</div>
           <span class="tag">오프라인 확장</span>
@@ -1464,29 +1300,37 @@
           <p>홈트 전용 기구 라인업 확대, O2O 확장(헬스장 내 QUAT ZONE), 오프라인 스튜디오·팝업·클래스, B2B 오피스 웰니스까지. 디지털 헬스케어 감동을 손에 잡히는 물리적 경험으로 이어갑니다.</p>
         </div>
         <div class="vi-art">
-          <div class="collage">
-            <div class="collage-img a">
-              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80&auto=format&fit=crop" alt="콰트 오프라인 스튜디오 인테리어" loading="lazy" onerror="this.style.display='none'"/>
-              <div class="tag">STUDIO · 성수</div>
-            </div>
-            <div class="collage-img">
-              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&auto=format&fit=crop" alt="콰트 ZONE에서 운동 중인 사용자" loading="lazy" onerror="this.style.display='none'"/>
-            </div>
-            <div class="collage-img">
-              <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=500&q=80&auto=format&fit=crop" alt="콰트 오프라인 클래스 현장" loading="lazy" onerror="this.style.display='none'"/>
-            </div>
-            <div class="stat-card">
-              <div>
-                <div class="l">QUAT ZONE</div>
-                <div class="n">128+</div>
-              </div>
-            </div>
+          <div class="vart va-map">
+            <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet" font-family="Pretendard Variable, system-ui, sans-serif">
+              <defs>
+                <pattern id="vmGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M0 0L40 0M0 0L0 40" stroke="rgba(0,0,0,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="500" height="400" fill="url(#vmGrid)"/>
+              <g stroke="rgba(0,0,0,.07)" fill="none" stroke-width="1.5">
+                <path d="M0,140 Q150,130 280,170 T500,150"/>
+                <path d="M0,260 Q200,250 320,280 T500,270"/>
+                <path d="M180,0 Q170,120 220,200 T200,400"/>
+              </g>
+              <g transform="translate(120 110)"><circle class="vm-ring vm-r1" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="600">성수 STUDIO</text></g>
+              <g transform="translate(380 90)"><circle class="vm-ring vm-r2" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="600" text-anchor="end">강남 ZONE</text></g>
+              <g transform="translate(380 280)"><circle class="vm-ring vm-r3" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="600" text-anchor="end">잠실 POP</text></g>
+              <g transform="translate(110 290)"><circle class="vm-ring vm-r4" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="600">분당 ZONE</text></g>
+              <g transform="translate(250 60)"><circle class="vm-ring vm-r5" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="0" y="-13" font-size="10" fill="#525252" font-weight="600" text-anchor="middle">부산 ZONE</text></g>
+              <g transform="translate(250 350)"><circle class="vm-ring vm-r6" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="0" y="20" font-size="10" fill="#525252" font-weight="600" text-anchor="middle">일산 STUDIO</text></g>
+              <g transform="translate(250 200)">
+                <circle r="38" fill="#000"/>
+                <text text-anchor="middle" y="-2" font-size="13" font-weight="700" fill="#fff">128+</text>
+                <text text-anchor="middle" y="11" font-size="7" fill="#fff" opacity=".75" letter-spacing=".06em">ZONE</text>
+              </g>
+            </svg>
           </div>
         </div>
       </div>
 
-      <!-- V3 · 24h Super App (diagram) -->
-      <div class="vision-item">
+      <!-- V3 · 슈퍼앱 (24H 시계 + 호 회전 애니메이션) -->
+      <div class="vision-item reveal">
         <div class="vi-text">
           <div class="n"><span class="bar"></span>N—03 · SUPERAPP</div>
           <span class="tag">헬스케어 슈퍼앱</span>
@@ -1495,49 +1339,51 @@
         </div>
         <div class="vi-art">
           <div class="vart">
-            <svg viewBox="0 0 500 400" width="100%" height="100%" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
               <defs>
-                <pattern id="gridV3" width="24" height="24" patternUnits="userSpaceOnUse">
+                <pattern id="vcGrid" width="24" height="24" patternUnits="userSpaceOnUse">
                   <path d="M0 0L24 0M0 0L0 24" stroke="rgba(0,0,0,.04)"/>
                 </pattern>
               </defs>
-              <rect width="500" height="400" fill="url(#gridV3)"/>
-              <g transform="translate(250 200)">
-                <circle r="130" stroke="rgba(0,0,0,0.08)"/>
-                <circle r="100" stroke="rgba(0,0,0,0.1)"/>
-                <path d="M0 -100 A100 100 0 1 1 -70 72" stroke="#000000" stroke-width="2"/>
-                <circle cx="-70" cy="72" r="3" fill="#000000" stroke="none"/>
-                <circle r="32" stroke="#000000" stroke-width="2" fill="#ffffff"/>
-                <text text-anchor="middle" y="-4" font-family="Pretendard Variable, system-ui, sans-serif" font-size="11" font-weight="600" fill="#000000" stroke="none">QUAT</text>
-                <text text-anchor="middle" y="10" font-family="Pretendard Variable, system-ui, sans-serif" font-size="9" fill="#737373" stroke="none">24H</text>
+              <rect width="500" height="400" fill="url(#vcGrid)"/>
+              <circle cx="250" cy="200" r="160" stroke="rgba(0,0,0,.1)" stroke-width="1" fill="none"/>
+              <circle cx="250" cy="200" r="110" stroke="rgba(0,0,0,.08)" stroke-width="1" fill="none"/>
+              <circle class="arc-fill" cx="250" cy="200" r="140" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <g class="arc-dot">
+                <circle cx="250" cy="60" r="4" fill="#000"/>
               </g>
-              <g font-family="Pretendard" font-size="12" font-weight="600" fill="#000000" text-anchor="middle">
+              <g font-weight="700">
                 <g transform="translate(250 56)">
-                  <rect x="-36" y="-18" width="72" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text y="-2" stroke="none">운동</text>
-                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">MORNING</text>
+                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)"/>
+                  <text y="-2" text-anchor="middle" font-size="12" fill="#000">운동</text>
+                  <text y="12" text-anchor="middle" font-size="8" fill="#737373" letter-spacing=".06em">MORNING</text>
                 </g>
-                <g transform="translate(418 200)">
-                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text y="-2" stroke="none">영양·혈당</text>
-                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">DAY</text>
+                <g transform="translate(420 200)">
+                  <rect x="-44" y="-18" width="88" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)"/>
+                  <text y="-2" text-anchor="middle" font-size="12" fill="#000">영양·혈당</text>
+                  <text y="12" text-anchor="middle" font-size="8" fill="#737373" letter-spacing=".06em">DAY</text>
                 </g>
                 <g transform="translate(250 344)">
-                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text y="-2" stroke="none">멘탈 케어</text>
-                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">EVENING</text>
+                  <rect x="-44" y="-18" width="88" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)"/>
+                  <text y="-2" text-anchor="middle" font-size="12" fill="#000">멘탈 케어</text>
+                  <text y="12" text-anchor="middle" font-size="8" fill="#737373" letter-spacing=".06em">EVENING</text>
                 </g>
-                <g transform="translate(82 200)">
-                  <rect x="-40" y="-18" width="80" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.1)"/>
-                  <text y="-2" stroke="none">수면 케어</text>
-                  <text y="12" font-family="Pretendard Variable, system-ui, sans-serif" font-size="8" fill="#737373" stroke="none">NIGHT</text>
+                <g transform="translate(80 200)">
+                  <rect x="-44" y="-18" width="88" height="36" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)"/>
+                  <text y="-2" text-anchor="middle" font-size="12" fill="#000">수면 케어</text>
+                  <text y="12" text-anchor="middle" font-size="8" fill="#737373" letter-spacing=".06em">NIGHT</text>
                 </g>
               </g>
-              <g stroke="rgba(0,0,0,0.2)">
+              <g stroke="rgba(0,0,0,.2)" stroke-width="1">
                 <line x1="250" y1="76" x2="250" y2="84"/>
-                <line x1="420" y1="200" x2="412" y2="200"/>
+                <line x1="412" y1="200" x2="404" y2="200"/>
                 <line x1="250" y1="324" x2="250" y2="316"/>
-                <line x1="80" y1="200" x2="88" y2="200"/>
+                <line x1="88" y1="200" x2="96" y2="200"/>
+              </g>
+              <g transform="translate(250 200)">
+                <circle r="44" stroke="#000" stroke-width="1.5" fill="#fff"/>
+                <text y="-2" text-anchor="middle" font-size="13" font-weight="700" fill="#000">QUAT</text>
+                <text y="14" text-anchor="middle" font-size="9" fill="#737373" letter-spacing=".06em">24H</text>
               </g>
             </svg>
           </div>
