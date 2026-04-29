@@ -98,35 +98,17 @@
   .pill .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(0,0,0,.12);animation:livepulse 2s ease-in-out infinite}
   @keyframes livepulse{0%,100%{box-shadow:0 0 0 4px rgba(0,0,0,.12)}50%{box-shadow:0 0 0 8px rgba(0,0,0,0)}}
 
-  .hero-body{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;min-height:620px}
+  .hero-copy{max-width:880px}
   .hero-copy h1{font-size:clamp(48px,6.2vw,92px);font-weight:700;letter-spacing:-0.04em;line-height:1.03;color:var(--fg)}
   .hero-copy h1 em{font-style:normal;color:var(--fg);position:relative;white-space:nowrap}
-  .hero-copy .sub{font-size:17px;line-height:1.65;color:var(--fg-2);max-width:440px;margin-top:28px}
+  .hero-copy .sub{font-size:17px;line-height:1.65;color:var(--fg-2);max-width:520px;margin-top:28px}
   .hero-cta{margin-top:40px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .hero-cta .hint{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin-left:8px}
 
   .hero-photo{
-    position:relative;aspect-ratio: 4/5;min-height:520px;border-radius:20px;overflow:hidden;
-    background:
-      radial-gradient(ellipse at 30% 20%,rgba(0,0,0,.08),transparent 55%),
-      linear-gradient(160deg,#f5f5f5 0%,#e5e5e5 55%,#d4d4d4 100%);
+    width:100%;aspect-ratio:21/9;margin-top:96px;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#f5f5f5 0%,#e5e5e5 55%,#d4d4d4 100%);
   }
-  .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-  .hero-photo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(0,0,0,.4) 100%);
-    z-index:2;pointer-events:none;
-  }
-  .hero-photo .badge{
-    position:absolute;bottom:20px;left:20px;z-index:3;
-    background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
-    border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;
-    box-shadow:0 12px 40px rgba(0,0,0,.15);
-  }
-  .hero-photo .badge .avatar{width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
-  .hero-photo .badge .who{font-size:13px;font-weight:600;color:var(--fg);line-height:1.3}
-  .hero-photo .badge .what{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.04em;margin-top:2px}
-  .hero-photo .badge .streak{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:600;letter-spacing:.04em;border-left:1px solid var(--line);padding-left:12px;margin-left:4px}
+  .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
   .stats{margin-top:96px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
   .stat{padding:44px 0 40px;position:relative;display:flex;flex-direction:column;gap:18px}
@@ -179,39 +161,39 @@
   .prob-stat em{font-style:normal;color:var(--fg);font-weight:600}
   .prob-stat .src{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--fg-4);text-transform:uppercase}
 
-  .pain-intro{max-width:720px;margin:88px auto 0;text-align:center}
+  .pain-intro{max-width:720px;margin:56px auto 0;text-align:center}
   .pain-intro p{font-size:15px;line-height:1.85;color:var(--fg-2);margin:0 0 8px}
   .pain-intro p:last-child{margin-bottom:0}
   .pain-intro em{font-style:normal;color:var(--fg);font-weight:600}
 
-  .pain-list{margin-top:64px;display:grid;grid-template-columns:1fr;gap:20px}
+  .pain-list{margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:20px;max-width:900px}
   .pain-row{
-    display:grid;grid-template-columns:1.1fr 1fr;gap:0;
+    display:grid;grid-template-columns:7fr 3fr;gap:0;min-height:200px;
     border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;
   }
-  .pain-row .prob{padding:44px 44px;display:flex;flex-direction:column;gap:18px;border-right:1px solid var(--line);background:#fcfaf7}
+  .pain-row .prob{padding:36px 36px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--line);background:#fcfaf7}
   .pain-row .prob .meta{display:flex;justify-content:space-between;align-items:center}
   .pain-row .prob .meta .n{font-family:var(--mono);font-size:12px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
   .pain-row .prob .meta .n::before{content:"";width:10px;height:10px;border-radius:50%;border:1.5px solid var(--fg-3)}
   .pain-row .prob .meta .n em{font-style:normal;color:var(--fg);font-weight:600;font-family:var(--mono)}
   .pain-row .prob .meta .ct{font-family:var(--mono);font-size:10px;color:var(--fg-4);letter-spacing:.08em}
   .pain-row .prob .voice{
-    font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-0.015em;
+    font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-0.015em;
     color:var(--fg);line-height:1.35;
   }
   .pain-row .prob .voice::before{content:"\201C";color:var(--accent);font-size:1.1em;margin-right:4px}
   .pain-row .prob .voice::after{content:"\201D";color:var(--accent);font-size:1.1em;margin-left:4px}
   .pain-row .prob .kw{font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
   .pain-row .prob .kw::before{content:"";width:18px;height:1px;background:var(--fg-3)}
-  .pain-row .prob .desc{font-size:14px;color:var(--fg-2);line-height:1.65;max-width:42ch}
+  .pain-row .prob .desc{font-size:13px;color:var(--fg-2);line-height:1.65;max-width:42ch}
 
-  .pain-row .ans{padding:44px 44px;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative;background:#fff}
-  .pain-row .ans::before{content:"";position:absolute;top:44px;left:44px;width:28px;height:2px;background:var(--accent)}
-  .pain-row .ans .ans-meta{padding-top:8px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:12px}
-  .pain-row .ans .tit{font-size:26px;font-weight:600;letter-spacing:-0.02em;color:var(--fg);line-height:1.25;margin-top:4px}
+  .pain-row .ans{padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:10px;position:relative;background:#fff}
+  .pain-row .ans::before{content:"";position:absolute;top:32px;left:28px;width:24px;height:2px;background:var(--accent)}
+  .pain-row .ans .ans-meta{padding-top:6px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:8px}
+  .pain-row .ans .tit{font-size:22px;font-weight:600;letter-spacing:-0.02em;color:var(--fg);line-height:1.25;margin-top:2px}
   .pain-row .ans .tit em{font-style:normal;color:var(--fg)}
-  .pain-row .ans .sub{font-size:14px;color:var(--fg-2);line-height:1.65}
-  .pain-row .ans .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .pain-row .ans .sub{font-size:13px;color:var(--fg-2);line-height:1.65}
+  .pain-row .ans .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
   .pain-row .ans .tags span{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.06em;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:#ffffff}
 
   .pain-summary{max-width:720px;margin:80px auto 0;text-align:center}
@@ -425,45 +407,35 @@
 <!-- 1. HERO -->
 <section class="section hero">
   <div class="wrap">
-    <div class="hero-body">
-      <div class="hero-copy">
-        <h1>결심을 쉽게,<br/><em>습관은 확실하게</em>.</h1>
-        <p class="sub">매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱. 고객이 건강을 포기하는 모든 순간에 함께합니다.</p>
-        <div class="hero-cta">
-          <a class="btn accent" href="https://quat.kr" target="_blank" rel="noopener noreferrer">
-            콰트 다운로드
-            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="btn" href="https://career.nrise.net/ko/career">채용 공고 보기</a>
-          <span class="hint">— iOS · Android · Web</span>
-        </div>
-      </div>
-      <div class="hero-photo">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop" alt="콰트와 함께 운동 습관을 만들어가는 사용자" loading="eager" onerror="this.style.display='none'"/>
-        <div class="badge">
-          <div class="avatar">Q</div>
-          <div>
-            <div class="who">오늘의 운동 · 3분</div>
-            <div class="what">하체 워밍업 · 가벼운 강도</div>
-          </div>
-          <span class="streak">23D<br/>STREAK</span>
-        </div>
+    <div class="hero-copy">
+      <h1>결심을 쉽게,<br/><em>습관은 확실하게</em>.</h1>
+      <p class="sub">매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱. 고객이 건강을 포기하는 모든 순간에 함께합니다.</p>
+      <div class="hero-cta">
+        <a class="btn accent" href="https://quat.kr" target="_blank" rel="noopener noreferrer">
+          콰트 다운로드
+          <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn" href="https://career.nrise.net/ko/career">채용 공고 보기</a>
       </div>
     </div>
-
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&q=80&auto=format&fit=crop" alt="콰트와 함께 운동 습관을 만들어가는 사용자" loading="eager" onerror="this.style.display='none'"/>
+  </div>
+  <div class="wrap">
     <div class="stats">
       <div class="stat">
-        <div class="k"><span class="ix">01</span>누적 회원</div>
+        <div class="k">누적 회원</div>
         <div class="v">600,000<span class="u">+</span></div>
         <div class="ctx">매일 콰트를 켜는 사용자들</div>
       </div>
       <div class="stat">
-        <div class="k"><span class="ix">02</span>자체 콘텐츠</div>
+        <div class="k">자체 콘텐츠</div>
         <div class="v">2,500<span class="u">건</span></div>
         <div class="ctx">유산소·요가·필라테스·근력·발레·도수 6종</div>
       </div>
       <div class="stat">
-        <div class="k"><span class="ix">03</span>총 소모 칼로리</div>
+        <div class="k">총 소모 칼로리</div>
         <div class="v">300M<span class="u">kcal</span></div>
         <div class="ctx">고객의 진짜 변화를 데이터로</div>
       </div>
@@ -480,7 +452,6 @@
 
     <div class="dna-grid">
       <div class="dna-col">
-        <div class="n">01 <span>— PRINCIPLE</span></div>
         <div class="icn">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
@@ -491,7 +462,6 @@
         <p>데이터 뒤에 숨겨진 고객의 진짜 심리를 파고들어, 포기하는 순간 전에 습관을 형성합니다.</p>
       </div>
       <div class="dna-col">
-        <div class="n">02 <span>— PRINCIPLE</span></div>
         <div class="icn">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7" rx="1.5"/>
@@ -505,7 +475,6 @@
         <p>제품·콘텐츠·커머스의 시너지로, 오프라인 헬스케어의 감동을 온라인으로 잇습니다.</p>
       </div>
       <div class="dna-col">
-        <div class="n">03 <span>— PRINCIPLE</span></div>
         <div class="icn">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 14 L10 8 L14 12 L20 6"/>
@@ -540,10 +509,6 @@
       </div>
 
       <div class="decay-viz">
-        <div class="decay-meta">
-          <span>30-DAY VIEW · 한 달</span>
-          <span class="mark">● 운동한 날</span>
-        </div>
         <div class="decay-grid" aria-label="한 달 중 운동한 날 시각화">
           <!-- Week 1: 강한 시작 (5 on) -->
           <div class="cell on" title="1주차"></div>
@@ -596,7 +561,6 @@
         <div class="prob">
           <div class="meta">
             <span class="n">PROBLEM <em>01</em></span>
-            <span class="ct">CUSTOMER VOICE</span>
           </div>
           <div class="voice">뭐부터 시작해야<br/>할지 모르겠어요.</div>
           <div class="kw">시작이 두렵고</div>
@@ -615,7 +579,6 @@
         <div class="prob">
           <div class="meta">
             <span class="n">PROBLEM <em>02</em></span>
-            <span class="ct">CUSTOMER VOICE</span>
           </div>
           <div class="voice">내 수준에 맞는<br/>운동이 뭔지 모르겠어요.</div>
           <div class="kw">맞지 않고</div>
@@ -634,7 +597,6 @@
         <div class="prob">
           <div class="meta">
             <span class="n">PROBLEM <em>03</em></span>
-            <span class="ct">CUSTOMER VOICE</span>
           </div>
           <div class="voice">항상 일주일도<br/>못 가요.</div>
           <div class="kw">지속이 어렵다</div>
@@ -666,10 +628,8 @@
     <!-- S1 · Onboarding -->
     <div class="sol-row">
       <div class="copy">
-        <div class="n"><span class="bar"></span>S—01 · ONBOARDING</div>
         <h3>운동 허들 <em>낮추기</em></h3>
         <p>'오늘의 운동'으로 짧고 가벼운 시작점을 제공합니다. 유산소·요가·필라테스·근력·발레·도수 등 다양한 콘텐츠와 체력측정 온보딩으로 첫 운동까지 걸리는 시간을 단축했습니다.</p>
-        <div class="row-meta"><span>Daily pick</span><span>3–7 min</span><span>No equipment</span></div>
       </div>
       <div class="art">
         <div class="phones">
@@ -812,10 +772,8 @@
     <!-- S2 · Personalization -->
     <div class="sol-row rev">
       <div class="copy">
-        <div class="n"><span class="bar"></span>S—02 · PERSONALIZATION</div>
         <h3>개인화 <em>운동 처방</em></h3>
         <p>개인 건강 지표(BMI · 활동량 · 목표)를 기반으로 운동을 처방합니다. 내 몸에 맞는 강도와 루틴을 데이터 기반으로 추천해 '내 몸에 맞는 운동'을 찾는 시간을 줄였습니다.</p>
-        <div class="row-meta"><span>12 signals</span><span>Adaptive</span><span>Weekly tune</span></div>
       </div>
       <div class="art">
         <div class="phones">
@@ -952,10 +910,8 @@
     <!-- S3 · Gamification -->
     <div class="sol-row">
       <div class="copy">
-        <div class="n"><span class="bar"></span>S—03 · GAMIFICATION</div>
         <h3>단계적 <em>습관 형성</em></h3>
         <p>QUAT Mission, 운동 대결 등 Gamification 요소로 꾸준함을 구조화합니다. 운동 데이터를 측정·분석해 변화 수치를 데이터로 제공하고, 커머스 보상 연계로 성취감을 더합니다.</p>
-        <div class="row-meta"><span>Streak</span><span>Missions</span><span>Reward loop</span></div>
       </div>
       <div class="art">
         <div class="phones">
@@ -1256,7 +1212,6 @@
       <!-- V1 · AI (추상 데이터) -->
       <div class="vision-item reveal v-anim">
         <div class="vi-text">
-          <div class="n"><span class="bar"></span>N—01 · AI</div>
           <span class="tag">AI 초개인화 처방</span>
           <h3>AI 기반의<br/>초 개인화 처방</h3>
           <p>개인화 운동 플랜을 자동 생성하고, 체력·컨디션에 맞춰 실시간으로 루틴을 추천합니다. 일정·생활 패턴과 연동된 운동 스케줄링과 CRM 고도화로 운동 이탈까지 예측·개입합니다.</p>
@@ -1294,7 +1249,6 @@
       <!-- V2 · O2O (지도 + 핀) -->
       <div class="vision-item rev reveal v-anim">
         <div class="vi-text">
-          <div class="n"><span class="bar"></span>N—02 · O2O</div>
           <span class="tag">오프라인 확장</span>
           <h3>온라인 콘텐츠를<br/>오프라인 경험으로</h3>
           <p>홈트 전용 기구 라인업 확대, O2O 확장(헬스장 내 QUAT ZONE), 오프라인 스튜디오·팝업·클래스, B2B 오피스 웰니스까지. 디지털 헬스케어 감동을 손에 잡히는 물리적 경험으로 이어갑니다.</p>
@@ -1332,7 +1286,6 @@
       <!-- V3 · 슈퍼앱 (24H 시계 + 호 회전 애니메이션) -->
       <div class="vision-item reveal">
         <div class="vi-text">
-          <div class="n"><span class="bar"></span>N—03 · SUPERAPP</div>
           <span class="tag">헬스케어 슈퍼앱</span>
           <h3>헬스케어 전 영역으로<br/>확장합니다</h3>
           <p>운동을 넘어 수면·혈당 등 일상 루틴 케어, 멘탈 케어, IoT 제품(혈당계·체중계 등)과의 연계로 디지털 헬스케어 기반을 확장합니다. 24시간을 건강하게 채우는 슈퍼앱으로 도약합니다.</p>
