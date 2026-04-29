@@ -90,34 +90,37 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
   .reveal.visible{opacity:1;transform:translateY(0)}
 
-  /* ─────── HERO ─────── */
-  .hero{padding:64px 0 120px;position:relative}
-  .hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;flex-wrap:wrap;gap:16px}
-  .hero-top .tag-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .pill{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--fg-3);display:inline-flex;align-items:center;gap:8px;background:#fff}
-  .pill .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(0,0,0,.12);animation:livepulse 2s ease-in-out infinite}
-  @keyframes livepulse{0%,100%{box-shadow:0 0 0 4px rgba(0,0,0,.12)}50%{box-shadow:0 0 0 8px rgba(0,0,0,0)}}
+  /* ─────── HERO (위피 규격 — 사진 배경 + 텍스트 오버레이) ─────── */
+  .hero{position:relative;padding:0 0 120px;background:#fff}
+  .hero-stage{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#0a0a0a;padding:120px 48px 100px}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.78}
+  .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.2) 100%)}
+  .hero-content{position:relative;z-index:2;width:100%}
 
-  .hero-copy{max-width:880px}
-  .hero-copy h1{font-size:clamp(48px,6.2vw,92px);font-weight:700;letter-spacing:-0.04em;line-height:1.03;color:var(--fg)}
-  .hero-copy h1 em{font-style:normal;color:var(--fg);position:relative;white-space:nowrap}
-  .hero-copy .sub{font-size:17px;line-height:1.65;color:var(--fg-2);max-width:520px;margin-top:28px}
-  .hero-cta{margin-top:40px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .hero-copy{max-width:620px;display:flex;flex-direction:column;align-items:flex-start}
+  .hero-copy h1{font-size:clamp(32px,5.5vw,56px);font-weight:800;letter-spacing:-0.035em;line-height:1.25;color:#fff;margin-bottom:20px}
+  .hero-copy h1 em{font-style:normal;color:#fff;position:relative;white-space:nowrap}
+  .hero-copy h1 em::after{background:#fff !important;opacity:.95}
+  .hero-copy .sub{font-size:16px;line-height:1.7;color:rgba(255,255,255,.65);max-width:480px;margin:0 0 36px}
+  .hero-cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-  .hero-photo{
-    width:100%;aspect-ratio:21/9;margin-top:96px;position:relative;overflow:hidden;
-    background:linear-gradient(160deg,#f5f5f5 0%,#e5e5e5 55%,#d4d4d4 100%);
-  }
-  .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  /* 다크 hero 안 버튼 톤 */
+  .hero-stage .btn{border-color:rgba(255,255,255,.3);color:#fff;background:transparent}
+  .hero-stage .btn:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
+  .hero-stage .btn.accent{background:#fff;color:#000;border-color:#fff}
+  .hero-stage .btn.accent:hover{background:#fafafa;border-color:#fafafa;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
-  .stats{margin-top:96px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
+  .hero-stats-wrap{margin-top:96px}
+
+  .stats{margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
   .stat{padding:44px 0 40px;position:relative;display:flex;flex-direction:column;gap:18px}
   .stat + .stat{border-left:1px solid var(--line);padding-left:36px}
   .stat .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:10px;font-weight:500}
   .stat .k .ix{opacity:.55;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
   .stat .v{font-size:clamp(40px,4.4vw,56px);font-weight:600;letter-spacing:-0.04em;color:var(--fg);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";line-height:1;display:flex;align-items:baseline;gap:4px}
   .stat .v .u{font-size:.32em;color:var(--fg-3);font-weight:400;letter-spacing:0}
-  .stat .ctx{font-size:13px;line-height:1.55;color:var(--fg-3);max-width:26ch;letter-spacing:-.005em;margin-top:auto}
+  .stat .ctx{font-size:13px;line-height:1.55;color:var(--fg-3);max-width:26ch;letter-spacing:-.005em;margin-top:auto;white-space:nowrap}
 
   /* ─────── DNA ─────── */
   .dna-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -174,7 +177,6 @@
   .pain-row .prob{padding:36px 36px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--line);background:#fcfaf7}
   .pain-row .prob .meta{display:flex;justify-content:space-between;align-items:center}
   .pain-row .prob .meta .n{font-family:var(--mono);font-size:12px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-  .pain-row .prob .meta .n::before{content:"";width:10px;height:10px;border-radius:50%;border:1.5px solid var(--fg-3)}
   .pain-row .prob .meta .n em{font-style:normal;color:var(--fg);font-weight:600;font-family:var(--mono)}
   .pain-row .prob .meta .ct{font-family:var(--mono);font-size:10px;color:var(--fg-4);letter-spacing:.08em}
   .pain-row .prob .voice{
@@ -216,20 +218,10 @@
   .sol-row .row-meta span::before{content:"·";margin-right:10px;opacity:.5}
   .sol-row .row-meta span:first-child::before{content:""}
 
-  /* phone mockups */
+  /* phone mockups — 박스 제거, 폰 목업만 노출 */
   .phones{
-    position:relative;display:flex;gap:16px;justify-content:center;align-items:flex-end;padding:40px 20px;
-    background:linear-gradient(160deg,var(--bg-warm) 0%,#f5f5f5 100%);
-    border:1px solid var(--line);border-radius:20px;overflow:hidden;min-height:520px;
-  }
-  .phones::before{
-    content:"";position:absolute;inset:0;
-    background-image:radial-gradient(rgba(0,0,0,.04) 1px,transparent 1px);
-    background-size:18px 18px;opacity:.5;pointer-events:none;
-  }
-  .phones::after{
-    content:"";position:absolute;bottom:-30%;right:-10%;width:280px;height:280px;
-    background:radial-gradient(circle,rgba(0,0,0,.12),transparent 60%);pointer-events:none;
+    position:relative;display:flex;gap:24px;justify-content:center;align-items:flex-end;
+    background:transparent;border:none;min-height:520px;
   }
   .phone{
     position:relative;width:200px;aspect-ratio:9/19;background:#fff;
@@ -241,7 +233,7 @@
   .phone svg{width:100%;height:100%;display:block}
 
   /* ─────── GROWTH (위피 톤 — 2x2 카드 + 일러스트) ─────── */
-  .growth-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:8px 0}
+  .growth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:8px 0}
   .growth-card{
     background:#f5f5f5;
     border-radius:24px;
@@ -405,24 +397,28 @@
 <main id="main">
 
 <!-- 1. HERO -->
-<section class="section hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <h1>결심을 쉽게,<br/><em>습관은 확실하게</em>.</h1>
-      <p class="sub">매일의 작은 꾸준함을 모아 '진짜 나'를 만드는 건강관리 슈퍼앱. 고객이 건강을 포기하는 모든 순간에 함께합니다.</p>
-      <div class="hero-cta">
-        <a class="btn accent" href="https://quat.kr" target="_blank" rel="noopener noreferrer">
-          콰트 다운로드
-          <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="btn" href="https://career.nrise.net/ko/career">채용 공고 보기</a>
+<section class="hero">
+  <div class="hero-stage">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&q=80&auto=format&fit=crop" alt="콰트와 함께 운동 습관을 만들어가는 사용자" loading="eager" onerror="this.style.display='none'"/>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-copy">
+        <h1>결심을 쉽게,<br/><em>습관은 확실하게</em>.</h1>
+        <p class="sub">고객이 건강을 포기하는 모든 순간에 함께합니다. 매일의 작은 꾸준함을 모아 '진짜 나'를 만들게 합니다.</p>
+        <div class="hero-cta">
+          <a class="btn accent" href="https://quat.kr" target="_blank" rel="noopener noreferrer">
+            콰트 다운로드
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn" href="https://career.nrise.net/ko/career">채용 공고 보기</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="hero-photo">
-    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&q=80&auto=format&fit=crop" alt="콰트와 함께 운동 습관을 만들어가는 사용자" loading="eager" onerror="this.style.display='none'"/>
-  </div>
-  <div class="wrap">
+
+  <div class="wrap hero-stats-wrap">
     <div class="stats">
       <div class="stat">
         <div class="k">누적 회원</div>
@@ -432,7 +428,7 @@
       <div class="stat">
         <div class="k">자체 콘텐츠</div>
         <div class="v">2,500<span class="u">건</span></div>
-        <div class="ctx">유산소·요가·필라테스·근력·발레·도수 6종</div>
+        <div class="ctx">유산소·요가·필라테스·근력·발레·도수 등</div>
       </div>
       <div class="stat">
         <div class="k">총 소모 칼로리</div>
@@ -447,7 +443,7 @@
 <section class="section" id="dna">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="reveal">제품을 만드는 <em>세 가지 태도</em>.<br/><span class="muted">고객의 진짜를 파고드는 원칙.</span></h2>
+      <h2 class="reveal">우리는 이렇게<br/><span class="muted">고객의 삶을 변화시킵니다.</span></h2>
     </div>
 
     <div class="dna-grid">
@@ -494,7 +490,7 @@
 <section class="section problem" id="problem">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="reveal">'규칙적'이라는 <span class="muted">착각.</span></h2>
+      <h2 class="reveal">왜 우리는 <span class="muted">매번 실패할까요?</span></h2>
     </div>
 
     <div class="decay-card reveal" id="decay">
@@ -563,15 +559,13 @@
             <span class="n">PROBLEM <em>01</em></span>
           </div>
           <div class="voice">뭐부터 시작해야<br/>할지 모르겠어요.</div>
-          <div class="kw">시작이 두렵고</div>
-          <div class="desc">운동이 필요한 건 알지만 실행 문턱이 높다. 무엇부터 할지, 어떻게 할지 모른다.</div>
+          <div class="desc">운동이 필요한 건 알지만 무엇부터 할지, 어떻게 할지 모른다.</div>
           <div class="prob-stat">'건강 상태'를 운동 시작의 이유로 꼽는 사람이 <em>36% → 57%</em> (1년 만에 +21%p 급증).<span class="src">2025 국민생활체육조사</span></div>
         </div>
         <div class="ans">
-          <div class="ans-meta">QUAT / ANSWER · 01</div>
+          <div class="ans-meta">ANSWER · 01</div>
           <div class="tit">운동 허들을 <em>낮춥니다</em></div>
           <div class="sub">3분짜리 첫걸음부터. 부담 없이 매일 하나씩 눌러보게 되는 시작점을 설계했습니다.</div>
-          <div class="tags"><span>Daily pick</span><span>3–7 min</span><span>No equipment</span></div>
         </div>
       </div>
       <!-- P2 -->
@@ -581,15 +575,13 @@
             <span class="n">PROBLEM <em>02</em></span>
           </div>
           <div class="voice">내 수준에 맞는<br/>운동이 뭔지 모르겠어요.</div>
-          <div class="kw">맞지 않고</div>
-          <div class="desc">수많은 콘텐츠 중 내 상태·체력에 맞는 것을 찾기 힘들다. 시간만 흘러간다.</div>
+          <div class="desc">수많은 콘텐츠 중 내 상태와 체력에 맞는 것을 찾기 힘들다.</div>
           <div class="prob-stat">생활체육 강좌를 받지 않는 <em>1위 이유</em>는 '시간 부족'이 아니라 <em>'원하는 프로그램이 없어서'</em>.<span class="src">2025 국민생활체육조사</span></div>
         </div>
         <div class="ans">
-          <div class="ans-meta">QUAT / ANSWER · 02</div>
+          <div class="ans-meta">ANSWER · 02</div>
           <div class="tit">개인화된 <em>운동 처방</em></div>
           <div class="sub">12가지 건강 지표로 강도와 루틴을 매주 자동으로 조정합니다. 내 몸에 맞는 운동이 알아서 도착해요.</div>
-          <div class="tags"><span>12 signals</span><span>Adaptive</span><span>Weekly tune</span></div>
         </div>
       </div>
       <!-- P3 -->
@@ -599,15 +591,13 @@
             <span class="n">PROBLEM <em>03</em></span>
           </div>
           <div class="voice">항상 일주일도<br/>못 가요.</div>
-          <div class="kw">지속이 어렵다</div>
-          <div class="desc">계속할 수 있게 설계되지 않으면 누구나 무너진다. 의지만으로는 실패한다.</div>
+          <div class="desc">지속할 수 있게 설계되지 않으면 누구나 무너진다.</div>
           <div class="prob-stat">10대 '규칙적 운동' <em>−2.7%p</em>, 대신 '가끔 운동'만 역대 최대로 <em>+8.3%p</em>. 시작은 하지만 지속하지 못하고 있습니다.<span class="src">2025 국민생활체육조사</span></div>
         </div>
         <div class="ans">
-          <div class="ans-meta">QUAT / ANSWER · 03</div>
+          <div class="ans-meta">ANSWER · 03</div>
           <div class="tit">단계적 <em>습관 형성</em></div>
           <div class="sub">의지가 아닌 구조로. 7일 · 30일 · 100일의 리듬과 미션·보상 연계로 꾸준함을 만들어요.</div>
-          <div class="tags"><span>Streak</span><span>Missions</span><span>Reward loop</span></div>
         </div>
       </div>
     </div>
@@ -1162,38 +1152,6 @@
         <div class="g-art" aria-hidden="true">
           <svg viewBox="0 0 130 130" fill="none">
             <path d="M65 122 C28 95, 8 70, 18 48 C25 32, 42 28, 52 38 C58 44, 62 50, 65 58 C68 50, 72 44, 78 38 C88 28, 105 32, 112 48 C122 70, 102 95, 65 122 Z" fill="currentColor"/>
-          </svg>
-        </div>
-      </div>
-
-      <!-- G·04 — 매일 -->
-      <div class="growth-card">
-        <div class="g-text">
-          <div class="g-lab">습관 형성 지원</div>
-          <div class="g-num">365<small>일</small></div>
-          <div class="g-sub">쉬지 않은 매일, 어김없이</div>
-        </div>
-        <div class="g-art" aria-hidden="true">
-          <svg viewBox="0 0 130 130" fill="none">
-            <rect x="10" y="22" width="110" height="98" rx="10" stroke="currentColor" stroke-width="3"/>
-            <line x1="10" y1="48" x2="120" y2="48" stroke="currentColor" stroke-width="3"/>
-            <line x1="36" y1="10" x2="36" y2="32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            <line x1="94" y1="10" x2="94" y2="32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            <g fill="currentColor">
-              <circle cx="28" cy="66" r="3.5" opacity=".2"/>
-              <circle cx="46" cy="66" r="3.5" opacity=".2"/>
-              <circle cx="64" cy="66" r="3.5" opacity=".2"/>
-              <circle cx="82" cy="66" r="3.5" opacity=".2"/>
-              <circle cx="100" cy="66" r="3.5" opacity=".2"/>
-              <circle cx="28" cy="86" r="3.5" opacity=".2"/>
-              <circle cx="46" cy="86" r="3.5" opacity=".2"/>
-              <circle cx="64" cy="86" r="3.5" opacity=".2"/>
-              <circle cx="82" cy="86" r="3.5"/>
-              <circle cx="100" cy="86" r="6.5"/>
-              <circle cx="28" cy="106" r="3.5" opacity=".2"/>
-              <circle cx="46" cy="106" r="3.5" opacity=".2"/>
-              <circle cx="64" cy="106" r="3.5" opacity=".2"/>
-            </g>
           </svg>
         </div>
       </div>
