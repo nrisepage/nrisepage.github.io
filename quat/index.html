@@ -91,7 +91,7 @@
   .reveal.visible{opacity:1;transform:translateY(0)}
 
   /* ─────── HERO (위피 규격 — 사진 배경 + 텍스트 오버레이) ─────── */
-  .hero{position:relative;padding:0 0 120px;background:#fff}
+  .hero{position:relative;background:#fff}
   .hero-stage{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#0a0a0a;padding:120px 48px 100px}
   .hero-bg{position:absolute;inset:0;z-index:0}
   .hero-bg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.78}
@@ -111,16 +111,11 @@
   .hero-stage .btn.accent{background:#fff;color:#000;border-color:#fff}
   .hero-stage .btn.accent:hover{background:#fafafa;border-color:#fafafa;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
-  .hero-stats-wrap{margin-top:96px}
-
-  .stats{margin-top:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
-  .stat{padding:44px 0 40px;position:relative;display:flex;flex-direction:column;gap:18px}
-  .stat + .stat{border-left:1px solid var(--line);padding-left:36px}
-  .stat .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);display:flex;align-items:center;gap:10px;font-weight:500}
-  .stat .k .ix{opacity:.55;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
-  .stat .v{font-size:clamp(40px,4.4vw,56px);font-weight:600;letter-spacing:-0.04em;color:var(--fg);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";line-height:1;display:flex;align-items:baseline;gap:4px}
-  .stat .v .u{font-size:.32em;color:var(--fg-3);font-weight:400;letter-spacing:0}
-  .stat .ctx{font-size:13px;line-height:1.55;color:var(--fg-3);max-width:26ch;letter-spacing:-.005em;margin-top:auto;white-space:nowrap}
+  /* hero 안 작은 KPI (위피 톤) */
+  .hero-stats{display:flex;gap:48px;margin-top:48px;flex-wrap:wrap}
+  .hero-stat .num{font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.035em;line-height:1;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";display:inline-flex;align-items:baseline;gap:1px}
+  .hero-stat .num small{font-size:.55em;font-weight:600;color:rgba(255,255,255,.6);margin-left:2px;letter-spacing:0}
+  .hero-stat .label{font-size:11px;font-weight:500;color:rgba(255,255,255,.55);margin-top:6px;letter-spacing:.02em}
 
   /* ─────── DNA ─────── */
   .dna-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -351,6 +346,49 @@
     100%{transform:rotate(360deg);opacity:0}
   }
 
+  /* Problem A 시안 — 깔대기 + 본질 진단 */
+  .problem-head{text-align:center;margin-bottom:48px;display:block}
+  .problem-head .problem-lead{font-size:14px;color:var(--fg-3);font-weight:500;margin-bottom:18px;letter-spacing:-.005em}
+  .problem-head h2{font-size:clamp(36px,4.2vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.15;max-width:22ch;margin:0 auto}
+  .problem-head h2 .muted{color:var(--fg-3)}
+  .problem-essence{max-width:780px;margin:0 auto 8px;text-align:center}
+  .problem-essence p{font-size:17px;line-height:1.85;color:var(--fg-2);margin:0 0 28px;letter-spacing:-.005em}
+  .problem-essence p:last-child{margin-bottom:0}
+  .problem-essence em{font-style:normal;color:var(--fg);font-weight:600}
+  .problem-essence .essence-cta{margin-top:48px;font-size:18px;font-weight:600;color:var(--fg)}
+
+  /* problem-essence — 메타포 도식 (D 시안) */
+  .essence-d{display:flex;flex-direction:column;gap:48px;max-width:880px;margin:0 auto 8px;text-align:center}
+  .essence-d .essence-visual{width:100%;background:#fafafa;border:1px solid var(--line);border-radius:18px;padding:32px 40px}
+  .essence-d .essence-visual svg{width:100%;height:auto;display:block}
+  .essence-d .essence-text p{margin:0 0 24px}
+  .essence-d .essence-text p:last-child{margin-bottom:0}
+  /* 우측 6 step이 차례로 진행 → 목표 도달 → 체크 + ring 펄스 → 다시 */
+  @keyframes ess-step-on{0%,8%{opacity:.2}12%,90%{opacity:1}100%{opacity:.2}}
+  .essence-d .ess-step{opacity:.2;animation:ess-step-on 4.8s ease-in-out infinite}
+  .essence-d .ess-s1{animation-delay:0s}
+  .essence-d .ess-s2{animation-delay:.18s}
+  .essence-d .ess-s3{animation-delay:.36s}
+  .essence-d .ess-s4{animation-delay:.54s}
+  .essence-d .ess-s5{animation-delay:.72s}
+  .essence-d .ess-s6{animation-delay:.9s}
+
+  @keyframes ess-check-pop{
+    0%,22%{opacity:0;transform:scale(0)}
+    27%{opacity:1;transform:scale(1.25)}
+    32%,88%{opacity:1;transform:scale(1)}
+    95%,100%{opacity:0;transform:scale(.7)}
+  }
+  .essence-d .ess-check{transform-box:fill-box;transform-origin:center;animation:ess-check-pop 4.8s ease-in-out infinite}
+
+  @keyframes ess-goal-ring{
+    0%,20%{transform:scale(1);opacity:0}
+    25%{opacity:.55}
+    55%{transform:scale(3.4);opacity:0}
+    100%{transform:scale(3.4);opacity:0}
+  }
+  .essence-d .ess-goal-ring{transform-box:fill-box;transform-origin:center;animation:ess-goal-ring 4.8s ease-out infinite}
+
   /* ─────── RESPONSIVE ─────── */
   @media (max-width:1024px){
     .hero-body{grid-template-columns:1fr;gap:32px}
@@ -359,8 +397,7 @@
   @media (max-width:960px){
     .section{padding:96px 0}
     .hero{padding:40px 0 80px}
-    .stats{grid-template-columns:1fr}
-    .stat + .stat{border-left:none;border-top:1px solid var(--line);padding-left:0}
+    .hero-stats{gap:32px}
     .dna-grid{grid-template-columns:1fr}
     .dna-col + .dna-col{border-left:none;border-top:1px solid var(--line)}
     .sol-row,.sec-head,.vision-item,.pain-row{grid-template-columns:1fr}
@@ -417,134 +454,71 @@
       </div>
     </div>
   </div>
-
-  <div class="wrap hero-stats-wrap">
-    <div class="stats">
-      <div class="stat">
-        <div class="k">누적 회원</div>
-        <div class="v">600,000<span class="u">+</span></div>
-        <div class="ctx">매일 콰트를 켜는 사용자들</div>
-      </div>
-      <div class="stat">
-        <div class="k">자체 콘텐츠</div>
-        <div class="v">2,500<span class="u">건</span></div>
-        <div class="ctx">유산소·요가·필라테스·근력·발레·도수 등</div>
-      </div>
-      <div class="stat">
-        <div class="k">총 소모 칼로리</div>
-        <div class="v">300M<span class="u">kcal</span></div>
-        <div class="ctx">고객의 진짜 변화를 데이터로</div>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- 2. DNA -->
-<section class="section" id="dna">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="reveal">우리는 이렇게<br/><span class="muted">고객의 삶을 변화시킵니다.</span></h2>
-    </div>
-
-    <div class="dna-grid">
-      <div class="dna-col">
-        <div class="icn">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
-            <circle cx="11" cy="11" r="2.5" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <h3>고객에 대한 집착</h3>
-        <p>데이터 뒤에 숨겨진 고객의 진짜 심리를 파고들어, 포기하는 순간 전에 습관을 형성합니다.</p>
-      </div>
-      <div class="dna-col">
-        <div class="icn">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor" stroke="none"/>
-            <line x1="10" y1="6.5" x2="14" y2="6.5"/><line x1="6.5" y1="10" x2="6.5" y2="14"/>
-          </svg>
-        </div>
-        <h3>버티컬 비즈니스</h3>
-        <p>제품·콘텐츠·커머스의 시너지로, 오프라인 헬스케어의 감동을 온라인으로 잇습니다.</p>
-      </div>
-      <div class="dna-col">
-        <div class="icn">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 14 L10 8 L14 12 L20 6"/>
-            <path d="M14 6 L20 6 L20 12"/>
-            <circle cx="10" cy="8" r="1.5" fill="currentColor" stroke="none"/>
-            <circle cx="14" cy="12" r="1.5" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <h3>차별화된 동기</h3>
-        <p>고객이 건강을 포기하는 모든 순간을 예측하고, 지속 가능한 동기를 부여합니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3. MARKET PROBLEM -->
+<!-- 2. PROBLEM -->
 <section class="section problem" id="problem">
   <div class="wrap">
-    <div class="sec-head">
-      <h2 class="reveal">왜 우리는 <span class="muted">매번 실패할까요?</span></h2>
+    <div class="problem-head">
+      <p class="problem-lead reveal">운동을 꾸준히 해야 한다는 건 누구나 압니다.</p>
+      <h2 class="reveal">그런데 왜 우리는<br/><span class="muted">매번 실패할까요?</span></h2>
     </div>
 
-    <div class="decay-card reveal" id="decay">
-      <div class="decay-stat">
-        <div class="decay-label">국민생활체육조사 / 2025</div>
-        <div class="decay-big">40<span class="pct">%</span></div>
-        <div class="decay-caption">
-          스스로 <em>"규칙적으로 운동한다"</em>고 답한 사람 중,<br/>
-          실제로는 <em>월 3회 이하</em>의 빈도로 하는 비율.
-        </div>
-        <div class="decay-cite">2025 국민생활체육조사 · 문화체육관광부</div>
-      </div>
+    <div class="problem-essence reveal essence-d">
+      <div class="essence-visual">
+        <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
+          <!-- LEFT: 시장 — 결심에서 결과까지의 큰 갭 -->
+          <g>
+            <text x="180" y="36" font-size="11" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만 약속</text>
+            <!-- 출발: 결심 -->
+            <circle cx="60" cy="130" r="13" fill="#000"/>
+            <text x="60" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+            <!-- 끊긴 점선 (사이에 X) -->
+            <line x1="78" y1="130" x2="282" y2="130" stroke="rgba(0,0,0,.25)" stroke-dasharray="3 5" stroke-width="1.5"/>
+            <!-- 도착: 목표 (점선 원 + X = 미달) -->
+            <g transform="translate(300 130)">
+              <circle r="13" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="2" stroke-dasharray="3 4"/>
+              <line x1="-6" y1="-6" x2="6" y2="6" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="-6" y1="6" x2="6" y2="-6" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+            </g>
+            <text x="300" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="rgba(0,0,0,.5)">목표</text>
+          </g>
 
-      <div class="decay-viz">
-        <div class="decay-grid" aria-label="한 달 중 운동한 날 시각화">
-          <!-- Week 1: 강한 시작 (5 on) -->
-          <div class="cell on" title="1주차"></div>
-          <div class="cell on"></div>
-          <div class="cell on"></div>
-          <div class="cell on"></div>
-          <div class="cell dim"></div>
-          <div class="cell on"></div>
-          <div class="cell dim"></div>
-          <!-- Week 2: 흔들림 (2 on) -->
-          <div class="cell on"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell on"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <!-- Week 3: 붕괴 (1 on) -->
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell on"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <!-- Week 4: 사라짐 (0 on) -->
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-          <div class="cell dim"></div>
-        </div>
-      </div>
-    </div>
+          <!-- CENTER: 변환 -->
+          <g transform="translate(400 130)">
+            <line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/>
+            <path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
 
-    <div class="pain-intro reveal">
-      <p>운동 인구는 늘었습니다. 그런데 <em>운동 처방·상담 서비스 이용률</em>은 오히려 <em>12.6% → 7.9%</em>로 감소했습니다.</p>
-      <p>많이 하지만, 맞게 하고 있는지 모릅니다. 우리는 이 격차의 원인을 세 가지로 봅니다.</p>
+          <!-- RIGHT: 콰트 — 결심에서 결과까지 매일의 단계 -->
+          <g>
+            <text x="620" y="36" font-size="11" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 매일의 단계</text>
+            <!-- 출발: 결심 -->
+            <circle cx="500" cy="130" r="13" fill="#000"/>
+            <text x="500" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+            <!-- 작은 점들 + 잇는 라인 -->
+            <line x1="518" y1="130" x2="722" y2="130" stroke="#000" stroke-width="1.2"/>
+            <circle class="ess-step ess-s1" cx="540" cy="130" r="4" fill="#000"/>
+            <circle class="ess-step ess-s2" cx="572" cy="130" r="4" fill="#000"/>
+            <circle class="ess-step ess-s3" cx="604" cy="130" r="4" fill="#000"/>
+            <circle class="ess-step ess-s4" cx="636" cy="130" r="4" fill="#000"/>
+            <circle class="ess-step ess-s5" cx="668" cy="130" r="4" fill="#000"/>
+            <circle class="ess-step ess-s6" cx="700" cy="130" r="4" fill="#000"/>
+            <!-- 도착: 목표 (체크 등장 + ping ring) -->
+            <g transform="translate(740 130)">
+              <circle class="ess-goal-ring" cx="0" cy="0" r="13" fill="none" stroke="#000" stroke-width="1.5" opacity="0"/>
+              <circle r="13" fill="#000"/>
+              <path class="ess-check" d="M-5.5 0.5 L-1 5 L6 -4" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+            </g>
+            <text x="740" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+          </g>
+        </svg>
+      </div>
+      <div class="essence-text">
+        <p>재밌는 운동, 효과적인 커리큘럼, 전문적인 루틴은 이미 시장에 많습니다.<br/>시장은 <em>'결과'</em>만을 팔고 있을 뿐, 고객의 <em>'의지와 지속'</em>을 책임지지 않습니다.</p>
+        <p>헬스케어 시장의 본질적 문제는 <em>질(Quality)의 부족</em>이 아니라 <em>동기부여(Motivation)의 부족</em>입니다.</p>
+        <p class="essence-cta">콰트는 이 문제를 <em>세 가지</em>로 나누어 해결합니다.</p>
+      </div>
     </div>
 
     <div class="pain-list">
@@ -596,10 +570,6 @@
           <div class="sub">의지가 아닌 구조로. 7일 · 30일 · 100일의 리듬과 미션·보상 연계로 꾸준함을 만들어요.</div>
         </div>
       </div>
-    </div>
-
-    <div class="pain-summary reveal">
-      <p>콰트는 이 격차를 해결합니다. 본질적 문제는 질(Quality)의 부족이 아니라<br/><em>'동기부여(Motivation)의 부족'</em>. 개인의 의지력의 한계를 데이터와 시스템으로 넘어섭니다.</p>
     </div>
   </div>
 </section>
@@ -1200,44 +1170,7 @@
         </div>
       </div>
 
-      <!-- V2 · O2O (지도 + 핀) -->
-      <div class="vision-item rev reveal v-anim">
-        <div class="vi-text">
-          <span class="tag">오프라인 확장</span>
-          <h3>온라인 콘텐츠를<br/>오프라인 경험으로</h3>
-          <p>홈트 전용 기구 라인업 확대, O2O 확장(헬스장 내 QUAT ZONE), 오프라인 스튜디오·팝업·클래스, B2B 오피스 웰니스까지. 디지털 헬스케어 감동을 손에 잡히는 물리적 경험으로 이어갑니다.</p>
-        </div>
-        <div class="vi-art">
-          <div class="vart va-map">
-            <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet" font-family="Pretendard Variable, system-ui, sans-serif">
-              <defs>
-                <pattern id="vmGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M0 0L40 0M0 0L0 40" stroke="rgba(0,0,0,.05)"/>
-                </pattern>
-              </defs>
-              <rect width="500" height="400" fill="url(#vmGrid)"/>
-              <g stroke="rgba(0,0,0,.07)" fill="none" stroke-width="1.5">
-                <path d="M0,140 Q150,130 280,170 T500,150"/>
-                <path d="M0,260 Q200,250 320,280 T500,270"/>
-                <path d="M180,0 Q170,120 220,200 T200,400"/>
-              </g>
-              <g transform="translate(120 110)"><circle class="vm-ring vm-r1" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="600">성수 STUDIO</text></g>
-              <g transform="translate(380 90)"><circle class="vm-ring vm-r2" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="600" text-anchor="end">강남 ZONE</text></g>
-              <g transform="translate(380 280)"><circle class="vm-ring vm-r3" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="600" text-anchor="end">잠실 POP</text></g>
-              <g transform="translate(110 290)"><circle class="vm-ring vm-r4" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="600">분당 ZONE</text></g>
-              <g transform="translate(250 60)"><circle class="vm-ring vm-r5" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="0" y="-13" font-size="10" fill="#525252" font-weight="600" text-anchor="middle">부산 ZONE</text></g>
-              <g transform="translate(250 350)"><circle class="vm-ring vm-r6" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="0" y="20" font-size="10" fill="#525252" font-weight="600" text-anchor="middle">일산 STUDIO</text></g>
-              <g transform="translate(250 200)">
-                <circle r="38" fill="#000"/>
-                <text text-anchor="middle" y="-2" font-size="13" font-weight="700" fill="#fff">128+</text>
-                <text text-anchor="middle" y="11" font-size="7" fill="#fff" opacity=".75" letter-spacing=".06em">ZONE</text>
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- V3 · 슈퍼앱 (24H 시계 + 호 회전 애니메이션) -->
+      <!-- V2 · 슈퍼앱 (24H 시계 + 호 회전 애니메이션) -->
       <div class="vision-item reveal">
         <div class="vi-text">
           <span class="tag">헬스케어 슈퍼앱</span>
@@ -1296,6 +1229,43 @@
           </div>
         </div>
       </div>
+      <!-- V3 · O2O (지도 + 핀) -->
+      <div class="vision-item rev reveal v-anim">
+        <div class="vi-text">
+          <span class="tag">오프라인 확장</span>
+          <h3>온라인 콘텐츠를<br/>오프라인 경험으로</h3>
+          <p>홈트 전용 기구 라인업 확대, O2O 확장(헬스장 내 QUAT ZONE), 오프라인 스튜디오·팝업·클래스, B2B 오피스 웰니스까지. 디지털 헬스케어 감동을 손에 잡히는 물리적 경험으로 이어갑니다.</p>
+        </div>
+        <div class="vi-art">
+          <div class="vart va-map">
+            <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet" font-family="Pretendard Variable, system-ui, sans-serif">
+              <defs>
+                <pattern id="vmGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M0 0L40 0M0 0L0 40" stroke="rgba(0,0,0,.05)"/>
+                </pattern>
+              </defs>
+              <rect width="500" height="400" fill="url(#vmGrid)"/>
+              <g stroke="rgba(0,0,0,.07)" fill="none" stroke-width="1.5">
+                <path d="M0,140 Q150,130 280,170 T500,150"/>
+                <path d="M0,260 Q200,250 320,280 T500,270"/>
+                <path d="M180,0 Q170,120 220,200 T200,400"/>
+              </g>
+              <g transform="translate(120 110)"><circle class="vm-ring vm-r1" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="600">성수 STUDIO</text></g>
+              <g transform="translate(380 90)"><circle class="vm-ring vm-r2" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="600" text-anchor="end">강남 ZONE</text></g>
+              <g transform="translate(380 280)"><circle class="vm-ring vm-r3" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="-13" y="4" font-size="10" fill="#525252" font-weight="600" text-anchor="end">잠실 POP</text></g>
+              <g transform="translate(110 290)"><circle class="vm-ring vm-r4" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="13" y="4" font-size="10" fill="#525252" font-weight="600">분당 ZONE</text></g>
+              <g transform="translate(250 60)"><circle class="vm-ring vm-r5" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="0" y="-13" font-size="10" fill="#525252" font-weight="600" text-anchor="middle">부산 ZONE</text></g>
+              <g transform="translate(250 350)"><circle class="vm-ring vm-r6" r="6" fill="#000" opacity=".4"/><circle r="6" fill="#000"/><text x="0" y="20" font-size="10" fill="#525252" font-weight="600" text-anchor="middle">일산 STUDIO</text></g>
+              <g transform="translate(250 200)">
+                <circle r="38" fill="#000"/>
+                <text text-anchor="middle" y="-2" font-size="13" font-weight="700" fill="#fff">128+</text>
+                <text text-anchor="middle" y="11" font-size="7" fill="#fff" opacity=".75" letter-spacing=".06em">ZONE</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="vision-outro reveal">
