@@ -472,12 +472,16 @@
             <circle cx="60" cy="130" r="13" fill="#000"/>
             <text x="60" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="#000">결심</text>
             <!-- 끊긴 점선 (사이에 X) -->
-            <line x1="78" y1="130" x2="282" y2="130" stroke="rgba(0,0,0,.25)" stroke-dasharray="3 5" stroke-width="1.5"/>
-            <!-- 도착: 목표 (점선 원 + X = 미달) -->
-            <g transform="translate(300 130)">
-              <circle r="13" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="2" stroke-dasharray="3 4"/>
+            <line x1="78" y1="130" x2="164" y2="130" stroke="rgba(0,0,0,.25)" stroke-dasharray="3 5" stroke-width="1.5"/>
+            <line x1="196" y1="130" x2="282" y2="130" stroke="rgba(0,0,0,.25)" stroke-dasharray="3 5" stroke-width="1.5"/>
+            <!-- 중앙: 단절을 의미하는 X -->
+            <g transform="translate(180 130)">
               <line x1="-6" y1="-6" x2="6" y2="6" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
               <line x1="-6" y1="6" x2="6" y2="-6" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+            </g>
+            <!-- 도착: 목표 (점선 원 = 미달) -->
+            <g transform="translate(300 130)">
+              <circle r="13" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="2" stroke-dasharray="3 4"/>
             </g>
             <text x="300" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="rgba(0,0,0,.5)">목표</text>
           </g>
