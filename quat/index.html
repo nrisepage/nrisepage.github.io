@@ -199,6 +199,7 @@
 
   /* ─────── SOLUTION ─────── */
   .sol-row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:88px 0;border-top:1px solid var(--line);align-items:center}
+  .sec-head + .sol-row{border-top:none}
   .sol-row:last-child{border-bottom:1px solid var(--line)}
   .sol-row .copy{grid-column:1 / span 5}
   .sol-row .art{grid-column:7 / span 6}
@@ -229,8 +230,8 @@
 
   /* ─────── GROWTH (위피 톤 — 2x2 카드 + 일러스트) ─────── */
   /* Growth — 위피 사양 (제목 중앙 + 3카드 + 흰 카드 + 우측 하단 큰 이모지) */
-  #growth .sec-head{display:block;text-align:center;margin-bottom:0}
-  #growth .sec-head h2{text-align:center;max-width:720px;margin:0 auto}
+  #growth .sec-head, #solution .sec-head{display:block;text-align:center;margin-bottom:0}
+  #growth .sec-head h2, #solution .sec-head h2{text-align:center;max-width:720px;margin:0 auto}
   .growth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:1100px;margin:56px auto 0;padding:0}
   .growth-card{
     padding:32px 28px;
