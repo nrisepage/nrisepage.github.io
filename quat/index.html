@@ -416,6 +416,75 @@
     .menu{display:none}
     footer .wrap{flex-direction:column;align-items:flex-start}
   }
+
+  /* Mobile (≤640px) — 진짜 폰 사이즈 최적화 */
+  @media (max-width:640px){
+    .wrap{padding:0 20px}
+    .section{padding:64px 0}
+    /* Nav */
+    .nav .wrap{height:60px}
+    .menu{display:none}
+    /* Hero */
+    .hero-stage{padding:88px 20px 48px}
+    .hero-logo{height:36px;margin-bottom:18px}
+    .hero-badge{font-size:12px;padding:6px 16px;margin-bottom:24px}
+    .hero-copy h1{font-size:clamp(28px,7.5vw,36px);letter-spacing:-1.2px;margin-bottom:16px}
+    .hero-copy .sub{font-size:14px;margin-bottom:28px}
+    .hero-stats{gap:18px}
+    .hero-stat-num{font-size:22px;letter-spacing:-.5px}
+    .hero-stat-label{font-size:10px}
+    /* Problem */
+    #problem .problem-head{margin-bottom:32px}
+    .problem-head h2{font-size:clamp(24px,5.5vw,32px);line-height:1.25}
+    .problem-essence{padding:0}
+    .problem-essence p{font-size:14px;line-height:1.7}
+    .problem-essence .essence-cta{font-size:15px;margin-top:24px}
+    .essence-d .essence-visual{padding:20px 12px}
+    .pain-list{margin:32px auto 0;gap:14px}
+    .pain-row{min-height:auto;border-radius:14px}
+    .pain-row .prob{padding:24px 20px;gap:12px}
+    .pain-row .prob .voice{font-size:20px}
+    .pain-row .prob .desc{font-size:13px}
+    .pain-row .ans{padding:24px 20px;gap:8px}
+    .pain-row .ans::before{top:24px;left:20px}
+    .pain-row .ans .ans-meta{padding-top:12px;font-size:10px}
+    .pain-row .ans .tit{font-size:18px;margin-top:2px}
+    .pain-row .ans .sub{font-size:12px}
+    .pain-closing{margin:24px auto 0;padding:20px 4px 0;font-size:13px}
+    .pain-closing .src{font-size:10px}
+    /* Solution */
+    .sol-row{padding:64px 0}
+    .sol-row h3{font-size:24px;margin-top:16px}
+    .sol-row p{font-size:14px;margin-top:14px}
+    .phones{padding:16px 0;gap:12px;min-height:auto}
+    .phone{width:135px;border-radius:22px}
+    .phone.offset{margin-bottom:18px}
+    /* Growth */
+    #growth .sec-head h2{font-size:clamp(24px,5.5vw,32px)}
+    .growth-grid{margin-top:32px}
+    .growth-card .growth-num{font-size:clamp(28px,7vw,36px);letter-spacing:-1px}
+    .growth-card .growth-label{font-size:13px;margin-bottom:6px}
+    .growth-card .growth-ctx{font-size:11px;max-width:60%}
+    .growth-card .growth-icon{width:72px;height:72px;font-size:56px;right:10px;bottom:6px}
+    /* Next Step */
+    #next .sec-head h2{font-size:clamp(24px,5.5vw,32px)}
+    .vision-list{gap:0}
+    .vision-item{padding:64px 0;gap:20px}
+    .vision-item h3{font-size:22px;margin-top:14px}
+    .vision-item p{font-size:14px;margin-top:14px}
+    .vision-item .tag{font-size:10px;padding:3px 9px}
+    .vision-outro{margin-top:48px}
+    .vision-outro p{font-size:14px}
+    /* CTA */
+    .cta{padding:88px 0}
+    .cta h2{font-size:clamp(28px,7.5vw,40px);letter-spacing:-1.2px;margin-top:18px}
+    .cta .btns{margin-top:32px;flex-direction:column;width:100%;gap:8px}
+    .cta .btns .btn{width:100%;justify-content:center}
+    .cta .ref{margin-top:28px;font-size:10px;gap:14px}
+    /* Footer */
+    footer{padding:32px 0}
+    footer .copy{font-size:11px}
+  }
 </style>
 </head>
 <body>
