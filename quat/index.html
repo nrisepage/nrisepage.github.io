@@ -471,7 +471,7 @@
         <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
           <!-- LEFT: 시장 — 결심에서 결과까지의 큰 갭 -->
           <g>
-            <text x="180" y="36" font-size="11" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만 약속</text>
+            <text x="180" y="36" font-size="11" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
             <!-- 출발: 결심 -->
             <circle cx="60" cy="130" r="13" fill="#000"/>
             <text x="60" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="#000">결심</text>
@@ -496,20 +496,38 @@
             <path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </g>
 
-          <!-- RIGHT: 콰트 — 결심에서 결과까지 매일의 단계 -->
+          <!-- RIGHT: 콰트 — 단계적 습관 형성 (✓로 운동 체크 의미 부여) -->
           <g>
-            <text x="620" y="36" font-size="11" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 매일의 단계</text>
+            <text x="620" y="36" font-size="11" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 단계적 습관 형성</text>
             <!-- 출발: 결심 -->
             <circle cx="500" cy="130" r="13" fill="#000"/>
             <text x="500" y="174" font-size="11.5" font-weight="600" text-anchor="middle" fill="#000">결심</text>
-            <!-- 작은 점들 + 잇는 라인 -->
+            <!-- 매일 운동 체크 6개 + 잇는 라인 -->
             <line x1="518" y1="130" x2="722" y2="130" stroke="#000" stroke-width="1.2"/>
-            <circle class="ess-step ess-s1" cx="540" cy="130" r="4" fill="#000"/>
-            <circle class="ess-step ess-s2" cx="572" cy="130" r="4" fill="#000"/>
-            <circle class="ess-step ess-s3" cx="604" cy="130" r="4" fill="#000"/>
-            <circle class="ess-step ess-s4" cx="636" cy="130" r="4" fill="#000"/>
-            <circle class="ess-step ess-s5" cx="668" cy="130" r="4" fill="#000"/>
-            <circle class="ess-step ess-s6" cx="700" cy="130" r="4" fill="#000"/>
+            <g class="ess-step ess-s1" transform="translate(540 130)">
+              <circle r="6" fill="#000"/>
+              <path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="ess-step ess-s2" transform="translate(572 130)">
+              <circle r="6" fill="#000"/>
+              <path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="ess-step ess-s3" transform="translate(604 130)">
+              <circle r="6" fill="#000"/>
+              <path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="ess-step ess-s4" transform="translate(636 130)">
+              <circle r="6" fill="#000"/>
+              <path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="ess-step ess-s5" transform="translate(668 130)">
+              <circle r="6" fill="#000"/>
+              <path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="ess-step ess-s6" transform="translate(700 130)">
+              <circle r="6" fill="#000"/>
+              <path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
             <!-- 도착: 목표 (체크 등장 + ping ring) -->
             <g transform="translate(740 130)">
               <circle class="ess-goal-ring" cx="0" cy="0" r="13" fill="none" stroke="#000" stroke-width="1.5" opacity="0"/>
