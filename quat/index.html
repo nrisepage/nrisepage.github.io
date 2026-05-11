@@ -53,21 +53,15 @@
   .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
 
   /* ─────── NAV ─────── */
-  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0);transition:all .2s ease;border-bottom:1px solid transparent}
-  .nav.scrolled{background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom-color:var(--line)}
+  /* Nav — WIPPY 사양 (fixed, 스크롤 시 다크 BG) */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0);transition:background .4s}
+  .nav.scrolled{background:rgba(10,10,15,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{display:inline-flex;align-items:center;height:20px}
-  .logo img{height:100%;width:auto;display:block;transition:filter .2s ease}
-  .nav.scrolled .logo img{filter:invert(1)}
+  .logo{display:inline-flex;align-items:center;height:18px}
+  .logo img{height:100%;width:auto;display:block}
   .menu{display:flex;gap:32px;align-items:center}
-  .menu a{font-size:14px;color:rgba(255,255,255,.75);transition:color .2s}
-  .menu a:hover{color:#fff}
-  .menu a.current{color:#fff;position:relative}
-  .menu a.current::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:1px;background:#fff}
-  .nav.scrolled .menu a{color:var(--fg-2)}
-  .nav.scrolled .menu a:hover{color:var(--fg)}
-  .nav.scrolled .menu a.current{color:var(--fg)}
-  .nav.scrolled .menu a.current::after{background:var(--fg)}
+  .menu a{font-size:14px;font-weight:500;color:rgba(255,255,255,.6);transition:color .3s}
+  .menu a:hover, .menu a.current{color:#fff}
 
   /* ─────── SHARED ─────── */
   .section{padding:140px 0;position:relative}
