@@ -56,8 +56,9 @@
   .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0);transition:all .2s ease;border-bottom:1px solid transparent}
   .nav.scrolled{background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom-color:var(--line)}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .logo{font-weight:700;letter-spacing:-0.01em;font-size:17px;display:inline-flex;align-items:center;gap:10px}
-  .logo .dot{width:6px;height:6px;background:var(--accent);border-radius:1px}
+  .logo{display:inline-flex;align-items:center;height:20px}
+  .logo img{height:100%;width:auto;display:block;transition:filter .2s ease}
+  .nav.scrolled .logo img{filter:invert(1)}
   .menu{display:flex;gap:32px;align-items:center}
   .menu a{font-size:14px;color:var(--fg-2);transition:color .2s}
   .menu a:hover{color:var(--fg)}
@@ -424,7 +425,7 @@
 <!-- Nav -->
 <header class="nav" id="nav">
   <div class="wrap">
-    <a href="https://nrise.net" class="logo"><span class="dot"></span>NRISE</a>
+    <a href="https://nrise.net" class="logo"><img src="logo/logo-white-clean.png" alt="NRISE"></a>
     <nav class="menu">
       <a href="https://career.nrise.net/ko/home">회사소개</a>
       <a href="/quat" class="current">QUAT</a>
