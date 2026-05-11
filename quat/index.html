@@ -60,10 +60,14 @@
   .logo img{height:100%;width:auto;display:block;transition:filter .2s ease}
   .nav.scrolled .logo img{filter:invert(1)}
   .menu{display:flex;gap:32px;align-items:center}
-  .menu a{font-size:14px;color:var(--fg-2);transition:color .2s}
-  .menu a:hover{color:var(--fg)}
-  .menu a.current{color:var(--fg);position:relative}
-  .menu a.current::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:1px;background:var(--fg)}
+  .menu a{font-size:14px;color:rgba(255,255,255,.75);transition:color .2s}
+  .menu a:hover{color:#fff}
+  .menu a.current{color:#fff;position:relative}
+  .menu a.current::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:1px;background:#fff}
+  .nav.scrolled .menu a{color:var(--fg-2)}
+  .nav.scrolled .menu a:hover{color:var(--fg)}
+  .nav.scrolled .menu a.current{color:var(--fg)}
+  .nav.scrolled .menu a.current::after{background:var(--fg)}
 
   /* ─────── SHARED ─────── */
   .section{padding:140px 0;position:relative}
