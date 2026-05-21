@@ -20,10 +20,14 @@
     *{margin:0;padding:0;box-sizing:border-box}
     html{font-family:var(--font);scroll-behavior:smooth;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
     body{background:#fff;color:#1a1a1a;overflow-x:hidden}
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background .4s}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0);transition:background .4s}
     .nav.scrolled{background:rgba(10,10,15,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-    .nav-logo{height:18px}.nav-logo img{height:100%;width:auto;display:block}
-    .nav-links{display:flex;gap:32px;list-style:none}.nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}.nav-links a:hover,.nav-links a.active{color:#fff}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1240px;margin:0 auto;padding:0 32px}
+    .logo{display:inline-flex;align-items:center;height:18px}
+    .logo img{height:100%;width:auto;display:block}
+    .menu{display:flex;gap:32px;align-items:center}
+    .menu a{font-size:14px;font-weight:500;color:rgba(255,255,255,.6);transition:color .3s;text-decoration:none}
+    .menu a:hover, .menu a.current{color:#fff}
     .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}.nav-toggle span{display:block;width:22px;height:2px;background:#fff;transition:all .3s}
     .nav-toggle.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.nav-toggle.open span:nth-child(2){opacity:0}.nav-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
     .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 48px 100px;background:#0a0a0f}
@@ -211,7 +215,11 @@
     .venn-mobile-card p{font-size:13px;color:#777;line-height:1.6}
     @media(max-width:768px){.venn-wrap{display:none}.venn-mobile{display:flex}}
     @media(max-width:768px){
-      .nav{padding:16px 20px}.nav-links{display:none;position:absolute;inset:0;background:#0a0a0f;flex-direction:column;align-items:center;justify-content:center;gap:32px}.nav-links.open{display:flex}.nav-links a{font-size:20px}.nav-toggle{display:flex;position:relative;z-index:1}
+      .nav .wrap{height:60px;padding:0 20px}
+      .menu{display:none;position:absolute;inset:0;background:#0a0a0f;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+      .menu.open{display:flex}
+      .menu a{font-size:20px}
+      .nav-toggle{display:flex;position:relative;z-index:1}
       .nav.menu-active{position:fixed;inset:0;background:#0a0a0f;z-index:100}
       body.menu-open{overflow:hidden}
       .hero{padding:100px 20px 60px;min-height:auto}
@@ -229,17 +237,19 @@
   </style>
 </head>
 <body>
-<nav class="nav" id="nav">
-  <a href="https://nrise.net" class="nav-logo"><img src="/logo-white-clean.png" alt="NRISE"></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="https://career.nrise.net/ko/home">회사소개</a></li>
-    <li><a href="/wippy" class="active" aria-current="page">WIPPY</a></li>
-    <li><a href="/culture-page.html">조직문화</a></li>
-    <li><a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer">블로그</a></li>
-    <li><a href="https://career.nrise.net/ko/career">채용</a></li>
-  </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="https://nrise.net" class="logo"><img src="/logo-white-clean.png" alt="NRISE"></a>
+    <nav class="menu" id="navMenu">
+      <a href="https://career.nrise.net/ko/home">회사소개</a>
+      <a href="/wippy" class="current" aria-current="page">WIPPY</a>
+      <a href="/culture-page.html">조직문화</a>
+      <a href="https://blog.nrise.net/" target="_blank" rel="noopener noreferrer">블로그</a>
+      <a href="https://career.nrise.net/ko/career">채용</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
 
 <!-- 1. HERO -->
 <section class="hero">
@@ -673,11 +683,11 @@
 <script>
 (function(){
   'use strict';
-  var nav=document.getElementById('nav'),navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks'),ticking=false;
-  navToggle.addEventListener('click',function(){var o=navLinks.classList.toggle('open');navToggle.classList.toggle('open',o);navToggle.setAttribute('aria-expanded',o?'true':'false');document.body.classList.toggle('menu-open',o);nav.classList.toggle('menu-active',o)});
-  navLinks.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){navLinks.classList.remove('open');navToggle.classList.remove('open');navToggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');nav.classList.remove('menu-active')})});
-  navLinks.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
-  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){nav.classList.toggle('scrolled',window.pageYOffset>60);ticking=false});ticking=true}},{passive:true});
+  var nav=document.getElementById('nav'),navToggle=document.getElementById('navToggle'),navMenu=document.getElementById('navMenu'),ticking=false;
+  navToggle.addEventListener('click',function(){var o=navMenu.classList.toggle('open');navToggle.classList.toggle('open',o);navToggle.setAttribute('aria-expanded',o?'true':'false');document.body.classList.toggle('menu-open',o);nav.classList.toggle('menu-active',o)});
+  navMenu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){navMenu.classList.remove('open');navToggle.classList.remove('open');navToggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open');nav.classList.remove('menu-active')})});
+  navMenu.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){nav.classList.toggle('scrolled',window.pageYOffset>8);ticking=false});ticking=true}},{passive:true});
   var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');ro.unobserve(en.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
 })();
