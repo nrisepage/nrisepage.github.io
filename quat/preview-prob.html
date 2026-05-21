@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prob 박스 시안 비교 (v2 — 실제 사양 반영)</title>
+<title>Prob 박스 시안 비교 (v3 — 실제 콘텐츠 반영)</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root{
@@ -18,6 +18,7 @@
   .container{max-width:1240px;margin:0 auto;padding:0 32px}
   h1{font-size:22px;margin-bottom:6px;font-weight:600;letter-spacing:-.02em}
   .intro{color:var(--fg-3);font-size:14px;margin-bottom:40px}
+  .intro code{font-family:var(--mono);font-size:12px;background:#fff;padding:2px 6px;border-radius:4px;border:1px solid var(--line)}
   .variant{margin-bottom:48px;background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
   .variant-label{display:flex;gap:12px;align-items:baseline;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
   .variant-label h2{font-size:16px;font-weight:600;letter-spacing:-.01em}
@@ -32,9 +33,6 @@
   .prob .n em{font-style:normal;color:var(--fg);font-weight:600;font-family:var(--mono)}
   .prob .voice{font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-0.015em;color:var(--fg);line-height:1.35}
   .prob .voice::before{content:"\201C";color:var(--accent);font-size:1.1em;margin-right:4px}
-  .prob-stat{margin-top:14px;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.65;color:var(--fg-3);letter-spacing:-.005em}
-  .prob-stat em{font-style:normal;color:var(--fg);font-weight:600}
-  .prob-stat .src{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--fg-4);text-transform:uppercase}
 
   .ans{padding:36px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative;overflow:hidden;background:#fff}
   .ans::before{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(249,73,135,.16) 0%,transparent 65%);pointer-events:none;z-index:0;filter:blur(2px)}
@@ -45,23 +43,26 @@
   .ans .tit em{font-style:normal;color:var(--accent)}
   .ans .sub{font-size:13px;color:var(--fg-2);line-height:1.65}
 
-  /* === A안: 타이포 키움 === */
-  .variant.a .prob .voice{font-size:clamp(28px,2.8vw,38px);line-height:1.3}
-  .variant.a .prob-stat{font-size:14px}
+  /* === A안: voice 크게 === */
+  .variant.a .prob .voice{font-size:clamp(30px,3.4vw,46px);line-height:1.25;letter-spacing:-.025em}
 
   /* === B안: 거대 데코 따옴표 === */
-  .variant.b .prob::after{content:"\201C";position:absolute;bottom:-130px;right:-20px;font-size:380px;line-height:1;color:rgba(0,0,0,.045);font-family:Georgia,serif;font-weight:700;pointer-events:none;z-index:0}
+  .variant.b .prob::after{content:"\201C";position:absolute;bottom:-140px;right:-20px;font-size:420px;line-height:1;color:rgba(0,0,0,.05);font-family:Georgia,serif;font-weight:700;pointer-events:none;z-index:0}
 
   /* === C안: 키워드 추가 === */
-  .variant.c .prob .kw{font-size:clamp(40px,5vw,60px);font-weight:700;letter-spacing:-.04em;line-height:1.05;color:var(--fg)}
+  .variant.c .prob .kw{font-size:clamp(48px,6vw,76px);font-weight:700;letter-spacing:-.045em;line-height:1.02;color:var(--fg)}
   .variant.c .prob .voice{font-size:16px;color:var(--fg-2);font-weight:500;line-height:1.55}
   .variant.c .prob .voice::before{color:var(--fg-4)}
 
-  /* === D안: A+C 추천 조합 === */
-  .variant.d .prob .kw{font-size:clamp(44px,5.4vw,68px);font-weight:700;letter-spacing:-.04em;line-height:1.05;color:var(--fg)}
-  .variant.d .prob .voice{font-size:17px;color:var(--fg-2);font-weight:500;line-height:1.55}
-  .variant.d .prob .voice::before{color:var(--fg-4)}
-  .variant.d .prob-stat{font-size:13px}
+  /* === D안: A + B (voice 크게 + 따옴표 데코) === */
+  .variant.d .prob .voice{font-size:clamp(30px,3.4vw,46px);line-height:1.25;letter-spacing:-.025em}
+  .variant.d .prob::after{content:"\201C";position:absolute;bottom:-140px;right:-20px;font-size:420px;line-height:1;color:rgba(0,0,0,.05);font-family:Georgia,serif;font-weight:700;pointer-events:none;z-index:0}
+
+  /* === E안: C + B (키워드 + 따옴표 데코) === */
+  .variant.e .prob .kw{font-size:clamp(48px,6vw,76px);font-weight:700;letter-spacing:-.045em;line-height:1.02;color:var(--fg)}
+  .variant.e .prob .voice{font-size:16px;color:var(--fg-2);font-weight:500;line-height:1.55}
+  .variant.e .prob .voice::before{color:var(--fg-4)}
+  .variant.e .prob::after{content:"\201C";position:absolute;bottom:-140px;right:-20px;font-size:420px;line-height:1;color:rgba(0,0,0,.05);font-family:Georgia,serif;font-weight:700;pointer-events:none;z-index:0}
 
   @media(max-width:768px){
     .pain-row{grid-template-columns:1fr;min-height:auto}
@@ -72,20 +73,19 @@
 </head>
 <body>
 <div class="container">
-  <h1>Problem 박스 시안 비교 (v2 — 라이브 사양 반영)</h1>
-  <p class="intro">실제 grid `7fr 3fr` · prob padding 40px · voice clamp(20,2vw,26) · min-height 200px 동일 적용. P1 케이스.</p>
+  <h1>Problem 박스 시안 비교 (v3 — 실제 콘텐츠 반영)</h1>
+  <p class="intro">실제 prob 박스는 <code>meta + voice</code> 단 2줄. P1 케이스. grid <code>7fr 3fr</code> · padding <code>40px</code> · voice <code>clamp(20–26)</code> · min-height <code>200px</code> 그대로.</p>
 
   <!-- Current -->
   <div class="variant current">
     <div class="variant-label">
       <h2>현재 (실제 라이브)</h2>
-      <span class="meta">voice 20–26px · stat 12.5px · 데코 없음 · prob 70% / ans 30%</span>
+      <span class="meta">meta + voice만 · 휑함의 원인</span>
     </div>
     <div class="pain-row">
       <div class="prob">
         <div class="meta"><span class="n">PROBLEM <em>01</em></span></div>
         <div class="voice">어떤 운동부터 시작해야 할지 막막해요.</div>
-        <div class="prob-stat">건강 유지 방법 중 식사 <em>61.4%</em>·금주/금연 <em>58.3%</em>·수면 <em>50.7%</em>는 잘 하지만, 규칙적 체육활동만 <em>39.4%</em>로 가장 낮습니다.<span class="src">2025 국민생활체육조사 · 문화체육관광부</span></div>
       </div>
       <div class="ans">
         <div class="ans-logo"><img src="logo/quat_logo_logotype.png" alt="QUAT"></div>
@@ -98,14 +98,13 @@
   <!-- A -->
   <div class="variant a">
     <div class="variant-label">
-      <h2>A안 — 타이포그래피 키움</h2>
-      <span class="meta">voice clamp(28,2.8vw,38px) · stat 14px · 콘텐츠 추가 없음</span>
+      <h2>A안 — voice 대폭 키움</h2>
+      <span class="meta">voice 20–26px → 30–46px · 콘텐츠 추가 없이 시각 무게만 보강</span>
     </div>
     <div class="pain-row">
       <div class="prob">
         <div class="meta"><span class="n">PROBLEM <em>01</em></span></div>
         <div class="voice">어떤 운동부터 시작해야 할지 막막해요.</div>
-        <div class="prob-stat">건강 유지 방법 중 식사 <em>61.4%</em>·금주/금연 <em>58.3%</em>·수면 <em>50.7%</em>는 잘 하지만, 규칙적 체육활동만 <em>39.4%</em>로 가장 낮습니다.<span class="src">2025 국민생활체육조사 · 문화체육관광부</span></div>
       </div>
       <div class="ans">
         <div class="ans-logo"><img src="logo/quat_logo_logotype.png" alt="QUAT"></div>
@@ -119,13 +118,12 @@
   <div class="variant b">
     <div class="variant-label">
       <h2>B안 — 거대 데코 따옴표</h2>
-      <span class="meta">우하단 ❝ 380px · opacity .045 · ANS의 핑크 글로우와 데코 페어링</span>
+      <span class="meta">우하단 ❝ 420px · opacity .05 · ANS 핑크 글로우와 페어링</span>
     </div>
     <div class="pain-row">
       <div class="prob">
         <div class="meta"><span class="n">PROBLEM <em>01</em></span></div>
         <div class="voice">어떤 운동부터 시작해야 할지 막막해요.</div>
-        <div class="prob-stat">건강 유지 방법 중 식사 <em>61.4%</em>·금주/금연 <em>58.3%</em>·수면 <em>50.7%</em>는 잘 하지만, 규칙적 체육활동만 <em>39.4%</em>로 가장 낮습니다.<span class="src">2025 국민생활체육조사 · 문화체육관광부</span></div>
       </div>
       <div class="ans">
         <div class="ans-logo"><img src="logo/quat_logo_logotype.png" alt="QUAT"></div>
@@ -139,14 +137,13 @@
   <div class="variant c">
     <div class="variant-label">
       <h2>C안 — 키워드 한 단어 추가</h2>
-      <span class="meta">kw clamp(40,5vw,60px) · voice 16px 보조 톤 · 위피 pain-kw 패턴</span>
+      <span class="meta">kw 48–76px · voice는 16px 보조 톤으로 강등 · 위피 pain-kw 패턴</span>
     </div>
     <div class="pain-row">
       <div class="prob">
         <div class="meta"><span class="n">PROBLEM <em>01</em></span></div>
         <div class="kw">막막함</div>
         <div class="voice">어떤 운동부터 시작해야 할지 막막해요.</div>
-        <div class="prob-stat">건강 유지 방법 중 식사 <em>61.4%</em>·금주/금연 <em>58.3%</em>·수면 <em>50.7%</em>는 잘 하지만, 규칙적 체육활동만 <em>39.4%</em>로 가장 낮습니다.<span class="src">2025 국민생활체육조사 · 문화체육관광부</span></div>
       </div>
       <div class="ans">
         <div class="ans-logo"><img src="logo/quat_logo_logotype.png" alt="QUAT"></div>
@@ -156,18 +153,36 @@
     </div>
   </div>
 
-  <!-- D bonus -->
+  <!-- D -->
   <div class="variant d">
     <div class="variant-label">
-      <h2>D안 (추천) — A+C 조합</h2>
-      <span class="meta">kw clamp(44,5.4vw,68px) · voice 17px 보조 · stat 13px</span>
+      <h2>D안 — A + B 조합 (큰 voice + 따옴표 데코)</h2>
+      <span class="meta">기존 콘텐츠 유지, 시각 무게만 최대치로</span>
+    </div>
+    <div class="pain-row">
+      <div class="prob">
+        <div class="meta"><span class="n">PROBLEM <em>01</em></span></div>
+        <div class="voice">어떤 운동부터 시작해야 할지 막막해요.</div>
+      </div>
+      <div class="ans">
+        <div class="ans-logo"><img src="logo/quat_logo_logotype.png" alt="QUAT"></div>
+        <div class="tit"><em>운동 허들</em>을 낮춥니다</div>
+        <div class="sub">난이도 선택을 통해 매일 부담 없는 운동을 시작할 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E -->
+  <div class="variant e">
+    <div class="variant-label">
+      <h2>E안 — C + B 조합 (키워드 + 따옴표 데코)</h2>
+      <span class="meta">위피 패턴 + 데코 둘 다 — prob 영역에 시각 무게 + 톤 + 텍스처 다 채움</span>
     </div>
     <div class="pain-row">
       <div class="prob">
         <div class="meta"><span class="n">PROBLEM <em>01</em></span></div>
         <div class="kw">막막함</div>
         <div class="voice">어떤 운동부터 시작해야 할지 막막해요.</div>
-        <div class="prob-stat">건강 유지 방법 중 식사 <em>61.4%</em>·금주/금연 <em>58.3%</em>·수면 <em>50.7%</em>는 잘 하지만, 규칙적 체육활동만 <em>39.4%</em>로 가장 낮습니다.<span class="src">2025 국민생활체육조사 · 문화체육관광부</span></div>
       </div>
       <div class="ans">
         <div class="ans-logo"><img src="logo/quat_logo_logotype.png" alt="QUAT"></div>
