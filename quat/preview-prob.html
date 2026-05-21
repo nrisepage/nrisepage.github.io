@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prob 박스 시안 비교</title>
+<title>Prob 박스 시안 비교 (v2 — 실제 사양 반영)</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root{
@@ -15,22 +15,22 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);background:#f0f0f2;color:var(--fg);padding:40px 24px;-webkit-font-smoothing:antialiased;line-height:1.5}
-  .container{max-width:1100px;margin:0 auto}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
   h1{font-size:22px;margin-bottom:6px;font-weight:600;letter-spacing:-.02em}
   .intro{color:var(--fg-3);font-size:14px;margin-bottom:40px}
   .variant{margin-bottom:48px;background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
-  .variant-label{display:flex;gap:12px;align-items:baseline;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .variant-label{display:flex;gap:12px;align-items:baseline;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
   .variant-label h2{font-size:16px;font-weight:600;letter-spacing:-.01em}
   .variant-label .meta{font-size:12px;color:var(--fg-3);font-family:var(--mono)}
 
-  /* === QUAT pain-row 동일 사양 === */
-  .pain-row{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:280px}
-  .prob{padding:36px 36px;display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--line);background:#fcfaf7;position:relative;overflow:hidden}
+  /* === QUAT 라이브 사양 1:1 복제 === */
+  .pain-row{display:grid;grid-template-columns:7fr 3fr;gap:0;min-height:200px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+  .prob{padding:40px 40px;display:flex;flex-direction:column;justify-content:center;gap:18px;border-right:1px solid var(--line);background:#fcfaf7;position:relative;overflow:hidden}
   .prob > *{position:relative;z-index:1}
   .prob .meta{display:flex;justify-content:space-between;align-items:center}
-  .prob .n{font-family:var(--mono);font-size:12px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .prob .n{font-family:var(--mono);font-size:11px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
   .prob .n em{font-style:normal;color:var(--fg);font-weight:600;font-family:var(--mono)}
-  .prob .voice{font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.4;color:var(--fg)}
+  .prob .voice{font-size:clamp(20px,2vw,26px);font-weight:600;letter-spacing:-0.015em;color:var(--fg);line-height:1.35}
   .prob .voice::before{content:"\201C";color:var(--accent);font-size:1.1em;margin-right:4px}
   .prob-stat{margin-top:14px;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.65;color:var(--fg-3);letter-spacing:-.005em}
   .prob-stat em{font-style:normal;color:var(--fg);font-weight:600}
@@ -46,39 +46,40 @@
   .ans .sub{font-size:13px;color:var(--fg-2);line-height:1.65}
 
   /* === A안: 타이포 키움 === */
-  .variant.a .prob .voice{font-size:34px;line-height:1.3}
+  .variant.a .prob .voice{font-size:clamp(28px,2.8vw,38px);line-height:1.3}
   .variant.a .prob-stat{font-size:14px}
 
   /* === B안: 거대 데코 따옴표 === */
-  .variant.b .prob::after{content:"\201C";position:absolute;bottom:-90px;right:-12px;font-size:320px;line-height:1;color:rgba(0,0,0,.05);font-family:Georgia,serif;font-weight:700;pointer-events:none;z-index:0}
+  .variant.b .prob::after{content:"\201C";position:absolute;bottom:-130px;right:-20px;font-size:380px;line-height:1;color:rgba(0,0,0,.045);font-family:Georgia,serif;font-weight:700;pointer-events:none;z-index:0}
 
   /* === C안: 키워드 추가 === */
-  .variant.c .prob .kw{font-size:48px;font-weight:700;letter-spacing:-.04em;line-height:1.1;color:var(--fg);margin-top:6px;margin-bottom:-4px}
-  .variant.c .prob .voice{font-size:17px;color:var(--fg-2);font-weight:500;line-height:1.5}
+  .variant.c .prob .kw{font-size:clamp(40px,5vw,60px);font-weight:700;letter-spacing:-.04em;line-height:1.05;color:var(--fg)}
+  .variant.c .prob .voice{font-size:16px;color:var(--fg-2);font-weight:500;line-height:1.55}
   .variant.c .prob .voice::before{color:var(--fg-4)}
 
-  /* === D안 (보너스): A+C 조합 === */
-  .variant.d .prob .kw{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1.05;color:var(--fg);margin-top:6px;margin-bottom:-2px}
-  .variant.d .prob .voice{font-size:18px;color:var(--fg-2);font-weight:500;line-height:1.5}
+  /* === D안: A+C 추천 조합 === */
+  .variant.d .prob .kw{font-size:clamp(44px,5.4vw,68px);font-weight:700;letter-spacing:-.04em;line-height:1.05;color:var(--fg)}
+  .variant.d .prob .voice{font-size:17px;color:var(--fg-2);font-weight:500;line-height:1.55}
   .variant.d .prob .voice::before{color:var(--fg-4)}
   .variant.d .prob-stat{font-size:13px}
 
   @media(max-width:768px){
-    .pain-row{grid-template-columns:1fr}
-    .prob{border-right:none;border-bottom:1px solid var(--line)}
+    .pain-row{grid-template-columns:1fr;min-height:auto}
+    .prob{border-right:none;border-bottom:1px solid var(--line);padding:24px 20px}
+    .ans{padding:24px 20px}
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Problem 박스 시안 비교</h1>
-  <p class="intro">P1(시작점) 케이스로 시안 4종 비교. 같은 ANSWER 박스 옆에 두어 좌우 시각 무게 균형 확인.</p>
+  <h1>Problem 박스 시안 비교 (v2 — 라이브 사양 반영)</h1>
+  <p class="intro">실제 grid `7fr 3fr` · prob padding 40px · voice clamp(20,2vw,26) · min-height 200px 동일 적용. P1 케이스.</p>
 
   <!-- Current -->
   <div class="variant current">
     <div class="variant-label">
-      <h2>현재 (baseline)</h2>
-      <span class="meta">voice 24px · prob-stat 12.5px · 데코 없음</span>
+      <h2>현재 (실제 라이브)</h2>
+      <span class="meta">voice 20–26px · stat 12.5px · 데코 없음 · prob 70% / ans 30%</span>
     </div>
     <div class="pain-row">
       <div class="prob">
@@ -98,7 +99,7 @@
   <div class="variant a">
     <div class="variant-label">
       <h2>A안 — 타이포그래피 키움</h2>
-      <span class="meta">voice 24→34px · stat 12.5→14px · 추가 콘텐츠 없음</span>
+      <span class="meta">voice clamp(28,2.8vw,38px) · stat 14px · 콘텐츠 추가 없음</span>
     </div>
     <div class="pain-row">
       <div class="prob">
@@ -117,8 +118,8 @@
   <!-- B -->
   <div class="variant b">
     <div class="variant-label">
-      <h2>B안 — 거대 데코 따옴표 (배경 글리프)</h2>
-      <span class="meta">우하단 ❝ 320px · opacity .05 · ANS의 핑크 글로우와 페어링</span>
+      <h2>B안 — 거대 데코 따옴표</h2>
+      <span class="meta">우하단 ❝ 380px · opacity .045 · ANS의 핑크 글로우와 데코 페어링</span>
     </div>
     <div class="pain-row">
       <div class="prob">
@@ -137,8 +138,8 @@
   <!-- C -->
   <div class="variant c">
     <div class="variant-label">
-      <h2>C안 — 키워드 한 단어 추가 (위피 pain-kw 패턴)</h2>
-      <span class="meta">키워드 48px · voice 24→17px 보조 톤 강등 · 위피처럼 본질 한 단어 강조</span>
+      <h2>C안 — 키워드 한 단어 추가</h2>
+      <span class="meta">kw clamp(40,5vw,60px) · voice 16px 보조 톤 · 위피 pain-kw 패턴</span>
     </div>
     <div class="pain-row">
       <div class="prob">
@@ -155,11 +156,11 @@
     </div>
   </div>
 
-  <!-- D - bonus A+C combo -->
+  <!-- D bonus -->
   <div class="variant d">
     <div class="variant-label">
-      <h2>D안 (보너스) — A+C 조합 추천안</h2>
-      <span class="meta">키워드 52px (더 크게) · voice 18px 보조 · stat 13px · 추천했던 조합</span>
+      <h2>D안 (추천) — A+C 조합</h2>
+      <span class="meta">kw clamp(44,5.4vw,68px) · voice 17px 보조 · stat 13px</span>
     </div>
     <div class="pain-row">
       <div class="prob">
