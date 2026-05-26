@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>시장 다이어그램 시안 v3 — 퀄리티 보정</title>
+<title>시장 다이어그램 시안 v4 — 컨테이너 제거 / 결과+가격</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
@@ -43,15 +43,10 @@
   @keyframes ess-goal-ring{0%,82%{opacity:0;transform:scale(.6)}92%{opacity:1;transform:scale(1.6)}100%{opacity:0;transform:scale(1.8)}}
   .essence-d .ess-goal-ring{transform-box:fill-box;transform-origin:center;animation:ess-goal-ring 4.8s ease-out infinite}
 
-  /* 상품 카드 호버/펄스 미세 모션 */
-  @keyframes card-rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-  .card-a{animation:card-rise 3.6s ease-in-out infinite}
-  .card-b{animation:card-rise 3.6s ease-in-out infinite -1.2s}
-  .card-c{animation:card-rise 3.6s ease-in-out infinite -2.4s}
-
-  /* 가격 라벨 페이드 */
-  @keyframes price-flash{0%,40%,100%{opacity:.85}20%{opacity:1}}
-  .price-mark{animation:price-flash 3.6s ease-in-out infinite}
+  @keyframes tag-sway{0%,100%{transform:rotate(0deg)}50%{transform:rotate(2deg)}}
+  .tag-sway-1{animation:tag-sway 3s ease-in-out infinite;transform-origin:top center}
+  .tag-sway-2{animation:tag-sway 3.4s ease-in-out infinite -1s;transform-origin:top center}
+  .tag-sway-3{animation:tag-sway 3.2s ease-in-out infinite -2s;transform-origin:top center}
 
   h1{font-size:22px;margin-bottom:6px;font-weight:600;letter-spacing:-.02em;color:var(--fg)}
   .intro{color:var(--fg-3);font-size:14px;margin-bottom:40px;line-height:1.7}
@@ -62,67 +57,43 @@
   .variant-label:first-of-type{margin-top:0}
   .caption{margin-top:14px;font-size:13.5px;color:var(--fg-3);line-height:1.7;max-width:780px}
   .caption em{font-style:normal;color:var(--fg);font-weight:600}
-
-  /* SVG 정제: 부드러운 그림자 필터 정의용 */
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>시장 다이어그램 시안 v3 — 퀄리티 보정</h1>
-  <p class="intro">selling 메타포는 유지하되 톤·디테일을 정제: 흑+핑크 위주, 드롭섀도우, 정제된 타이포, RIGHT 측 미니멀과 톤 매칭.</p>
+  <h1>시장 다이어그램 시안 v4 — 자판기 버리고 "결과+가격"만 남김</h1>
+  <p class="intro">진단 (a/c/d): 결과가 안 보임 + 자판기 메타포가 흐림 + 위계 약함. → <em>컨테이너 chrome 제거하고 결과 워드를 hero로</em>, 가격으로 transaction 시그널, 강한 타입 위계.</p>
 
-  <!-- 공통 SVG defs 한 번만 -->
+  <!-- 공통 defs -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
-      <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".08"/>
-      </filter>
       <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
         <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity=".1"/>
       </filter>
-      <linearGradient id="shelf-grad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="rgba(0,0,0,.18)"/>
-        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
-      </linearGradient>
-      <linearGradient id="machine-grad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#fff"/>
-        <stop offset="100%" stop-color="#f8f8f8"/>
-      </linearGradient>
+      <filter id="receipt-shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity=".12"/>
+      </filter>
     </defs>
   </svg>
 
-  <!-- ============ D안 v2: 진열대 ============ -->
-  <div class="variant-label"><h2>D안 v2 — 진열대 (Storefront)</h2><span class="meta">드롭섀도우 + 정제된 카드 + 그라데이션 진열대 + 모노톤 ₩ 라벨</span></div>
+  <!-- ============ G안: Pure typography ============ -->
+  <div class="variant-label"><h2>G안 — Pure typography (가장 미니멀)</h2><span class="meta">컨테이너 없음 · 결과 워드 크게 · ₩ 핑크 가격으로 transaction</span></div>
   <div class="problem-essence essence-d">
     <div class="essence-visual">
       <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
         <g>
           <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
-          <!-- 진열대 (그라데이션 + 그림자) -->
-          <rect x="36" y="170" width="288" height="6" rx="1" fill="#000"/>
-          <rect x="36" y="176" width="288" height="14" fill="url(#shelf-grad)"/>
-          <!-- 카드 1 -->
-          <g class="card-a" filter="url(#card-shadow)">
-            <rect x="48" y="92" width="80" height="78" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
-            <text x="88" y="118" font-size="10" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".04em">DIET</text>
-            <text x="88" y="140" font-size="17" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.02em">−10kg</text>
-            <text class="price-mark" x="88" y="160" font-size="9" font-weight="600" text-anchor="middle" fill="#f94987" letter-spacing=".06em">₩ 보장</text>
-          </g>
-          <!-- 카드 2 -->
-          <g class="card-b" filter="url(#card-shadow)">
-            <rect x="140" y="92" width="80" height="78" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
-            <text x="180" y="118" font-size="10" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".04em">BODY</text>
-            <text x="180" y="140" font-size="17" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.02em">복근</text>
-            <text class="price-mark" x="180" y="160" font-size="9" font-weight="600" text-anchor="middle" fill="#f94987" letter-spacing=".06em">₩ 보장</text>
-          </g>
-          <!-- 카드 3 -->
-          <g class="card-c" filter="url(#card-shadow)">
-            <rect x="232" y="92" width="80" height="78" rx="10" fill="#fff" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
-            <text x="272" y="118" font-size="10" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".04em">POSTURE</text>
-            <text x="272" y="140" font-size="17" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.02em">교정</text>
-            <text class="price-mark" x="272" y="160" font-size="9" font-weight="600" text-anchor="middle" fill="#f94987" letter-spacing=".06em">₩ 보장</text>
-          </g>
-          <text x="180" y="208" font-size="12" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.5)" letter-spacing=".04em">결과를 상품처럼 판매</text>
+          <!-- 3 결과 워드 (큰 위계) -->
+          <text x="80" y="118" font-size="26" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.03em">−10kg</text>
+          <text x="180" y="118" font-size="26" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.03em">복근</text>
+          <text x="280" y="118" font-size="26" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.03em">교정</text>
+          <!-- ₩ 가격 (핑크 액센트, 2단계 작은 위계) -->
+          <text x="80" y="152" font-size="13" font-weight="700" text-anchor="middle" fill="#f94987" letter-spacing=".02em">₩ 99,000</text>
+          <text x="180" y="152" font-size="13" font-weight="700" text-anchor="middle" fill="#f94987" letter-spacing=".02em">₩ 99,000</text>
+          <text x="280" y="152" font-size="13" font-weight="700" text-anchor="middle" fill="#f94987" letter-spacing=".02em">₩ 99,000</text>
+          <!-- 하단 라인 + 라벨 -->
+          <line x1="40" y1="180" x2="320" y2="180" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+          <text x="180" y="200" font-size="11" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.5)" letter-spacing=".08em">RESULT ONLY · NO PROCESS</text>
         </g>
         <g transform="translate(400 130)"><line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/><path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></g>
         <g>
@@ -141,35 +112,34 @@
         </g>
       </svg>
     </div>
-    <p class="caption">정제된 카드 (드롭섀도우 + 영문 라벨 + 미세 부유 모션) + 검은색 진열대 + 그림자 그라데이션. <em>RIGHT 측 미니멀 톤과 결이 맞으면서도 "상점" 컨텍스트 명확</em>.</p>
+    <p class="caption">위계: <em>결과 (26px 검정 굵게) → 가격 (13px 핑크) → 라벨 (11px 회색)</em>. 컨테이너 chrome 0%, RIGHT의 미니멀 톤과 완전 매칭. 메시지가 가장 직격.</p>
   </div>
 
-  <!-- ============ E안 v2: 광고판 (다리 제거) ============ -->
-  <div class="variant-label"><h2>E안 v2 — 광고판 (Refined)</h2><span class="meta">다리 제거, 깨끗한 프레임, 원형 SALE 도장, 카피 위계 정리</span></div>
+  <!-- ============ H안: Receipt ============ -->
+  <div class="variant-label"><h2>H안 — Receipt (영수증/주문서)</h2><span class="meta">item + price 리스트 + 합계 라인. transaction이 가장 명시적</span></div>
   <div class="problem-essence essence-d">
     <div class="essence-visual">
       <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
         <g>
           <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
-          <!-- 광고판 (깨끗한 프레임 + 그림자) -->
-          <g filter="url(#card-shadow)">
-            <rect x="46" y="62" width="268" height="148" rx="10" fill="#fff" stroke="rgba(0,0,0,.12)" stroke-width="1.2"/>
-            <!-- 상단 작은 라벨 -->
-            <text x="180" y="86" font-size="10" font-weight="600" text-anchor="middle" fill="#737373" letter-spacing=".12em">PROMISE</text>
-            <line x1="160" y1="94" x2="200" y2="94" stroke="rgba(0,0,0,.2)" stroke-width="1"/>
-            <!-- 큰 약속 카피 -->
-            <text x="180" y="124" font-size="22" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.025em">"−10kg"</text>
-            <text x="180" y="154" font-size="22" font-weight="800" text-anchor="middle" fill="#f94987" letter-spacing="-.025em">"복근"</text>
-            <text x="180" y="184" font-size="22" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.025em">"교정"</text>
+          <!-- 영수증 본체 (찢어진 하단 effect) -->
+          <g filter="url(#receipt-shadow)">
+            <path d="M70 60 L290 60 L290 200 L283 195 L276 200 L269 195 L262 200 L255 195 L248 200 L241 195 L234 200 L227 195 L220 200 L213 195 L206 200 L199 195 L192 200 L185 195 L178 200 L171 195 L164 200 L157 195 L150 200 L143 195 L136 200 L129 195 L122 200 L115 195 L108 200 L101 195 L94 200 L87 195 L80 200 L73 195 L70 200 Z" fill="#fff" stroke="rgba(0,0,0,.12)" stroke-width="1"/>
           </g>
-          <!-- 원형 SALE 도장 (광고판 우상단 모서리에 올라타듯) -->
-          <g class="price-mark" transform="translate(304 70) rotate(12)">
-            <circle r="22" fill="#f94987"/>
-            <circle r="22" fill="none" stroke="#fff" stroke-width=".8" stroke-dasharray="2 2"/>
-            <text y="-2" font-size="8" font-weight="700" text-anchor="middle" fill="#fff" letter-spacing=".1em">SALE</text>
-            <text y="9" font-size="6" font-weight="600" text-anchor="middle" fill="#fff" letter-spacing=".06em">RESULT</text>
-          </g>
-          <text x="180" y="230" font-size="12" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.5)" letter-spacing=".04em">결과를 광고처럼 판매</text>
+          <!-- 헤더 -->
+          <text x="180" y="84" font-size="11" font-weight="700" text-anchor="middle" fill="#000" letter-spacing=".18em">RESULT SHOP</text>
+          <line x1="85" y1="94" x2="275" y2="94" stroke="rgba(0,0,0,.15)" stroke-dasharray="2 3"/>
+          <!-- 항목 -->
+          <text x="90" y="116" font-size="12" font-weight="600" fill="#000" text-anchor="start">다이어트 −10kg</text>
+          <text x="270" y="116" font-size="12" font-weight="700" fill="#f94987" text-anchor="end">₩ 99,000</text>
+          <text x="90" y="138" font-size="12" font-weight="600" fill="#000" text-anchor="start">복근 만들기</text>
+          <text x="270" y="138" font-size="12" font-weight="700" fill="#f94987" text-anchor="end">₩ 99,000</text>
+          <text x="90" y="160" font-size="12" font-weight="600" fill="#000" text-anchor="start">자세 교정</text>
+          <text x="270" y="160" font-size="12" font-weight="700" fill="#f94987" text-anchor="end">₩ 99,000</text>
+          <!-- 합계 -->
+          <line x1="85" y1="172" x2="275" y2="172" stroke="rgba(0,0,0,.25)" stroke-width="1"/>
+          <text x="90" y="188" font-size="11" font-weight="700" fill="#000" text-anchor="start" letter-spacing=".06em">TOTAL</text>
+          <text x="270" y="188" font-size="13" font-weight="800" fill="#000" text-anchor="end">₩ 297,000</text>
         </g>
         <g transform="translate(400 130)"><line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/><path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></g>
         <g>
@@ -188,46 +158,57 @@
         </g>
       </svg>
     </div>
-    <p class="caption">광고판 다리 제거하고 단순 프레임 + 그림자. <em>"PROMISE" 헤드라벨 + 큰 약속 3줄 + 원형 SALE 도장</em>으로 광고 톤만 남기고 일러스트 군더더기 제거.</p>
+    <p class="caption">영수증 모양(하단 톱니 절취) + RESULT SHOP 헤더 + 항목·가격·합계. <em>transaction이 가장 명시적</em> ("거래가 일어남"이 한눈에 보임). 결과 항목명도 풀 카피로 더 명확.</p>
   </div>
 
-  <!-- ============ F안 v2: 자판기 (refined) ============ -->
-  <div class="variant-label"><h2>F안 v2 — 자판기 (Refined)</h2><span class="meta">부드러운 외형, 2×2 진열로 여백 확보, 핑크 액센트 가격 칩</span></div>
+  <!-- ============ I안: Price tag stickers ============ -->
+  <div class="variant-label"><h2>I안 — Price tag stickers (가격표 스티커)</h2><span class="meta">결과 워드에 핑크 ₩ 가격표가 매달림. 시장 좌판 가격표 느낌</span></div>
   <div class="problem-essence essence-d">
     <div class="essence-visual">
       <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
         <g>
           <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
-          <!-- 자판기 본체 (드롭섀도우, 라운드, 그라데이션) -->
-          <g filter="url(#card-shadow)">
-            <rect x="84" y="60" width="192" height="160" rx="14" fill="url(#machine-grad)" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>
-            <!-- 헤더 -->
-            <rect x="84" y="60" width="192" height="28" rx="14" fill="#000"/>
-            <rect x="84" y="74" width="192" height="14" fill="#000"/>
-            <text x="180" y="78" font-size="9" font-weight="700" text-anchor="middle" fill="#fff" letter-spacing=".15em">RESULT VENDING</text>
-            <!-- 진열 칸 2×2 -->
-            <g>
-              <!-- 칸 1 -->
-              <rect x="100" y="100" width="78" height="48" rx="6" fill="#fafafa" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
-              <text x="139" y="120" font-size="9" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".05em">DIET</text>
-              <text x="139" y="138" font-size="13" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.02em">−10kg</text>
-              <!-- 칸 2 -->
-              <rect x="182" y="100" width="78" height="48" rx="6" fill="#fafafa" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
-              <text x="221" y="120" font-size="9" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".05em">BODY</text>
-              <text x="221" y="138" font-size="13" font-weight="800" text-anchor="middle" fill="#f94987" letter-spacing="-.02em">복근</text>
-              <!-- 칸 3 -->
-              <rect x="100" y="154" width="78" height="48" rx="6" fill="#fafafa" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
-              <text x="139" y="174" font-size="9" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".05em">POSTURE</text>
-              <text x="139" y="192" font-size="13" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.02em">교정</text>
-              <!-- 칸 4 -->
-              <rect x="182" y="154" width="78" height="48" rx="6" fill="#fafafa" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
-              <text x="221" y="174" font-size="9" font-weight="500" text-anchor="middle" fill="#737373" letter-spacing=".05em">FITNESS</text>
-              <text x="221" y="192" font-size="13" font-weight="800" text-anchor="middle" fill="#f94987" letter-spacing="-.02em">힙업</text>
+          <!-- 결과 + 가격표 페어 (3세트) -->
+          <!-- 1: −10kg -->
+          <g class="tag-sway-1">
+            <!-- 끈 -->
+            <line x1="80" y1="84" x2="80" y2="106" stroke="rgba(0,0,0,.3)" stroke-width="1"/>
+            <circle cx="80" cy="84" r="2" fill="#000"/>
+            <!-- 가격표 (라벨 모양) -->
+            <g transform="translate(80 130)">
+              <path d="M-30 -20 L24 -20 L34 0 L24 20 L-30 20 Z" fill="#f94987"/>
+              <circle cx="22" cy="0" r="3" fill="#fff"/>
+              <text x="-2" y="-4" font-size="9" font-weight="600" text-anchor="middle" fill="#fff" letter-spacing=".04em">₩</text>
+              <text x="-2" y="8" font-size="10" font-weight="800" text-anchor="middle" fill="#fff" letter-spacing="-.02em">99,000</text>
             </g>
-            <!-- 핑크 가격 점 -->
-            <circle class="price-mark" cx="265" cy="76" r="3" fill="#f94987"/>
+            <!-- 결과 워드 -->
+            <text x="80" y="180" font-size="20" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.03em">−10kg</text>
           </g>
-          <text x="180" y="234" font-size="12" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.5)" letter-spacing=".04em">결과를 자판기처럼 판매</text>
+          <!-- 2: 복근 -->
+          <g class="tag-sway-2">
+            <line x1="180" y1="84" x2="180" y2="106" stroke="rgba(0,0,0,.3)" stroke-width="1"/>
+            <circle cx="180" cy="84" r="2" fill="#000"/>
+            <g transform="translate(180 130)">
+              <path d="M-30 -20 L24 -20 L34 0 L24 20 L-30 20 Z" fill="#f94987"/>
+              <circle cx="22" cy="0" r="3" fill="#fff"/>
+              <text x="-2" y="-4" font-size="9" font-weight="600" text-anchor="middle" fill="#fff" letter-spacing=".04em">₩</text>
+              <text x="-2" y="8" font-size="10" font-weight="800" text-anchor="middle" fill="#fff" letter-spacing="-.02em">99,000</text>
+            </g>
+            <text x="180" y="180" font-size="20" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.03em">복근</text>
+          </g>
+          <!-- 3: 교정 -->
+          <g class="tag-sway-3">
+            <line x1="280" y1="84" x2="280" y2="106" stroke="rgba(0,0,0,.3)" stroke-width="1"/>
+            <circle cx="280" cy="84" r="2" fill="#000"/>
+            <g transform="translate(280 130)">
+              <path d="M-30 -20 L24 -20 L34 0 L24 20 L-30 20 Z" fill="#f94987"/>
+              <circle cx="22" cy="0" r="3" fill="#fff"/>
+              <text x="-2" y="-4" font-size="9" font-weight="600" text-anchor="middle" fill="#fff" letter-spacing=".04em">₩</text>
+              <text x="-2" y="8" font-size="10" font-weight="800" text-anchor="middle" fill="#fff" letter-spacing="-.02em">99,000</text>
+            </g>
+            <text x="280" y="180" font-size="20" font-weight="800" text-anchor="middle" fill="#000" letter-spacing="-.03em">교정</text>
+          </g>
+          <text x="180" y="220" font-size="11" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.5)" letter-spacing=".06em">결과에 가격이 매달려 있음</text>
         </g>
         <g transform="translate(400 130)"><line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/><path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></g>
         <g>
@@ -246,7 +227,7 @@
         </g>
       </svg>
     </div>
-    <p class="caption">동전 슬롯·인출구 같은 <em>군더더기 제거</em>. 6칸 → 2×2 4칸으로 여백 확보 + 영문 카테고리 라벨 + 핑크 강조 + 그라데이션 본체. 자판기 형태감만 깔끔하게.</p>
+    <p class="caption">3개의 가격표가 끈에 매달려 흔들리고 그 아래 결과 워드. <em>"이게 상품이다 / 가격이 있다"</em>가 직관적. 가격표 형태 자체가 "selling" 시그널.</p>
   </div>
 </div>
 </body>
