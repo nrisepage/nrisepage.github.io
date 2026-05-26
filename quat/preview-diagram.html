@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>시장 다이어그램 시안 비교</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  /* ===== quat/index.html 사양 1:1 복제 ===== */
+  :root{
+    --bg:#ffffff;
+    --fg:#000000;
+    --fg-2:#525252;
+    --fg-3:#737373;
+    --fg-4:#a3a3a3;
+    --line:rgba(0,0,0,0.08);
+    --accent:#f94987;
+    --sans:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono:var(--sans);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+  body{background:#f0f0f2;color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding:48px 0}
+  svg{display:block}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* === 라이브의 essence-d 룰 그대로 === */
+  .problem-essence{max-width:780px;margin:0 auto 8px;text-align:center}
+  .essence-d{display:flex;flex-direction:column;gap:48px;max-width:880px;margin:0 auto 8px;text-align:center}
+  .essence-d .essence-visual{width:100%;background:#fafafa;border:1px solid var(--line);border-radius:18px;padding:32px 40px}
+  .essence-d .essence-visual svg{width:100%;height:auto;display:block}
+
+  @keyframes ess-step-on{0%,8%{opacity:.2}12%,90%{opacity:1}100%{opacity:.2}}
+  .essence-d .ess-step{opacity:.2;animation:ess-step-on 4.8s ease-in-out infinite}
+  .essence-d .ess-s1{animation-delay:0s}
+  .essence-d .ess-s2{animation-delay:.18s}
+  .essence-d .ess-s3{animation-delay:.36s}
+  .essence-d .ess-s4{animation-delay:.54s}
+  .essence-d .ess-s5{animation-delay:.72s}
+  .essence-d .ess-s6{animation-delay:.9s}
+
+  @keyframes ess-check-pop{0%,80%{opacity:0;transform:scale(.5)}90%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+  .essence-d .ess-check{transform-box:fill-box;transform-origin:center;animation:ess-check-pop 4.8s ease-in-out infinite}
+  @keyframes ess-goal-ring{0%,82%{opacity:0;transform:scale(.6)}92%{opacity:1;transform:scale(1.6)}100%{opacity:0;transform:scale(1.8)}}
+  .essence-d .ess-goal-ring{transform-box:fill-box;transform-origin:center;animation:ess-goal-ring 4.8s ease-out infinite}
+
+  /* C안용 (상품 뱃지 등장 애니메이션) */
+  @keyframes badge-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  .badge-1{animation:badge-float 3.2s ease-in-out infinite}
+  .badge-2{animation:badge-float 3.6s ease-in-out infinite -0.6s}
+  .badge-3{animation:badge-float 3.4s ease-in-out infinite -1.2s}
+
+  /* 미리보기 전용 */
+  h1{font-size:22px;margin-bottom:6px;font-weight:600;letter-spacing:-.02em;color:var(--fg)}
+  .intro{color:var(--fg-3);font-size:14px;margin-bottom:40px}
+  .variant-label{margin:48px 0 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .variant-label h2{font-size:16px;font-weight:600;letter-spacing:-.01em;color:var(--fg)}
+  .variant-label .meta{font-size:12.5px;color:var(--fg-3)}
+  .variant-label:first-of-type{margin-top:0}
+  .caption{margin-top:14px;font-size:13.5px;color:var(--fg-3);line-height:1.7;max-width:780px}
+  .caption em{font-style:normal;color:var(--fg);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>시장 다이어그램 시안 비교 (A/B/C)</h1>
+  <p class="intro">현재는 X + 점선 원이 "사용자 실패"처럼 읽혀, "시장이 결과만 판매" 메시지와 어긋남. 3가지 방향 비교.</p>
+
+  <!-- ============ Current ============ -->
+  <div class="variant-label"><h2>현재 (라이브)</h2><span class="meta">X + 점선 원 → "실패"로 읽힘</span></div>
+  <div class="problem-essence essence-d">
+    <div class="essence-visual">
+      <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
+        <g>
+          <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
+          <circle cx="60" cy="130" r="13" fill="#000"/>
+          <text x="60" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <line x1="78" y1="130" x2="164" y2="130" stroke="rgba(0,0,0,.25)" stroke-dasharray="3 5" stroke-width="1.5"/>
+          <line x1="196" y1="130" x2="282" y2="130" stroke="rgba(0,0,0,.25)" stroke-dasharray="3 5" stroke-width="1.5"/>
+          <g transform="translate(180 130)">
+            <line x1="-6" y1="-6" x2="6" y2="6" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="-6" y1="6" x2="6" y2="-6" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(300 130)">
+            <circle r="13" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="2" stroke-dasharray="3 4"/>
+          </g>
+          <text x="300" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="rgba(0,0,0,.5)">목표</text>
+        </g>
+        <g transform="translate(400 130)">
+          <line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/>
+          <path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <text x="620" y="36" font-size="14" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 단계적 습관 형성</text>
+          <circle cx="500" cy="130" r="13" fill="#000"/>
+          <text x="500" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <line x1="518" y1="130" x2="722" y2="130" stroke="#000" stroke-width="1.2"/>
+          <g class="ess-step ess-s1" transform="translate(540 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s2" transform="translate(572 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s3" transform="translate(604 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s4" transform="translate(636 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s5" transform="translate(668 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s6" transform="translate(700 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g transform="translate(740 130)"><circle class="ess-goal-ring" cx="0" cy="0" r="13" fill="none" stroke="#f94987" stroke-width="1.5" opacity="0"/><circle r="13" fill="#f94987"/><path class="ess-check" d="M-5.5 0.5 L-1 5 L6 -4" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+          <text x="740" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+        </g>
+      </svg>
+    </div>
+    <p class="caption">결심 → ✕ → 점선 원(목표). <em>해석이 "사용자가 실패"로 쏠림</em>.</p>
+  </div>
+
+  <!-- ============ A안: 빈 경로 ============ -->
+  <div class="variant-label"><h2>A안 — 빈 경로 (가장 간단)</h2><span class="meta">X 제거 + 점선만 연결, 양쪽 결심·목표 동일 무게</span></div>
+  <div class="problem-essence essence-d">
+    <div class="essence-visual">
+      <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
+        <g>
+          <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
+          <circle cx="60" cy="130" r="13" fill="#000"/>
+          <text x="60" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <!-- 단일 점선 (X 제거, 중간 텍스트 살짝 추가) -->
+          <line x1="78" y1="130" x2="282" y2="130" stroke="rgba(0,0,0,.3)" stroke-dasharray="3 5" stroke-width="1.5"/>
+          <text x="180" y="116" font-size="12" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.45)" letter-spacing=".02em">과정 없음</text>
+          <!-- 목표: 솔리드 검은색 (RIGHT와 동일 무게) -->
+          <circle cx="300" cy="130" r="13" fill="#000"/>
+          <text x="300" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+        </g>
+        <g transform="translate(400 130)">
+          <line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/>
+          <path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <text x="620" y="36" font-size="14" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 단계적 습관 형성</text>
+          <circle cx="500" cy="130" r="13" fill="#000"/>
+          <text x="500" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <line x1="518" y1="130" x2="722" y2="130" stroke="#000" stroke-width="1.2"/>
+          <g class="ess-step ess-s1" transform="translate(540 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s2" transform="translate(572 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s3" transform="translate(604 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s4" transform="translate(636 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s5" transform="translate(668 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s6" transform="translate(700 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g transform="translate(740 130)"><circle class="ess-goal-ring" cx="0" cy="0" r="13" fill="none" stroke="#f94987" stroke-width="1.5" opacity="0"/><circle r="13" fill="#f94987"/><path class="ess-check" d="M-5.5 0.5 L-1 5 L6 -4" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+          <text x="740" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+        </g>
+      </svg>
+    </div>
+    <p class="caption">결심·목표는 양쪽 동일, <em>차이는 사이의 "과정" 유무</em>. "실패" 뉘앙스 없이 "시장은 과정을 못 채워준다"가 자연스럽게 읽힘.</p>
+  </div>
+
+  <!-- ============ B안: 직선 점프 ============ -->
+  <div class="variant-label"><h2>B안 — 직선 점프</h2><span class="meta">결심에서 목표로 화살표 하나, 단계 없음 vs 단계 있음 대비</span></div>
+  <div class="problem-essence essence-d">
+    <div class="essence-visual">
+      <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
+        <g>
+          <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
+          <circle cx="60" cy="130" r="13" fill="#000"/>
+          <text x="60" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <!-- 단일 직선 화살표 (점프) -->
+          <line x1="78" y1="130" x2="282" y2="130" stroke="#000" stroke-width="1.4"/>
+          <path d="M276 124 L286 130 L276 136" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="180" y="116" font-size="12" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.5)" letter-spacing=".02em">바로 결과</text>
+          <!-- 목표: 솔리드 검은색 -->
+          <circle cx="300" cy="130" r="13" fill="#000"/>
+          <text x="300" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+        </g>
+        <g transform="translate(400 130)">
+          <line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/>
+          <path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <text x="620" y="36" font-size="14" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 단계적 습관 형성</text>
+          <circle cx="500" cy="130" r="13" fill="#000"/>
+          <text x="500" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <line x1="518" y1="130" x2="722" y2="130" stroke="#000" stroke-width="1.2"/>
+          <g class="ess-step ess-s1" transform="translate(540 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s2" transform="translate(572 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s3" transform="translate(604 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s4" transform="translate(636 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s5" transform="translate(668 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s6" transform="translate(700 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g transform="translate(740 130)"><circle class="ess-goal-ring" cx="0" cy="0" r="13" fill="none" stroke="#f94987" stroke-width="1.5" opacity="0"/><circle r="13" fill="#f94987"/><path class="ess-check" d="M-5.5 0.5 L-1 5 L6 -4" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+          <text x="740" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+        </g>
+      </svg>
+    </div>
+    <p class="caption">시장은 결심에서 목표로 <em>"점프 강요"</em>, 콰트는 단계적 진행. 대비가 가장 강함.</p>
+  </div>
+
+  <!-- ============ C안: 결과만 진열 ============ -->
+  <div class="variant-label"><h2>C안 — 결과만 진열 (메타포 변경)</h2><span class="meta">시장 = 결과를 상품처럼 진열 / 콰트 = 결심→과정→목표 여정</span></div>
+  <div class="problem-essence essence-d">
+    <div class="essence-visual">
+      <svg viewBox="0 0 800 240" font-family="Pretendard Variable, system-ui, sans-serif" aria-hidden="true">
+        <g>
+          <text x="180" y="36" font-size="14" fill="#737373" font-weight="600" text-anchor="middle" letter-spacing=".06em">시장 — 결과만을 판매</text>
+          <!-- 진열대 라인 -->
+          <line x1="40" y1="170" x2="320" y2="170" stroke="rgba(0,0,0,.15)" stroke-width="1.2"/>
+          <!-- 뱃지 1 -->
+          <g class="badge-1" transform="translate(80 130)">
+            <rect x="-44" y="-30" width="88" height="60" rx="12" fill="#fff" stroke="rgba(0,0,0,.15)" stroke-width="1.2"/>
+            <text y="-6" font-size="12" font-weight="700" text-anchor="middle" fill="#000">다이어트</text>
+            <text y="14" font-size="13" font-weight="700" text-anchor="middle" fill="#f94987">-10kg</text>
+          </g>
+          <!-- 뱃지 2 -->
+          <g class="badge-2" transform="translate(180 130)">
+            <rect x="-44" y="-30" width="88" height="60" rx="12" fill="#fff" stroke="rgba(0,0,0,.15)" stroke-width="1.2"/>
+            <text y="-6" font-size="12" font-weight="700" text-anchor="middle" fill="#000">근육</text>
+            <text y="14" font-size="13" font-weight="700" text-anchor="middle" fill="#f94987">복근</text>
+          </g>
+          <!-- 뱃지 3 -->
+          <g class="badge-3" transform="translate(280 130)">
+            <rect x="-44" y="-30" width="88" height="60" rx="12" fill="#fff" stroke="rgba(0,0,0,.15)" stroke-width="1.2"/>
+            <text y="-6" font-size="12" font-weight="700" text-anchor="middle" fill="#000">자세</text>
+            <text y="14" font-size="13" font-weight="700" text-anchor="middle" fill="#f94987">교정</text>
+          </g>
+          <text x="180" y="200" font-size="11" font-weight="500" text-anchor="middle" fill="rgba(0,0,0,.4)" letter-spacing=".02em">결과 진열</text>
+        </g>
+        <g transform="translate(400 130)">
+          <line x1="-22" y1="0" x2="22" y2="0" stroke="#000" stroke-width="1.2"/>
+          <path d="M14 -6 L22 0 L14 6" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <text x="620" y="36" font-size="14" fill="#000" font-weight="600" text-anchor="middle" letter-spacing=".06em">콰트 — 단계적 습관 형성</text>
+          <circle cx="500" cy="130" r="13" fill="#000"/>
+          <text x="500" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">결심</text>
+          <line x1="518" y1="130" x2="722" y2="130" stroke="#000" stroke-width="1.2"/>
+          <g class="ess-step ess-s1" transform="translate(540 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s2" transform="translate(572 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s3" transform="translate(604 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s4" transform="translate(636 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s5" transform="translate(668 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="ess-step ess-s6" transform="translate(700 130)"><circle r="6" fill="#000"/><path d="M-2.4 -0.2 L-0.6 1.6 L2.4 -1.8" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g transform="translate(740 130)"><circle class="ess-goal-ring" cx="0" cy="0" r="13" fill="none" stroke="#f94987" stroke-width="1.5" opacity="0"/><circle r="13" fill="#f94987"/><path class="ess-check" d="M-5.5 0.5 L-1 5 L6 -4" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+          <text x="740" y="174" font-size="14" font-weight="600" text-anchor="middle" fill="#000">목표</text>
+        </g>
+      </svg>
+    </div>
+    <p class="caption">시장은 <em>"다이어트 -10kg / 근육 / 자세교정"같은 결과를 상품처럼 진열</em>, 콰트는 결심에서 그 결과까지 가는 여정을 만듦. 메타포 가장 정확함.</p>
+  </div>
+</div>
+</body>
+</html>
