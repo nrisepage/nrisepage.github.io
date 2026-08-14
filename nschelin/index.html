@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>엔슐랭가이드</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --card: #FFFFFF;
+    --ink: #221D1A;
+    --ink-2: #55493F;
+    --muted: #857767;
+    --line: #E5DECF;
+    --line-2: #F0EAE0;
+    --accent: #A61C22;
+    --accent-deep: #8C181D;
+    --masthead-bg: #A61C22;
+    --masthead-ink: #FBF6EE;
+    --masthead-sub: #E8B7B2;
+    --masthead-rule: rgba(251, 246, 238, .5);
+    --good: #1D7A44;
+    --warn: #9A6400;
+    --off: #9A8F82;
+    --map-bg: #F4F0E8;
+    --map-road: #E5DCCA;
+    --map-pin-off: #B9B0A4;
+    --metro: #2E9E48;
+    --overlay: rgba(24, 14, 12, .55);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16120E;
+      --card: #1F1A15;
+      --ink: #F0EBE3;
+      --ink-2: #C9BFB2;
+      --muted: #94897B;
+      --line: #373026;
+      --line-2: #2A241D;
+      --accent: #DF5A5F;
+      --accent-deep: #C4474C;
+      --masthead-bg: #791417;
+      --masthead-ink: #F7EFE5;
+      --masthead-sub: #D5A19D;
+      --masthead-rule: rgba(247, 239, 229, .4);
+      --good: #55C48E;
+      --warn: #DFA85E;
+      --off: #7E7466;
+      --map-bg: #1D1812;
+      --map-road: #302921;
+      --map-pin-off: #57503F;
+      --metro: #55C48E;
+      --overlay: rgba(0, 0, 0, .6);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", -apple-system, sans-serif;
+    line-height: 1.5;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Apple Myungjo", "Nanum Myeongjo", Georgia, "Times New Roman", serif; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 22px; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ── 마스트헤드 ── */
+  .masthead {
+    background: var(--masthead-bg);
+    color: var(--masthead-ink);
+    border-bottom: 6px double var(--masthead-rule);
+  }
+  .masthead .wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 30px;
+    padding-bottom: 22px;
+  }
+  .brand .overline {
+    font-size: 10.5px;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--masthead-sub);
+    margin-bottom: 7px;
+  }
+  .brand h1 {
+    margin: 0;
+    font-size: clamp(27px, 5vw, 36px);
+    font-weight: 800;
+    letter-spacing: .01em;
+    line-height: 1.1;
+  }
+  .head-meta {
+    text-align: right;
+    font-size: 12.5px;
+    color: var(--masthead-sub);
+    line-height: 1.7;
+    white-space: nowrap;
+  }
+  .head-meta .clock { color: var(--masthead-ink); font-variant-numeric: tabular-nums; }
+
+  /* ── 툴바 ── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    padding-top: 18px;
+  }
+  .tabs { display: flex; flex-wrap: wrap; gap: 2px 16px; align-items: center; }
+  .tab {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 6px 1px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .tab[aria-pressed="true"] {
+    color: var(--ink);
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 var(--accent);
+  }
+  .tab:hover { color: var(--ink); }
+  .sep { width: 1px; height: 14px; background: var(--line); }
+  .toggle {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 6px 1px;
+    color: var(--muted);
+    font-size: 13.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .toggle::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted);
+  }
+  .toggle[aria-pressed="true"] { color: var(--good); font-weight: 700; }
+  .toggle[aria-pressed="true"]::before { background: var(--good); border-color: var(--good); }
+  .actions { margin-left: auto; display: flex; gap: 8px; }
+  .btn {
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 13.5px;
+    font-weight: 700;
+  }
+  .btn.ghost { background: none; border: 1px solid var(--line); color: var(--ink-2); }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.solid { background: var(--accent); border: 1px solid var(--accent); color: #FFF; }
+  .btn.solid:hover { background: var(--accent-deep); }
+  .tab:focus-visible, .toggle:focus-visible, .btn:focus-visible, a:focus-visible,
+  .sheet input:focus-visible, .pin:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .count { font-size: 12.5px; color: var(--muted); padding: 10px 0 0; }
+
+  /* ── 카드 ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    padding: 12px 0 8px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .card:hover { border-color: var(--muted); }
+  .card.dim { opacity: .55; }
+  .card.hit { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .card .top {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+  }
+  .card .num {
+    font-size: 13px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    min-width: 1.5em;
+  }
+  .card h2 { margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: -.01em; line-height: 1.35; flex: 1; }
+  .card h2 a { color: inherit; text-decoration: none; }
+  .card h2 a:hover { color: var(--accent); }
+  .card h2 a::after { content: "↗"; font-size: .72em; color: var(--muted); margin-left: 4px; }
+  .cuisine {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .status { font-size: 12.5px; display: flex; align-items: center; gap: 7px; }
+  .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+  .status.good { color: var(--good); }
+  .status.warn { color: var(--warn); }
+  .status.off  { color: var(--off); }
+
+  .menu-list { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .menu-list li { display: flex; align-items: baseline; gap: 8px; font-size: 13.5px; color: var(--ink-2); }
+  .menu-list .dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-3px); }
+  .menu-list .price { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 13px; }
+
+  .reviews { border-top: 1px solid var(--line-2); padding-top: 9px; }
+  .rv-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .rv-head .score { color: var(--warn); letter-spacing: 0; font-size: 12px; font-weight: 700; }
+  .reviews ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .reviews li { font-size: 12.5px; color: var(--ink-2); }
+  .reviews li::before { content: "「"; color: var(--muted); }
+  .reviews li::after { content: "」"; color: var(--muted); }
+
+  .card .foot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--line-2);
+    padding-top: 9px;
+    margin-top: auto;
+    font-size: 12px;
+    color: var(--muted);
+    min-height: 30px;
+  }
+  .card .foot .dist { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .del, .del-yes, .del-no {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 2px 3px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .del:hover { color: var(--accent); text-decoration: underline; }
+  .confirm { display: flex; align-items: center; gap: 6px; }
+  .confirm span { color: var(--ink-2); }
+  .del-yes { color: var(--accent); font-weight: 700; }
+  .del-no:hover, .del-yes:hover { text-decoration: underline; }
+  .empty { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 44px 0; font-size: 14px; }
+
+  /* ── 약도 (하단) ── */
+  .map-section { padding: 22px 0 10px; }
+  .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .sec-head .label {
+    font-size: 11px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .sec-head .desc { font-size: 12.5px; color: var(--muted); }
+  .map-panel {
+    background: var(--map-bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .map-panel svg { display: block; width: 100%; height: auto; }
+  .pin { cursor: pointer; }
+  .pin circle { fill: var(--accent); stroke: var(--card); stroke-width: 2; }
+  .pin.off circle { fill: var(--map-pin-off); }
+  .pin.faded { opacity: .25; }
+  .pin text { fill: #FFF; font-size: 11px; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .road { stroke: var(--map-road); }
+  .road-label { fill: var(--muted); font-size: 11px; letter-spacing: .1em; }
+  .metro-pin circle { fill: var(--metro); stroke: var(--card); stroke-width: 2; }
+  .metro-pin text.n { fill: #FFF; font-size: 10px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+  .metro-label { fill: var(--ink); font-size: 11.5px; font-weight: 700; }
+  #tip {
+    position: absolute;
+    display: none;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    white-space: nowrap;
+    transform: translate(-50%, -130%);
+    z-index: 5;
+  }
+
+  footer {
+    font-size: 11.5px;
+    color: var(--muted);
+    padding: 14px 0 44px;
+    line-height: 1.8;
+    border-top: 1px solid var(--line-2);
+    margin-top: 18px;
+  }
+
+  /* ── 오버레이 ── */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--overlay);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 10;
+  }
+  .overlay.open { display: flex; }
+  .sheet {
+    background: var(--card);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 30px 30px 24px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .28);
+  }
+  .sheet .label {
+    font-size: 10.5px;
+    letter-spacing: .3em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .sheet .pick { font-size: 24px; font-weight: 800; letter-spacing: -.01em; margin: 12px 0 3px; min-height: 1.4em; line-height: 1.3; }
+  .sheet .pick-sub { font-size: 13.5px; color: var(--muted); min-height: 1.5em; }
+  .sheet h3 { margin: 12px 0 6px; font-size: 19px; letter-spacing: -.01em; }
+  .sheet .desc { font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+  .sheet input[type="url"] {
+    width: 100%;
+    font: inherit;
+    font-size: 14px;
+    padding: 10px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .sheet .msg { font-size: 13px; min-height: 1.6em; margin-top: 9px; }
+  .sheet .msg.err { color: var(--accent); }
+  .sheet .msg.okay { color: var(--good); }
+  .sheet .row { display: flex; gap: 8px; margin-top: 16px; }
+  .sheet .row .btn { flex: none; }
+  .sheet a.btn { text-decoration: none; display: inline-block; }
+  .btn[disabled] { opacity: .55; cursor: wait; }
+
+  body.no-edit .edit-only { display: none !important; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand">
+      <div class="overline serif">NRISE · Yeoksam</div>
+      <h1 class="serif">엔슐랭가이드</h1>
+    </div>
+    <div class="head-meta">
+      <div class="clock" id="clock">--:--</div>
+      <div>역삼역 반경 점심 지도</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="toolbar" id="filters">
+    <div class="tabs">
+      <button class="tab" data-cuisine="all" aria-pressed="true">전체</button>
+      <button class="tab" data-cuisine="한식" aria-pressed="false">한식</button>
+      <button class="tab" data-cuisine="일식" aria-pressed="false">일식</button>
+      <button class="tab" data-cuisine="양식" aria-pressed="false">양식</button>
+      <button class="tab" data-cuisine="중식" aria-pressed="false">중식</button>
+      <button class="tab" data-cuisine="기타" aria-pressed="false">기타</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button class="toggle" id="openNow" aria-pressed="false">지금 갈 수 있는 곳만</button>
+    </div>
+    <div class="actions">
+      <button class="btn ghost edit-only" id="addBtn">매장 추가</button>
+      <button class="btn solid" id="rollBtn">오늘 뭐 먹지</button>
+    </div>
+  </div>
+  <div class="count" id="count">불러오는 중…</div>
+
+  <main class="grid" id="grid"></main>
+
+  <section class="map-section">
+    <div class="sec-head">
+      <span class="label serif">Map</span>
+      <span class="desc">실제 좌표 기반 약도 — 핀 번호는 카드 번호, 누르면 카드로 이동</span>
+    </div>
+    <div class="map-panel" id="mapPanel">
+      <svg id="map" viewBox="0 0 720 540" role="img" aria-label="역삼 일대 식당 위치 약도"></svg>
+      <div id="tip"></div>
+    </div>
+  </section>
+
+  <footer>
+    브레이크 표시는 이 화면의 시계 기준 · 가게명을 누르면 네이버지도로 이동<br>
+    메뉴·후기는 네이버 플레이스 기준으로 자동 수집 (변동 가능)<span class="edit-only"> · 매장 추가는 네이버 지도 공유 링크로</span>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="오늘의 추천">
+  <div class="sheet" style="text-align:center">
+    <div class="label serif">Today's Pick</div>
+    <div class="pick" id="pickName"></div>
+    <div class="pick-sub" id="pickSub"></div>
+    <div class="row" style="justify-content:center">
+      <a class="btn solid" id="pickMap" href="#" target="_blank" rel="noopener">지도 보기</a>
+      <button class="btn ghost" id="againBtn">다시 뽑기</button>
+      <button class="btn ghost" id="closeBtn">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="addOverlay" role="dialog" aria-modal="true" aria-label="매장 추가">
+  <div class="sheet">
+    <div class="label serif">New Spot</div>
+    <h3>매장 추가</h3>
+    <div class="desc">네이버 지도에서 매장 <b>공유 → 링크 복사</b> 한 주소를 붙여넣으면 메뉴·브레이크·위치·후기를 자동으로 채워요.</div>
+    <input type="url" id="addUrl" placeholder="https://naver.me/… 또는 map.naver.com/…" autocomplete="off">
+    <div class="msg" id="addMsg"></div>
+    <div class="row">
+      <button class="btn solid" id="addGo">추가하기</button>
+      <button class="btn ghost" id="addClose">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API_BASE = "https://bizqmtmwmjclamdaooti.supabase.co";
+  const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpenFtdG13bWpjbGFtZGFvb3RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3NjA0MDgsImV4cCI6MjA5OTMzNjQwOH0.JddiNSM2d8Hv22g5XVABTmZxkvX9WeQkOlDsR5UORhY";
+  const HEADERS = { apikey: API_KEY, Authorization: "Bearer " + API_KEY };
+  const STATIC_SPOTS = null; // 아티팩트(정적 데모) 빌드에서만 데이터가 채워진다
+
+  const STATION = { name: "역삼역", coords: { lat: 37.50079, lng: 127.03689 } };
+  const SOON_MIN = 40;          // 브레이크 시작 N분 전부터 "곧 브레이크"
+  const PIN_RANGE_M = 1500;     // 역삼역에서 이 거리 안쪽만 약도에 핀 표시
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let SPOTS = [];
+
+  function fromRow(row) {
+    return {
+      id: row.id,
+      name: row.name,
+      cuisine: row.cuisine || "기타",
+      break: row.break_start && row.break_end ? [row.break_start, row.break_end] : null,
+      allNight: row.all_night,
+      coords: row.lat != null && row.lng != null ? { lat: row.lat, lng: row.lng } : null,
+      menu: (row.menu || []).slice(0, 3).map(m => [m.item, m.price]),
+      reviews: row.reviews || [],
+      rating: row.rating,
+      reviewCount: row.review_count,
+      naverUrl: row.naver_url,
+    };
+  }
+
+  async function loadSpots() {
+    if (STATIC_SPOTS) { SPOTS = STATIC_SPOTS.map(fromRow); return; }
+    const r = await fetch(`${API_BASE}/rest/v1/enschelin_spots?select=*&order=id.asc`, { headers: HEADERS });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    SPOTS = (await r.json()).map(fromRow);
+  }
+
+  const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+  const nowMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
+
+  function statusOf(spot) {
+    if (spot.allNight) return { kind: "good", text: "새벽까지 영업" };
+    if (!spot.break) return { kind: "good", text: "브레이크 없음" };
+    const n = nowMin(), s = toMin(spot.break[0]), e = toMin(spot.break[1]);
+    if (n >= s && n < e) return { kind: "off", text: `브레이크 중 · ${spot.break[1]}에 열어요` };
+    if (n >= s - SOON_MIN && n < s) return { kind: "warn", text: `곧 브레이크 · ${spot.break[0]}까지 입장` };
+    return { kind: "good", text: "지금 가도 돼요" };
+  }
+
+  const mapUrl = spot => spot.naverUrl
+    || "https://map.naver.com/p/search/" + encodeURIComponent(/역삼|강남/.test(spot.name) ? spot.name : spot.name + " 역삼");
+
+  function distFromStation(spot) {
+    if (!spot.coords) return null;
+    const COS = Math.cos(37.5 * Math.PI / 180);
+    const dx = (spot.coords.lng - STATION.coords.lng) * 111320 * COS;
+    const dy = (spot.coords.lat - STATION.coords.lat) * 110950;
+    return Math.round(Math.hypot(dx, dy) / 10) * 10;
+  }
+  const pinnable = spot => spot.coords && distFromStation(spot) <= PIN_RANGE_M;
+
+  let cuisineFilter = "all";
+  let openNowOnly = false;
+
+  const matchesFilter = s => (cuisineFilter === "all" || s.cuisine === cuisineFilter)
+    && (!openNowOnly || statusOf(s).kind !== "off");
+  const visibleSpots = () => SPOTS.filter(matchesFilter);
+
+  /* ── 약도 ── */
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const VW = 720, VH = 540, PAD = 54;
+
+  function project(spots) {
+    const COS = Math.cos(37.5 * Math.PI / 180);
+    const pts = [...spots.map(s => s.coords), STATION.coords];
+    const xs = pts.map(c => c.lng * COS), ys = pts.map(c => c.lat);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const scale = Math.min((VW - PAD * 2) / Math.max(maxX - minX, 1e-9), (VH - PAD * 2) / Math.max(maxY - minY, 1e-9));
+    const ox = (VW - (maxX - minX) * scale) / 2, oy = (VH - (maxY - minY) * scale) / 2;
+    return c => ({
+      x: ox + (c.lng * COS - minX) * scale,
+      y: VH - oy - (c.lat - minY) * scale,
+    });
+  }
+
+  function el(tag, attrs, text) {
+    const node = document.createElementNS(SVG_NS, tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
+  function roadBand(svg, center, dirDeg, width, label, labelOffset, labelRotate) {
+    const rad = dirDeg * Math.PI / 180;
+    const dx = Math.cos(rad), dy = -Math.sin(rad);
+    const L = 900;
+    svg.appendChild(el("line", {
+      x1: center.x - dx * L, y1: center.y - dy * L,
+      x2: center.x + dx * L, y2: center.y + dy * L,
+      class: "road", "stroke-width": width, "stroke-linecap": "round",
+    }));
+    const lx = center.x + dx * labelOffset[0] + -dy * labelOffset[1];
+    const ly = center.y + dy * labelOffset[0] + dx * labelOffset[1];
+    const deg = labelRotate ?? Math.round(-dirDeg);
+    svg.appendChild(el("text", { x: lx, y: ly, class: "road-label",
+      transform: deg ? `rotate(${deg} ${lx} ${ly})` : "" }, label));
+  }
+
+  function buildMap() {
+    const svg = document.getElementById("map");
+    svg.innerHTML = "";
+    const mapped = SPOTS.filter(pinnable);
+    const proj = project(mapped);
+    const st = proj(STATION.coords);
+
+    roadBand(svg, st, 21, 30, "테 헤 란 로", [150, -26]);
+    roadBand(svg, st, 97, 18, "논현로", [-190, -22], 0);
+
+    const g = el("g", { class: "metro-pin" });
+    g.appendChild(el("circle", { cx: st.x, cy: st.y, r: 10 }));
+    g.appendChild(el("text", { x: st.x, y: st.y + .5, class: "n" }, "2"));
+    g.appendChild(el("text", { x: st.x + 15, y: st.y + 4, class: "metro-label" }, "역삼역"));
+    svg.appendChild(g);
+
+    for (const spot of mapped) {
+      const i = SPOTS.indexOf(spot);
+      const p = proj(spot.coords);
+      const pin = el("g", { class: "pin", "data-i": i, tabindex: 0, role: "button",
+        "aria-label": `${spot.name} 카드로 이동` });
+      pin.appendChild(el("circle", { cx: p.x, cy: p.y, r: 11 }));
+      pin.appendChild(el("text", { x: p.x, y: p.y + .5 }, String(i + 1)));
+      svg.appendChild(pin);
+    }
+  }
+
+  function syncMap() {
+    document.querySelectorAll(".pin").forEach(pin => {
+      const spot = SPOTS[pin.dataset.i];
+      pin.classList.toggle("faded", !matchesFilter(spot));
+      pin.classList.toggle("off", statusOf(spot).kind === "off");
+    });
+  }
+
+  function goToCard(i) {
+    const card = document.querySelector(`.card[data-i="${i}"]`);
+    if (!card) return;
+    card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    card.classList.add("hit");
+    setTimeout(() => card.classList.remove("hit"), 1600);
+  }
+
+  {
+    const svg = document.getElementById("map");
+    svg.addEventListener("click", e => {
+      const pin = e.target.closest(".pin");
+      if (pin) goToCard(Number(pin.dataset.i));
+    });
+    svg.addEventListener("keydown", e => {
+      const pin = e.target.closest(".pin");
+      if (pin && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); goToCard(Number(pin.dataset.i)); }
+    });
+    const tip = document.getElementById("tip");
+    svg.addEventListener("pointerover", e => {
+      const pin = e.target.closest(".pin");
+      if (!pin) { tip.style.display = "none"; return; }
+      const spot = SPOTS[pin.dataset.i];
+      const panel = document.getElementById("mapPanel").getBoundingClientRect();
+      const c = pin.querySelector("circle").getBoundingClientRect();
+      tip.textContent = `${spot.name} · ${spot.cuisine}`;
+      tip.style.left = (c.left + c.width / 2 - panel.left) + "px";
+      tip.style.top = (c.top - panel.top) + "px";
+      tip.style.display = "block";
+    });
+    svg.addEventListener("pointerout", () => { tip.style.display = "none"; });
+  }
+
+  /* ── 카드 ── */
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  function rvHead(spot) {
+    if (spot.rating != null) {
+      const cnt = spot.reviewCount != null ? ` · ${Number(spot.reviewCount).toLocaleString("ko-KR")}` : "";
+      return `<span>네이버 리뷰</span><span class="score">★ ${spot.rating}${cnt}</span>`;
+    }
+    return `<span>네이버 리뷰에서</span>`;
+  }
+
+  function render() {
+    const grid = document.getElementById("grid");
+    const spots = visibleSpots();
+    grid.innerHTML = "";
+    for (const spot of spots) {
+      const i = SPOTS.indexOf(spot);
+      const st = statusOf(spot);
+      const card = document.createElement("article");
+      card.className = "card" + (st.kind === "off" ? " dim" : "");
+      card.dataset.i = i;
+
+      const cls = st.kind === "warn" ? "warn" : st.kind === "off" ? "off" : "good";
+      const breakLine = spot.break ? `브레이크 ${spot.break[0]}–${spot.break[1]}` : (spot.allNight ? "새벽까지 영업" : "브레이크 없음");
+      const dist = distFromStation(spot);
+      const hasReviews = spot.reviews.length || spot.rating != null;
+      card.innerHTML = `
+        <div class="top">
+          <span class="num serif">${i + 1}.</span>
+          <h2><a href="${mapUrl(spot)}" target="_blank" rel="noopener" title="네이버지도에서 보기">${escapeHtml(spot.name)}</a></h2>
+          <span class="cuisine">${escapeHtml(spot.cuisine)}</span>
+        </div>
+        <div class="status ${cls}">${st.text}</div>
+        ${spot.menu.length ? `<ul class="menu-list">${spot.menu.map(([item, price]) => `
+          <li><span>${escapeHtml(item)}</span><span class="dots"></span><span class="price">${price ? escapeHtml(price) : ""}</span></li>`).join("")}
+        </ul>` : ""}
+        ${hasReviews ? `<div class="reviews">
+          <div class="rv-head">${rvHead(spot)}</div>
+          ${spot.reviews.length ? `<ul>${spot.reviews.slice(0, 3).map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>` : ""}
+        </div>` : ""}
+        <div class="foot">
+          <span>${breakLine}</span>
+          <span class="dist">${dist != null ? `역삼역 ${dist}m` : ""}</span>
+          <span class="foot-actions edit-only"><button class="del" data-id="${spot.id}">삭제</button></span>
+        </div>`;
+      grid.appendChild(card);
+    }
+    if (!spots.length) {
+      grid.innerHTML = `<div class="empty">조건에 맞는 곳이 없어요. 필터를 풀어보세요.</div>`;
+    }
+    const open = spots.filter(s => statusOf(s).kind !== "off").length;
+    document.getElementById("count").textContent = `${spots.length}곳 · 지금 갈 수 있는 곳 ${open}곳`;
+    syncMap();
+  }
+
+  /* ── 삭제 (2단계 확인) ── */
+  document.getElementById("grid").addEventListener("click", async e => {
+    const del = e.target.closest(".del");
+    if (del) {
+      const wrap = del.parentElement;
+      wrap.innerHTML = `<span class="confirm"><span>삭제할까요?</span>
+        <button class="del-yes" data-id="${del.dataset.id}">예</button>
+        <button class="del-no">아니오</button></span>`;
+      return;
+    }
+    if (e.target.closest(".del-no")) { render(); return; }
+    const yes = e.target.closest(".del-yes");
+    if (yes) {
+      yes.disabled = true;
+      try {
+        const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+          method: "POST",
+          headers: { ...HEADERS, "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "delete", id: Number(yes.dataset.id) }),
+        });
+        const body = await r.json();
+        if (!body.ok) throw new Error(body.error || "삭제에 실패했어요");
+        await loadSpots();
+        buildMap();
+        render();
+      } catch (err) {
+        alert(err.message);
+        render();
+      }
+    }
+  });
+
+  /* ── 필터 ── */
+  document.getElementById("filters").addEventListener("click", e => {
+    const tab = e.target.closest(".tab");
+    if (tab) {
+      cuisineFilter = tab.dataset.cuisine;
+      document.querySelectorAll(".tab").forEach(t =>
+        t.setAttribute("aria-pressed", String(t === tab)));
+      render();
+      return;
+    }
+    if (e.target.closest("#openNow")) {
+      openNowOnly = !openNowOnly;
+      document.getElementById("openNow").setAttribute("aria-pressed", String(openNowOnly));
+      render();
+    }
+  });
+
+  /* ── 시계 ── */
+  function tickClock() {
+    const d = new Date();
+    const hh = String(d.getHours()).padStart(2, "0");
+    const mm = String(d.getMinutes()).padStart(2, "0");
+    document.getElementById("clock").textContent = `지금 ${hh}:${mm}`;
+  }
+
+  /* ── 랜덤 뽑기 ── */
+  const overlay = document.getElementById("overlay");
+  let spinTimer = null;
+
+  function roll() {
+    const pool = visibleSpots().filter(s => statusOf(s).kind !== "off");
+    const pickName = document.getElementById("pickName");
+    const pickSub = document.getElementById("pickSub");
+    const pickMap = document.getElementById("pickMap");
+    overlay.classList.add("open");
+    clearInterval(spinTimer);
+
+    if (!pool.length) {
+      pickName.textContent = "지금 갈 수 있는 곳이 없어요";
+      pickSub.textContent = "필터를 풀거나 브레이크가 끝나길 기다려요";
+      pickMap.style.display = "none";
+      return;
+    }
+    pickMap.style.display = "";
+
+    const finish = () => {
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      pickName.textContent = pick.name;
+      pickSub.textContent = `${pick.cuisine}${pick.menu.length ? " · " + pick.menu[0][0] : ""} — 여기로 가시죠`;
+      pickMap.href = mapUrl(pick);
+      document.getElementById("closeBtn").focus();
+    };
+
+    if (reduceMotion || pool.length === 1) { finish(); return; }
+
+    let i = 0, spins = 14 + Math.floor(Math.random() * 8);
+    pickSub.textContent = "고르는 중…";
+    spinTimer = setInterval(() => {
+      pickName.textContent = pool[i % pool.length].name;
+      i++;
+      if (i >= spins) { clearInterval(spinTimer); finish(); }
+    }, 90);
+  }
+
+  document.getElementById("rollBtn").addEventListener("click", roll);
+  document.getElementById("againBtn").addEventListener("click", roll);
+  document.getElementById("closeBtn").addEventListener("click", () => {
+    clearInterval(spinTimer);
+    overlay.classList.remove("open");
+  });
+  overlay.addEventListener("click", e => {
+    if (e.target === overlay) { clearInterval(spinTimer); overlay.classList.remove("open"); }
+  });
+
+  /* ── 매장 추가 ── */
+  const addOverlay = document.getElementById("addOverlay");
+  const addMsg = document.getElementById("addMsg");
+  const addGo = document.getElementById("addGo");
+  const addUrl = document.getElementById("addUrl");
+
+  document.getElementById("addBtn").addEventListener("click", () => {
+    addOverlay.classList.add("open");
+    addMsg.textContent = "";
+    addMsg.className = "msg";
+    addUrl.value = "";
+    addUrl.focus();
+  });
+  document.getElementById("addClose").addEventListener("click", () => addOverlay.classList.remove("open"));
+  addOverlay.addEventListener("click", e => { if (e.target === addOverlay) addOverlay.classList.remove("open"); });
+
+  async function addSpot() {
+    const url = addUrl.value.trim();
+    if (!url) { addMsg.textContent = "링크를 붙여넣어 주세요"; addMsg.className = "msg err"; return; }
+    addGo.disabled = true;
+    addMsg.textContent = "네이버에서 읽어오는 중…";
+    addMsg.className = "msg";
+    try {
+      const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+        method: "POST",
+        headers: { ...HEADERS, "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+      const body = await r.json();
+      if (!body.ok) throw new Error(body.error || "실패했어요");
+      addMsg.textContent = `"${body.spot.name}" 추가 완료`;
+      addMsg.className = "msg okay";
+      await loadSpots();
+      buildMap();
+      render();
+      setTimeout(() => {
+        addOverlay.classList.remove("open");
+        goToCard(SPOTS.findIndex(s => s.id === body.spot.id));
+      }, 700);
+    } catch (err) {
+      addMsg.textContent = err.message;
+      addMsg.className = "msg err";
+    } finally {
+      addGo.disabled = false;
+    }
+  }
+  addGo.addEventListener("click", addSpot);
+  addUrl.addEventListener("keydown", e => { if (e.key === "Enter") addSpot(); });
+
+  addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      clearInterval(spinTimer);
+      overlay.classList.remove("open");
+      addOverlay.classList.remove("open");
+    }
+  });
+
+  /* ── 시작 ── */
+  if (STATIC_SPOTS) document.body.classList.add("no-edit");
+  tickClock();
+  loadSpots()
+    .then(() => { buildMap(); render(); })
+    .catch(() => {
+      document.getElementById("count").textContent = "리스트를 불러오지 못했어요. 새로고침 해주세요.";
+    });
+  setInterval(() => { tickClock(); if (SPOTS.length) render(); }, 30000);
+</script>
+</body>
+</html>
