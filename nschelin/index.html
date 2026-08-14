@@ -486,9 +486,7 @@
 </div>
 
 <script>
-  const API_BASE = "https://bizqmtmwmjclamdaooti.supabase.co";
-  const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpenFtdG13bWpjbGFtZGFvb3RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3NjA0MDgsImV4cCI6MjA5OTMzNjQwOH0.JddiNSM2d8Hv22g5XVABTmZxkvX9WeQkOlDsR5UORhY";
-  const HEADERS = { apikey: API_KEY, Authorization: "Bearer " + API_KEY };
+  const API_BASE = "https://nschelin-api.nrisepage.workers.dev";
   const STATIC_SPOTS = null; // 아티팩트(정적 데모) 빌드에서만 데이터가 채워진다
   const STATIC_COMMENTS = null; // 아티팩트 빌드 주입
 
@@ -518,7 +516,7 @@
 
   async function loadSpots() {
     if (STATIC_SPOTS) { SPOTS = STATIC_SPOTS.map(fromRow); return; }
-    const r = await fetch(`${API_BASE}/rest/v1/enschelin_spots?select=*&order=id.asc`, { headers: HEADERS });
+    const r = await fetch(`${API_BASE}/spots`);
     if (!r.ok) throw new Error("HTTP " + r.status);
     SPOTS = (await r.json()).map(fromRow);
   }
@@ -530,7 +528,7 @@
   }
   async function loadComments() {
     if (STATIC_COMMENTS) { groupComments(STATIC_COMMENTS); return; }
-    const r = await fetch(`${API_BASE}/rest/v1/enschelin_comments?select=*&order=id.asc`, { headers: HEADERS });
+    const r = await fetch(`${API_BASE}/comments`);
     groupComments(r.ok ? await r.json() : []);
   }
 
@@ -712,9 +710,9 @@
     const send = form.querySelector(".send");
     send.disabled = true;
     try {
-      const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+      const r = await fetch(`${API_BASE}/api`, {
         method: "POST",
-        headers: { ...HEADERS, "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "comment", spot_id: Number(form.dataset.id), body, author: author || null, rating }),
       });
       const res = await r.json();
@@ -817,9 +815,9 @@
       if (!cdel.dataset.armed) { cdel.dataset.armed = "1"; cdel.textContent = "삭제?"; return; }
       cdel.disabled = true;
       try {
-        const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+        const r = await fetch(`${API_BASE}/api`, {
           method: "POST",
-          headers: { ...HEADERS, "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action: "delete_comment", id: Number(cdel.dataset.cid) }),
         });
         const res = await r.json();
@@ -844,9 +842,9 @@
     if (yes) {
       yes.disabled = true;
       try {
-        const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+        const r = await fetch(`${API_BASE}/api`, {
           method: "POST",
-          headers: { ...HEADERS, "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action: "delete", id: Number(yes.dataset.id) }),
         });
         const body = await r.json();
@@ -958,9 +956,9 @@
     addMsg.textContent = "네이버에서 읽어오는 중…";
     addMsg.className = "msg";
     try {
-      const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+      const r = await fetch(`${API_BASE}/api`, {
         method: "POST",
-        headers: { ...HEADERS, "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
       });
       const body = await r.json();
