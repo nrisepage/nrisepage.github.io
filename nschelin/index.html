@@ -162,7 +162,7 @@
   .btn.solid { background: var(--accent); border: 1px solid var(--accent); color: #FFF; }
   .btn.solid:hover { background: var(--accent-deep); }
   .tab:focus-visible, .toggle:focus-visible, .btn:focus-visible, a:focus-visible,
-  .sheet input:focus-visible, .pin:focus-visible {
+  .sheet input:focus-visible, .pin:focus-visible, .tc button:focus-visible, .tc-form input:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
@@ -236,6 +236,43 @@
   .reviews li { font-size: 12.5px; color: var(--ink-2); }
   .reviews li::before { content: "「"; color: var(--muted); }
   .reviews li::after { content: "」"; color: var(--muted); }
+
+  /* ── 팀 코멘트 ── */
+  .tc { background: var(--map-bg); border: 1px solid var(--line-2); border-radius: 8px; padding: 9px 12px 9px; }
+  .tc-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .tc-avg { color: var(--warn); letter-spacing: 0; font-size: 12px; font-weight: 700; }
+  .tc-write { margin-left: auto; background: none; border: none; font-size: 11.5px; color: var(--muted); letter-spacing: 0; padding: 0 2px; }
+  .tc-write:hover { color: var(--accent); text-decoration: underline; }
+  .tc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .tc li { font-size: 12.5px; color: var(--ink-2); display: flex; align-items: baseline; gap: 6px; }
+  .tc li > span:first-of-type { flex: 1; }
+  .tc .stars { color: var(--warn); font-style: normal; font-size: 11px; letter-spacing: .05em; flex: none; }
+  .tc .who { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
+  .tc .none { font-size: 12px; color: var(--muted); }
+  .tc .cdel { background: none; border: none; color: var(--muted); font-size: 11px; padding: 0 2px; flex: none; }
+  .tc .cdel:hover { color: var(--accent); }
+  .tc-form { display: none; flex-direction: column; gap: 6px; margin-top: 8px; border-top: 1px solid var(--line-2); padding-top: 9px; }
+  .tc-form.open { display: flex; }
+  .tc-form .row2 { display: flex; gap: 6px; }
+  .tc-form input { flex: 1; font: inherit; font-size: 12.5px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--ink); min-width: 0; }
+  .tc-form .tc-name { flex: 0 0 92px; }
+  .tc-stars { display: flex; gap: 2px; }
+  .tc-stars button { background: none; border: none; font-size: 16px; color: var(--muted); padding: 0 1px; line-height: 1; }
+  .tc-stars button.on { color: var(--warn); }
+  .tc-form .fbtns { display: flex; gap: 6px; justify-content: flex-end; }
+  .tc-form .fbtns button { font-size: 12px; font-weight: 700; border-radius: 7px; padding: 6px 12px; }
+  .tc-form .send { background: var(--accent); color: #FFF; border: 1px solid var(--accent); }
+  .tc-form .send[disabled] { opacity: .55; cursor: wait; }
+  .tc-form .cancel { background: none; border: 1px solid var(--line); color: var(--ink-2); }
 
   .card .foot {
     display: flex;
@@ -453,6 +490,7 @@
   const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpenFtdG13bWpjbGFtZGFvb3RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3NjA0MDgsImV4cCI6MjA5OTMzNjQwOH0.JddiNSM2d8Hv22g5XVABTmZxkvX9WeQkOlDsR5UORhY";
   const HEADERS = { apikey: API_KEY, Authorization: "Bearer " + API_KEY };
   const STATIC_SPOTS = null; // 아티팩트(정적 데모) 빌드에서만 데이터가 채워진다
+  const STATIC_COMMENTS = null; // 아티팩트 빌드 주입
 
   const STATION = { name: "역삼역", coords: { lat: 37.50079, lng: 127.03689 } };
   const SOON_MIN = 40;          // 브레이크 시작 N분 전부터 "곧 브레이크"
@@ -483,6 +521,17 @@
     const r = await fetch(`${API_BASE}/rest/v1/enschelin_spots?select=*&order=id.asc`, { headers: HEADERS });
     if (!r.ok) throw new Error("HTTP " + r.status);
     SPOTS = (await r.json()).map(fromRow);
+  }
+
+  let COMMENTS = {}; // spot_id → [{id, author, body, rating}]
+  function groupComments(list) {
+    COMMENTS = {};
+    for (const c of list) (COMMENTS[c.spot_id] ??= []).push(c);
+  }
+  async function loadComments() {
+    if (STATIC_COMMENTS) { groupComments(STATIC_COMMENTS); return; }
+    const r = await fetch(`${API_BASE}/rest/v1/enschelin_comments?select=*&order=id.asc`, { headers: HEADERS });
+    groupComments(r.ok ? await r.json() : []);
   }
 
   const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
@@ -629,6 +678,56 @@
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  function teamBlock(spot) {
+    const cms = COMMENTS[spot.id] || [];
+    const rated = cms.filter(c => c.rating);
+    const avg = rated.length ? (rated.reduce((s, c) => s + c.rating, 0) / rated.length).toFixed(1).replace(/\.0$/, "") : null;
+    const items = cms.map(c => `
+      <li>${c.rating ? `<i class="stars">${"★".repeat(c.rating)}</i>` : ""}<span>${escapeHtml(c.body)}</span>${c.author ? `<span class="who">— ${escapeHtml(c.author)}</span>` : ""}<button class="cdel edit-only" data-cid="${c.id}" aria-label="코멘트 삭제">×</button></li>`).join("");
+    return `
+      <div class="tc">
+        <div class="tc-head">
+          <span>팀 코멘트</span>
+          ${avg ? `<span class="tc-avg">★ ${avg} · ${rated.length}명</span>` : ""}
+          <button class="tc-write edit-only">쓰기</button>
+        </div>
+        ${cms.length ? `<ul>${items}</ul>` : `<div class="none">아직 팀 코멘트가 없어요</div>`}
+        <div class="tc-form edit-only" data-id="${spot.id}">
+          <div class="tc-stars" data-v="0">${[1, 2, 3, 4, 5].map(v => `<button data-v="${v}" aria-label="${v}점">☆</button>`).join("")}</div>
+          <div class="row2">
+            <input class="tc-body" maxlength="300" placeholder="한 줄 코멘트">
+            <input class="tc-name" maxlength="20" placeholder="이름(선택)">
+          </div>
+          <div class="fbtns"><button class="send">등록</button><button class="cancel">취소</button></div>
+        </div>
+      </div>`;
+  }
+
+  async function submitComment(form) {
+    const bodyEl = form.querySelector(".tc-body");
+    const body = bodyEl.value.trim();
+    const author = form.querySelector(".tc-name").value.trim();
+    const rating = Number(form.querySelector(".tc-stars").dataset.v) || null;
+    if (!body) { bodyEl.focus(); return; }
+    const send = form.querySelector(".send");
+    send.disabled = true;
+    try {
+      const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+        method: "POST",
+        headers: { ...HEADERS, "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "comment", spot_id: Number(form.dataset.id), body, author: author || null, rating }),
+      });
+      const res = await r.json();
+      if (!res.ok) throw new Error(res.error || "실패했어요");
+      if (author) localStorage.setItem("enschelin_name", author);
+      await loadComments();
+      render();
+    } catch (err) {
+      alert(err.message);
+      send.disabled = false;
+    }
+  }
+
   function rvHead(spot) {
     if (spot.rating != null) {
       const cnt = spot.reviewCount != null ? `<span>리뷰 ${Number(spot.reviewCount).toLocaleString("ko-KR")}개</span>` : "";
@@ -666,6 +765,7 @@
           <div class="rv-head">${rvHead(spot)}</div>
           ${spot.reviews.length ? `<ul>${spot.reviews.slice(0, 3).map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>` : ""}
         </div>` : ""}
+        ${teamBlock(spot)}
         <div class="foot">
           <span>${breakLine}</span>
           <span class="dist">${dist != null ? `역삼역 ${dist}m` : ""}</span>
@@ -681,8 +781,56 @@
     syncMap();
   }
 
-  /* ── 삭제 (2단계 확인) ── */
+  /* ── 카드 내 인터랙션: 매장 삭제·팀 코멘트 ── */
   document.getElementById("grid").addEventListener("click", async e => {
+    const write = e.target.closest(".tc-write");
+    if (write) {
+      const form = write.closest(".tc").querySelector(".tc-form");
+      form.classList.toggle("open");
+      if (form.classList.contains("open")) {
+        const saved = localStorage.getItem("enschelin_name");
+        if (saved && !form.querySelector(".tc-name").value) form.querySelector(".tc-name").value = saved;
+        form.querySelector(".tc-body").focus();
+      }
+      return;
+    }
+    const star = e.target.closest(".tc-stars button");
+    if (star) {
+      const wrap = star.parentElement;
+      const v = Number(star.dataset.v);
+      wrap.dataset.v = v;
+      wrap.querySelectorAll("button").forEach(b => {
+        const on = Number(b.dataset.v) <= v;
+        b.classList.toggle("on", on);
+        b.textContent = on ? "★" : "☆";
+      });
+      return;
+    }
+    if (e.target.closest(".tc-form .cancel")) {
+      e.target.closest(".tc-form").classList.remove("open");
+      return;
+    }
+    const send = e.target.closest(".tc-form .send");
+    if (send) { submitComment(send.closest(".tc-form")); return; }
+    const cdel = e.target.closest(".cdel");
+    if (cdel) {
+      if (!cdel.dataset.armed) { cdel.dataset.armed = "1"; cdel.textContent = "삭제?"; return; }
+      cdel.disabled = true;
+      try {
+        const r = await fetch(`${API_BASE}/functions/v1/enschelin-add-spot`, {
+          method: "POST",
+          headers: { ...HEADERS, "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "delete_comment", id: Number(cdel.dataset.cid) }),
+        });
+        const res = await r.json();
+        if (!res.ok) throw new Error(res.error || "삭제에 실패했어요");
+        await loadComments();
+      } catch (err) {
+        alert(err.message);
+      }
+      render();
+      return;
+    }
     const del = e.target.closest(".del");
     if (del) {
       const wrap = del.parentElement;
@@ -819,7 +967,7 @@
       if (!body.ok) throw new Error(body.error || "실패했어요");
       addMsg.textContent = `"${body.spot.name}" 추가 완료`;
       addMsg.className = "msg okay";
-      await loadSpots();
+      await Promise.all([loadSpots(), loadComments()]);
       buildMap();
       render();
       setTimeout(() => {
@@ -847,12 +995,15 @@
   /* ── 시작 ── */
   if (STATIC_SPOTS) document.body.classList.add("no-edit");
   tickClock();
-  loadSpots()
+  Promise.all([loadSpots(), loadComments()])
     .then(() => { buildMap(); render(); })
     .catch(() => {
       document.getElementById("count").textContent = "리스트를 불러오지 못했어요. 새로고침 해주세요.";
     });
-  setInterval(() => { tickClock(); if (SPOTS.length) render(); }, 30000);
+  setInterval(() => {
+    tickClock();
+    if (SPOTS.length && !document.querySelector(".tc-form.open")) render();
+  }, 30000);
 </script>
 </body>
 </html>
