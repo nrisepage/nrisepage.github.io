@@ -630,8 +630,8 @@
 
   function rvHead(spot) {
     if (spot.rating != null) {
-      const cnt = spot.reviewCount != null ? ` · ${Number(spot.reviewCount).toLocaleString("ko-KR")}` : "";
-      return `<span>네이버 리뷰</span><span class="score">★ ${spot.rating}${cnt}</span>`;
+      const cnt = spot.reviewCount != null ? `<span>리뷰 ${Number(spot.reviewCount).toLocaleString("ko-KR")}개</span>` : "";
+      return `<span>네이버</span><span class="score">★ ${spot.rating}</span>${cnt}`;
     }
     return `<span>네이버 리뷰에서</span>`;
   }
