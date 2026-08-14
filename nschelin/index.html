@@ -468,6 +468,7 @@
       cuisine: row.cuisine || "기타",
       break: row.break_start && row.break_end ? [row.break_start, row.break_end] : null,
       allNight: row.all_night,
+      note: row.note || (row.all_night ? "새벽까지 영업" : "브레이크 없음"),
       coords: row.lat != null && row.lng != null ? { lat: row.lat, lng: row.lng } : null,
       menu: (row.menu || []).slice(0, 3).map(m => [m.item, m.price]),
       reviews: row.reviews || [],
@@ -489,7 +490,7 @@
 
   function statusOf(spot) {
     if (spot.allNight) return { kind: "good", text: "새벽까지 영업" };
-    if (!spot.break) return { kind: "good", text: "브레이크 없음" };
+    if (!spot.break) return { kind: "good", text: spot.note };
     const n = nowMin(), s = toMin(spot.break[0]), e = toMin(spot.break[1]);
     if (n >= s && n < e) return { kind: "off", text: `브레이크 중 · ${spot.break[1]}에 열어요` };
     if (n >= s - SOON_MIN && n < s) return { kind: "warn", text: `곧 브레이크 · ${spot.break[0]}까지 입장` };
@@ -648,7 +649,7 @@
       card.dataset.i = i;
 
       const cls = st.kind === "warn" ? "warn" : st.kind === "off" ? "off" : "good";
-      const breakLine = spot.break ? `브레이크 ${spot.break[0]}–${spot.break[1]}` : (spot.allNight ? "새벽까지 영업" : "브레이크 없음");
+      const breakLine = spot.break ? `브레이크 ${spot.break[0]}–${spot.break[1]}` : spot.note;
       const dist = distFromStation(spot);
       const hasReviews = spot.reviews.length || spot.rating != null;
       card.innerHTML = `
